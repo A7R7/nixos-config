@@ -1,8 +1,10 @@
 { config, pkgs, ... }:
 
 {
-  home.username = "aaron-nix";
-  home.homeDirectory = "/home/aaron-nix";
+  home = {
+    username = "aaron-nix";
+    homeDirectory = "/home/aaron-nix";
+  };
 
   xresources.properties = {
     "Xcursor.size" = 16;
@@ -23,7 +25,7 @@
     ripgrep
     jq
     yq-go
-    exa
+    eza
     fzf
 
     emacs29-pgtk
@@ -44,6 +46,16 @@
     eww-wayland
     cliphist
     wl-clipboard
+
+    fira-code
+    fira-code-symbols
+    roboto
+    nerdfonts
+    sarasa-gothic
+
+    meson
+
+    stdenv
   ];
 
 #  programs.clash-verge = {

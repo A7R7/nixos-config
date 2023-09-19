@@ -27,7 +27,7 @@
     ## nixpkgs
     # nixpkgs.url = "github:nixos/nixpkgs/nixos-23.05";
     # nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-    # nixpkgs-wayland.url = "github:nix-community/nixpkgs-wayland";
+    nixpkgs-wayland.url = "github:nix-community/nixpkgs-wayland";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
     # nix-colors.url = "github:misterio77/nix-colors";
@@ -45,28 +45,27 @@
 
   };
 
-  outputs =
-    inputs@{ self , nixpkgs , home-manager , hyprland , ... }: {
-      nixosConfigurations = {
-        Nixtop = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          modules = [
-            ./configuration.nix
-            home-manager.nixosModules.home-manager
-            {
-              home-manager = {
-                useUserPackages = true;
-                useGlobalPkgs = true;
-                extraSpecialArgs = inputs;
-                users.aaron-nix = import ./home.nix;
-              };
-            }
-            hyprland.nixosModules.default
-            {
-              programs.hyprland.enable = true;
-            }
-          ];
-        };
+  outputs = inputs@{ self , nixpkgs , home-manager , hyprland , ... }: {
+    nixosConfigurations = {
+      Nixtop = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          ./configuration.nix
+          home-manager.nixosModules.home-manager
+          {
+            home-manager = {
+              useUserPackages = true;
+              useGlobalPkgs = true;
+              extraSpecialArgs = inputs;
+              users.aaron-nix = import ./home.nix;
+            };
+          }
+          hyprland.nixosModules.default
+          {
+            programs.hyprland.enable = true;
+          }
+        ];
       };
     };
+  };
 }

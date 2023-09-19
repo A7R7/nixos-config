@@ -25,7 +25,7 @@
 
   time.timeZone = "Asia/Shanghai";
 
-  nix.settings.substituters = [ "https://mirrors.sjtu.edu.cn/nix-channels/store" ];
+  nix.settings.substituters = [ "https://mirror.nju.edu.cn/nix-channels/store" ];
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # Select internationalisation properties.
