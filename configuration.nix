@@ -65,6 +65,7 @@
   users.users.aaron-nix = {
     isNormalUser = true;
     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+    shell = pkgs.elvish;
   };
 
   # List packages installed in system profile. To search, run:
@@ -78,6 +79,7 @@
     stow
     man
     zsh
+    elvish
     efibootmgr
     gnumake
   ];
