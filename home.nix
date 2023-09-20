@@ -26,6 +26,10 @@
     userEmail = "Aaron__Lee_@outlook.com";
   };
 
+  programs.emacs29-pgtk = {
+    enable = true;
+  }
+
 
   home.packages = with pkgs; [
     neofetch
@@ -36,8 +40,6 @@
     yq-go
     eza
     fzf
-
-    emacs29-pgtk
 
     kitty
     alacritty
@@ -54,6 +56,16 @@
     steam
 
     eww-wayland
+    gtk3
+    gtk-layer-shell
+    pango
+    gdk-pixbuf
+    cairo
+    glib
+    libgcc
+    glibc
+
+
     cliphist
     wl-clipboard
 
