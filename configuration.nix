@@ -9,7 +9,8 @@
     [
       ./hardware-configuration.nix
     ];
-
+  
+  #bootloader
   boot = {
     kernelPackages = pkgs.linuxPackages_latest;
     initrd.kernelModules = [ "amdgpu" ];
@@ -19,16 +20,28 @@
       timeout = 10;
     };
   };
+  
+  # networking
+  networking = {
+    hostName = "Nixtop"; # Define your hostname.
+    networkmanager.enable = true;
+  };
 
-  networking.hostName = "Nixtop"; # Define your hostname.
-  networking.networkmanager.enable = true;
+  # nix 
+  nixpkgs.config.allowUnfree = true;
+  nix = {
+    settings = {
+      substituters = [ 
+        "https://mirror.sjtu.edu.cn/nix-channels/store"   
+        #"https://mirrors.nju.edu.cn/nix-channels/store"   
+      ];
+      experimental-features = [ "nix-command" "flakes" ];
+      auto-optimise-store = true;
+    };
+  };
 
+  # locale
   time.timeZone = "Asia/Shanghai";
-
-  nix.settings.substituters = [ "https://mirror.nju.edu.cn/nix-channels/store" ];
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
-  # Select internationalisation properties.
   i18n = {
     defaultLocale = "en_US.UTF-8";
     supportedLocales = [
@@ -36,25 +49,28 @@
       "zh_CN.UTF-8/UTF-8"
     ];
   };
-
   console = {
     font = "Lat2-Terminus16";
     useXkbConfig = true; # use xkbOptions in tty.
   };
+# services
+  services = {
+    printing.enable = true;
+    flatpak.enable = true;
+  };
+  services.xserver = {
+    enable = true;
+    layout = "us";
+    xkbOptions = "caps:escape";
+    displayManager.gdm.enable = true;
+    desktopManager.gnome.enable = true;
+    desktopManager.gnome.debug = true;
+  };
 
   # Enable the X11 windowing system.
-  services.xserver.enable = true;
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
 
-  # Configure keymap in X11
-  services.xserver.layout = "us";
-  services.xserver.xkbOptions = "caps:escape";
 
-  # Enable CUPS to print documents.
-  # services.printing.enable = true;
-
-  # Enable sound.
+  # sound.
   sound.enable = true;
   hardware.pulseaudio.enable = true;
 
@@ -84,7 +100,6 @@
     gnumake
   ];
 
-  nixpkgs.config.allowUnfree = true;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

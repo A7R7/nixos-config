@@ -37,8 +37,6 @@
     eza
     fzf
 
-    emacs29-pgtk
-
     kitty
     alacritty
 
@@ -49,11 +47,23 @@
     rofi-wayland-unwrapped
     neovide
 
+    emacs29-pgtk
+
     firefox
     # vivaldi
     steam
 
     eww-wayland
+    gtk3
+    gtk-layer-shell
+    pango
+    gdk-pixbuf
+    cairo
+    glib
+    libgcc
+    glibc
+
+
     cliphist
     wl-clipboard
 

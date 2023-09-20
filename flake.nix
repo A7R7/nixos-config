@@ -27,8 +27,8 @@
     ## nixpkgs
     # nixpkgs.url = "github:nixos/nixpkgs/nixos-23.05";
     # nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs-wayland.url = "github:nix-community/nixpkgs-wayland";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-wayland.url = "github:nix-community/nixpkgs-wayland";
 
     # nix-colors.url = "github:misterio77/nix-colors";
 
