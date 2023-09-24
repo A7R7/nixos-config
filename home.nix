@@ -4,7 +4,9 @@
   home = {
     username = "aaron-nix";
     homeDirectory = "/home/aaron-nix";
+    stateVersion = "23.05";
   };
+  programs.home-manager.enable = true;
 
   nixpkgs = {
     config = {
@@ -26,6 +28,11 @@
     userEmail = "Aaron__Lee_@outlook.com";
   };
 
+#   programs.steam = {
+#    enable = true;
+#    remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remoteplay
+#    dedicatedServer.openFirewall = true; # Open ports in the firewall for steam server
+#  };
 
   home.packages = with pkgs; [
     neofetch
@@ -51,6 +58,9 @@
 
     firefox
     # vivaldi
+
+    steam-tui
+    steamcmd
     steam
 
     eww-wayland
@@ -82,7 +92,4 @@
 #    enable = true;
 #  };
 
-  home.stateVersion = "23.05";
-
-  programs.home-manager.enable = true;
 }
