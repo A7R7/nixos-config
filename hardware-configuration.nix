@@ -28,6 +28,10 @@
       fsType = "ext4";
     };
 
+  fileSystems."/mnt/D" =
+    { device = "/dev/nvme0n1p5";
+      fsType = "ntfs";
+    };
   swapDevices =
     [ { device = "/dev/nvme0n1p4"; }
     ];
