@@ -109,6 +109,14 @@
   #   enable = true;
   #   enableSSHSupport = true;
   # };
+  i18n.inputMethod = {
+    enabled = "fcitx5";
+    fcitx.engines = with pkgs.fcitx-engines; [ rime ];
+    fcitx5.enableRimeData= true;
+    fcitx5.addons = with pkgs; [
+      fcitx5-rime
+    ];
+  };
 
   programs.steam = {
     enable = true;
