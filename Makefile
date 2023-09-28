@@ -6,6 +6,6 @@ update:
 
 gc:
 	# remove all generations older than 7 days
-	sudo nix profile wipe-history --profile /nix/var/nix/profiles/system  --older-than 7d
+	sudo nix profile wipe-history --profile /nix/var/nix/profiles/system  --older-than +7
 	# garbage collect all unused nix store entries
 	sudo nix store gc --debug

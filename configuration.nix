@@ -33,8 +33,8 @@
   nix = {
     settings = {
       substituters = [ 
-        "https://mirror.sjtu.edu.cn/nix-channels/store"   
-        #"https://mirrors.nju.edu.cn/nix-channels/store"   
+        "https://mirror.sjtu.edu.cn/nix-channels/store"
+        #"https://mirrors.nju.edu.cn/nix-channels/store"
       ];
       experimental-features = [ "nix-command" "flakes" ];
       auto-optimise-store = true;
@@ -99,6 +99,9 @@
     elvish
     efibootmgr
     gnumake
+    killall
+    qt6-wayland
+    qt5-wayland
   ];
 
 
@@ -111,11 +114,12 @@
   # };
   i18n.inputMethod = {
     enabled = "fcitx5";
-    fcitx.engines = with pkgs.fcitx-engines; [ rime ];
-    fcitx5.enableRimeData= true;
-    fcitx5.addons = with pkgs; [
-      fcitx5-rime
-    ];
+    fcitx5 = {
+      addons = with pkgs; [
+        fcitx5-rime
+        fcitx5-chinese-addons
+      ];
+    };
   };
 
   programs.steam = {

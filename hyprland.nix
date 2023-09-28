@@ -10,10 +10,10 @@
     # enableNvidiaPatches = true;
   };
 
-  xdg.portal = {
-    enable = true;
-    extraPortals = [ pkgs.xdg-desktop-portal-gdm ];
-  };
+#  xdg.portal = {
+#    enable = true;
+#    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+#  };
 
   security = {
     polkit.enable = true;
