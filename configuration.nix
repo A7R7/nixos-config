@@ -81,7 +81,7 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.aaron-nix = {
     isNormalUser = true;
-    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "networkmanager" "libvirtd"]; # Enable ‘sudo’ for the user.
     shell = pkgs.elvish;
   };
 
@@ -100,8 +100,6 @@
     efibootmgr
     gnumake
     killall
-    qt6-wayland
-    qt5-wayland
   ];
 
 
