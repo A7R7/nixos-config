@@ -26,6 +26,7 @@
   networking = {
     hostName = "Nixtop"; # Define your hostname.
     networkmanager.enable = true;
+    enableIPv6 = false;
   };
 
   # nix 
@@ -38,6 +39,7 @@
       ];
       experimental-features = [ "nix-command" "flakes" ];
       auto-optimise-store = true;
+      trusted-users = [ "aaron-nix" ]; # so I can visit custom substituters
     };
   };
 
@@ -73,7 +75,19 @@
 
   # sound.
   sound.enable = true;
-  hardware.pulseaudio.enable = true;
+  hardware.pulseaudio.enable = false;
+  security.rtkit.enable = true;
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+    # jack.enable = true;
+  };
+
+  # asus
+  services.asusd.enable = true;
+  programs.rog-control-center.enable = true;
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;

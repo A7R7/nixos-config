@@ -28,12 +28,6 @@
     userEmail = "Aaron__Lee_@outlook.com";
   };
 
-#   programs.steam = {
-#    enable = true;
-#    remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remoteplay
-#    dedicatedServer.openFirewall = true; # Open ports in the firewall for steam server
-#  };
-
   home.packages = with pkgs; [
     neofetch
     ranger
@@ -47,7 +41,7 @@
     kitty
     alacritty
 
-    clash-verge
+    # clash-verge
     hyprpaper
     hyprpicker
     wlogout
@@ -57,7 +51,14 @@
     emacs29-pgtk
 
     firefox
-    # vivaldi
+    (vivaldi.override {
+      proprietaryCodecs = true;
+      enableWidevine = true;
+      commandLineArgs =
+       "--proxy-server='https=127.0.0.1:7890;http=127.0.0.1:7890'";
+    })
+    widevine-cdm
+    vivaldi-ffmpeg-codecs
 
     steam-tui
     steamcmd
@@ -81,11 +82,45 @@
     fira-code-symbols
     roboto
     nerdfonts
-    sarasa-gothic
+    sarasa-gothic 
+    
+    # tools
+    bat
+    eza
+    ranger
+    fd
+    ripgrep
+    fzf
+    socat
+    jq
+    acpi
+    inotify-tools
+    ffmpeg
+    libnotify
 
+    # tools
+    wl-gammactl
+    wl-clipboard
+    wf-recorder
+    hyprpicker
+    wayshot
+    swappy
+    slurp
+    imagemagick
+    pavucontrol
+    brightnessctl
+    swww
+
+
+    # langs
+    nodejs
+    go
+    bun
+    sassc
+    typescript
     meson
-
-    stdenv
+    ninja
+    # eslint
   ];
 
 #  programs.clash-verge = {
