@@ -37,7 +37,6 @@
     nur.url = "github:nix-community/NUR";
     # hyprland wm
     hyprland.url = "github:hyprwm/Hyprland";
-    xdg-portal-hyprland.url = "github:hyprwm/xdg-desktop-portal-hyprland";
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -51,14 +50,14 @@
       Nixtop = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
-          ./configuration.nix
+          ./host/configuration.nix
           home-manager.nixosModules.home-manager
           {
             home-manager = {
               useUserPackages = true;
               useGlobalPkgs = true;
               extraSpecialArgs = inputs;
-              users.aaron-nix = import ./home.nix;
+              users.aaron-nix = import ./home/home.nix;
             };
           }
           hyprland.nixosModules.default

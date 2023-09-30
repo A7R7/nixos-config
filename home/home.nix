@@ -1,6 +1,7 @@
 { config, pkgs, ... }:
 
 {
+
   home = {
     username = "aaron-nix";
     homeDirectory = "/home/aaron-nix";
@@ -28,29 +29,30 @@
     userEmail = "Aaron__Lee_@outlook.com";
   };
 
+  wayland.windowManager.hyprland = {
+    enable = true;
+    xwayland.enable = true;
+  };
+
   home.packages = with pkgs; [
     neofetch
-    ranger
-    nnn
-    ripgrep
-    jq
     yq-go
-    eza
-    fzf
 
     kitty
     alacritty
 
     # clash-verge
+    # hyprland stuffs
     hyprpaper
     hyprpicker
     wlogout
     rofi-wayland-unwrapped
-    neovide
 
+    neovide
     emacs29-pgtk
 
     firefox
+    chromium
     (vivaldi.override {
       proprietaryCodecs = true;
       enableWidevine = true;
@@ -87,7 +89,7 @@
     # tools
     bat
     eza
-    ranger
+    ranger nnn
     fd
     ripgrep
     fzf
@@ -97,6 +99,7 @@
     inotify-tools
     ffmpeg
     libnotify
+    zoxide
 
     # tools
     wl-gammactl

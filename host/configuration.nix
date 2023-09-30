@@ -87,7 +87,6 @@
 
   # asus
   services.asusd.enable = true;
-  programs.rog-control-center.enable = true;
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
