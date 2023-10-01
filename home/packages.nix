@@ -21,7 +21,7 @@
     steamcmd
     steam
 
-    clash-verge
+    # clash-verge
 
     # terminals & tuis
     kitty
