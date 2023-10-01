@@ -31,7 +31,7 @@
     userName = "a7r7";
     userEmail = "Aaron__Lee_@outlook.com";
   };
-
+  
   wayland.windowManager.hyprland = {
     enable = true;
     xwayland.enable = true;

@@ -3,7 +3,7 @@
   home.packages = with pkgs; [
     #guis
     libreoffice
-    gimp
+    gimp-with-plugins
     inkscape
 
     neovide
@@ -21,7 +21,7 @@
     steamcmd
     steam
 
-    # clash-verge
+    clash-verge
 
     # terminals & tuis
     kitty
