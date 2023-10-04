@@ -94,7 +94,7 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.aaron-nix = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "libvirtd"]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "networkmanager" "libvirtd" "adbusers"]; # Enable ‘sudo’ for the user.
     shell = pkgs.elvish;
   };
 
@@ -135,6 +135,7 @@
     };
   };
 
+  programs.adb.enable = true;
   programs.steam = {
     enable = true;
     remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
