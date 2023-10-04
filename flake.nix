@@ -37,6 +37,7 @@
     nur.url = "github:nix-community/NUR";
     # hyprland wm
     hyprland.url = "github:hyprwm/Hyprland";
+    ags.url = "github:Aylur/ags";
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -45,10 +46,22 @@
 
   };
 
-  outputs = inputs@{ self , nixpkgs , home-manager , hyprland , ... }: {
+  outputs = inputs@{
+    self,
+    nixpkgs,
+    nixpkgs-stable,
+    home-manager,
+    hyprland,
+    ... }: {
     nixosConfigurations = {
-      Nixtop = nixpkgs.lib.nixosSystem {
+      Nixtop = nixpkgs.lib.nixosSystem rec {
         system = "x86_64-linux";
+        specialArgs = {
+          pkgs-stable = import nixpkgs-stable {
+            system = system;
+            config.allowUnfree = true;
+          };
+        };
         modules = [
           ./host/configuration.nix
           home-manager.nixosModules.home-manager
@@ -56,7 +69,12 @@
             home-manager = {
               useUserPackages = true;
               useGlobalPkgs = true;
-              extraSpecialArgs = inputs;
+              extraSpecialArgs = inputs // {
+                pkgs-stable = import nixpkgs-stable {
+                  system = system;
+                  config.allowUnfree = true;
+                };
+              };
               users.aaron-nix = import ./home/home.nix;
             };
           }

@@ -1,6 +1,6 @@
-{ pkgs, ... }:
+{ pkgs, pkgs-stable, ... }:
 {
-  home.packages = with pkgs; [
+  home.packages = (with pkgs; [
     #guis
     libreoffice
     gimp-with-plugins
@@ -8,20 +8,27 @@
 
     neovide
     emacs29-pgtk
+    auctex
+
+    qq
+
+    prismlauncher
+    openjdk19
 
     firefox
     chromium
     (vivaldi.override {
       proprietaryCodecs = true;
       enableWidevine = true;
-      commandLineArgs =
-       "--proxy-server='https=127.0.0.1:7890;http=127.0.0.1:7890'";
+      commandLineArgs =''
+       --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-wayland-ime \\
+       --proxy-server='https=127.0.0.1:7890;http=127.0.0.1:7890' \\
+       %u
+       '';
     })
     steam-tui
     steamcmd
     steam
-
-    # clash-verge
 
     # terminals & tuis
     kitty
@@ -93,5 +100,8 @@
     meson
     ninja
     # eslint
-  ];
+    texlive.combined.scheme-full
+  ]) ++ (with pkgs-stable; [
+    clash-verge
+  ]);
 }

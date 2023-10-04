@@ -1,8 +1,9 @@
-{ config, pkgs, ... }:
+{ config, pkgs, pkgs-stable, ... }:
 
 {
   imports = [
     ./packages.nix
+    ./ags.nix
   ];
 
   home = {
