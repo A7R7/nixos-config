@@ -51,6 +51,8 @@
     libnotify
     zoxide
 
+    carapace
+
     # hyprland
     hyprpaper
     hyprpicker

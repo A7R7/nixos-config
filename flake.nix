@@ -78,10 +78,6 @@
               users.aaron-nix = import ./home/home.nix;
             };
           }
-          hyprland.nixosModules.default
-          {
-            programs.hyprland.enable = true;
-          }
         ];
       };
     };
