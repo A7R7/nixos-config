@@ -52,6 +52,7 @@
     zoxide
 
     carapace
+    starship
 
     # hyprland
     hyprpaper

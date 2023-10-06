@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 {
   services.xserver = {
     displayManager.startx.enable = true;
@@ -7,13 +7,14 @@
   programs.hyprland = {
     enable = true;
     xwayland.enable = true;
+    package = inputs.hyprland.packages.${pkgs.system}.hyprland;
     # enableNvidiaPatches = true;
   };
 
   xdg.portal = {
     enable = true;
     wlr.enable = true;
-    extraPortals = [ pkgs.xdg-desktop-portal-gnome ];
+    # extraPortals = [ pkgs.xdg-desktop-portal-wlr ];
   };
 
   security = {

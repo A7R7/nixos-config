@@ -36,7 +36,8 @@
     utils.url = "github:gytis-ivaskevicius/flake-utils-plus";
     nur.url = "github:nix-community/NUR";
     # hyprland wm
-    hyprland.url = "github:hyprwm/Hyprland";
+    # hyprland.url = "github:hyprwm/Hyprland";
+    hyprland.url = "github:hyprwm/Hyprland/v0.28.0";
     ags.url = "github:Aylur/ags";
 
     home-manager = {
@@ -57,6 +58,7 @@
       Nixtop = nixpkgs.lib.nixosSystem rec {
         system = "x86_64-linux";
         specialArgs = {
+          inherit inputs;
           pkgs-stable = import nixpkgs-stable {
             system = system;
             config.allowUnfree = true;
