@@ -95,6 +95,7 @@
 
 
     # langs
+    ccache
     nodejs
     go
     bun
