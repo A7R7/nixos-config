@@ -95,6 +95,7 @@
 
 
     # langs
+    gcc
     ccache
     nodejs
     go
