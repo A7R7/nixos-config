@@ -50,6 +50,7 @@
     ffmpeg
     libnotify
     zoxide
+    autoconf
 
     carapace
     starship
@@ -97,6 +98,7 @@
     # langs
     gcc
     ccache
+    python311
     nodejs
     go
     bun
