@@ -3,14 +3,14 @@
 
   nixConfig = {
     experimental-features = [ "nix-command" "flakes" ];
-    substituters = [
-      "https://mirror.sjtu.edu.cn/nix-channels/store"
-      "https://mirrors.nju.edu.cn/nix-channels/store"
-      "https://mirrors.bfsu.edu.cn/nix-channels/store"
-      # "https://mirrors.ustc.edu.cn/nix-channels/store"
-      "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
-      "https://cache.nixos.org/"
-    ];
+    # substituters = [
+    #   "https://mirror.sjtu.edu.cn/nix-channels/store"
+    #   "https://mirrors.nju.edu.cn/nix-channels/store"
+    #   "https://mirrors.bfsu.edu.cn/nix-channels/store"
+    #   # "https://mirrors.ustc.edu.cn/nix-channels/store"
+    #   "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
+    #   "https://cache.nixos.org/"
+    # ];
 
     # nix community's cache server
     extra-substituters = [
@@ -36,8 +36,8 @@
     utils.url = "github:gytis-ivaskevicius/flake-utils-plus";
     nur.url = "github:nix-community/NUR";
     # hyprland wm
-    # hyprland.url = "github:hyprwm/Hyprland";
-    hyprland.url = "github:hyprwm/Hyprland/v0.28.0";
+    hyprland.url = "github:hyprwm/Hyprland";
+    # hyprland.url = "github:hyprwm/Hyprland/v0.29.0";
     ags.url = "github:Aylur/ags";
 
     home-manager = {
@@ -53,17 +53,24 @@
     nixpkgs-stable,
     home-manager,
     hyprland,
-    ... }: {
+    ... }: 
+  let 
+    username = "aaron-nix";
+    system = "x86_64-linux";
+    pkgs = import nixpkgs {
+      inherit system;
+      config.allowUnfree = true;
+    };
+    pkgs-stable = import nixpkgs-stable {
+      inherit system;
+      config.allowUnfree = true;
+    };
+  in
+    {
     nixosConfigurations = {
-      Nixtop = nixpkgs.lib.nixosSystem rec {
+      Nixtop = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        specialArgs = {
-          inherit inputs;
-          pkgs-stable = import nixpkgs-stable {
-            system = system;
-            config.allowUnfree = true;
-          };
-        };
+        specialArgs = { inherit inputs username system; };
         modules = [
           ./host/configuration.nix
           home-manager.nixosModules.home-manager
@@ -71,13 +78,8 @@
             home-manager = {
               useUserPackages = true;
               useGlobalPkgs = true;
-              extraSpecialArgs = inputs // {
-                pkgs-stable = import nixpkgs-stable {
-                  system = system;
-                  config.allowUnfree = true;
-                };
-              };
-              users.aaron-nix = import ./home/home.nix;
+              extraSpecialArgs = { inherit inputs pkgs pkgs-stable; };
+              users.${username} = import ./home/home.nix;
             };
           }
         ];
