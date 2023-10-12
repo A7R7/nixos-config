@@ -1,7 +1,7 @@
-{ pkgs, ags, ... }:
+{ pkgs, inputs, ... }:
 {
   home.packages = [
-    ags
+    inputs.ags
   ];
 
   # xdg.configFile.ags.source = ../ags;
