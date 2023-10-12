@@ -1,5 +1,5 @@
 deploy:
-	nixos-rebuild switch
+	nixos-rebuild switch --flake . --impure
 
 update:
 	nix-flake update
