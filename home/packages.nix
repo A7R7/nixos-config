@@ -29,13 +29,17 @@
     steam-tui
     steamcmd
     steam
+    discord
+    telegram-desktop
+
+    logisim-evolution
 
     # terminals & tuis
     kitty
     alacritty
     wezterm
 
-    # tools
+    # cmd tools
     fastfetch
     bat
     eza
@@ -80,7 +84,7 @@
     nerdfonts
     sarasa-gothic 
     
-    # tools
+    # gui-tools
     wl-gammactl
     wl-clipboard
     wf-recorder
