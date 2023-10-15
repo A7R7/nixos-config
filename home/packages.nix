@@ -30,6 +30,8 @@
     steam-tui
     steamcmd
     steam
+    gamescope
+
     discord
     telegram-desktop
 
@@ -56,6 +58,7 @@
     libnotify
     zoxide
     autoconf
+    tree
 
     carapace
     starship
