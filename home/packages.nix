@@ -13,6 +13,7 @@
     qq
 
     prismlauncher
+    glfw-wayland-minecraft
     openjdk19
 
     firefox
