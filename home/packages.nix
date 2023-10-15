@@ -1,5 +1,6 @@
-{ pkgs, pkgs-stable, ... }:
+{ pkgs, pkgs-stable, nur, ... }:
 {
+
   home.packages = (with pkgs; [
     #guis
     libreoffice

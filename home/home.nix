@@ -1,4 +1,4 @@
-{ config, pkgs, pkgs-stable, ... }:
+{ config, pkgs, pkgs-stable, inputs, ... }:
 
 {
   imports = [
@@ -11,6 +11,11 @@
     homeDirectory = "/home/aaron-nix";
     stateVersion = "23.05";
   };
+  home.packages = with pkgs; [
+  	nur.repos.linyinfeng.matrix-qq
+  	nur.repos.linyinfeng.matrix-wechat
+  ];
+
   programs.home-manager.enable = true;
 
   nixpkgs = {

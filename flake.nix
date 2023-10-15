@@ -51,6 +51,7 @@
     self,
     nixpkgs,
     nixpkgs-stable,
+    nur,
     home-manager,
     hyprland,
     ... }: 
@@ -60,6 +61,7 @@
     pkgs = import nixpkgs {
       inherit system;
       config.allowUnfree = true;
+      overlays = [nur.overlay];
     };
     pkgs-stable = import nixpkgs-stable {
       inherit system;
