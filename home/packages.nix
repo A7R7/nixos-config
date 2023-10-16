@@ -9,7 +9,7 @@
 
     neovide
     emacs29-pgtk
-    auctex
+    zathura
 
     qq
 
