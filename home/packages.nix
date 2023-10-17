@@ -10,6 +10,7 @@
     neovide
     emacs29-pgtk
     zathura
+    dbeaver
 
     qq
 
