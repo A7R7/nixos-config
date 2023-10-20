@@ -59,6 +59,7 @@
 
     # cmd tools
     fastfetch
+    thefuck
     bat
     eza
     ranger nnn
