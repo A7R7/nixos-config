@@ -44,7 +44,7 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
+    musnix.url = "github:musnix/musnix";
   };
 
   outputs = inputs@{
@@ -73,7 +73,7 @@
       Nixtop = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = { inherit inputs username system pkgs pkgs-stable; };
-        modules = [ ./host/configuration.nix ];
+        modules = [ ./host/configuration.nix inputs.musnix.nixosModules.musnix];
       };
     };
 		homeConfigurations = {

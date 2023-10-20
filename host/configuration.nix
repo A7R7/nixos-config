@@ -63,17 +63,22 @@
 
 
   # sound.
-  sound.enable = true;
+  sound.enable = false; # sound.enable is only meant for ALSA-based configurations
   hardware.pulseaudio.enable = false;
   hardware.bluetooth.enable = true;
   security.rtkit.enable = true;
-
-
+  services. pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+    jack.enable = true;
+  };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.${username} = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "libvirtd" "adbusers"]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "networkmanager" "libvirtd" "adbusers" "audio"];
     shell = pkgs.elvish;
   };
 
@@ -155,13 +160,6 @@
     flatpak.enable = true;
     openssh.enable = true;
     asusd.enable = true;
-    pipewire = {
-      enable = true;
-      alsa.enable = true;
-      alsa.support32Bit = true;
-      pulse.enable = true;
-      jack.enable = true;
-    };
     xserver = {
       enable = true;
       excludePackages = [ pkgs.xterm ];
