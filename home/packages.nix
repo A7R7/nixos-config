@@ -6,17 +6,18 @@
     libreoffice
     gimp-with-plugins
     inkscape
-
     neovide
     emacs29-pgtk
     zathura
     dbeaver
+    gparted
+    fsearch
 
     qq
 
     prismlauncher
     glfw-wayland-minecraft
-    openjdk19
+    zulu21
 
     firefox
     chromium
@@ -61,6 +62,7 @@
     zoxide
     autoconf
     tree
+    ghostscript
 
     carapace
     starship
