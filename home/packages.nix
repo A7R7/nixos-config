@@ -19,6 +19,18 @@
     glfw-wayland-minecraft
     zulu21
 
+    ardour
+    # synthesizer-plugin
+    zyn-fusion
+    # sampler
+    avldrums-lv2
+    drumkv1
+    drumgizmo
+    # effect processor
+    calf
+    
+
+
     firefox
     chromium
     (vivaldi.override {
