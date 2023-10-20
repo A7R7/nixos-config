@@ -81,7 +81,7 @@
   users.users.${username} = {
     isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager" "libvirtd" "adbusers" "audio"];
-    shell = pkgs.elvish;
+    shell = pkgs.bash;
   };
 
   # List packages installed in system profile. To search, run:
