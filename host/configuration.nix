@@ -65,6 +65,7 @@
   # sound.
   sound.enable = true;
   hardware.pulseaudio.enable = false;
+  hardware.bluetooth.enable = true;
   security.rtkit.enable = true;
 
 
@@ -119,6 +120,16 @@
   };
 
   programs = {
+    # regreet.enable = true; 
+    # This line installs ReGreet, 
+    # sets up systemd tmpfiles for it, 
+    # enables services.greetd and also configures its default session to start ReGreet using cage.
+    hyprland = {
+      enable = true;
+      # package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+      xwayland.enable = true;
+      enableNvidiaPatches = true;
+    };
     adb.enable = true;
     steam = {
       enable = true;
@@ -128,6 +139,15 @@
     dconf.enable = true;
   };
 
+  fonts.fonts = with pkgs; [
+    noto-fonts
+    noto-fonts-cjk
+    noto-fonts-emoji
+    liberation_ttf
+    roboto
+    nerdfonts
+    sarasa-gothic 
+  ];
 # services
   services = {
     printing.enable = true;
@@ -150,10 +170,21 @@
       desktopManager.gnome.enable = true;
       desktopManager.gnome.debug = true;
     };
+
+    gvfs.enable = true;
+    devmon.enable = true;
+    udisks2.enable = true;
+    upower.enable = true;
+    accounts-daemon.enable = true;
+    gnome = {
+      evolution-data-server.enable = true;
+      glib-networking.enable = true;
+      gnome-keyring.enable = true;
+      gnome-online-accounts.enable = true;
+    };
   };
 
-  # asus
-  system.stateVersion = "23.05"; # Did you read the comment?
+  system.stateVersion = "23.05";
    
 }
 

@@ -83,12 +83,6 @@
     glibc
 
 
-    # fonts
-    fira-code
-    fira-code-symbols
-    roboto
-    nerdfonts
-    sarasa-gothic 
     
     # gui-tools
     wl-gammactl
@@ -118,6 +112,9 @@
     ninja
     # eslint
     texlive.combined.scheme-full
+
+
+    gnome.adwaita-icon-theme
   ]) ++ (with pkgs-stable; [
     clash-verge
   ]);
