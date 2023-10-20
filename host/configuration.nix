@@ -8,6 +8,7 @@
   imports =
     [
       /etc/nixos/hardware-configuration.nix
+      inputs.musnix.nixosModules.musnix
       ./hyprland.nix
     ];
   
@@ -63,6 +64,7 @@
 
 
   # sound.
+  musnix.enable = true;
   sound.enable = false; # sound.enable is only meant for ALSA-based configurations
   hardware.pulseaudio.enable = false;
   hardware.bluetooth.enable = true;

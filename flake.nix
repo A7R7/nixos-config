@@ -73,7 +73,7 @@
       Nixtop = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = { inherit inputs username system pkgs pkgs-stable; };
-        modules = [ ./host/configuration.nix inputs.musnix.nixosModules.musnix];
+        modules = [ ./host/configuration.nix ];
       };
     };
 		homeConfigurations = {
