@@ -1,5 +1,10 @@
-deploy:
+.PHONY: host home update gc
+
+host:
 	nixos-rebuild switch --flake . --impure
+
+home:
+	home-manager switch --flake .
 
 update:
 	nix-flake update
