@@ -1,0 +1,42 @@
+
+#+TITLE: Nixos Configuration
+#+AUTHOR: A7R7
+
+* Intro
+Welcome to my nixos configuration blog.
+* Flake
+So I use flake to manage my configs.
+#+begin_src nix :noweb yes
+  {
+    description = "A7R7's NixOS Flake";
+    nixConfig = <<nixConfig>>
+    inputs = <<inputs>>
+    outputs = <<outputs>>
+  }
+#+end_src
+
+** Inputs
+#+begin_src nix
+    ## nixpkgs
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-23.05";
+    # nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-wayland.url = "github:nix-community/nixpkgs-wayland";
+
+    # nix-colors.url = "github:misterio77/nix-colors";
+
+    utils.url = "github:gytis-ivaskevicius/flake-utils-plus";
+    nur.url = "github:nix-community/NUR";
+    # hyprland wm
+    hyprland.url = "github:hyprwm/Hyprland";
+    # hyprland.url = "github:hyprwm/Hyprland/v0.29.0";
+    ags.url = "github:Aylur/ags";
+
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+#+end_src
+* Host
+* Home
+* Outro

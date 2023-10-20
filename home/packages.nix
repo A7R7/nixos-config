@@ -28,6 +28,7 @@
     drumgizmo
     # effect processor
     calf
+    lsp-plugins
     
 
 
