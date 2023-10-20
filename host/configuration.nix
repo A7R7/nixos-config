@@ -92,6 +92,7 @@
     efibootmgr
     gnumake
     killall
+    home-manager
   ];
 
 

@@ -72,19 +72,15 @@
     nixosConfigurations = {
       Nixtop = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        specialArgs = { inherit inputs username system; };
-        modules = [
-          ./host/configuration.nix
-          home-manager.nixosModules.home-manager
-          {
-            home-manager = {
-              useUserPackages = true;
-              useGlobalPkgs = true;
-              extraSpecialArgs = { inherit inputs pkgs pkgs-stable; };
-              users.${username} = import ./home/home.nix;
-            };
-          }
-        ];
+        specialArgs = { inherit inputs username system pkgs pkgs-stable; };
+        modules = [ ./host/configuration.nix ];
+      };
+    };
+		homeConfigurations = {
+      aaron-nix = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+        extraSpecialArgs = { inherit inputs username pkgs pkgs-stable; };
+        modules = [ ./home/home.nix ];
       };
     };
   };
