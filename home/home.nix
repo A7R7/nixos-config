@@ -44,5 +44,9 @@
     extraConfig = ''
       source=~/.config/hypr/main.conf
     '';
+    #package = (inputs.hyprland.packages.${pkgs.system}.hyprland.override {
+    #  enableXWayland = true;
+    #  enableNvidiaPatches = false;
+    #});
   };
 }

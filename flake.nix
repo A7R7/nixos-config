@@ -36,8 +36,8 @@
     utils.url = "github:gytis-ivaskevicius/flake-utils-plus";
     nur.url = "github:nix-community/NUR";
     # hyprland wm
-    hyprland.url = "github:hyprwm/Hyprland";
-    # hyprland.url = "github:hyprwm/Hyprland/v0.29.0";
+    # hyprland.url = "github:hyprwm/Hyprland";
+    hyprland.url = "github:hyprwm/Hyprland/v0.28.0";
     ags.url = "github:Aylur/ags";
 
     home-manager = {

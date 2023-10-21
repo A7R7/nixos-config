@@ -134,7 +134,10 @@
     # enables services.greetd and also configures its default session to start ReGreet using cage.
     hyprland = {
       enable = true;
-      # package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+    #  package = (inputs.hyprland.packages.${pkgs.system}.hyprland.override {
+    #    enableXWayland = true;
+    #    enableNvidiaPatches = false;
+    #  })
       xwayland.enable = true;
       enableNvidiaPatches = true;
     };
