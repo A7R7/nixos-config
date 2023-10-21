@@ -119,6 +119,12 @@
     gcc
     ccache
     python311
+    python311Packages.epc
+    python311Packages.orjson
+    python311Packages.sexpdata
+    python311Packages.six
+    python311Packages.paramiko
+    python311Packages.rapidfuzz
     nodejs
     go
     bun
@@ -127,6 +133,7 @@
     meson
     ninja
     # eslint
+    maven
     texlive.combined.scheme-full
 
 
