@@ -125,6 +125,7 @@
     python311Packages.six
     python311Packages.paramiko
     python311Packages.rapidfuzz
+    sqlite
     nodejs
     go
     bun
