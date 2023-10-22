@@ -12,6 +12,7 @@
     dbeaver
     gparted
     fsearch
+    obs-studio
 
     qq
 
@@ -19,9 +20,12 @@
     glfw-wayland-minecraft
     zulu21
 
+    # audio production
     ardour
     # synthesizer-plugin
     zyn-fusion
+    surge
+    geonkick
     # sampler
     avldrums-lv2
     drumkv1
