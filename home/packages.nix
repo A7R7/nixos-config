@@ -8,6 +8,7 @@
     inkscape
     neovide
     emacs29-pgtk
+    marktext
     zathura
     dbeaver
     gparted
@@ -86,8 +87,10 @@
     # hyprland
     hyprpaper
     hyprpicker
+    grimblast
     wlogout
     rofi-wayland-unwrapped
+
 
     # eww
     eww-wayland
