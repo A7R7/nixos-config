@@ -96,7 +96,7 @@
     libgcc
     glibc
 
-
+    ags
     
     # gui-tools
     wl-gammactl
@@ -140,9 +140,6 @@
   ]) ++ 
   (with pkgs-stable; [
     clash-verge
-  ]) ++
-  (with input; [
-    ags
   ])
   ;
 }
