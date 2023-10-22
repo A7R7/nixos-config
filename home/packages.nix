@@ -123,6 +123,7 @@
     # langs
     gcc
     ccache
+    cmake
     python311
     python311Packages.epc
     python311Packages.orjson
@@ -141,6 +142,8 @@
     ninja
     # eslint
     maven
+    pkg-config
+
     texlive.combined.scheme-full
 
 
