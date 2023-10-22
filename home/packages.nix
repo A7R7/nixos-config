@@ -96,8 +96,8 @@
     libgcc
     glibc
 
-    ags
-    
+    inputs.ags.packages.${system}.default
+
     # gui-tools
     wl-gammactl
     wl-clipboard
@@ -123,6 +123,7 @@
     python311Packages.six
     python311Packages.paramiko
     python311Packages.rapidfuzz
+    python311Packages.python-pam
     sqlite
     nodejs
     go
