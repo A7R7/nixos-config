@@ -1,4 +1,4 @@
-{ pkgs, pkgs-stable, nur, ... }:
+{ inputs, pkgs, pkgs-stable, nur, ... }:
 {
 
   home.packages = (with pkgs; [
@@ -137,7 +137,12 @@
 
 
     gnome.adwaita-icon-theme
-  ]) ++ (with pkgs-stable; [
+  ]) ++ 
+  (with pkgs-stable; [
     clash-verge
-  ]);
+  ]) ++
+  (with input; [
+    ags
+  ])
+  ;
 }

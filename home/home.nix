@@ -3,7 +3,6 @@
 {
   imports = [
     ./packages.nix
-    ./ags.nix
   ];
 
   home = {
