@@ -51,8 +51,6 @@
     discord
     telegram-desktop
 
-    logisim-evolution
-
     # terminals & tuis
     kitty
     alacritty
