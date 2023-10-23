@@ -164,7 +164,7 @@
     printing.enable = true;
     flatpak.enable = true;
     openssh.enable = true;
-    asusd.enable = true;
+    # asusd.enable = true; # for ASUS ROG laptops
     xserver = {
       enable = true;
       excludePackages = [ pkgs.xterm ];
