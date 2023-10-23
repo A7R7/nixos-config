@@ -9,7 +9,7 @@
     [
       /etc/nixos/hardware-configuration.nix
       inputs.musnix.nixosModules.musnix
-      ./hyprland.nix
+      # ./hyprland.nix
     ];
   
   #bootloader
@@ -134,12 +134,12 @@
     # enables services.greetd and also configures its default session to start ReGreet using cage.
     hyprland = {
       enable = true;
+      xwayland.enable = true;
+      enableNvidiaPatches = false;
     #  package = (inputs.hyprland.packages.${pkgs.system}.hyprland.override {
     #    enableXWayland = true;
     #    enableNvidiaPatches = false;
     #  })
-      xwayland.enable = true;
-      enableNvidiaPatches = true;
     };
     adb.enable = true;
     steam = {
@@ -148,6 +148,12 @@
       dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
     };
     dconf.enable = true;
+  };
+
+  xdg.portal = {
+   enable = true;
+   wlr.enable = true;
+   extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
   };
 
   fonts.packages = with pkgs; [
@@ -171,8 +177,7 @@
       layout = "us";
       xkbOptions = "caps:escape";
       displayManager.gdm.enable = true;
-      desktopManager.gnome.enable = true;
-      desktopManager.gnome.debug = true;
+      # desktopManager.gnome.enable = true;
     };
 
     gvfs.enable = true;

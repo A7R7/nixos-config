@@ -1,15 +1,15 @@
 { pkgs, inputs, ... }:
 {
 
-  xdg.portal = {
-    enable = true;
-    wlr.enable = true;
-    extraPortals = [ pkgs.xdg-desktop-portal-gnome ];
-  };
+  # xdg.portal = {
+  #  enable = true;
+  #  wlr.enable = true;
+  #  extraPortals = [ pkgs.xdg-desktop-portal-gnome ];
+  # };
 
-  security = {
-    polkit.enable = true;
-  };
+  # security = {
+  #   polkit.enable = true;
+  # };
 
   systemd = {
     user.services.polkit-gnome-authentication-agent-1 = {

@@ -37,15 +37,15 @@
     userEmail = "Aaron__Lee_@outlook.com";
   };
   
-  wayland.windowManager.hyprland = {
-    enable = true;
-    xwayland.enable = true;
-    extraConfig = ''
-      source=~/.config/hypr/main.conf
-    '';
-    #package = (inputs.hyprland.packages.${pkgs.system}.hyprland.override {
-    #  enableXWayland = true;
-    #  enableNvidiaPatches = false;
-    #});
-  };
+#  wayland.windowManager.hyprland = {
+#    enable = true;
+#    xwayland.enable = true;
+#    extraConfig = ''
+#      source=~/.config/hypr/main.conf
+#    '';
+#    #package = (inputs.hyprland.packages.${pkgs.system}.hyprland.override {
+#    #  enableXWayland = true;
+#    #  enableNvidiaPatches = false;
+#    #});
+#  };
 }
