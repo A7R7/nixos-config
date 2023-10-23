@@ -14,6 +14,7 @@
     gparted
     fsearch
     obs-studio
+    tauon
 
     qq
 
