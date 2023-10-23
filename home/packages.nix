@@ -125,14 +125,11 @@
     gcc
     ccache
     cmake
-    python311
-    python311Packages.epc
-    python311Packages.orjson
-    python311Packages.sexpdata
-    python311Packages.six
-    python311Packages.paramiko
-    python311Packages.rapidfuzz
-    python311Packages.python-pam
+    (python311.withPackages(ps: with ps; [ 
+      epc orjson sexpdata six paramiko rapidfuzz # required by lsp-bridge
+      python-pam
+      numpy toolz 
+    ]))
     sqlite
     nodejs
     go
