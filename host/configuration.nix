@@ -128,6 +128,7 @@
   virtualisation = {
     podman.enable = true;
     libvirtd.enable = true;
+    waydroid.enable = true;
   };
 
   programs = {
