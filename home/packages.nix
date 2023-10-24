@@ -44,6 +44,7 @@
     (vivaldi.override {
       proprietaryCodecs = true;
       enableWidevine = true;
+      commandLineArgs = "--enable-wayland-ime";
     })
     steam-tui
     steamcmd
