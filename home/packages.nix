@@ -44,11 +44,6 @@
     (vivaldi.override {
       proprietaryCodecs = true;
       enableWidevine = true;
-      commandLineArgs =''
-       --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-wayland-ime \\
-       --proxy-server='https=127.0.0.1:7890;http=127.0.0.1:7890' \\
-       %u
-       '';
     })
     steam-tui
     steamcmd
@@ -106,6 +101,7 @@
     glibc
 
     inputs.ags.packages.${system}.default
+    inputs.pyprland.packages.${system}.default
 
     # gui-tools
     wl-gammactl

@@ -38,6 +38,7 @@
     # hyprland wm
     # hyprland.url = "github:hyprwm/Hyprland";
     # hyprland.url = "github:hyprwm/Hyprland/v0.28.0";
+    pyprland.url = "github:hyprland-community/pyprland";
     ags.url = "github:Aylur/ags";
 
     home-manager = {
