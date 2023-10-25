@@ -83,6 +83,8 @@
     autoconf
     tree
     ghostscript
+    
+    hugo
 
     carapace
     starship
@@ -133,6 +135,7 @@
       python-pam
       numpy toolz 
     ]))
+    octave
     sqlite
     nodejs
     go
