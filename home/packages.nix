@@ -6,9 +6,12 @@
     libreoffice
     gimp-with-plugins
     inkscape
+
     neovide
     emacs29-pgtk
     marktext
+    vscode
+
     zathura
     dbeaver
     gparted
@@ -53,6 +56,8 @@
 
     discord
     telegram-desktop
+
+    piper
 
     # terminals & tuis
     kitty

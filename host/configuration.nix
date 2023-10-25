@@ -82,21 +82,19 @@
   users.users.${username} = {
     isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager" "libvirtd" "adbusers" "audio"];
-    shell = pkgs.bash;
+    shell = pkgs.dash;
   };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    vim
-    neovim
+    vim neovim
     wget
     curl
     git
     stow
     man
-    zsh
-    elvish
+    dash zsh fish elvish nushell
     efibootmgr
     gnumake
     killall
