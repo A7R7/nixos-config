@@ -6,6 +6,7 @@
     libreoffice
     gimp-with-plugins
     inkscape
+    gnome.nautilus
 
     neovide
     emacs29-pgtk
@@ -102,11 +103,15 @@
     starship
 
     # hyprland
-    hyprpaper
-    hyprpicker
-    grimblast
-    wlogout
-    rofi-wayland-unwrapped
+    hyprpaper  # wallpaper utility
+    swww       # dynamic wallpaper
+    hyprkeys   # keybind retrieval utility
+    hyprnome   # gnome like workspace switch
+    hyprshade  # screen color filters
+    hyprpicker # wlroots color picker
+    grimblast  # screenshots
+    wlogout    # logout gui
+    rofi-wayland-unwrapped # app launcher
 
 
     # eww
@@ -135,7 +140,6 @@
     pavucontrol
     brightnessctl
     yq-go
-    swww
 
 
     # langs
