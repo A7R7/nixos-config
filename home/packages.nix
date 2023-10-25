@@ -69,6 +69,12 @@
     kitty
     alacritty
     wezterm
+    
+    # cmd toys
+    pipes-rs
+    tty-clock
+    cava
+    cmatrix
 
     # cmd tools
     fastfetch
