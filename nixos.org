@@ -319,10 +319,6 @@ So I use flake to manage my configs.
       homeDirectory = "/home/aaron-nix";
       stateVersion = "23.05";
     };
-    home.packages = with pkgs; [
-    	nur.repos.linyinfeng.matrix-qq
-    	nur.repos.linyinfeng.matrix-wechat
-    ];
 
     programs.home-manager.enable = true;
 
@@ -398,7 +394,7 @@ So I use flake to manage my configs.
       ccache
       cmake
       (python311.withPackages(ps: with ps; [ 
-        # required by lsp-bridge
+        # required by lsp-bridge and holo-layer
         epc orjson sexpdata six paramiko rapidfuzz 
         pynput inflect pyqt6 pyqt6-sip
         python-pam

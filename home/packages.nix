@@ -10,7 +10,7 @@
     ccache
     cmake
     (python311.withPackages(ps: with ps; [ 
-      # required by lsp-bridge
+      # required by lsp-bridge and holo-layer
       epc orjson sexpdata six paramiko rapidfuzz 
       pynput inflect pyqt6 pyqt6-sip
       python-pam
