@@ -1,38 +1,68 @@
 { inputs, pkgs, pkgs-stable, nur, ... }:
 {
-
   home.packages = (with pkgs; [
-    #guis
-    libreoffice
-    gimp-with-plugins
-    inkscape
-    gnome.nautilus
-
     neovide
     emacs29-pgtk
     marktext
     vscode
-
-    zathura
+    libreoffice
+    gcc
+    ccache
+    cmake
+    (python311.withPackages(ps: with ps; [ 
+      # required by lsp-bridge
+      epc orjson sexpdata six paramiko rapidfuzz 
+      python-pam
+      numpy toolz 
+    ]))
+    octave
+    nodejs
+    go
+    bun
+    sassc
+    typescript
+    meson
+    ninja
+    # eslint
+    maven
+    pkg-config
+    rnix-lsp
+    texlive.combined.scheme-full
+    
+    sqlite
     dbeaver
-    gparted
-    fsearch
-    (wrapOBS {
-      plugins = with pkgs.obs-studio-plugins; [
-        wlrobs
-        obs-backgroundremoval
-        obs-pipewire-audio-capture
-      ];
-    })
-    tauon
-
-    qq
-
-    prismlauncher
-    glfw-wayland-minecraft
-    zulu21
-
-    # audio production
+    kitty
+    alacritty
+    wezterm
+    carapace
+    starship
+    
+    thefuck
+    bat
+    eza
+    ranger nnn
+    fd
+    ripgrep
+    fzf
+    socat
+    jq
+    yq-go
+    acpi
+    inotify-tools
+    ffmpeg
+    libnotify
+    zoxide
+    autoconf
+    tree
+    ghostscript
+    
+    hugo
+    pipes-rs
+    tty-clock
+    cava
+    cmatrix
+    fastfetch  
+    # daw
     ardour
     # synthesizer-plugin
     zyn-fusion
@@ -46,9 +76,17 @@
     # effect processor
     calf
     lsp-plugins
-    
-
-
+    tauon
+    gimp-with-plugins
+    inkscape
+    (wrapOBS {
+      plugins = with pkgs.obs-studio-plugins; [
+        wlrobs
+        obs-backgroundremoval
+        obs-pipewire-audio-capture
+      ];
+    })
+    zathura   
     firefox
     chromium
     (vivaldi.override {
@@ -56,52 +94,17 @@
       enableWidevine = true;
       commandLineArgs = "--enable-wayland-ime";
     })
+    qq
+    discord
+    telegram-desktop
+    clash-verge
+    prismlauncher
+    glfw-wayland-minecraft
+    zulu21
     steam-tui
     steamcmd
     steam
     gamescope
-
-    discord
-    telegram-desktop
-
-    piper
-
-    # terminals & tuis
-    kitty
-    alacritty
-    wezterm
-    
-    # cmd toys
-    pipes-rs
-    tty-clock
-    cava
-    cmatrix
-
-    # cmd tools
-    fastfetch
-    thefuck
-    bat
-    eza
-    ranger nnn
-    fd
-    ripgrep
-    fzf
-    socat
-    jq
-    acpi
-    inotify-tools
-    ffmpeg
-    libnotify
-    zoxide
-    autoconf
-    tree
-    ghostscript
-    
-    hugo
-
-    carapace
-    starship
-
     # hyprland
     hyprpaper  # wallpaper utility
     swww       # dynamic wallpaper
@@ -112,65 +115,26 @@
     grimblast  # screenshots
     wlogout    # logout gui
     rofi-wayland-unwrapped # app launcher
-
-
-    # eww
-    eww-wayland
-    gtk3
-    gtk-layer-shell
-    pango
-    gdk-pixbuf
-    cairo
-    glib
-    libgcc
-    glibc
-
-    inputs.ags.packages.${system}.default
+    
+    eww-wayland # bar
+    pango       # font renderer
+    
+    gnome.adwaita-icon-theme
+    # bar and shell in gjs
+    inputs.ags.packages.${system}.default 
+    # hyprland plugin set in python
     inputs.pyprland.packages.${system}.default
-
-    # gui-tools
+    gnome.nautilus # gnome's file manager
+    gparted        # disk partition manager
+    fsearch        # search files in disk
     wl-gammactl
-    wl-clipboard
+    wl-clipboard   # wayland clipboard
     wf-recorder
-    hyprpicker
     wayshot
     swappy
     slurp
     imagemagick
-    pavucontrol
-    brightnessctl
-    yq-go
-
-
-    # langs
-    gcc
-    ccache
-    cmake
-    (python311.withPackages(ps: with ps; [ 
-      epc orjson sexpdata six paramiko rapidfuzz # required by lsp-bridge
-      python-pam
-      numpy toolz 
-    ]))
-    octave
-    sqlite
-    nodejs
-    go
-    bun
-    sassc
-    typescript
-    meson
-    ninja
-    # eslint
-    maven
-    pkg-config
-
-    texlive.combined.scheme-full
-
-
-    gnome.adwaita-icon-theme
-  ]) ++ 
-  (with pkgs-stable; [
-    clash-verge
-  ])
-  ;
+    pavucontrol    # sound control
+    brightnessctl  # brightness control     
+  ]);
 }

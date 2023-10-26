@@ -1,42 +1,600 @@
 
 #+TITLE: Nixos Configuration
 #+AUTHOR: A7R7
+:DOC-CONFIG:
+#+PROPERTY: header-args:nix :comments noweb
+#+STARTUP: fold
+#+AUTO_TANGLE: t
+#+HUGO_BUNDLE: nixos-configuration
+#+EXPORT_FILE_NAME: index.en
+#+HUGO_PUBLISHDATE: 2023-10-26
+#+HUGO_FRONT_MATTER_KEY_REPLACE: author>authors
+#+FILETAGS: :NixOS:Org-mode:
+:END:
 
 * Intro
-Welcome to my nixos configuration blog.
+Welcome to my nixos configuration blog. 
 * Flake
+
 So I use flake to manage my configs.
-#+begin_src nix :noweb yes
+#+begin_src nix :tangle flake.nix :noweb yes
   {
     description = "A7R7's NixOS Flake";
-    nixConfig = <<nixConfig>>
-    inputs = <<inputs>>
-    outputs = <<outputs>>
+    nixConfig = {
+      <<nixConfig>>
+    };
+    inputs = {
+      <<inputs>>
+    };
+    outputs = 
+      <<outputs>>
   }
 #+end_src
+** nixConfig
+#+begin_src nix :noweb-ref nixConfig
+    experimental-features = [ "nix-command" "flakes" ];
+    # nix community's cache server
+    extra-substituters = [
+      "https://nix-community.cachix.org"
+      "https://nixpkgs-wayland.cachix.org"
+    ];
+    extra-trusted-public-keys = [
+      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+      "nixpkgs-wayland.cachix.org-1:3lwxaILxMRkVhehr5StQprHdEo4IrE8sRho9R9HOLYA="
+      "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+    ];
 
+#+end_src
 ** Inputs
-#+begin_src nix
+#+begin_src nix :noweb-ref inputs
     ## nixpkgs
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-23.05";
-    # nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-wayland.url = "github:nix-community/nixpkgs-wayland";
-
-    # nix-colors.url = "github:misterio77/nix-colors";
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     utils.url = "github:gytis-ivaskevicius/flake-utils-plus";
     nur.url = "github:nix-community/NUR";
     # hyprland wm
     hyprland.url = "github:hyprwm/Hyprland";
-    # hyprland.url = "github:hyprwm/Hyprland/v0.29.0";
+    pyprland.url = "github:hyprland-community/pyprland";
     ags.url = "github:Aylur/ags";
-
-    home-manager = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
+    musnix.url = "github:musnix/musnix";    
+#+end_src
+** Outputs
+#+begin_src nix :noweb-ref outputs
+  inputs@{
+    self,
+    nixpkgs,
+    nixpkgs-stable,
+    nur,
+    home-manager,
+    hyprland,
+    ... }: 
+  let 
+    username = "aaron-nix";
+    system = "x86_64-linux";
+    pkgs = import nixpkgs {
+      inherit system;
+      config.allowUnfree = true;
+      overlays = [nur.overlay];
     };
+    pkgs-stable = import nixpkgs-stable {
+      inherit system;
+      config.allowUnfree = true;
+    };
+  in
+    {
+    nixosConfigurations = {
+      Nixtop = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = { inherit inputs username system pkgs pkgs-stable; };
+        modules = [ ./host/configuration.nix ];
+      };
+    };
+		homeConfigurations = {
+      aaron-nix = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+        extraSpecialArgs = { inherit inputs username pkgs pkgs-stable; };
+        modules = [ ./home/home.nix ];
+      };
+    };
+  };
+
 #+end_src
 * Host
+#+begin_src nix :tangle host/configuration.nix
+  { config, pkgs, lib, inputs, username, ... }:
+  {
+    imports =
+      [
+        /etc/nixos/hardware-configuration.nix
+        inputs.musnix.nixosModules.musnix
+        # ./hyprland.nix
+      ];
+    
+    #bootloader
+    boot = {
+      # kernelPackages = pkgs.linuxPackages_latest;
+      initrd.kernelModules = [ "amdgpu" ];
+      loader = {
+        systemd-boot.enable = true;
+        efi.canTouchEfiVariables = true;
+        timeout = 10;
+      };
+    };
+    
+    # networking
+    networking = {
+      hostName = "Nixtop"; # Define your hostname.
+      networkmanager.enable = true;
+    };
+    
+    # nix
+    nixpkgs.config.allowUnfree = true;
+    nix = {
+      # This will add each flake input as a registry
+      # To make nix3 commands consistent with your flake
+      registry = lib.mapAttrs (_: value: { flake = value; }) inputs;
+
+      # This will additionally add your inputs to the system's legacy channels
+      # Making legacy nix commands consistent as well, awesome!
+      nixPath = lib.mapAttrsToList (key: value: "${key}=${value.to.path}") config.nix.registry;
+
+      settings = {
+        experimental-features = "nix-command flakes";
+        auto-optimise-store = true;
+        trusted-users = [ "${username}" ];
+      };
+    };
+
+    # locale
+    time.timeZone = "Asia/Shanghai";
+    i18n = {
+      defaultLocale = "en_US.UTF-8";
+      supportedLocales = [
+        "en_US.UTF-8/UTF-8"
+        "zh_CN.UTF-8/UTF-8"
+      ];
+    };
+    console = {
+      font = "Lat2-Terminus16";
+      useXkbConfig = true; # use xkbOptions in tty.
+    };
+
+    # Enable the X11 windowing system.
+
+
+    # sound.
+    musnix.enable = true;
+    sound.enable = false; # sound.enable is only meant for ALSA-based configurations
+    hardware.pulseaudio.enable = false;
+    hardware.bluetooth.enable = true;
+    security.rtkit.enable = true;
+    services. pipewire = {
+      enable = true;
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
+      jack.enable = true;
+    };
+
+    # Define a user account. Don't forget to set a password with ‘passwd’.
+    users.users.${username} = {
+      isNormalUser = true;
+      extraGroups = [ "wheel" "networkmanager" "libvirtd" "adbusers" "audio"];
+      shell = pkgs.dash;
+    };
+
+    # List packages installed in system profile. To search, run:
+    # $ nix search wget
+    environment.systemPackages = with pkgs; [
+      vim neovim
+      wget
+      curl
+      git
+      stow
+      man
+      dash zsh fish elvish nushell
+      efibootmgr
+      gnumake
+      killall
+      home-manager
+    ];
+    
+    # hint electron apps to use wayland
+    environment.sessionVariables.NIXOS_OZONE_WL = "1";
+
+    # Some programs need SUID wrappers, can be configured further or are
+    # started in user sessions.
+    # programs.mtr.enable = true;
+    # programs.gnupg.agent = {
+    #   enable = true;
+    #   enableSSHSupport = true;
+    # };
+    i18n.inputMethod = {
+      enabled = "fcitx5";
+      fcitx5 = {
+        addons = with pkgs; [
+          fcitx5-gtk
+          fcitx5-rime
+          fcitx5-chinese-addons
+        	fcitx5-configtool
+        ];
+      };
+    };
+
+    virtualisation = {
+      podman.enable = true;
+      libvirtd.enable = true;
+      waydroid.enable = true;
+    };
+
+    programs = {
+      # regreet.enable = true; 
+      # This line installs ReGreet, 
+      # sets up systemd tmpfiles for it, 
+      # enables services.greetd and also configures its default session to start ReGreet using cage.
+      hyprland = {
+        enable = true;
+        xwayland.enable = true;
+        enableNvidiaPatches = false;
+      #  package = (inputs.hyprland.packages.${pkgs.system}.hyprland.override {
+      #    enableXWayland = true;
+      #    enableNvidiaPatches = false;
+      #  })
+      };
+      adb.enable = true;
+      steam = {
+        enable = true;
+        remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
+        dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
+      };
+      dconf.enable = true;
+    };
+
+    xdg.portal = {
+     enable = true;
+     wlr.enable = true;
+     extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    };
+
+    fonts.packages = with pkgs; [
+      noto-fonts
+      noto-fonts-cjk
+      noto-fonts-emoji
+      liberation_ttf
+      roboto
+      nerdfonts
+      sarasa-gothic 
+    ];
+  # services
+    services = {
+      printing.enable = true;
+      flatpak.enable = true;
+      openssh.enable = true;
+      # asusd.enable = true; # for ASUS ROG laptops
+      xserver = {
+        enable = true;
+        excludePackages = [ pkgs.xterm ];
+        layout = "us";
+        xkbOptions = "caps:escape";
+        displayManager.gdm.enable = true;
+        # desktopManager.gnome.enable = true;
+      };
+
+      gvfs.enable = true;
+      devmon.enable = true;
+      udisks2.enable = true;
+      upower.enable = true;
+      accounts-daemon.enable = true;
+      gnome = {
+        evolution-data-server.enable = true;
+        glib-networking.enable = true;
+        gnome-keyring.enable = true;
+        gnome-online-accounts.enable = true;
+      };
+    };
+
+    system.stateVersion = "23.05";
+     
+  }
+
+#+end_src
 * Home
-* Outro
+** Home-manager config
+#+begin_src nix :tangle home/home.nix :comments noweb
+  { config, pkgs, pkgs-stable, inputs, ... }:
+
+  {
+    imports = [
+      ./packages.nix
+    ];
+
+    home = {
+      username = "aaron-nix";
+      homeDirectory = "/home/aaron-nix";
+      stateVersion = "23.05";
+    };
+    home.packages = with pkgs; [
+    	nur.repos.linyinfeng.matrix-qq
+    	nur.repos.linyinfeng.matrix-wechat
+    ];
+
+    programs.home-manager.enable = true;
+
+    nixpkgs = {
+      config = {
+        # Disable if you don't want unfree packages
+        allowUnfree = true;
+        # Workaround for https://github.com/nix-community/home-manager/issues/2942
+        allowUnfreePredicate = (_: true);
+      };
+    };
+
+    xresources.properties = {
+      "Xcursor.size" = 16;
+      "Xft.dpi" = 172;
+    };
+
+    programs.git = {
+      enable = true;
+      userName = "a7r7";
+      userEmail = "Aaron__Lee_@outlook.com";
+    };
+    
+  #  wayland.windowManager.hyprland = {
+  #    enable = true;
+  #    xwayland.enable = true;
+  #    extraConfig = ''
+  #      source=~/.config/hypr/main.conf
+  #    '';
+  #    #package = (inputs.hyprland.packages.${pkgs.system}.hyprland.override {
+  #    #  enableXWayland = true;
+  #    #  enableNvidiaPatches = false;
+  #    #});
+  #  };
+  }
+#+end_src
+** Packages
+:PROPERTIES:
+:header-args:nix: :tangle home/packages.nix
+:END:
+#+begin_src nix :noweb yes
+  { inputs, pkgs, pkgs-stable, nur, ... }:
+  {
+    home.packages = (with pkgs; [
+      <<development>>
+      <<cmdline>>  
+      <<multimedia>>   
+      <<network>>
+      <<gaming>>
+      <<desktop>>
+      <<system-tools>>     
+    ]);
+  }
+
+#+end_src
+*** Development
+:PROPERTIES:
+:header-args:nix: :noweb-ref development
+:END:
+**** Text-editor
+#+begin_src nix
+      neovide
+      emacs29-pgtk
+      marktext
+      vscode
+      libreoffice
+#+end_src
+
+**** Languages
+
+#+begin_src nix
+      gcc
+      ccache
+      cmake
+      (python311.withPackages(ps: with ps; [ 
+        # required by lsp-bridge
+        epc orjson sexpdata six paramiko rapidfuzz 
+        python-pam
+        numpy toolz 
+      ]))
+      octave
+      nodejs
+      go
+      bun
+      sassc
+      typescript
+      meson
+      ninja
+      # eslint
+      maven
+      pkg-config
+      rnix-lsp # WIP Language Server for Nix
+      texlive.combined.scheme-full
+
+#+end_src
+**** Database
+#+begin_src nix
+      sqlite
+      dbeaver
+#+end_src
+*** Cmdline
+:PROPERTIES:
+:header-args:nix: :noweb-ref cmdline
+:END:
+
+**** Emulator
+#+begin_src nix
+      kitty
+      alacritty
+      wezterm
+#+end_src
+**** Tools
+#+begin_src nix
+      carapace
+      starship
+
+      thefuck
+      bat
+      eza
+      ranger nnn
+      fd
+      ripgrep
+      fzf
+      socat
+      jq
+      yq-go
+      acpi
+      inotify-tools
+      ffmpeg
+      libnotify
+      zoxide
+      autoconf
+      tree
+      ghostscript
+      
+      hugo
+#+end_src
+**** Toys
+#+begin_src nix 
+      pipes-rs
+      tty-clock
+      cava
+      cmatrix
+      fastfetch
+#+end_src
+*** Multimedia
+:PROPERTIES:
+:header-args:nix: :noweb-ref multimedia
+:END:
+**** Audio-production
+#+begin_src nix
+      # daw
+      ardour
+      # synthesizer-plugin
+      zyn-fusion
+      surge
+      geonkick
+      distrho
+      # sampler
+      avldrums-lv2
+      drumkv1
+      drumgizmo
+      # effect processor
+      calf
+      lsp-plugins
+#+end_src
+**** Music Player
+#+begin_src nix
+      tauon
+#+end_src
+**** Image Editors
+#+begin_src nix
+      gimp-with-plugins
+      inkscape
+      imagemagick    # editing and manipulating digital images
+#+end_src
+
+**** Videos
+#+begin_src nix
+      (wrapOBS {
+        plugins = with pkgs.obs-studio-plugins; [
+          wlrobs
+          obs-backgroundremoval
+          obs-pipewire-audio-capture
+        ];
+      })
+#+end_src
+**** PDF
+#+begin_src nix
+      zathura
+#+end_src
+*** Network
+:PROPERTIES:
+:header-args:nix: :noweb-ref network
+:END:
+
+**** Browser
+#+begin_src nix
+      firefox
+      chromium
+      (vivaldi.override {
+        proprietaryCodecs = true;
+        enableWidevine = true;
+        commandLineArgs = "--enable-wayland-ime";
+      })
+#+end_src
+**** Message
+#+begin_src nix
+  qq
+  discord
+  telegram-desktop
+#+end_src
+**** VPN
+#+begin_src nix
+      clash-verge
+#+end_src
+*** Gaming
+:PROPERTIES:
+:header-args:nix: :noweb-ref gaming
+:END:
+#+begin_src nix
+      prismlauncher
+      glfw-wayland-minecraft
+      zulu21
+      steam-tui
+      steamcmd
+      steam
+      gamescope
+#+end_src
+*** Desktop
+:PROPERTIES:
+:header-args:nix: :noweb-ref desktop
+:END:
+#+begin_src nix
+      hyprpaper      # wallpaper utility
+      swww           # dynamic wallpaper
+      gnome.adwaita-icon-theme
+
+      hyprkeys       # keybind retrieval utility
+      hyprnome       # gnome like workspace switch
+
+      hyprshade      # screen color filters
+      wl-gammactl    # set contrast, brightness and gamma on wl
+
+      hyprpicker     # wlroots color picker
+      wayshot        # screenshots tool
+      grimblast      # screenshots tool
+      wf-recorder    # screen recording tool
+      swappy         # Wayland native snapshot editing tool
+
+      wl-clipboard   # wayland clipboard
+
+      wlogout        # logout gui
+      rofi-wayland-unwrapped # app launcher
+      pavucontrol    # sound control
+      brightnessctl  # brightness control
+
+      eww-wayland    # bar
+
+      # bar and shell in gjs
+      inputs.ags.packages.${system}.default 
+
+      # hyprland plugin set in python
+      inputs.pyprland.packages.${system}.default
+#+end_src
+*** System-tools
+:PROPERTIES:
+:header-args:nix: :noweb-ref system-tools
+:END:
+
+#+begin_src nix
+      gnome.nautilus # gnome's file manager
+      gparted        # disk partition manager
+      fsearch        # search files in disk
+#+end_src

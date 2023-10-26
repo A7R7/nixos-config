@@ -1,3 +1,4 @@
+# [[file:../nixos.org::*Home-manager config][Home-manager config:1]]
 { config, pkgs, pkgs-stable, inputs, ... }:
 
 {
@@ -49,3 +50,4 @@
 #    #});
 #  };
 }
+# Home-manager config:1 ends here

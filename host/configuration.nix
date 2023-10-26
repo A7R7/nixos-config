@@ -1,9 +1,5 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
+# [[file:../nixos.org::*Host][Host:1]]
 { config, pkgs, lib, inputs, username, ... }:
-
 {
   imports =
     [
@@ -198,4 +194,4 @@
   system.stateVersion = "23.05";
    
 }
-
+# Host:1 ends here
