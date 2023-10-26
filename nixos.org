@@ -1,6 +1,3 @@
-
-#+TITLE: Nixos Configuration
-#+AUTHOR: A7R7
 :DOC-CONFIG:
 #+PROPERTY: header-args:nix :comments noweb
 #+STARTUP: fold
@@ -11,6 +8,9 @@
 #+HUGO_FRONT_MATTER_KEY_REPLACE: author>authors
 #+FILETAGS: :NixOS:Org-mode:
 :END:
+
+#+TITLE: Nixos Configuration
+#+AUTHOR: A7R7
 
 * Intro
 Welcome to my nixos configuration blog. 
@@ -400,6 +400,7 @@ So I use flake to manage my configs.
       (python311.withPackages(ps: with ps; [ 
         # required by lsp-bridge
         epc orjson sexpdata six paramiko rapidfuzz 
+        pynput inflect pyqt6 pyqt6-sip
         python-pam
         numpy toolz 
       ]))

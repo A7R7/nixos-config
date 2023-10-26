@@ -7,7 +7,7 @@ home:
 	home-manager switch --flake .
 
 update:
-	nix-flake update
+	nix flake update
 
 gc:
 	# remove all generations older than 7 days

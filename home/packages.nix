@@ -12,6 +12,7 @@
     (python311.withPackages(ps: with ps; [ 
       # required by lsp-bridge
       epc orjson sexpdata six paramiko rapidfuzz 
+      pynput inflect pyqt6 pyqt6-sip
       python-pam
       numpy toolz 
     ]))
@@ -26,7 +27,7 @@
     # eslint
     maven
     pkg-config
-    rnix-lsp
+    rnix-lsp # WIP Language Server for Nix
     texlive.combined.scheme-full
     
     sqlite
@@ -79,6 +80,7 @@
     tauon
     gimp-with-plugins
     inkscape
+    imagemagick    # editing and manipulating digital images
     (wrapOBS {
       plugins = with pkgs.obs-studio-plugins; [
         wlrobs
@@ -105,36 +107,38 @@
     steamcmd
     steam
     gamescope
-    # hyprland
-    hyprpaper  # wallpaper utility
-    swww       # dynamic wallpaper
-    hyprkeys   # keybind retrieval utility
-    hyprnome   # gnome like workspace switch
-    hyprshade  # screen color filters
-    hyprpicker # wlroots color picker
-    grimblast  # screenshots
-    wlogout    # logout gui
-    rofi-wayland-unwrapped # app launcher
-    
-    eww-wayland # bar
-    pango       # font renderer
-    
+    hyprpaper      # wallpaper utility
+    swww           # dynamic wallpaper
     gnome.adwaita-icon-theme
+    
+    hyprkeys       # keybind retrieval utility
+    hyprnome       # gnome like workspace switch
+    
+    hyprshade      # screen color filters
+    wl-gammactl    # set contrast, brightness and gamma on wl
+    
+    hyprpicker     # wlroots color picker
+    wayshot        # screenshots tool
+    grimblast      # screenshots tool
+    wf-recorder    # screen recording tool
+    swappy         # Wayland native snapshot editing tool
+    
+    wl-clipboard   # wayland clipboard
+    
+    wlogout        # logout gui
+    rofi-wayland-unwrapped # app launcher
+    pavucontrol    # sound control
+    brightnessctl  # brightness control
+    
+    eww-wayland    # bar
+    
     # bar and shell in gjs
     inputs.ags.packages.${system}.default 
+    
     # hyprland plugin set in python
     inputs.pyprland.packages.${system}.default
     gnome.nautilus # gnome's file manager
     gparted        # disk partition manager
-    fsearch        # search files in disk
-    wl-gammactl
-    wl-clipboard   # wayland clipboard
-    wf-recorder
-    wayshot
-    swappy
-    slurp
-    imagemagick
-    pavucontrol    # sound control
-    brightnessctl  # brightness control     
+    fsearch        # search files in disk     
   ]);
 }
