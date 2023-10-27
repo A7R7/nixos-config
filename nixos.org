@@ -222,7 +222,6 @@ So I use flake to manage my configs.
           fcitx5-gtk
           fcitx5-rime
           fcitx5-chinese-addons
-        	fcitx5-configtool
         ];
       };
     };
@@ -390,9 +389,7 @@ So I use flake to manage my configs.
 **** Languages
 
 #+begin_src nix
-      gcc
-      ccache
-      cmake
+      gcc ccache cmake clangd
       (python311.withPackages(ps: with ps; [ 
         # required by lsp-bridge and holo-layer
         epc orjson sexpdata six paramiko rapidfuzz 

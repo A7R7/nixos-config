@@ -6,9 +6,7 @@
     marktext
     vscode
     libreoffice
-    gcc
-    ccache
-    cmake
+    gcc ccache cmake clangd
     (python311.withPackages(ps: with ps; [ 
       # required by lsp-bridge and holo-layer
       epc orjson sexpdata six paramiko rapidfuzz 
