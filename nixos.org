@@ -106,7 +106,11 @@ So I use flake to manage my configs.
 
 #+end_src
 * Host
-#+begin_src nix :tangle host/configuration.nix
+:PROPERTIES:
+:header-args:nix: :noweb-ref host-config
+:END:
+
+#+begin_src nix :tangle host/configuration.nix :comments noweb :noweb yes :noweb-ref no
   { config, pkgs, lib, inputs, username, ... }:
   {
     imports =
@@ -115,25 +119,16 @@ So I use flake to manage my configs.
         inputs.musnix.nixosModules.musnix
         # ./hyprland.nix
       ];
-    
-    #bootloader
-    boot = {
-      # kernelPackages = pkgs.linuxPackages_latest;
-      initrd.kernelModules = [ "amdgpu" ];
-      loader = {
-        systemd-boot.enable = true;
-        efi.canTouchEfiVariables = true;
-        timeout = 10;
-      };
-    };
-    
-    # networking
-    networking = {
-      hostName = "Nixtop"; # Define your hostname.
-      networkmanager.enable = true;
-    };
-    
-    # nix
+    <<host-config>>
+  }
+#+end_src
+** Nix
+:PROPERTIES:
+:header-args:nix: :noweb-ref host-config
+:END:
+
+#+begin_src nix
+    system.stateVersion = "23.05";
     nixpkgs.config.allowUnfree = true;
     nix = {
       # This will add each flake input as a registry
@@ -150,8 +145,29 @@ So I use flake to manage my configs.
         trusted-users = [ "${username}" ];
       };
     };
+#+end_src
 
-    # locale
+** Bootloader
+#+begin_src nix
+    boot = {
+      # kernelPackages = pkgs.linuxPackages_latest;
+      initrd.kernelModules = [ "amdgpu" ];
+      loader = {
+        systemd-boot.enable = true;
+        efi.canTouchEfiVariables = true;
+        timeout = 10;
+      };
+    };
+#+end_src
+** Network
+#+begin_src nix
+    networking = {
+      hostName = "Nixtop"; # Define your hostname.
+      networkmanager.enable = true;
+    };
+#+end_src
+** Locale
+#+begin_src nix
     time.timeZone = "Asia/Shanghai";
     i18n = {
       defaultLocale = "en_US.UTF-8";
@@ -165,10 +181,10 @@ So I use flake to manage my configs.
       useXkbConfig = true; # use xkbOptions in tty.
     };
 
-    # Enable the X11 windowing system.
 
-
-    # sound.
+#+end_src
+** Sound
+#+begin_src nix
     musnix.enable = true;
     sound.enable = false; # sound.enable is only meant for ALSA-based configurations
     hardware.pulseaudio.enable = false;
@@ -181,14 +197,20 @@ So I use flake to manage my configs.
       pulse.enable = true;
       jack.enable = true;
     };
+#+end_src
+** User
 
+#+begin_src nix
     # Define a user account. Don't forget to set a password with ‘passwd’.
     users.users.${username} = {
       isNormalUser = true;
       extraGroups = [ "wheel" "networkmanager" "libvirtd" "adbusers" "audio"];
       shell = pkgs.dash;
     };
+#+end_src
+** Pkgs
 
+#+begin_src nix
     # List packages installed in system profile. To search, run:
     # $ nix search wget
     environment.systemPackages = with pkgs; [
@@ -203,6 +225,7 @@ So I use flake to manage my configs.
       gnumake
       killall
       home-manager
+      librime
     ];
     
     # hint electron apps to use wayland
@@ -298,9 +321,6 @@ So I use flake to manage my configs.
       };
     };
 
-    system.stateVersion = "23.05";
-     
-  }
 
 #+end_src
 * Home
@@ -391,10 +411,10 @@ So I use flake to manage my configs.
 #+begin_src nix
       gcc ccache cmake clangd
       (python311.withPackages(ps: with ps; [ 
-        # required by lsp-bridge and holo-layer
+        # required by lsp-bridge, holo-layer, and blink search
         epc orjson sexpdata six paramiko rapidfuzz 
         pynput inflect pyqt6 pyqt6-sip
-        python-pam
+        python-pam requests
         numpy toolz 
       ]))
       octave
@@ -416,6 +436,11 @@ So I use flake to manage my configs.
 #+begin_src nix
       sqlite
       dbeaver
+#+end_src
+**** Others
+#+begin_src nix
+  doxygen
+  doxygen_gui  
 #+end_src
 *** Cmdline
 :PROPERTIES:

@@ -30,6 +30,8 @@
     
     sqlite
     dbeaver
+    doxygen
+    doxygen_gui  
     kitty
     alacritty
     wezterm
