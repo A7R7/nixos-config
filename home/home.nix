@@ -33,7 +33,10 @@
     userName = "a7r7";
     userEmail = "Aaron__Lee_@outlook.com";
   };
-  
+  programs.vscode = {
+    enable = true;
+    package = pkgs.vscode.fhs;
+  };    
 #  wayland.windowManager.hyprland = {
 #    enable = true;
 #    xwayland.enable = true;

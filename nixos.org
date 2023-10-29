@@ -151,7 +151,6 @@ So I use flake to manage my configs.
 #+begin_src nix
     boot = {
       # kernelPackages = pkgs.linuxPackages_latest;
-      initrd.kernelModules = [ "amdgpu" ];
       loader = {
         systemd-boot.enable = true;
         efi.canTouchEfiVariables = true;
@@ -360,7 +359,10 @@ So I use flake to manage my configs.
       userName = "a7r7";
       userEmail = "Aaron__Lee_@outlook.com";
     };
-    
+    programs.vscode = {
+      enable = true;
+      package = pkgs.vscode.fhs;
+    };    
   #  wayland.windowManager.hyprland = {
   #    enable = true;
   #    xwayland.enable = true;
