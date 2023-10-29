@@ -6,12 +6,12 @@
     marktext
     vscode
     libreoffice
-    gcc ccache cmake clangd
+    gcc ccache cmake clang-tools
     (python311.withPackages(ps: with ps; [ 
-      # required by lsp-bridge and holo-layer
+      # required by lsp-bridge, holo-layer, and blink search
       epc orjson sexpdata six paramiko rapidfuzz 
       pynput inflect pyqt6 pyqt6-sip
-      python-pam
+      python-pam requests
       numpy toolz 
     ]))
     octave

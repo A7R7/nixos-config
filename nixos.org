@@ -205,7 +205,7 @@ So I use flake to manage my configs.
     users.users.${username} = {
       isNormalUser = true;
       extraGroups = [ "wheel" "networkmanager" "libvirtd" "adbusers" "audio"];
-      shell = pkgs.dash;
+      shell = pkgs.elvish;
     };
 #+end_src
 ** Pkgs
@@ -409,7 +409,7 @@ So I use flake to manage my configs.
 **** Languages
 
 #+begin_src nix
-      gcc ccache cmake clangd
+      gcc ccache cmake clang-tools
       (python311.withPackages(ps: with ps; [ 
         # required by lsp-bridge, holo-layer, and blink search
         epc orjson sexpdata six paramiko rapidfuzz 
