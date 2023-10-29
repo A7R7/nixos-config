@@ -29,7 +29,6 @@
   # [[file:nixos.org::*Host][]]
   boot = {
     # kernelPackages = pkgs.linuxPackages_latest;
-    initrd.kernelModules = [ "amdgpu" ];
     loader = {
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
