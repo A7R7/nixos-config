@@ -404,7 +404,6 @@ So I use flake to manage my configs.
       neovide
       emacs29-pgtk
       marktext
-      vscode
       libreoffice
 #+end_src
 
@@ -578,36 +577,39 @@ So I use flake to manage my configs.
 :header-args:nix: :noweb-ref desktop
 :END:
 #+begin_src nix
-      hyprpaper      # wallpaper utility
-      swww           # dynamic wallpaper
-      gnome.adwaita-icon-theme
+  nsxiv          # the best image viewer
+  gnome.nautilus # gnome's file manager
 
-      hyprkeys       # keybind retrieval utility
-      hyprnome       # gnome like workspace switch
+  hyprpaper      # wallpaper utility
+  swww           # dynamic wallpaper
+  gnome.adwaita-icon-theme
 
-      hyprshade      # screen color filters
-      wl-gammactl    # set contrast, brightness and gamma on wl
+  hyprkeys       # keybind retrieval utility
+  hyprnome       # gnome like workspace switch
 
-      hyprpicker     # wlroots color picker
-      wayshot        # screenshots tool
-      grimblast      # screenshots tool
-      wf-recorder    # screen recording tool
-      swappy         # Wayland native snapshot editing tool
+  hyprshade      # screen color filters
+  wl-gammactl    # set contrast, brightness and gamma on wl
 
-      wl-clipboard   # wayland clipboard
+  hyprpicker     # wlroots color picker
+  wayshot        # screenshots tool
+  grimblast      # screenshots tool
+  wf-recorder    # screen recording tool
+  swappy         # Wayland native snapshot editing tool
 
-      wlogout        # logout gui
-      rofi-wayland-unwrapped # app launcher
-      pavucontrol    # sound control
-      brightnessctl  # brightness control
+  wl-clipboard   # wayland clipboard
 
-      eww-wayland    # bar
+  wlogout        # logout gui
+  rofi-wayland-unwrapped # app launcher
+  pavucontrol    # sound control
+  brightnessctl  # brightness control
 
-      # bar and shell in gjs
-      inputs.ags.packages.${system}.default 
+  eww-wayland    # bar
 
-      # hyprland plugin set in python
-      inputs.pyprland.packages.${system}.default
+  # bar and shell in gjs
+  inputs.ags.packages.${system}.default 
+
+  # hyprland plugin set in python
+  inputs.pyprland.packages.${system}.default
 #+end_src
 *** System-tools
 :PROPERTIES:
@@ -615,7 +617,7 @@ So I use flake to manage my configs.
 :END:
 
 #+begin_src nix
-      gnome.nautilus # gnome's file manager
-      gparted        # disk partition manager
-      fsearch        # search files in disk
+  gparted        # disk partition manager
+  fsearch        # search files in disk
+  lshw
 #+end_src

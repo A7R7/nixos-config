@@ -4,7 +4,6 @@
     neovide
     emacs29-pgtk
     marktext
-    vscode
     libreoffice
     gcc ccache cmake clang-tools
     (python311.withPackages(ps: with ps; [ 
@@ -107,6 +106,9 @@
     steamcmd
     steam
     gamescope
+    nsxiv          # the best image viewer
+    gnome.nautilus # gnome's file manager
+    
     hyprpaper      # wallpaper utility
     swww           # dynamic wallpaper
     gnome.adwaita-icon-theme
@@ -137,8 +139,8 @@
     
     # hyprland plugin set in python
     inputs.pyprland.packages.${system}.default
-    gnome.nautilus # gnome's file manager
     gparted        # disk partition manager
-    fsearch        # search files in disk     
+    fsearch        # search files in disk
+    lshw     
   ]);
 }
