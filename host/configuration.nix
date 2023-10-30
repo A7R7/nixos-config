@@ -151,7 +151,7 @@
     xdg.portal = {
      enable = true;
      wlr.enable = true;
-     extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+     # extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
     };
   
     fonts.packages = with pkgs; [
@@ -175,7 +175,7 @@
         layout = "us";
         xkbOptions = "caps:escape";
         displayManager.gdm.enable = true;
-        # desktopManager.gnome.enable = true;
+        desktopManager.gnome.enable = true;
       };
   
       gvfs.enable = true;
