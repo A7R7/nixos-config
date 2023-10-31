@@ -36,17 +36,10 @@
   programs.vscode = {
     enable = true;
     package = pkgs.vscode.fhs;
+  };
+  services.syncthing = {
+    enable = true;
+    tray = true;
   };    
-#  wayland.windowManager.hyprland = {
-#    enable = true;
-#    xwayland.enable = true;
-#    extraConfig = ''
-#      source=~/.config/hypr/main.conf
-#    '';
-#    #package = (inputs.hyprland.packages.${pkgs.system}.hyprland.override {
-#    #  enableXWayland = true;
-#    #  enableNvidiaPatches = false;
-#    #});
-#  };
 }
 # Home-manager config:1 ends here
