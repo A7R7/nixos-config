@@ -293,6 +293,9 @@ So I use flake to manage my configs.
       sarasa-gothic 
     ];
   # services
+#+end_src
+** Services
+#+begin_src nix
     services = {
       printing.enable = true;
       flatpak.enable = true;
@@ -304,7 +307,7 @@ So I use flake to manage my configs.
         layout = "us";
         xkbOptions = "caps:escape";
         displayManager.gdm.enable = true;
-        desktopManager.gnome.enable = true;
+        # desktopManager.gnome.enable = true;
       };
 
       gvfs.enable = true;
@@ -319,8 +322,19 @@ So I use flake to manage my configs.
         gnome-online-accounts.enable = true;
       };
     };
-
-
+#+end_src
+*** Syncthing
+[[https://github.com/syncthing/syncthing][Syncthing]] is a continuouts file synchronization program using UPnP, which synchronize files *WITHOUT* centralized services. 
+#+begin_src nix
+  services.syncthing = {
+    enable = true;
+    openDefaultPorts = true; # 22000/TCP and 22000/UDP
+    dataDir = "/home/${username}";
+    configDir = "/home/${username}/.config/syncthing";
+    user = "${username}";
+    group = "users";
+    guiAddress = "0.0.0.0:8384"; # To be able to access the web GUI   
+  }
 #+end_src
 * Home
 ** Home-manager config
@@ -363,9 +377,12 @@ So I use flake to manage my configs.
       enable = true;
       package = pkgs.vscode.fhs;
     };
+#+end_src
+*** Services
+#+begin_src nix :tangle home/home.nix :comments noweb
     services.syncthing = {
       enable = true;
-      tray = true;
+      tray = {enable = true};
     };    
   }
 #+end_src

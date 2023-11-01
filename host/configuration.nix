@@ -164,34 +164,45 @@
       sarasa-gothic 
     ];
   # services
-    services = {
-      printing.enable = true;
-      flatpak.enable = true;
-      openssh.enable = true;
-      # asusd.enable = true; # for ASUS ROG laptops
-      xserver = {
-        enable = true;
-        excludePackages = [ pkgs.xterm ];
-        layout = "us";
-        xkbOptions = "caps:escape";
-        displayManager.gdm.enable = true;
-        desktopManager.gnome.enable = true;
-      };
-  
-      gvfs.enable = true;
-      devmon.enable = true;
-      udisks2.enable = true;
-      upower.enable = true;
-      accounts-daemon.enable = true;
-      gnome = {
-        evolution-data-server.enable = true;
-        glib-networking.enable = true;
-        gnome-keyring.enable = true;
-        gnome-online-accounts.enable = true;
-      };
+  # ends here
+  # [[file:nixos.org::*Host][]]
+  services = {
+    printing.enable = true;
+    flatpak.enable = true;
+    openssh.enable = true;
+    # asusd.enable = true; # for ASUS ROG laptops
+    xserver = {
+      enable = true;
+      excludePackages = [ pkgs.xterm ];
+      layout = "us";
+      xkbOptions = "caps:escape";
+      displayManager.gdm.enable = true;
+      # desktopManager.gnome.enable = true;
     };
   
-  
+    gvfs.enable = true;
+    devmon.enable = true;
+    udisks2.enable = true;
+    upower.enable = true;
+    accounts-daemon.enable = true;
+    gnome = {
+      evolution-data-server.enable = true;
+      glib-networking.enable = true;
+      gnome-keyring.enable = true;
+      gnome-online-accounts.enable = true;
+    };
+  };
+  # ends here
+  # [[file:nixos.org::*Host][]]
+  services.syncthing = {
+    enable = true;
+    openDefaultPorts = true; # 22000/TCP and 22000/UDP
+    dataDir = "/home/${username}";
+    configDir = "/home/${username}/.config/syncthing";
+    user = "${username}";
+    group = "users";
+    guiAddress = "0.0.0.0:8384"; # To be able to access the web GUI   
+  }
   # ends here
 }
 # Host:1 ends here
