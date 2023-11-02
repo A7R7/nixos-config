@@ -204,5 +204,11 @@
     # guiAdd.0:8384"; # To be able to access the web GUI   
   };
   # ends here
+  # [[file:nixos.org::*Host][]]
+  services.emacs = {
+    enable = true;
+    package = pkgs.emacs29-pgtk;
+  };
+  # ends here
 }
 # Host:1 ends here

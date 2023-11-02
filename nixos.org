@@ -336,6 +336,13 @@ So I use flake to manage my configs.
     # guiAdd.0:8384"; # To be able to access the web GUI   
   };
 #+end_src
+*** Emacs
+#+begin_src nix
+  services.emacs = {
+    enable = true;
+    package = pkgs.emacs29-pgtk;
+  };
+#+end_src
 * Home
 ** Home-manager config
 #+begin_src nix :tangle home/home.nix :comments noweb
@@ -629,3 +636,4 @@ So I use flake to manage my configs.
   fsearch        # search files in disk
   lshw
 #+end_src
+
