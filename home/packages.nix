@@ -2,7 +2,7 @@
 {
   home.packages = (with pkgs; [
     neovide
-    # emacs28-pgtk
+    emacs29-pgtk
     marktext
     libreoffice
     gcc ccache cmake clang-tools

@@ -1,4 +1,4 @@
-# [[file:../nixos.org::*Home-manager config][Home-manager config:1]]
+# [[file:../nixos.org::*Config][Config:1]]
 { config, pkgs, pkgs-stable, inputs, ... }:
 
 {
@@ -41,5 +41,14 @@
     enable = true;
     tray = {enable = true;};
   };    
+  services.emacs = {
+    enable = true;
+    package = pkgs.emacs29-pgtk;
+    socketActivation.enable = true;
+    client = {
+      enable = true;
+      defaultEditor = true;
+    };
+  };
 }
-# Home-manager config:1 ends here
+# Config:1 ends here

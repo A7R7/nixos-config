@@ -81,85 +81,88 @@
   };
   # ends here
   # [[file:nixos.org::*Host][]]
-    # List packages installed in system profile. To search, run:
-    # $ nix search wget
-    environment.systemPackages = with pkgs; [
-      vim neovim
-      wget
-      curl
-      git
-      stow
-      man
-      dash zsh fish elvish nushell
-      efibootmgr
-      gnumake
-      killall
-      home-manager
-    ];
-    
-    # hint electron apps to use wayland
-    environment.sessionVariables.NIXOS_OZONE_WL = "1";
+  # List packages installed in system profile. To search, run:
+  # $ nix search wget
+  environment.systemPackages = with pkgs; [
+    vim neovim
+    wget
+    curl
+    git
+    stow
+    man
+    dash zsh fish elvish nushell
+    efibootmgr
+    gnumake
+    killall
+    home-manager
+  ];
   
-    # Some programs need SUID wrappers, can be configured further or are
-    # started in user sessions.
-    # programs.mtr.enable = true;
-    # programs.gnupg.agent = {
-    #   enable = true;
-    #   enableSSHSupport = true;
-    # };
-    i18n.inputMethod = {
-      enabled = "fcitx5";
-      fcitx5 = {
-        addons = with pkgs; [
-          fcitx5-gtk
-          fcitx5-rime
-          fcitx5-chinese-addons
-          librime
-        ];
-      };
+  # hint electron apps to use wayland
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
+  
+  # Some programs need SUID wrappers, can be configured further or are
+  # started in user sessions.
+  # programs.mtr.enable = true;
+  # programs.gnupg.agent = {
+  #   enable = true;
+  #   enableSSHSupport = true;
+  # };
+  i18n.inputMethod = {
+    enabled = "fcitx5";
+    fcitx5 = {
+      addons = with pkgs; [
+        fcitx5-gtk
+        fcitx5-rime
+        fcitx5-chinese-addons
+        librime
+      ];
     };
+  };
   
-    virtualisation = {
-      podman.enable = true;
-      libvirtd.enable = true;
-      waydroid.enable = true;
+  virtualisation = {
+    podman.enable = true;
+    libvirtd.enable = true;
+    waydroid.enable = true;
+  };
+  
+  programs = {
+    # regreet.enable = true; 
+    # This line installs ReGreet, 
+    # sets up systemd tmpfiles for it, 
+    # enables services.greetd and also configures its default session to start ReGreet using cage.
+    hyprland = {
+      enable = true;
+      xwayland.enable = true;
+      enableNvidiaPatches = false;
+    #  package = (inputs.hyprland.packages.${pkgs.system}.hyprland.override {
+    #    enableXWayland = true;
+    #    enableNvidiaPatches = false;
+    #  })
     };
-  
-    programs = {
-      # regreet.enable = true; 
-      # This line installs ReGreet, 
-      # sets up systemd tmpfiles for it, 
-      # enables services.greetd and also configures its default session to start ReGreet using cage.
-      hyprland = {
-        enable = true;
-        xwayland.enable = true;
-        enableNvidiaPatches = false;
-      #  package = (inputs.hyprland.packages.${pkgs.system}.hyprland.override {
-      #    enableXWayland = true;
-      #    enableNvidiaPatches = false;
-      #  })
-      };
-      adb.enable = true;
-      steam = {
-        enable = true;
-        remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
-        dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
-      };
-      dconf.enable = true;
+    adb.enable = true;
+    steam = {
+      enable = true;
+      remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
+      dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
     };
+    dconf.enable = true;
+  };
   
-    xdg.portal = {
-     enable = true;
-     wlr.enable = true;
-     # extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-    };
-  
+  xdg.portal = {
+   enable = true;
+   wlr.enable = true;
+   # extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+  };
+  # ends here
+  # [[file:nixos.org::*Host][]]
     fonts.packages = with pkgs; [
       noto-fonts
       noto-fonts-cjk
       noto-fonts-emoji
+      noto-fonts-extra
       liberation_ttf
       roboto
+      ibm-plex
       nerdfonts
       sarasa-gothic 
     ];

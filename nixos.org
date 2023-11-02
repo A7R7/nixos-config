@@ -282,7 +282,9 @@ So I use flake to manage my configs.
      wlr.enable = true;
      # extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
     };
-
+#+end_src
+** Fonts
+#+begin_src nix
     fonts.packages = with pkgs; [
       noto-fonts
       noto-fonts-cjk
@@ -290,6 +292,7 @@ So I use flake to manage my configs.
       noto-fonts-extra
       liberation_ttf
       roboto
+      ibm-plex
       nerdfonts
       sarasa-gothic 
     ];
