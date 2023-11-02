@@ -37,12 +37,9 @@
     enable = true;
     package = pkgs.vscode.fhs;
   };
-# Home-manager config:1 ends here
-
-# [[file:../nixos.org::*Services][Services:1]]
-services.syncthing = {
+  services.syncthing = {
     enable = true;
-    tray = {enable = true};
+    tray = {enable = true;};
   };    
 }
-# Services:1 ends here
+# Home-manager config:1 ends here

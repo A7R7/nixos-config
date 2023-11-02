@@ -95,7 +95,6 @@
       gnumake
       killall
       home-manager
-      librime
     ];
     
     # hint electron apps to use wayland
@@ -115,6 +114,7 @@
           fcitx5-gtk
           fcitx5-rime
           fcitx5-chinese-addons
+          librime
         ];
       };
     };
@@ -201,8 +201,8 @@
     configDir = "/home/${username}/.config/syncthing";
     user = "${username}";
     group = "users";
-    guiAddress = "0.0.0.0:8384"; # To be able to access the web GUI   
-  }
+    # guiAdd.0:8384"; # To be able to access the web GUI   
+  };
   # ends here
 }
 # Host:1 ends here

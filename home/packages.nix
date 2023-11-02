@@ -55,7 +55,7 @@
     autoconf
     tree
     ghostscript
-    
+    _7zz
     hugo
     pipes-rs
     tty-clock
@@ -77,6 +77,7 @@
     calf
     lsp-plugins
     tauon
+    tidal-dl
     gimp-with-plugins
     inkscape
     imagemagick    # editing and manipulating digital images
