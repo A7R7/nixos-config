@@ -30,7 +30,7 @@
     
     utils.url = "github:gytis-ivaskevicius/flake-utils-plus";
     nur.url = "github:nix-community/NUR";
-    mynur.url = "file:///./nurpkgs"
+    mynur.url = "git+file:///./nurpkgs";
     # hyprland wm
     hyprland.url = "github:hyprwm/Hyprland";
     pyprland.url = "github:hyprland-community/pyprland";
@@ -44,7 +44,7 @@
       self,
       nixpkgs,
       nixpkgs-stable,
-      nur,
+      nur, mynur,
       home-manager,
       hyprland,
       ... }: 

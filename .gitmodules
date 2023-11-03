@@ -1,0 +1,3 @@
+[submodule "nurpkgs"]
+	path = nurpkgs
+	url = git@github.com:A7R7/nur-packages.git
