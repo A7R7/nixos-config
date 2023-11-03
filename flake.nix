@@ -30,7 +30,7 @@
     
     utils.url = "github:gytis-ivaskevicius/flake-utils-plus";
     nur.url = "github:nix-community/NUR";
-    mynur.url = "git+file:///./nurpkgs";
+    mynur.url = "github:A7R7/nur-packages";
     # hyprland wm
     hyprland.url = "github:hyprwm/Hyprland";
     pyprland.url = "github:hyprland-community/pyprland";
@@ -54,7 +54,7 @@
       pkgs = import nixpkgs {
         inherit system;
         config.allowUnfree = true;
-        overlays = [nur.overlay mynur.overlay];
+        overlays = [nur.overlay];
       };
       pkgs-stable = import nixpkgs-stable {
         inherit system;
