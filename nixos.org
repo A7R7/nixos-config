@@ -58,6 +58,7 @@ So I use flake to manage my configs.
 
     utils.url = "github:gytis-ivaskevicius/flake-utils-plus";
     nur.url = "github:nix-community/NUR";
+    mynur.url = "file:///./nurpkgs"
     # hyprland wm
     hyprland.url = "github:hyprwm/Hyprland";
     pyprland.url = "github:hyprland-community/pyprland";
@@ -80,7 +81,7 @@ So I use flake to manage my configs.
     pkgs = import nixpkgs {
       inherit system;
       config.allowUnfree = true;
-      overlays = [nur.overlay];
+      overlays = [nur.overlay mynur.overlay];
     };
     pkgs-stable = import nixpkgs-stable {
       inherit system;
@@ -155,8 +156,8 @@ So I use flake to manage my configs.
       # systemd-boot.enable = true;
       grub = {
         enable = true;
-        efiSupport = true;
-        version = 2;
+        theme = pkgs.xenlism-grub-2k-nixos;
+        # efiSupport = true;
       };
       efi.canTouchEfiVariables = true;
       efi.efiSysMountPoint = "/boot";

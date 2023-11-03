@@ -33,6 +33,7 @@
       # systemd-boot.enable = true;
       grub = {
         enable = true;
+        theme = pkgs.xenlism-grub-2k-nixos;
         # efiSupport = true;
       };
       efi.canTouchEfiVariables = true;
