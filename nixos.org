@@ -109,7 +109,6 @@ So I use flake to manage my configs.
 :PROPERTIES:
 :header-args:nix: :noweb-ref host-config
 :END:
-
 #+begin_src nix :tangle host/configuration.nix :comments noweb :noweb yes :noweb-ref no
   { config, pkgs, lib, inputs, username, ... }:
   {
@@ -148,15 +147,22 @@ So I use flake to manage my configs.
 #+end_src
 
 ** Bootloader
+[[file:/etc/nixos/hardware-configuration.nix][/etc/nixos/hardware-configuration.nix]]
 #+begin_src nix
-    boot = {
-      # kernelPackages = pkgs.linuxPackages_latest;
-      loader = {
-        systemd-boot.enable = true;
-        efi.canTouchEfiVariables = true;
-        timeout = 10;
+  boot = {
+    # kernelPackages = pkgs.linuxPackages_latest;
+    loader = {
+      # systemd-boot.enable = true;
+      grub = {
+        enable = true;
+        efiSupport = true;
+        version = 2;
       };
+      efi.canTouchEfiVariables = true;
+      efi.efiSysMountPoint = "/boot";
+      timeout = 10;
     };
+  };
 #+end_src
 ** Network
 #+begin_src nix

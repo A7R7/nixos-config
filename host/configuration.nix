@@ -30,8 +30,13 @@
   boot = {
     # kernelPackages = pkgs.linuxPackages_latest;
     loader = {
-      systemd-boot.enable = true;
+      # systemd-boot.enable = true;
+      grub = {
+        enable = true;
+        # efiSupport = true;
+      };
       efi.canTouchEfiVariables = true;
+      efi.efiSysMountPoint = "/boot";
       timeout = 10;
     };
   };
