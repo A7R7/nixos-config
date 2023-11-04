@@ -56,12 +56,16 @@
     tree
     ghostscript
     _7zz
+    lazygit
     hugo
     pipes-rs
     tty-clock
     cava
     cmatrix
-    fastfetch  
+    fastfetch
+    uniscribe # describe unicodes
+    unipicker # pick unicodes
+    nerdfix # find nerd font icons  
     # daw
     ardour
     # synthesizer-plugin
@@ -109,6 +113,9 @@
     gamescope
     nsxiv          # the best image viewer
     gnome.nautilus # gnome's file manager
+    gnome.gnome-tweaks # gnome's file manager
+    gnome.gnome-characters
+    cinnamon.nemo  # cinnamon's file manager
     
     hyprpaper      # wallpaper utility
     swww           # dynamic wallpaper

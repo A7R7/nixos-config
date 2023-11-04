@@ -123,10 +123,6 @@ So I use flake to manage my configs.
   }
 #+end_src
 ** Nix
-:PROPERTIES:
-:header-args:nix: :noweb-ref host-config
-:END:
-
 #+begin_src nix
     system.stateVersion = "23.05";
     nixpkgs.config.allowUnfree = true;
@@ -406,7 +402,6 @@ So I use flake to manage my configs.
       socketActivation.enable = true;
       client = {
         enable = true;
-        defaultEditor = true;
       };
     };
   }
@@ -493,7 +488,7 @@ So I use flake to manage my configs.
 #+begin_src nix
       carapace
       starship
-
+      lf
       thefuck
       bat
       eza
@@ -513,6 +508,7 @@ So I use flake to manage my configs.
       tree
       ghostscript
       _7zz
+      lazygit
       hugo
 #+end_src
 **** Toys
@@ -522,6 +518,9 @@ So I use flake to manage my configs.
       cava
       cmatrix
       fastfetch
+      uniscribe # describe unicodes
+      unipicker # pick unicodes
+      nerdfix # find nerd font icons
 #+end_src
 *** Multimedia
 :PROPERTIES:
@@ -615,6 +614,9 @@ So I use flake to manage my configs.
 #+begin_src nix
   nsxiv          # the best image viewer
   gnome.nautilus # gnome's file manager
+  gnome.gnome-tweaks # gnome's file manager
+  gnome.gnome-characters
+  cinnamon.nemo  # cinnamon's file manager
 
   hyprpaper      # wallpaper utility
   swww           # dynamic wallpaper

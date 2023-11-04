@@ -47,7 +47,6 @@
     socketActivation.enable = true;
     client = {
       enable = true;
-      defaultEditor = true;
     };
   };
 }
