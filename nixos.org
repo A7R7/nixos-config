@@ -188,7 +188,7 @@ So I use flake to manage my configs.
 #+end_src
 ** Sound
 #+begin_src nix
-    musnix.enable = true;
+    # musnix.enable = true;
     sound.enable = false; # sound.enable is only meant for ALSA-based configurations
     hardware.pulseaudio.enable = false;
     hardware.bluetooth.enable = true;
