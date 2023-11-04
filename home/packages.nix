@@ -31,12 +31,15 @@
     dbeaver
     doxygen
     doxygen_gui  
+    gtk-engine-murrine
+    gnome-themes-extra
+      
     kitty
     alacritty
     wezterm
     carapace
     starship
-    
+    lf
     thefuck
     bat
     eza
@@ -65,7 +68,7 @@
     fastfetch
     uniscribe # describe unicodes
     unipicker # pick unicodes
-    nerdfix # find nerd font icons  
+    nerdfix # find nerd font icons
     # daw
     ardour
     # synthesizer-plugin
@@ -116,6 +119,7 @@
     gnome.gnome-tweaks # gnome's file manager
     gnome.gnome-characters
     cinnamon.nemo  # cinnamon's file manager
+    doublecmd
     
     hyprpaper      # wallpaper utility
     swww           # dynamic wallpaper

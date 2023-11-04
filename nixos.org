@@ -415,7 +415,8 @@ So I use flake to manage my configs.
   {
     home.packages = (with pkgs; [
       <<development>>
-      <<cmdline>>  
+      <<runtime>>  
+      <<cmdline>>
       <<multimedia>>   
       <<network>>
       <<gaming>>
@@ -472,6 +473,16 @@ So I use flake to manage my configs.
 #+begin_src nix
   doxygen
   doxygen_gui  
+  gtk-engine-murrine
+  gnome-themes-extra
+#+end_src
+*** Runtime
+:PROPERTIES:
+:header-args:nix: :noweb-ref runtime
+:END:
+#+begin_src elisp
+gtk-engine-murrine
+gnome-themes-extra
 #+end_src
 *** Cmdline
 :PROPERTIES:
@@ -522,6 +533,7 @@ So I use flake to manage my configs.
       unipicker # pick unicodes
       nerdfix # find nerd font icons
 #+end_src
+
 *** Multimedia
 :PROPERTIES:
 :header-args:nix: :noweb-ref multimedia
@@ -617,6 +629,7 @@ So I use flake to manage my configs.
   gnome.gnome-tweaks # gnome's file manager
   gnome.gnome-characters
   cinnamon.nemo  # cinnamon's file manager
+  doublecmd
 
   hyprpaper      # wallpaper utility
   swww           # dynamic wallpaper
