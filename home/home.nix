@@ -16,7 +16,6 @@
 
   nixpkgs = {
     config = {
-      # Disable if you don't want unfree packages
       allowUnfree = true;
       # Workaround for https://github.com/nix-community/home-manager/issues/2942
       allowUnfreePredicate = (_: true);
@@ -40,7 +39,7 @@
   services.syncthing = {
     enable = true;
     tray = {enable = true;};
-  };    
+  };
   services.emacs = {
     enable = true;
     package = pkgs.emacs29-pgtk;

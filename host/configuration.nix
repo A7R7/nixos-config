@@ -133,9 +133,9 @@
   };
   
   programs = {
-    # regreet.enable = true; 
-    # This line installs ReGreet, 
-    # sets up systemd tmpfiles for it, 
+    # regreet.enable = true;
+    # This line installs ReGreet,
+    # sets up systemd tmpfiles for it,
     # enables services.greetd and also configures its default session to start ReGreet using cage.
     hyprland = {
       enable = true;
@@ -171,7 +171,7 @@
       roboto
       ibm-plex
       nerdfonts
-      sarasa-gothic 
+      sarasa-gothic
     ];
   # services
   # ends here
@@ -211,7 +211,7 @@
     configDir = "/home/${username}/.config/syncthing";
     user = "${username}";
     group = "users";
-    # guiAdd.0:8384"; # To be able to access the web GUI   
+    # guiAdd.0:8384"; # To be able to access the web GUI
   };
   # ends here
   # [[file:nixos.org::*Host][]]

@@ -34,11 +34,12 @@
     # hyprland wm
     hyprland.url = "github:hyprwm/Hyprland";
     pyprland.url = "github:hyprland-community/pyprland";
-    ags.url = "github:Aylur/ags";
-    musnix.url = "github:musnix/musnix";    
+    # ags.url = "github:Aylur/ags";
+    # ags.url = "github:Aylur/ags/feat/widgets-subclass-rewrite";
+    musnix.url = "github:musnix/musnix";
     # ends here
   };
-  outputs = 
+  outputs =
     # [[file:nixos.org::*Flake][]]
     inputs@{
       self,
@@ -47,14 +48,17 @@
       nur, mynur,
       home-manager,
       hyprland,
-      ... }: 
-    let 
+      ... }:
+    let
       username = "aaron-nix";
       system = "x86_64-linux";
       pkgs = import nixpkgs {
         inherit system;
         config.allowUnfree = true;
-        overlays = [nur.overlay];
+        overlays = [
+          nur.overlay
+          mynur.overlay
+        ];
       };
       pkgs-stable = import nixpkgs-stable {
         inherit system;

@@ -6,12 +6,12 @@
     marktext
     libreoffice
     gcc ccache cmake clang-tools
-    (python311.withPackages(ps: with ps; [ 
+    (python311.withPackages(ps: with ps; [
       # required by lsp-bridge, holo-layer, and blink search
-      epc orjson sexpdata six paramiko rapidfuzz 
+      epc orjson sexpdata six paramiko rapidfuzz
       pynput inflect pyqt6 pyqt6-sip
       python-pam requests
-      numpy toolz 
+      numpy toolz
     ]))
     octave
     nodejs
@@ -30,10 +30,10 @@
     sqlite
     dbeaver
     doxygen
-    doxygen_gui  
+    doxygen_gui
     gtk-engine-murrine
     gnome-themes-extra
-      
+    
     kitty
     alacritty
     wezterm
@@ -95,7 +95,7 @@
         obs-pipewire-audio-capture
       ];
     })
-    zathura   
+    zathura
     firefox
     chromium
     (vivaldi.override {
@@ -144,15 +144,15 @@
     pavucontrol    # sound control
     brightnessctl  # brightness control
     
-    eww-wayland    # bar
+    # eww-wayland    # bar
     
     # bar and shell in gjs
-    inputs.ags.packages.${system}.default 
+    # inputs.ags.packages.${system}.default
     
     # hyprland plugin set in python
     inputs.pyprland.packages.${system}.default
     gparted        # disk partition manager
     fsearch        # search files in disk
-    lshw     
+    lshw
   ]);
 }
