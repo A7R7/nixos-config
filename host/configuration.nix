@@ -33,7 +33,7 @@
       # systemd-boot.enable = true;
       grub = {
         enable = true;
-        theme = inputs.mynur.packages.${pkgs.system}.xenlism-grub-4k-nixos;
+        theme = pkgs.mynur.xenlism-grub-4k-nixos;
         splashMode = "normal";
         # efiSupport = true;
       };

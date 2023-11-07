@@ -156,7 +156,7 @@ So I use flake to manage my configs.
       # systemd-boot.enable = true;
       grub = {
         enable = true;
-        theme = inputs.mynur.packages.${pkgs.system}.xenlism-grub-4k-nixos;
+        theme = pkgs.mynur.xenlism-grub-4k-nixos;
         splashMode = "normal";
         # efiSupport = true;
       };
@@ -356,6 +356,7 @@ So I use flake to manage my configs.
   };
 #+end_src
 * Home
+Becareful that packages installed by ~nix profile install~ can conflict with packages defined here!
 ** Config
 #+begin_src nix :tangle home/home.nix :comments noweb
   { config, pkgs, pkgs-stable, inputs, ... }:
@@ -394,9 +395,6 @@ So I use flake to manage my configs.
     programs.vscode = {
       enable = true;
       package = pkgs.vscode.fhs;
-    };
-    programs.eww = {
-      enable = true;
     };
     services.syncthing = {
       enable = true;
@@ -454,6 +452,8 @@ So I use flake to manage my configs.
     pynput inflect pyqt6 pyqt6-sip
     python-pam requests
     numpy toolz
+    pyperclip
+    mynur.pix2text pillow pytorch torchvision opencv
   ]))
   octave
   nodejs
@@ -503,41 +503,41 @@ So I use flake to manage my configs.
 #+end_src
 **** Tools
 #+begin_src nix
-      carapace
-      starship
-      lf
-      thefuck
-      bat
-      eza
-      ranger nnn
-      fd
-      ripgrep
-      fzf
-      socat
-      jq
-      yq-go
-      acpi
-      inotify-tools
-      ffmpeg
-      libnotify
-      zoxide
-      autoconf
-      tree
-      ghostscript
-      _7zz
-      lazygit
-      hugo
+  carapace
+  starship
+  lf
+  thefuck
+  bat
+  eza
+  ranger nnn
+  fd
+  ripgrep
+  fzf
+  socat
+  jq
+  yq-go
+  acpi
+  inotify-tools
+  ffmpeg
+  libnotify
+  zoxide
+  autoconf
+  tree
+  ghostscript
+  _7zz
+  lazygit
+  hugo
 #+end_src
 **** Toys
 #+begin_src nix
-      pipes-rs
-      tty-clock
-      cava
-      cmatrix
-      fastfetch
-      uniscribe # describe unicodes
-      unipicker # pick unicodes
-      nerdfix # find nerd font icons
+  pipes-rs
+  tty-clock
+  cava
+  cmatrix
+  fastfetch
+  uniscribe # describe unicodes
+  unipicker # pick unicodes
+  nerdfix # find nerd font icons
 #+end_src
 
 *** Multimedia
@@ -601,6 +601,7 @@ So I use flake to manage my configs.
     enableWidevine = true;
     commandLineArgs = "--enable-wayland-ime";
   })
+  mynur.thorium-browser
 #+end_src
 **** Message
 #+begin_src nix
@@ -660,7 +661,7 @@ So I use flake to manage my configs.
   pavucontrol    # sound control
   brightnessctl  # brightness control
 
-  # eww-wayland    # bar
+  eww-wayland    # bar
 
   # bar and shell in gjs
   # inputs.ags.packages.${system}.default
@@ -677,4 +678,5 @@ So I use flake to manage my configs.
   gparted        # disk partition manager
   fsearch        # search files in disk
   lshw
+  solaar         # connect with logitech devices
 #+end_src

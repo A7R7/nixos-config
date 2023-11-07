@@ -12,6 +12,8 @@
       pynput inflect pyqt6 pyqt6-sip
       python-pam requests
       numpy toolz
+      pyperclip
+      mynur.pix2text pillow pytorch torchvision opencv
     ]))
     octave
     nodejs
@@ -103,6 +105,7 @@
       enableWidevine = true;
       commandLineArgs = "--enable-wayland-ime";
     })
+    mynur.thorium-browser
     qq
     discord
     telegram-desktop
@@ -144,7 +147,7 @@
     pavucontrol    # sound control
     brightnessctl  # brightness control
     
-    # eww-wayland    # bar
+    eww-wayland    # bar
     
     # bar and shell in gjs
     # inputs.ags.packages.${system}.default
@@ -154,5 +157,6 @@
     gparted        # disk partition manager
     fsearch        # search files in disk
     lshw
+    solaar         # connect with logitech devices
   ]);
 }
