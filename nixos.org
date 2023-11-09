@@ -47,24 +47,25 @@ So I use flake to manage my configs.
 #+end_src
 ** Inputs
 #+begin_src nix :noweb-ref inputs
-    ## nixpkgs
-    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-23.05";
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs-wayland.url = "github:nix-community/nixpkgs-wayland";
-    home-manager = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+  ## nixpkgs
+  nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-23.05";
+  nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+  nixpkgs-wayland.url = "github:nix-community/nixpkgs-wayland";
+  home-manager = {
+    url = "github:nix-community/home-manager";
+    inputs.nixpkgs.follows = "nixpkgs";
+  };
 
-    utils.url = "github:gytis-ivaskevicius/flake-utils-plus";
-    nur.url = "github:nix-community/NUR";
-    mynur.url = "github:A7R7/nur-packages";
-    # hyprland wm
-    hyprland.url = "github:hyprwm/Hyprland";
-    pyprland.url = "github:hyprland-community/pyprland";
-    # ags.url = "github:Aylur/ags";
-    # ags.url = "github:Aylur/ags/feat/widgets-subclass-rewrite";
-    musnix.url = "github:musnix/musnix";
+  utils.url = "github:gytis-ivaskevicius/flake-utils-plus";
+  nur.url = "github:nix-community/NUR";
+  mynur.url = "github:A7R7/nur-packages";
+  # hyprland wm
+  hyprland.url = "github:hyprwm/Hyprland";
+  pyprland.url = "github:hyprland-community/pyprland";
+  ags.url = "github:Aylur/ags";
+  # ags.url = "github:Aylur/ags/feat/widgets-subclass-rewrite";
+  musnix.url = "github:musnix/musnix";
+  pip2nix.url = "github:nix-community/pip2nix";
 #+end_src
 ** Outputs
 #+begin_src nix :noweb-ref outputs
@@ -121,7 +122,6 @@ So I use flake to manage my configs.
       [
         /etc/nixos/hardware-configuration.nix
         inputs.musnix.nixosModules.musnix
-        # ./hyprland.nix
       ];
     <<host-config>>
   }
@@ -443,7 +443,8 @@ Becareful that packages installed by ~nix profile install~ can conflict with pac
 #+end_src
 
 **** Languages
-
+These tools can be seen as runtimes, for non serious usage and quick testing.
+To seriously do development on nixos I have to write derivations.
 #+begin_src nix
   gcc ccache cmake clang-tools
   (python311.withPackages(ps: with ps; [
@@ -475,6 +476,14 @@ Becareful that packages installed by ~nix profile install~ can conflict with pac
   sqlite
   dbeaver
 #+end_src
+
+**** Nix
+These are tools for packaging using nix.
+#+begin_src nix
+  niv
+  nix-universal-prefetch
+  inputs.pip2nix.defaultPackage.${system}
+ #+end_src
 **** Others
 #+begin_src nix
   doxygen
@@ -664,7 +673,7 @@ Becareful that packages installed by ~nix profile install~ can conflict with pac
   eww-wayland    # bar
 
   # bar and shell in gjs
-  # inputs.ags.packages.${system}.default
+  inputs.ags.packages.${system}.default
 
   # hyprland plugin set in python
   inputs.pyprland.packages.${system}.default

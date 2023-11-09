@@ -34,9 +34,10 @@
     # hyprland wm
     hyprland.url = "github:hyprwm/Hyprland";
     pyprland.url = "github:hyprland-community/pyprland";
-    # ags.url = "github:Aylur/ags";
+    ags.url = "github:Aylur/ags";
     # ags.url = "github:Aylur/ags/feat/widgets-subclass-rewrite";
     musnix.url = "github:musnix/musnix";
+    pip2nix.url = "github:nix-community/pip2nix";
     # ends here
   };
   outputs =

@@ -31,6 +31,9 @@
     
     sqlite
     dbeaver
+    niv
+    nix-universal-prefetch
+    inputs.pip2nix.defaultPackage.${system}
     doxygen
     doxygen_gui
     gtk-engine-murrine
