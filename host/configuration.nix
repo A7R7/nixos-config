@@ -5,7 +5,6 @@
     [
       /etc/nixos/hardware-configuration.nix
       inputs.musnix.nixosModules.musnix
-      # ./hyprland.nix
     ];
   # [[file:nixos.org::*Host][]]
   system.stateVersion = "23.05";

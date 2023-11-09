@@ -153,7 +153,7 @@
     eww-wayland    # bar
     
     # bar and shell in gjs
-    # inputs.ags.packages.${system}.default
+    inputs.ags.packages.${system}.default
     
     # hyprland plugin set in python
     inputs.pyprland.packages.${system}.default
