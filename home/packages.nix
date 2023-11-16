@@ -1,20 +1,25 @@
 { inputs, pkgs, pkgs-stable, nur, ... }:
 {
   home.packages = (with pkgs; [
-    neovide
     emacs29-pgtk
+    neovide
     marktext
     libreoffice
     gcc ccache cmake clang-tools
     (python311.withPackages(ps: with ps; [
       # required by lsp-bridge, holo-layer, and blink search
+    
       epc orjson sexpdata six paramiko rapidfuzz
       pynput inflect pyqt6 pyqt6-sip
       python-pam requests
       numpy toolz
       pyperclip
       mynur.pix2text pillow pytorch torchvision opencv
+      # the unusable package manager
+      pip pipdeptree
     ]))
+    poetry
+    
     octave
     nodejs
     go
@@ -36,9 +41,7 @@
     inputs.pip2nix.defaultPackage.${system}
     doxygen
     doxygen_gui
-    gtk-engine-murrine
-    gnome-themes-extra
-    
+    mynur.logisim-ita
     kitty
     alacritty
     wezterm
@@ -66,6 +69,8 @@
     _7zz
     lazygit
     hugo
+    pandoc
+    gh
     pipes-rs
     tty-clock
     cava
@@ -100,6 +105,8 @@
         obs-pipewire-audio-capture
       ];
     })
+    kdenlive
+    vlc
     zathura
     firefox
     chromium
@@ -112,7 +119,8 @@
     qq
     discord
     telegram-desktop
-    clash-verge
+    thunderbird
+    pkgs-stable.clash-verge
     prismlauncher
     glfw-wayland-minecraft
     zulu21
@@ -124,8 +132,11 @@
     gnome.nautilus # gnome's file manager
     gnome.gnome-tweaks # gnome's file manager
     gnome.gnome-characters
+    gtk-engine-murrine
+    gnome-themes-extra
     cinnamon.nemo  # cinnamon's file manager
     doublecmd
+    peazip
     
     hyprpaper      # wallpaper utility
     swww           # dynamic wallpaper
@@ -157,9 +168,14 @@
     
     # hyprland plugin set in python
     inputs.pyprland.packages.${system}.default
+    fontforge-gtk
+    mynur.sarasa-gothic-nerd-font
     gparted        # disk partition manager
     fsearch        # search files in disk
     lshw
     solaar         # connect with logitech devices
+    iotop
+    btop
+    logiops        # Unofficial userspace driver for HID++ Logitech devices
   ]);
 }

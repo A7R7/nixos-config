@@ -1,7 +1,7 @@
 :DOC-CONFIG:
 #+PROPERTY: header-args:nix :comments noweb
 #+STARTUP: fold
-#+AUTO_TANGLE: t
+#+AUTO_TANGLE: nil
 #+HUGO_BUNDLE: nixos-configuration
 #+EXPORT_FILE_NAME: index.en
 #+HUGO_PUBLISHDATE: 2023-10-26
@@ -12,12 +12,11 @@
 #+TITLE: Nixos Configuration
 #+AUTHOR: A7R7
 
-* Intro
 Welcome to my nixos configuration blog.
 * Flake
 
 So I use flake to manage my configs.
-#+begin_src nix :tangle flake.nix :noweb yes
+#+begin_src nix :tangle flake.nix :noweb no-export
   {
     description = "A7R7's NixOS Flake";
     nixConfig = {
@@ -61,7 +60,7 @@ So I use flake to manage my configs.
   mynur.url = "github:A7R7/nur-packages";
   # hyprland wm
   hyprland.url = "github:hyprwm/Hyprland";
-  pyprland.url = "github:hyprland-community/pyprland";
+  pyprland.url = "github:A7R7/pyprland";
   ags.url = "github:Aylur/ags";
   # ags.url = "github:Aylur/ags/feat/widgets-subclass-rewrite";
   musnix.url = "github:musnix/musnix";
@@ -115,7 +114,7 @@ So I use flake to manage my configs.
 :PROPERTIES:
 :header-args:nix: :noweb-ref host-config
 :END:
-#+begin_src nix :tangle host/configuration.nix :comments noweb :noweb yes :noweb-ref no
+#+begin_src nix :tangle host/configuration.nix :comments noweb :noweb no-export :noweb-ref no
   { config, pkgs, lib, inputs, username, ... }:
   {
     imports =
@@ -128,23 +127,23 @@ So I use flake to manage my configs.
 #+end_src
 ** Nix
 #+begin_src nix
-    system.stateVersion = "23.05";
-    nixpkgs.config.allowUnfree = true;
-    nix = {
-      # This will add each flake input as a registry
-      # To make nix3 commands consistent with your flake
-      registry = lib.mapAttrs (_: value: { flake = value; }) inputs;
+  system.stateVersion = "23.05";
+  nixpkgs.config.allowUnfree = true;
+  nix = {
+    # This will add each flake input as a registry
+    # To make nix3 commands consistent with your flake
+    registry = lib.mapAttrs (_: value: { flake = value; }) inputs;
 
-      # This will additionally add your inputs to the system's legacy channels
-      # Making legacy nix commands consistent as well, awesome!
-      nixPath = lib.mapAttrsToList (key: value: "${key}=${value.to.path}") config.nix.registry;
+    # This will additionally add your inputs to the system's legacy channels
+    # Making legacy nix commands consistent as well, awesome!
+    nixPath = lib.mapAttrsToList (key: value: "${key}=${value.to.path}") config.nix.registry;
 
-      settings = {
-        experimental-features = "nix-command flakes";
-        auto-optimise-store = true;
-        trusted-users = [ "${username}" ];
-      };
+    settings = {
+      experimental-features = "nix-command flakes";
+      auto-optimise-store = true;
+      trusted-users = [ "${username}" ];
     };
+  };
 #+end_src
 
 ** Bootloader
@@ -168,172 +167,180 @@ So I use flake to manage my configs.
 #+end_src
 ** Network
 #+begin_src nix
-    networking = {
-      hostName = "Nixtop"; # Define your hostname.
-      networkmanager.enable = true;
-    };
+  networking = {
+    hostName = "Nixtop"; # Define your hostname.
+    networkmanager.enable = true;
+  };
 #+end_src
 ** Locale
 #+begin_src nix
-    time.timeZone = "Asia/Shanghai";
-    i18n = {
-      defaultLocale = "en_US.UTF-8";
-      supportedLocales = [
-        "en_US.UTF-8/UTF-8"
-        "zh_CN.UTF-8/UTF-8"
-      ];
-    };
-    console = {
-      font = "Lat2-Terminus16";
-      useXkbConfig = true; # use xkbOptions in tty.
-    };
+  time.timeZone = "Asia/Shanghai";
+  i18n = {
+    defaultLocale = "en_US.UTF-8";
+    supportedLocales = [
+      "en_US.UTF-8/UTF-8"
+      "zh_CN.UTF-8/UTF-8"
+    ];
+  };
+  console = {
+    font = "Lat2-Terminus16";
+    useXkbConfig = true; # use xkbOptions in tty.
+  };
 
 
 #+end_src
 ** Sound
 #+begin_src nix
-    # musnix.enable = true;
-    sound.enable = false; # sound.enable is only meant for ALSA-based configurations
-    hardware.pulseaudio.enable = false;
-    hardware.bluetooth.enable = true;
-    security.rtkit.enable = true;
-    services. pipewire = {
-      enable = true;
-      alsa.enable = true;
-      alsa.support32Bit = true;
-      pulse.enable = true;
-      jack.enable = true;
-    };
+  # musnix.enable = true;
+  sound.enable = false; # sound.enable is only meant for ALSA-based configurations
+  hardware.pulseaudio.enable = false;
+  hardware.bluetooth.enable = true;
+  security.rtkit.enable = true;
+  services. pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+    jack.enable = true;
+  };
 #+end_src
 ** User
 
 #+begin_src nix
-    # Define a user account. Don't forget to set a password with ‘passwd’.
-    users.users.${username} = {
-      isNormalUser = true;
-      extraGroups = [ "wheel" "networkmanager" "libvirtd" "adbusers" "audio"];
-      shell = pkgs.elvish;
-    };
+  # Define a user account. Don't forget to set a password with ‘passwd’.
+  users.users.${username} = {
+    isNormalUser = true;
+    extraGroups = [ "wheel" "networkmanager" "libvirtd" "adbusers" "audio"];
+    shell = pkgs.elvish;
+  };
 #+end_src
 ** Pkgs
 
 #+begin_src nix
-    # List packages installed in system profile. To search, run:
-    # $ nix search wget
-    environment.systemPackages = with pkgs; [
-      vim neovim
-      wget
-      curl
-      git
-      stow
-      man
-      dash zsh fish elvish nushell
-      efibootmgr
-      gnumake
-      killall
-      home-manager
-    ];
+  # List packages installed in system profile. To search, run:
+  # $ nix search wget
+  environment.systemPackages = with pkgs; [
+    vim neovim
+    wget
+    curl
+    git
+    stow
+    man
+    dash zsh fish elvish nushell
+    efibootmgr
+    gnumake
+    killall
+    home-manager
+  ];
 
-    # hint electron apps to use wayland
-    environment.sessionVariables.NIXOS_OZONE_WL = "1";
+  # hint electron apps to use wayland
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
-    # Some programs need SUID wrappers, can be configured further or are
-    # started in user sessions.
-    # programs.mtr.enable = true;
-    # programs.gnupg.agent = {
-    #   enable = true;
-    #   enableSSHSupport = true;
-    # };
-    i18n.inputMethod = {
-      enabled = "fcitx5";
-      fcitx5 = {
-        addons = with pkgs; [
-          fcitx5-gtk
-          fcitx5-rime
-          fcitx5-chinese-addons
-          librime
-        ];
-      };
+  # Some programs need SUID wrappers, can be configured further or are
+  # started in user sessions.
+  # programs.mtr.enable = true;
+  # programs.gnupg.agent = {
+  #   enable = true;
+  #   enableSSHSupport = true;
+  # };
+  i18n.inputMethod = {
+    enabled = "fcitx5";
+    fcitx5 = {
+      addons = with pkgs; [
+        fcitx5-gtk
+        fcitx5-rime
+        fcitx5-chinese-addons
+        librime
+      ];
     };
+  };
 
-    virtualisation = {
-      podman.enable = true;
-      libvirtd.enable = true;
-      waydroid.enable = true;
-    };
+  virtualisation = {
+    podman.enable = true;
+    libvirtd.enable = true;
+    waydroid.enable = true;
+  };
 
-    programs = {
-      # regreet.enable = true;
-      # This line installs ReGreet,
-      # sets up systemd tmpfiles for it,
-      # enables services.greetd and also configures its default session to start ReGreet using cage.
-      hyprland = {
-        enable = true;
-        xwayland.enable = true;
-        enableNvidiaPatches = false;
-      #  package = (inputs.hyprland.packages.${pkgs.system}.hyprland.override {
-      #    enableXWayland = true;
-      #    enableNvidiaPatches = false;
-      #  })
-      };
-      adb.enable = true;
-      steam = {
-        enable = true;
-        remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
-        dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
-      };
-      dconf.enable = true;
+  programs = {
+    # regreet.enable = true;
+    # This line installs ReGreet,
+    # sets up systemd tmpfiles for it,
+    # enables services.greetd and also configures its default session to start ReGreet using cage.
+    hyprland = {
+      enable = true;
+      xwayland.enable = true;
+      enableNvidiaPatches = false;
+    #  package = (inputs.hyprland.packages.${pkgs.system}.hyprland.override {
+    #    enableXWayland = true;
+    #    enableNvidiaPatches = false;
+    #  })
     };
+    adb.enable = true;
+    steam = {
+      enable = true;
+      remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
+      dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
+    };
+    dconf.enable = true;
+  };
 
-    xdg.portal = {
-     enable = true;
-     wlr.enable = true;
-     # extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-    };
+  xdg.portal = {
+   enable = true;
+   wlr.enable = true;
+   # extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+  };
 #+end_src
 ** Fonts
 #+begin_src nix
-    fonts.packages = with pkgs; [
-      noto-fonts
-      noto-fonts-cjk
-      noto-fonts-emoji
-      noto-fonts-extra
-      liberation_ttf
-      roboto
-      ibm-plex
-      nerdfonts
-      sarasa-gothic
-    ];
-  # services
+  fonts.fonts = with pkgs; [
+    noto-fonts
+    noto-fonts-cjk
+    noto-fonts-emoji
+    noto-fonts-extra
+    liberation_ttf
+    roboto roboto-serif
+    ibm-plex
+    nerdfonts
+    sarasa-gothic
+    mynur.sarasa-gothic-nerd-font
+  ];
+  fonts.fontconfig = {
+    enable = true;
+    includeUserConf = true;
+    allowBitmaps = false;
+  }
 #+end_src
 ** Services
 #+begin_src nix
-    services = {
-      printing.enable = true;
-      flatpak.enable = true;
-      openssh.enable = true;
-      # asusd.enable = true; # for ASUS ROG laptops
-      xserver = {
-        enable = true;
-        excludePackages = [ pkgs.xterm ];
-        layout = "us";
-        xkbOptions = "caps:escape";
-        displayManager.gdm.enable = true;
-        # desktopManager.gnome.enable = true;
-      };
+  services.printing.enable = true;
+  services.flatpak.enable = true;
+  services.openssh.enable = true;
+  # userspace virtual filesystem
+  services.gvfs.enable = true;
+  # an automatic device mounting daemon
+  services.devmon.enable = true;
+  # a DBus service that allows applications to query and manipulate storage devices.
+  services.udisks2.enable = true;
+  # a DBus service that provides power management support to applications.
+  services.upower.enable = true;
+  # a DBus service for accessing the list of user accounts and information attached to those accounts.
+  services.accounts-daemon.enable = true;
+  services.xserver = {
+    enable = true;
+    excludePackages = [ pkgs.xterm ];
+    layout = "us";
+    xkbOptions = "caps:escape";
+    displayManager.gdm.enable = true;
+    # desktopManager.gnome.enable = true;
+  };
 
-      gvfs.enable = true;
-      devmon.enable = true;
-      udisks2.enable = true;
-      upower.enable = true;
-      accounts-daemon.enable = true;
-      gnome = {
-        evolution-data-server.enable = true;
-        glib-networking.enable = true;
-        gnome-keyring.enable = true;
-        gnome-online-accounts.enable = true;
-      };
-    };
+  services.gnome = {
+    evolution-data-server.enable = true;
+    glib-networking.enable = true;
+    gnome-keyring.enable = true;
+    gnome-online-accounts.enable = true;
+    at-spi2-core.enable = true; # avoid the warning "The name org.a11y.Bus was not provided by any .service files"
+  };
 #+end_src
 *** Syncthing
 [[https://github.com/syncthing/syncthing][Syncthing]] is a continuouts file synchronization program using UPnP, which synchronize files *WITHOUT* centralized services.
@@ -355,21 +362,38 @@ So I use flake to manage my configs.
     package = pkgs.emacs29-pgtk;
   };
 #+end_src
+** Security
+Polkit is used for controlling system-wide privileges. It provides an organized way for non-privileged processes to communicate with privileged ones, especially for those GUI applications.
+#+begin_src nix
+  security.polkit.enable = true;
+  # start polkit on login by creating a systemd user service
+  #+end_src
 * Home
-Becareful that packages installed by ~nix profile install~ can conflict with packages defined here!
+Becareful that packages installed by ~nix profile install~ can conflict with packages defined here! Therefore, it is recommended to clear nix profile list before home-manager switch.
 ** Config
 #+begin_src nix :tangle home/home.nix :comments noweb
   { config, pkgs, pkgs-stable, inputs, ... }:
-
+  let
+    username = "aaron-nix";
+    homeDirectory = "/home/aaron-nix";
+  in
   {
     imports = [
       ./packages.nix
     ];
 
     home = {
-      username = "aaron-nix";
-      homeDirectory = "/home/aaron-nix";
+      username = username;
+      homeDirectory = homeDirectory;
       stateVersion = "23.05";
+      sessionVariables = {
+        QT_XCB_GL_INTEGRATION = "none"; # kde-connect
+        NIXPKGS_ALLOW_UNFREE = "1";
+        SHELL = "${pkgs.zsh}/bin/elvish";
+      };
+      sessionPath = [
+        "$HOME/.local/bin"
+      ];
     };
 
     programs.home-manager.enable = true;
@@ -381,6 +405,18 @@ Becareful that packages installed by ~nix profile install~ can conflict with pac
         allowUnfreePredicate = (_: true);
       };
     };
+
+    gtk.gtk3.bookmarks = [
+      "file://${homeDirectory}/Documents"
+      "file://${homeDirectory}/Music"
+      "file://${homeDirectory}/Pictures"
+      "file://${homeDirectory}/Videos"
+      "file://${homeDirectory}/Downloads"
+      "file://${homeDirectory}/Desktop"
+      "file://${homeDirectory}/Projects"
+      "file://${homeDirectory}/.config Config"
+      "file://${homeDirectory}/.local/share Local"
+    ];
 
     xresources.properties = {
       "Xcursor.size" = 16;
@@ -412,32 +448,22 @@ Becareful that packages installed by ~nix profile install~ can conflict with pac
 #+end_src
 ** Packages
 :PROPERTIES:
-:header-args:nix: :tangle home/packages.nix
+:header-args:nix: :noweb-ref hm-packages
 :END:
-#+begin_src nix :noweb yes
+#+begin_src nix :tangle home/packages.nix :noweb no-export :noweb-ref no
   { inputs, pkgs, pkgs-stable, nur, ... }:
   {
     home.packages = (with pkgs; [
-      <<development>>
-      <<runtime>>
-      <<cmdline>>
-      <<multimedia>>
-      <<network>>
-      <<gaming>>
-      <<desktop>>
-      <<system-tools>>
+      <<hm-packages>>
     ]);
   }
-
 #+end_src
+
 *** Development
-:PROPERTIES:
-:header-args:nix: :noweb-ref development
-:END:
 **** Text-editor
 #+begin_src nix
-  neovide
   emacs29-pgtk
+  neovide
   marktext
   libreoffice
 #+end_src
@@ -449,13 +475,18 @@ To seriously do development on nixos I have to write derivations.
   gcc ccache cmake clang-tools
   (python311.withPackages(ps: with ps; [
     # required by lsp-bridge, holo-layer, and blink search
+
     epc orjson sexpdata six paramiko rapidfuzz
     pynput inflect pyqt6 pyqt6-sip
     python-pam requests
     numpy toolz
     pyperclip
     mynur.pix2text pillow pytorch torchvision opencv
+    # the unusable package manager
+    pip pipdeptree
   ]))
+  poetry
+
   octave
   nodejs
   go
@@ -470,6 +501,11 @@ To seriously do development on nixos I have to write derivations.
   rnix-lsp # WIP Language Server for Nix
   texlive.combined.scheme-full
 
+#+end_src
+**** Lang-servers
+#+begin_src
+  pyright
+  javascript-typescript-langserver
 #+end_src
 **** Database
 #+begin_src nix
@@ -488,22 +524,14 @@ These are tools for packaging using nix.
 #+begin_src nix
   doxygen
   doxygen_gui
-  gtk-engine-murrine
-  gnome-themes-extra
+  mynur.logisim-ita
 #+end_src
 *** Runtime
-:PROPERTIES:
-:header-args:nix: :noweb-ref runtime
-:END:
 #+begin_src elisp
   gtk-engine-murrine
   gnome-themes-extra
 #+end_src
 *** Cmdline
-:PROPERTIES:
-:header-args:nix: :noweb-ref cmdline
-:END:
-
 **** Emulator
 #+begin_src nix
   kitty
@@ -536,6 +564,8 @@ These are tools for packaging using nix.
   _7zz
   lazygit
   hugo
+  pandoc
+  gh
 #+end_src
 **** Toys
 #+begin_src nix
@@ -550,9 +580,6 @@ These are tools for packaging using nix.
 #+end_src
 
 *** Multimedia
-:PROPERTIES:
-:header-args:nix: :noweb-ref multimedia
-:END:
 **** Audio-production
 #+begin_src nix
   # daw
@@ -591,16 +618,14 @@ These are tools for packaging using nix.
       obs-pipewire-audio-capture
     ];
   })
-#+end_src
+  kdenlive
+  vlc
+    #+end_src
 **** PDF
 #+begin_src nix
   zathura
 #+end_src
 *** Network
-:PROPERTIES:
-:header-args:nix: :noweb-ref network
-:END:
-
 **** Browser
 #+begin_src nix
   firefox
@@ -617,15 +642,13 @@ These are tools for packaging using nix.
   qq
   discord
   telegram-desktop
+  thunderbird
 #+end_src
 **** VPN
 #+begin_src nix
-  clash-verge
+  pkgs-stable.clash-verge
 #+end_src
 *** Gaming
-:PROPERTIES:
-:header-args:nix: :noweb-ref gaming
-:END:
 #+begin_src nix
   prismlauncher
   glfw-wayland-minecraft
@@ -636,16 +659,16 @@ These are tools for packaging using nix.
   gamescope
 #+end_src
 *** Desktop
-:PROPERTIES:
-:header-args:nix: :noweb-ref desktop
-:END:
 #+begin_src nix
   nsxiv          # the best image viewer
   gnome.nautilus # gnome's file manager
   gnome.gnome-tweaks # gnome's file manager
   gnome.gnome-characters
+  gtk-engine-murrine
+  gnome-themes-extra
   cinnamon.nemo  # cinnamon's file manager
   doublecmd
+  peazip
 
   hyprpaper      # wallpaper utility
   swww           # dynamic wallpaper
@@ -678,14 +701,23 @@ These are tools for packaging using nix.
   # hyprland plugin set in python
   inputs.pyprland.packages.${system}.default
 #+end_src
+*** Fonts
+#+begin_src nix
+  fontforge-gtk
+  mynur.sarasa-gothic-nerd-font
+#+end_src
 *** System-tools
-:PROPERTIES:
-:header-args:nix: :noweb-ref system-tools
-:END:
-
 #+begin_src nix
   gparted        # disk partition manager
   fsearch        # search files in disk
   lshw
   solaar         # connect with logitech devices
+  iotop
+  btop
+  logiops        # Unofficial userspace driver for HID++ Logitech devices
+#+end_src
+
+* COMMENT Test
+#+begin_src elisp
+  (org-babel-tangle-file (buffer-file-name))
 #+end_src

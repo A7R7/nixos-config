@@ -33,7 +33,7 @@
     mynur.url = "github:A7R7/nur-packages";
     # hyprland wm
     hyprland.url = "github:hyprwm/Hyprland";
-    pyprland.url = "github:hyprland-community/pyprland";
+    pyprland.url = "github:A7R7/pyprland";
     ags.url = "github:Aylur/ags";
     # ags.url = "github:Aylur/ags/feat/widgets-subclass-rewrite";
     musnix.url = "github:musnix/musnix";

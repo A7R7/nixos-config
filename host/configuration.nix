@@ -161,45 +161,48 @@
   };
   # ends here
   # [[file:nixos.org::*Host][]]
-    fonts.packages = with pkgs; [
-      noto-fonts
-      noto-fonts-cjk
-      noto-fonts-emoji
-      noto-fonts-extra
-      liberation_ttf
-      roboto
-      ibm-plex
-      nerdfonts
-      sarasa-gothic
-    ];
-  # services
+  fonts.fonts = with pkgs; [
+    noto-fonts
+    noto-fonts-cjk
+    noto-fonts-emoji
+    noto-fonts-extra
+    liberation_ttf
+    roboto roboto-serif
+    ibm-plex
+    nerdfonts
+    sarasa-gothic
+    mynur.sarasa-gothic-nerd-font
+  ];
   # ends here
   # [[file:nixos.org::*Host][]]
-  services = {
-    printing.enable = true;
-    flatpak.enable = true;
-    openssh.enable = true;
-    # asusd.enable = true; # for ASUS ROG laptops
-    xserver = {
-      enable = true;
-      excludePackages = [ pkgs.xterm ];
-      layout = "us";
-      xkbOptions = "caps:escape";
-      displayManager.gdm.enable = true;
-      # desktopManager.gnome.enable = true;
-    };
+  services.printing.enable = true;
+  services.flatpak.enable = true;
+  services.openssh.enable = true;
+  # userspace virtual filesystem
+  services.gvfs.enable = true;
+  # an automatic device mounting daemon
+  services.devmon.enable = true;
+  # a DBus service that allows applications to query and manipulate storage devices.
+  services.udisks2.enable = true;
+  # a DBus service that provides power management support to applications.
+  services.upower.enable = true;
+  # a DBus service for accessing the list of user accounts and information attached to those accounts.
+  services.accounts-daemon.enable = true;
+  services.xserver = {
+    enable = true;
+    excludePackages = [ pkgs.xterm ];
+    layout = "us";
+    xkbOptions = "caps:escape";
+    displayManager.gdm.enable = true;
+    # desktopManager.gnome.enable = true;
+  };
   
-    gvfs.enable = true;
-    devmon.enable = true;
-    udisks2.enable = true;
-    upower.enable = true;
-    accounts-daemon.enable = true;
-    gnome = {
-      evolution-data-server.enable = true;
-      glib-networking.enable = true;
-      gnome-keyring.enable = true;
-      gnome-online-accounts.enable = true;
-    };
+  services.gnome = {
+    evolution-data-server.enable = true;
+    glib-networking.enable = true;
+    gnome-keyring.enable = true;
+    gnome-online-accounts.enable = true;
+    at-spi2-core.enable = true; # avoid the warning "The name org.a11y.Bus was not provided by any .service files"
   };
   # ends here
   # [[file:nixos.org::*Host][]]
@@ -218,6 +221,10 @@
     enable = true;
     package = pkgs.emacs29-pgtk;
   };
+  # ends here
+  # [[file:nixos.org::*Host][]]
+  security.polkit.enable = true;
+  # start polkit on login by creating a systemd user service
   # ends here
 }
 # Host:1 ends here

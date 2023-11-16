@@ -1,15 +1,26 @@
 # [[file:../nixos.org::*Config][Config:1]]
 { config, pkgs, pkgs-stable, inputs, ... }:
-
+let
+  username = "aaron-nix";
+  homeDirectory = "/home/aaron-nix";
+in
 {
   imports = [
     ./packages.nix
   ];
 
   home = {
-    username = "aaron-nix";
-    homeDirectory = "/home/aaron-nix";
+    username = username;
+    homeDirectory = homeDirectory;
     stateVersion = "23.05";
+    sessionVariables = {
+      QT_XCB_GL_INTEGRATION = "none"; # kde-connect
+      NIXPKGS_ALLOW_UNFREE = "1";
+      SHELL = "${pkgs.zsh}/bin/elvish";
+    };
+    sessionPath = [
+      "$HOME/.local/bin"
+    ];
   };
 
   programs.home-manager.enable = true;
@@ -21,6 +32,18 @@
       allowUnfreePredicate = (_: true);
     };
   };
+
+  gtk.gtk3.bookmarks = [
+    "file://${homeDirectory}/Documents"
+    "file://${homeDirectory}/Music"
+    "file://${homeDirectory}/Pictures"
+    "file://${homeDirectory}/Videos"
+    "file://${homeDirectory}/Downloads"
+    "file://${homeDirectory}/Desktop"
+    "file://${homeDirectory}/Projects"
+    "file://${homeDirectory}/.config Config"
+    "file://${homeDirectory}/.local/share Local"
+  ];
 
   xresources.properties = {
     "Xcursor.size" = 16;
