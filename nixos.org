@@ -308,7 +308,7 @@ So I use flake to manage my configs.
     enable = true;
     includeUserConf = true;
     allowBitmaps = false;
-  }
+  };
 #+end_src
 ** Services
 #+begin_src nix
@@ -340,6 +340,10 @@ So I use flake to manage my configs.
     gnome-keyring.enable = true;
     gnome-online-accounts.enable = true;
     at-spi2-core.enable = true; # avoid the warning "The name org.a11y.Bus was not provided by any .service files"
+  };
+
+  services.dae = {
+    enable = true;
   };
 #+end_src
 *** Syncthing

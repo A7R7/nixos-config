@@ -173,6 +173,11 @@
     sarasa-gothic
     mynur.sarasa-gothic-nerd-font
   ];
+  fonts.fontconfig = {
+    enable = true;
+    includeUserConf = true;
+    allowBitmaps = false;
+  };
   # ends here
   # [[file:nixos.org::*Host][]]
   services.printing.enable = true;
@@ -203,6 +208,10 @@
     gnome-keyring.enable = true;
     gnome-online-accounts.enable = true;
     at-spi2-core.enable = true; # avoid the warning "The name org.a11y.Bus was not provided by any .service files"
+  };
+  
+  services.dae = {
+    enable = true;
   };
   # ends here
   # [[file:nixos.org::*Host][]]
