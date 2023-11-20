@@ -34,6 +34,8 @@
     rnix-lsp # WIP Language Server for Nix
     texlive.combined.scheme-full
     
+    pyright
+    javascript-typescript-langserver
     sqlite
     dbeaver
     niv

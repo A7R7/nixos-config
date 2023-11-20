@@ -201,7 +201,8 @@
     displayManager.gdm.enable = true;
     # desktopManager.gnome.enable = true;
   };
-  
+  # ends here
+  # [[file:nixos.org::*Host][]]
   services.gnome = {
     evolution-data-server.enable = true;
     glib-networking.enable = true;
@@ -209,9 +210,11 @@
     gnome-online-accounts.enable = true;
     at-spi2-core.enable = true; # avoid the warning "The name org.a11y.Bus was not provided by any .service files"
   };
-  
+  # ends here
+  # [[file:nixos.org::*Host][]]
   services.dae = {
     enable = true;
+    configFile = "/home/${username}/.config/dae/config.dae";
   };
   # ends here
   # [[file:nixos.org::*Host][]]

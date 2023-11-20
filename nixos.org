@@ -311,6 +311,7 @@ So I use flake to manage my configs.
   };
 #+end_src
 ** Services
+*** Misc
 #+begin_src nix
   services.printing.enable = true;
   services.flatpak.enable = true;
@@ -333,7 +334,9 @@ So I use flake to manage my configs.
     displayManager.gdm.enable = true;
     # desktopManager.gnome.enable = true;
   };
-
+#+end_src
+*** GNOME
+#+begin_src nix
   services.gnome = {
     evolution-data-server.enable = true;
     glib-networking.enable = true;
@@ -341,9 +344,13 @@ So I use flake to manage my configs.
     gnome-online-accounts.enable = true;
     at-spi2-core.enable = true; # avoid the warning "The name org.a11y.Bus was not provided by any .service files"
   };
+#+end_src
 
+*** DAE
+#+begin_src nix
   services.dae = {
     enable = true;
+    configFile = "/home/${username}/.config/dae/config.dae";
   };
 #+end_src
 *** Syncthing
@@ -507,7 +514,7 @@ To seriously do development on nixos I have to write derivations.
 
 #+end_src
 **** Lang-servers
-#+begin_src
+#+begin_src nix
   pyright
   javascript-typescript-langserver
 #+end_src
