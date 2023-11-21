@@ -8,13 +8,14 @@
     gcc ccache cmake clang-tools
     (python311.withPackages(ps: with ps; [
       # required by lsp-bridge, holo-layer, and blink search
-    
       epc orjson sexpdata six paramiko rapidfuzz
       pynput inflect pyqt6 pyqt6-sip
       python-pam requests
-      numpy toolz
+      numpy pandas toolz
       pyperclip
-      mynur.pix2text pillow pytorch torchvision opencv
+      mynur.pix2text pillow
+      torch torchvision opencv
+      jupyter ipython
       # the unusable package manager
       pip pipdeptree
     ]))
@@ -44,6 +45,9 @@
     doxygen
     doxygen_gui
     mynur.logisim-ita
+    gtk-engine-murrine
+    gnome-themes-extra
+    tdlib # for building telegrame clients
     kitty
     alacritty
     wezterm
@@ -179,5 +183,7 @@
     iotop
     btop
     logiops        # Unofficial userspace driver for HID++ Logitech devices
+    filelight      # inspecting disk usage statistics
+    xorg.xhost          # launch gui with sudo in cmdline
   ]);
 }

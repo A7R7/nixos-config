@@ -254,6 +254,9 @@ So I use flake to manage my configs.
       ];
     };
   };
+  environment.sessionVariables.GTK_IM_MODULE = "fcitx";
+  environment.sessionVariables.QT_IM_MODULE = "fcitx";
+  environment.sessionVariables.XMODIFIERS = "@im=fcitx";
 
   virtualisation = {
     podman.enable = true;
@@ -366,13 +369,6 @@ So I use flake to manage my configs.
     # guiAdd.0:8384"; # To be able to access the web GUI
   };
 #+end_src
-*** Emacs
-#+begin_src nix
-  services.emacs = {
-    enable = true;
-    package = pkgs.emacs29-pgtk;
-  };
-#+end_src
 ** Security
 Polkit is used for controlling system-wide privileges. It provides an organized way for non-privileged processes to communicate with privileged ones, especially for those GUI applications.
 #+begin_src nix
@@ -407,7 +403,6 @@ Becareful that packages installed by ~nix profile install~ can conflict with pac
       ];
     };
 
-    programs.home-manager.enable = true;
 
     nixpkgs = {
       config = {
@@ -434,6 +429,7 @@ Becareful that packages installed by ~nix profile install~ can conflict with pac
       "Xft.dpi" = 172;
     };
 
+    programs.home-manager.enable = true;
     programs.git = {
       enable = true;
       userName = "a7r7";
@@ -455,6 +451,7 @@ Becareful that packages installed by ~nix profile install~ can conflict with pac
         enable = true;
       };
     };
+
   }
 #+end_src
 ** Packages
@@ -486,13 +483,14 @@ To seriously do development on nixos I have to write derivations.
   gcc ccache cmake clang-tools
   (python311.withPackages(ps: with ps; [
     # required by lsp-bridge, holo-layer, and blink search
-
     epc orjson sexpdata six paramiko rapidfuzz
     pynput inflect pyqt6 pyqt6-sip
     python-pam requests
-    numpy toolz
+    numpy pandas toolz
     pyperclip
-    mynur.pix2text pillow pytorch torchvision opencv
+    mynur.pix2text pillow
+    torch torchvision opencv
+    jupyter ipython
     # the unusable package manager
     pip pipdeptree
   ]))
@@ -538,9 +536,10 @@ These are tools for packaging using nix.
   mynur.logisim-ita
 #+end_src
 *** Runtime
-#+begin_src elisp
+#+begin_src nix
   gtk-engine-murrine
   gnome-themes-extra
+  tdlib # for building telegrame clients
 #+end_src
 *** Cmdline
 **** Emulator
@@ -726,6 +725,8 @@ These are tools for packaging using nix.
   iotop
   btop
   logiops        # Unofficial userspace driver for HID++ Logitech devices
+  filelight      # inspecting disk usage statistics
+  xorg.xhost          # launch gui with sudo in cmdline
 #+end_src
 
 * COMMENT Test

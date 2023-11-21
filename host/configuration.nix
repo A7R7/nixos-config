@@ -124,6 +124,9 @@
       ];
     };
   };
+  environment.sessionVariables.GTK_IM_MODULE = "fcitx";
+  environment.sessionVariables.QT_IM_MODULE = "fcitx";
+  environment.sessionVariables.XMODIFIERS = "@im=fcitx";
   
   virtualisation = {
     podman.enable = true;
@@ -226,12 +229,6 @@
     user = "${username}";
     group = "users";
     # guiAdd.0:8384"; # To be able to access the web GUI
-  };
-  # ends here
-  # [[file:nixos.org::*Host][]]
-  services.emacs = {
-    enable = true;
-    package = pkgs.emacs29-pgtk;
   };
   # ends here
   # [[file:nixos.org::*Host][]]

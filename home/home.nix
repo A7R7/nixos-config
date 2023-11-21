@@ -23,7 +23,6 @@ in
     ];
   };
 
-  programs.home-manager.enable = true;
 
   nixpkgs = {
     config = {
@@ -50,6 +49,7 @@ in
     "Xft.dpi" = 172;
   };
 
+  programs.home-manager.enable = true;
   programs.git = {
     enable = true;
     userName = "a7r7";
@@ -71,5 +71,6 @@ in
       enable = true;
     };
   };
+
 }
 # Config:1 ends here
