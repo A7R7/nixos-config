@@ -13,7 +13,7 @@
       python-pam requests
       numpy pandas toolz
       pyperclip
-      mynur.pix2text pillow
+      mynur.pix2text pillow grad-cam
       torch torchvision opencv
       jupyter ipython
       # the unusable package manager
@@ -33,8 +33,7 @@
     maven
     pkg-config
     rnix-lsp # WIP Language Server for Nix
-    texlive.combined.scheme-full
-    
+    texliveFull
     pyright
     javascript-typescript-langserver
     sqlite
