@@ -104,7 +104,7 @@
   ];
   
   # hint electron apps to use wayland
-  environment.sessionVariables.NIXOS_OZONE_WL = "1";
+  # environment.sessionVariables.NIXOS_OZONE_WL = "1";
   
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -124,9 +124,9 @@
       ];
     };
   };
-  environment.sessionVariables.GTK_IM_MODULE = "fcitx";
-  environment.sessionVariables.QT_IM_MODULE = "fcitx";
-  environment.sessionVariables.XMODIFIERS = "@im=fcitx";
+  # environment.sessionVariables.GTK_IM_MODULE = "fcitx";
+  # environment.sessionVariables.QT_IM_MODULE = "fcitx";
+  # environment.sessionVariables.XMODIFIERS = "@im=fcitx";
   
   virtualisation = {
     podman.enable = true;
