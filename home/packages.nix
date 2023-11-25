@@ -118,7 +118,7 @@
     (vivaldi.override {
       proprietaryCodecs = true;
       enableWidevine = true;
-      commandLineArgs = "--enable-wayland-ime";
+      commandLineArgs = "--ozone-platform-hint=auto --enable-features=WaylandWindowDecorations --enable-wayland-ime";
     })
     mynur.thorium-browser
     qq
