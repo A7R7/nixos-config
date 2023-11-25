@@ -32,6 +32,13 @@ in
     };
   };
 
+  gtk.enable = true;
+  gtk.theme = {
+    name = "Fluent-gtk-theme";
+    package = pkgs.fluent-gtk-theme.override {
+      tweaks = [ "blur" ];
+    };
+  };
   gtk.gtk3.bookmarks = [
     "file://${homeDirectory}/Documents"
     "file://${homeDirectory}/Music"
