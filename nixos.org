@@ -1,7 +1,7 @@
 :DOC-CONFIG:
 #+PROPERTY: header-args:nix :comments noweb
-#+STARTUP: fold
 #+AUTO_TANGLE: nil
+#+STARTUP: fold
 #+HUGO_BUNDLE: nixos-configuration
 #+EXPORT_FILE_NAME: index.en
 #+HUGO_PUBLISHDATE: 2023-10-26
@@ -189,6 +189,23 @@ So I use flake to manage my configs.
 
 
 #+end_src
+** Input method
+  #+begin_src nix
+  i18n.inputMethod = {
+    enabled = "fcitx5";
+    fcitx5 = {
+      addons = with pkgs; [
+        fcitx5-gtk
+        fcitx5-rime
+        fcitx5-chinese-addons
+        librime
+      ];
+    };
+  };
+  # environment.sessionVariables.GTK_IM_MODULE = "fcitx";
+  # environment.sessionVariables.QT_IM_MODULE = "fcitx";
+  # environment.sessionVariables.XMODIFIERS = "@im=fcitx";
+#+end_src
 ** Sound
 #+begin_src nix
   # musnix.enable = true;
@@ -217,8 +234,6 @@ So I use flake to manage my configs.
 ** Pkgs
 
 #+begin_src nix
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
   environment.systemPackages = with pkgs; [
     vim neovim
     wget
@@ -232,65 +247,42 @@ So I use flake to manage my configs.
     killall
     home-manager
   ];
-
-  # hint electron apps to use wayland
-  # environment.sessionVariables.NIXOS_OZONE_WL = "1";
-
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
-  i18n.inputMethod = {
-    enabled = "fcitx5";
-    fcitx5 = {
-      addons = with pkgs; [
-        fcitx5-gtk
-        fcitx5-rime
-        fcitx5-chinese-addons
-        librime
-      ];
-    };
-  };
-  # environment.sessionVariables.GTK_IM_MODULE = "fcitx";
-  # environment.sessionVariables.QT_IM_MODULE = "fcitx";
-  # environment.sessionVariables.XMODIFIERS = "@im=fcitx";
-
+  #+end_src
+** Virtualisation
+#+begin_src nix
   virtualisation = {
     podman.enable = true;
     libvirtd.enable = true;
     waydroid.enable = true;
   };
-
-  programs = {
-    # regreet.enable = true;
+#+end_src
+** Programs
+#+begin_src nix
+  programs.regreet = {
     # This line installs ReGreet,
     # sets up systemd tmpfiles for it,
     # enables services.greetd and also configures its default session to start ReGreet using cage.
-    hyprland = {
-      enable = true;
-      xwayland.enable = true;
-      enableNvidiaPatches = false;
-    #  package = (inputs.hyprland.packages.${pkgs.system}.hyprland.override {
-    #    enableXWayland = true;
-    #    enableNvidiaPatches = false;
-    #  })
-    };
-    adb.enable = true;
-    steam = {
-      enable = true;
-      remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
-      dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
-    };
-    dconf.enable = true;
+    # enable = true;
+  };
+
+  programs.adb.enable = true;
+  programs.dconf.enable = true;
+  programs.hyprland = {
+    enable = true;
+    xwayland.enable = true;
+    enableNvidiaPatches = false;
+  };
+
+  programs.steam = {
+    enable = true;
+    remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
+    dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
   };
 
   xdg.portal = {
-   enable = true;
-   wlr.enable = true;
-   # extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    enable = true;
+    wlr.enable = true;
+    # extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
   };
 #+end_src
 ** Fonts
@@ -314,8 +306,22 @@ So I use flake to manage my configs.
   };
 #+end_src
 ** Services
+*** Greetd
+#+begin_src nix
+  services.greetd = {
+    # enable = true;
+    settings = rec {
+      initial_session = {
+        command = "${pkgs.hyprland}/bin/Hyprland";
+        user = "${username}";
+      };
+      default_session = initial_session;
+    };
+  };
+#+end_src
 *** Misc
 #+begin_src nix
+  services.tlp.enable = true;
   services.printing.enable = true;
   services.flatpak.enable = true;
   services.openssh.enable = true;
@@ -334,7 +340,7 @@ So I use flake to manage my configs.
     excludePackages = [ pkgs.xterm ];
     layout = "us";
     xkbOptions = "caps:escape";
-    displayManager.gdm.enable = true;
+    # displayManager.gdm.enable = true;
     # desktopManager.gnome.enable = true;
   };
 #+end_src
@@ -733,4 +739,23 @@ These are tools for packaging using nix.
   logiops        # Unofficial userspace driver for HID++ Logitech devices
   filelight      # inspecting disk usage statistics
   xorg.xhost          # launch gui with sudo in cmdline
+#+end_src
+* Build
+#+begin_src sh :dir /sudo::
+	sudo nixos-rebuild switch --flake . --impure
+#+end_src
+
+#+RESULTS:
+
+#+begin_src sh
+	home-manager switch --flake .
+#+end_src
+
+#+begin_src sh
+	nix flake update
+#+end_src
+
+#+begin_src sh
+	sudo nix profile wipe-history --profile /nix/var/nix/profiles/system  --older-than 7d
+	sudo nix store gc --debug
 #+end_src

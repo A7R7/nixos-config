@@ -65,6 +65,22 @@
   
   # ends here
   # [[file:nixos.org::*Host][]]
+  i18n.inputMethod = {
+    enabled = "fcitx5";
+    fcitx5 = {
+      addons = with pkgs; [
+        fcitx5-gtk
+        fcitx5-rime
+        fcitx5-chinese-addons
+        librime
+      ];
+    };
+  };
+  # environment.sessionVariables.GTK_IM_MODULE = "fcitx";
+  # environment.sessionVariables.QT_IM_MODULE = "fcitx";
+  # environment.sessionVariables.XMODIFIERS = "@im=fcitx";
+  # ends here
+  # [[file:nixos.org::*Host][]]
   # musnix.enable = true;
   sound.enable = false; # sound.enable is only meant for ALSA-based configurations
   hardware.pulseaudio.enable = false;
@@ -87,8 +103,6 @@
   };
   # ends here
   # [[file:nixos.org::*Host][]]
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
   environment.systemPackages = with pkgs; [
     vim neovim
     wget
@@ -102,65 +116,40 @@
     killall
     home-manager
   ];
-  
-  # hint electron apps to use wayland
-  # environment.sessionVariables.NIXOS_OZONE_WL = "1";
-  
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
-  i18n.inputMethod = {
-    enabled = "fcitx5";
-    fcitx5 = {
-      addons = with pkgs; [
-        fcitx5-gtk
-        fcitx5-rime
-        fcitx5-chinese-addons
-        librime
-      ];
-    };
-  };
-  # environment.sessionVariables.GTK_IM_MODULE = "fcitx";
-  # environment.sessionVariables.QT_IM_MODULE = "fcitx";
-  # environment.sessionVariables.XMODIFIERS = "@im=fcitx";
-  
+  # ends here
+  # [[file:nixos.org::*Host][]]
   virtualisation = {
     podman.enable = true;
     libvirtd.enable = true;
     waydroid.enable = true;
   };
-  
-  programs = {
-    # regreet.enable = true;
+  # ends here
+  # [[file:nixos.org::*Host][]]
+  programs.regreet = {
     # This line installs ReGreet,
     # sets up systemd tmpfiles for it,
     # enables services.greetd and also configures its default session to start ReGreet using cage.
-    hyprland = {
-      enable = true;
-      xwayland.enable = true;
-      enableNvidiaPatches = false;
-    #  package = (inputs.hyprland.packages.${pkgs.system}.hyprland.override {
-    #    enableXWayland = true;
-    #    enableNvidiaPatches = false;
-    #  })
-    };
-    adb.enable = true;
-    steam = {
-      enable = true;
-      remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
-      dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
-    };
-    dconf.enable = true;
+    # enable = true;
+  };
+  
+  programs.adb.enable = true;
+  programs.dconf.enable = true;
+  programs.hyprland = {
+    enable = true;
+    xwayland.enable = true;
+    enableNvidiaPatches = false;
+  };
+  
+  programs.steam = {
+    enable = true;
+    remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
+    dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
   };
   
   xdg.portal = {
-   enable = true;
-   wlr.enable = true;
-   # extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    enable = true;
+    wlr.enable = true;
+    # extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
   };
   # ends here
   # [[file:nixos.org::*Host][]]
@@ -183,6 +172,19 @@
   };
   # ends here
   # [[file:nixos.org::*Host][]]
+  services.greetd = {
+    # enable = true;
+    settings = rec {
+      initial_session = {
+        command = "${pkgs.hyprland}/bin/Hyprland";
+        user = "${username}";
+      };
+      default_session = initial_session;
+    };
+  };
+  # ends here
+  # [[file:nixos.org::*Host][]]
+  services.tlp.enable = true;
   services.printing.enable = true;
   services.flatpak.enable = true;
   services.openssh.enable = true;
@@ -201,7 +203,7 @@
     excludePackages = [ pkgs.xterm ];
     layout = "us";
     xkbOptions = "caps:escape";
-    displayManager.gdm.enable = true;
+    # displayManager.gdm.enable = true;
     # desktopManager.gnome.enable = true;
   };
   # ends here
