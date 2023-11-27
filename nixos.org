@@ -47,7 +47,6 @@ So I use flake to manage my configs.
 ** Inputs
 #+begin_src nix :noweb-ref inputs
   ## nixpkgs
-  nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-23.05";
   nixpkgs-2305.url = "github:nixos/nixpkgs/nixos-23.05";
   nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
   nixpkgs-wayland.url = "github:nix-community/nixpkgs-wayland";
@@ -72,7 +71,7 @@ So I use flake to manage my configs.
   inputs@{
     self,
     nixpkgs,
-    nixpkgs-stable,
+    nixpkgs-2305,
     nur, mynur,
     home-manager,
     hyprland,
@@ -92,29 +91,28 @@ So I use flake to manage my configs.
         };})
       ];
     };
-    pkgs-stable = import nixpkgs-stable {
-      inherit system;
-      config.allowUnfree = true;
-    };
   in
     {
     nixosConfigurations = {
       Nixtop = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        specialArgs = { inherit inputs username system pkgs pkgs-stable; };
+        specialArgs = { inherit inputs username system pkgs; };
         modules = [ ./host/configuration.nix ];
       };
     };
   	homeConfigurations = {
       aaron-nix = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
-        extraSpecialArgs = { inherit inputs username pkgs pkgs-stable; };
+        extraSpecialArgs = { inherit inputs username pkgs; };
         modules = [ ./home/home.nix ];
       };
     };
   };
 
 #+end_src
+
+#+RESULTS:
+
 * Host
 :PROPERTIES:
 :header-args:nix: :noweb-ref host-config
@@ -390,7 +388,7 @@ Polkit is used for controlling system-wide privileges. It provides an organized 
 Becareful that packages installed by ~nix profile install~ can conflict with packages defined here! Therefore, it is recommended to clear nix profile list before home-manager switch.
 ** Config
 #+begin_src nix :tangle home/home.nix :comments noweb
-  { config, pkgs, pkgs-stable, inputs, ... }:
+  { config, pkgs, inputs, ... }:
   let
     username = "aaron-nix";
     homeDirectory = "/home/aaron-nix";
@@ -477,7 +475,7 @@ Becareful that packages installed by ~nix profile install~ can conflict with pac
 :header-args:nix: :noweb-ref hm-packages
 :END:
 #+begin_src nix :tangle home/packages.nix :noweb no-export :noweb-ref no
-  { inputs, pkgs, pkgs-stable, nur, ... }:
+  { inputs, pkgs, ... }:
   {
     home.packages = (with pkgs; [
       <<hm-packages>>
@@ -675,7 +673,7 @@ These are tools for packaging using nix.
 #+end_src
 **** VPN
 #+begin_src nix
-  pkgs-stable.clash-verge
+  pkg-2305.clash-verge
 #+end_src
 *** Gaming
 #+begin_src nix

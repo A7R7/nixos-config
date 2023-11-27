@@ -1,5 +1,5 @@
 # [[file:../nixos.org::*Config][Config:1]]
-{ config, pkgs, pkgs-stable, inputs, ... }:
+{ config, pkgs, inputs, ... }:
 let
   username = "aaron-nix";
   homeDirectory = "/home/aaron-nix";

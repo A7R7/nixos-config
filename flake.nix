@@ -20,7 +20,6 @@
   inputs = {
     # [[file:nixos.org::*Flake][]]
     ## nixpkgs
-    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-23.05";
     nixpkgs-2305.url = "github:nixos/nixpkgs/nixos-23.05";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-wayland.url = "github:nix-community/nixpkgs-wayland";
@@ -46,7 +45,7 @@
     inputs@{
       self,
       nixpkgs,
-      nixpkgs-stable,
+      nixpkgs-2305,
       nur, mynur,
       home-manager,
       hyprland,
@@ -66,23 +65,19 @@
           };})
         ];
       };
-      pkgs-stable = import nixpkgs-stable {
-        inherit system;
-        config.allowUnfree = true;
-      };
     in
       {
       nixosConfigurations = {
         Nixtop = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
-          specialArgs = { inherit inputs username system pkgs pkgs-stable; };
+          specialArgs = { inherit inputs username system pkgs; };
           modules = [ ./host/configuration.nix ];
         };
       };
     	homeConfigurations = {
         aaron-nix = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
-          extraSpecialArgs = { inherit inputs username pkgs pkgs-stable; };
+          extraSpecialArgs = { inherit inputs username pkgs; };
           modules = [ ./home/home.nix ];
         };
       };

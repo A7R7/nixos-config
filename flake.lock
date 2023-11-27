@@ -348,6 +348,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-2305": {
+      "locked": {
+        "lastModified": 1700989516,
+        "narHash": "sha256-oKbmPa2wpTHh9XB3+zIx97uMZGNnp97GPliKKG2/plo=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "d2e4de209881b38392933fabf303cde3454b0b4c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-23.05",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixpkgs-lib": {
       "locked": {
         "lastModified": 1700354803,
@@ -615,6 +631,7 @@
         "musnix": "musnix",
         "mynur": "mynur",
         "nixpkgs": "nixpkgs_5",
+        "nixpkgs-2305": "nixpkgs-2305",
         "nixpkgs-stable": "nixpkgs-stable",
         "nixpkgs-wayland": "nixpkgs-wayland",
         "nur": "nur",

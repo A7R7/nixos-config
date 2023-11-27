@@ -1,4 +1,4 @@
-{ inputs, pkgs, pkgs-stable, nur, ... }:
+{ inputs, pkgs, ... }:
 {
   home.packages = (with pkgs; [
     emacs29-pgtk
@@ -127,7 +127,7 @@
     discord
     telegram-desktop
     thunderbird
-    pkgs-stable.clash-verge
+    pkg-2305.clash-verge
     prismlauncher
     glfw-wayland-minecraft
     zulu21
