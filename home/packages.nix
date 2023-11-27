@@ -127,7 +127,7 @@
     discord
     telegram-desktop
     thunderbird
-    pkg-2305.clash-verge
+    pkgs-2311.clash-verge
     prismlauncher
     glfw-wayland-minecraft
     zulu21
