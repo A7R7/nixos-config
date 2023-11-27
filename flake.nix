@@ -21,6 +21,7 @@
     # [[file:nixos.org::*Flake][]]
     ## nixpkgs
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-23.05";
+    nixpkgs-2305.url = "github:nixos/nixpkgs/nixos-23.05";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-wayland.url = "github:nix-community/nixpkgs-wayland";
     home-manager = {
@@ -59,6 +60,10 @@
         overlays = [
           nur.overlay
           mynur.overlay
+          (final: prev: { pkg-2305 = import nixpkgs-2305 {
+              inherit system;
+              config.allowUnfree = true;
+          };})
         ];
       };
       pkgs-stable = import nixpkgs-stable {
