@@ -49,6 +49,20 @@
   };
   # ends here
   # [[file:nixos.org::*Host][]]
+  # musnix.enable = true;
+  sound.enable = false; # sound.enable is only meant for ALSA-based configurations
+  hardware.pulseaudio.enable = false;
+  hardware.bluetooth.enable = true;
+  security.rtkit.enable = true;
+  services. pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+    jack.enable = true;
+  };
+  # ends here
+  # [[file:nixos.org::*Host][]]
   time.timeZone = "Asia/Shanghai";
   i18n = {
     defaultLocale = "en_US.UTF-8";
@@ -81,20 +95,6 @@
   # environment.sessionVariables.XMODIFIERS = "@im=fcitx";
   # ends here
   # [[file:nixos.org::*Host][]]
-  # musnix.enable = true;
-  sound.enable = false; # sound.enable is only meant for ALSA-based configurations
-  hardware.pulseaudio.enable = false;
-  hardware.bluetooth.enable = true;
-  security.rtkit.enable = true;
-  services. pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    jack.enable = true;
-  };
-  # ends here
-  # [[file:nixos.org::*Host][]]
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.${username} = {
     isNormalUser = true;
@@ -125,12 +125,12 @@
   };
   # ends here
   # [[file:nixos.org::*Host][]]
-  programs.regreet = {
+  # programs.regreet = {
     # This line installs ReGreet,
     # sets up systemd tmpfiles for it,
     # enables services.greetd and also configures its default session to start ReGreet using cage.
     # enable = true;
-  };
+  # };
   
   programs.adb.enable = true;
   programs.dconf.enable = true;
@@ -172,18 +172,6 @@
   };
   # ends here
   # [[file:nixos.org::*Host][]]
-  services.greetd = {
-    # enable = true;
-    settings = rec {
-      initial_session = {
-        command = "${pkgs.hyprland}/bin/Hyprland";
-        user = "${username}";
-      };
-      default_session = initial_session;
-    };
-  };
-  # ends here
-  # [[file:nixos.org::*Host][]]
   services.tlp.enable = true;
   services.printing.enable = true;
   services.flatpak.enable = true;
@@ -203,7 +191,7 @@
     excludePackages = [ pkgs.xterm ];
     layout = "us";
     xkbOptions = "caps:escape";
-    # displayManager.gdm.enable = true;
+    displayManager.gdm.enable = true;
     # desktopManager.gnome.enable = true;
   };
   # ends here

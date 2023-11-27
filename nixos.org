@@ -172,6 +172,21 @@ So I use flake to manage my configs.
     networkmanager.enable = true;
   };
 #+end_src
+** Sound
+#+begin_src nix
+  # musnix.enable = true;
+  sound.enable = false; # sound.enable is only meant for ALSA-based configurations
+  hardware.pulseaudio.enable = false;
+  hardware.bluetooth.enable = true;
+  security.rtkit.enable = true;
+  services. pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+    jack.enable = true;
+  };
+#+end_src
 ** Locale
 #+begin_src nix
   time.timeZone = "Asia/Shanghai";
@@ -205,21 +220,6 @@ So I use flake to manage my configs.
   # environment.sessionVariables.GTK_IM_MODULE = "fcitx";
   # environment.sessionVariables.QT_IM_MODULE = "fcitx";
   # environment.sessionVariables.XMODIFIERS = "@im=fcitx";
-#+end_src
-** Sound
-#+begin_src nix
-  # musnix.enable = true;
-  sound.enable = false; # sound.enable is only meant for ALSA-based configurations
-  hardware.pulseaudio.enable = false;
-  hardware.bluetooth.enable = true;
-  security.rtkit.enable = true;
-  services. pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    jack.enable = true;
-  };
 #+end_src
 ** User
 
@@ -258,12 +258,12 @@ So I use flake to manage my configs.
 #+end_src
 ** Programs
 #+begin_src nix
-  programs.regreet = {
+  # programs.regreet = {
     # This line installs ReGreet,
     # sets up systemd tmpfiles for it,
     # enables services.greetd and also configures its default session to start ReGreet using cage.
     # enable = true;
-  };
+  # };
 
   programs.adb.enable = true;
   programs.dconf.enable = true;
@@ -306,10 +306,10 @@ So I use flake to manage my configs.
   };
 #+end_src
 ** Services
-*** Greetd
+*** COMMENT Greetd
 #+begin_src nix
   services.greetd = {
-    # enable = true;
+    enable = true;
     settings = rec {
       initial_session = {
         command = "${pkgs.hyprland}/bin/Hyprland";
@@ -340,7 +340,7 @@ So I use flake to manage my configs.
     excludePackages = [ pkgs.xterm ];
     layout = "us";
     xkbOptions = "caps:escape";
-    # displayManager.gdm.enable = true;
+    displayManager.gdm.enable = true;
     # desktopManager.gnome.enable = true;
   };
 #+end_src
@@ -501,11 +501,13 @@ To seriously do development on nixos I have to write derivations.
     python-pam requests
     numpy pandas toolz
     pyperclip
-    mynur.pix2text pillow grad-cam
+    pillow grad-cam
     torch torchvision opencv
     jupyter ipython
     # the unusable package manager
     pip pipdeptree
+    # mynur.pix2tex
+    # mynur.pix2text
   ]))
   poetry
 
@@ -695,6 +697,7 @@ These are tools for packaging using nix.
   hyprpaper      # wallpaper utility
   swww           # dynamic wallpaper
   gnome.adwaita-icon-theme
+  kora-icon-theme
 
   hyprkeys       # keybind retrieval utility
   hyprnome       # gnome like workspace switch
@@ -707,6 +710,10 @@ These are tools for packaging using nix.
   grimblast      # screenshots tool
   wf-recorder    # screen recording tool
   swappy         # Wayland native snapshot editing tool
+
+  grim           # wl raw screenshot
+  slurp          # reigon selection (outputs reigon coordinates)
+
 
   wl-clipboard   # wayland clipboard
 

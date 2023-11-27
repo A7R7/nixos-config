@@ -13,11 +13,13 @@
       python-pam requests
       numpy pandas toolz
       pyperclip
-      mynur.pix2text pillow grad-cam
+      pillow grad-cam
       torch torchvision opencv
       jupyter ipython
       # the unusable package manager
       pip pipdeptree
+      # mynur.pix2tex
+      # mynur.pix2text
     ]))
     poetry
     
@@ -146,6 +148,7 @@
     hyprpaper      # wallpaper utility
     swww           # dynamic wallpaper
     gnome.adwaita-icon-theme
+    kora-icon-theme
     
     hyprkeys       # keybind retrieval utility
     hyprnome       # gnome like workspace switch
@@ -158,6 +161,10 @@
     grimblast      # screenshots tool
     wf-recorder    # screen recording tool
     swappy         # Wayland native snapshot editing tool
+    
+    grim           # wl raw screenshot
+    slurp          # reigon selection (outputs reigon coordinates)
+    
     
     wl-clipboard   # wayland clipboard
     
