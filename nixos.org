@@ -464,19 +464,14 @@ in
 
 *** Programs
 #+begin_src nix
-  programs.git = {
-    enable = true;
-    userName = "a7r7";
-    userEmail = "Aaron__Lee_@outlook.com";
-  };
-  programs.vscode = {
-    enable = true;
-    package = pkgs.vscode.fhs;
-  };
-  programs.emacs = {
-    enable = true;
-    package = pkgs.emacsPgtk;
-  };
+programs.vscode = {
+  enable = true;
+  package = pkgs.vscode.fhs;
+};
+programs.emacs = {
+  enable = true;
+  package = pkgs.emacsPgtk;
+};
 #+end_src
 *** Services
 #+begin_src nix

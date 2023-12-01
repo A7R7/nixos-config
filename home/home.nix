@@ -8,7 +8,7 @@ in
   imports = [
     ./packages.nix
   ];
-
+  # [[file:nixos.org::*Config][]]
   home = {
     username = username;
     homeDirectory = homeDirectory;
@@ -22,8 +22,8 @@ in
       "$HOME/.local/bin"
     ];
   };
-
-
+  programs.home-manager.enable = true;
+  
   nixpkgs = {
     config = {
       allowUnfree = true;
@@ -31,7 +31,9 @@ in
       allowUnfreePredicate = (_: true);
     };
   };
-
+  
+  # ends here
+  # [[file:nixos.org::*Config][]]
   gtk.enable = true;
   gtk.theme = {
     name = "Fluent-gtk-theme";
@@ -50,34 +52,28 @@ in
     "file://${homeDirectory}/.config Config"
     "file://${homeDirectory}/.local/share Local"
   ];
-
+  
   xresources.properties = {
     "Xcursor.size" = 16;
     "Xft.dpi" = 172;
   };
-
-  programs.home-manager.enable = true;
-  programs.git = {
-    enable = true;
-    userName = "a7r7";
-    userEmail = "Aaron__Lee_@outlook.com";
-  };
+  # ends here
+  # [[file:nixos.org::*Config][]]
   programs.vscode = {
     enable = true;
     package = pkgs.vscode.fhs;
   };
+  programs.emacs = {
+    enable = true;
+    package = pkgs.emacsPgtk;
+  };
+  # ends here
+  # [[file:nixos.org::*Config][]]
   services.syncthing = {
     enable = true;
     tray = {enable = true;};
   };
-  services.emacs = {
-    enable = true;
-    package = pkgs.emacs29-pgtk;
-    socketActivation.enable = true;
-    client = {
-      enable = true;
-    };
-  };
-
+  services.emacs.enable = true;
+  # ends here
 }
 # Config:1 ends here
