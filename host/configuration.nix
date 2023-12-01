@@ -7,7 +7,7 @@
       inputs.musnix.nixosModules.musnix
     ];
   # [[file:nixos.org::*Host][]]
-  system.stateVersion = "23.05";
+  system.stateVersion = "23.11";
   nixpkgs.config.allowUnfree = true;
   nix = {
     # This will add each flake input as a registry

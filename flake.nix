@@ -39,6 +39,7 @@
     # ags.url = "github:Aylur/ags/feat/widgets-subclass-rewrite";
     musnix.url = "github:musnix/musnix";
     pip2nix.url = "github:nix-community/pip2nix";
+    emacs.url = "github:nix-community/emacs-overlay";
     # ends here
   };
   outputs =
@@ -46,10 +47,7 @@
     inputs@{
       self,
       nixpkgs,
-      nixpkgs-2305,
-      nur, mynur,
       home-manager,
-      hyprland,
       ... }:
     let
       username = "aaron-nix";
@@ -57,14 +55,15 @@
       pkgs = import nixpkgs {
         inherit system;
         config.allowUnfree = true;
-        overlays = [
+        overlays = with inputs; [
           nur.overlay
           mynur.overlay
-          (final: prev: { pkgs-2305 = import nixpkgs-2305 {
+          emacs.overlay
+          (final: prev: { v2305 = import inputs.nixpkgs-2305 {
               inherit system;
               config.allowUnfree = true;
           };})
-          (final: prev: { pkgs-2311 = import nixpkgs-2311 {
+          (final: prev: { v2311 = import inputs.nixpkgs-2311 {
               inherit system;
               config.allowUnfree = true;
           };})

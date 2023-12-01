@@ -1,7 +1,8 @@
 { inputs, pkgs, ... }:
 {
   home.packages = (with pkgs; [
-    emacs29-pgtk
+    # emacs29-pgtk
+    emacs-pgtk
     neovide
     marktext
     libreoffice
@@ -126,8 +127,9 @@
     qq
     discord
     telegram-desktop
+    element-desktop
     thunderbird
-    pkgs-2311.clash-verge
+    v2305.clash-verge
     prismlauncher
     glfw-wayland-minecraft
     zulu21

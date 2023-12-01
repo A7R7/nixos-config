@@ -12,7 +12,7 @@
 #+TITLE: Nixos Configuration
 #+AUTHOR: A7R7
 
-Welcome to my nixos configuration blog.
+Welcome to my nixos configuration blog. This is a configuration for a single laptop setup.
 * Flake
 
 So I use flake to manage my configs.
@@ -66,16 +66,14 @@ So I use flake to manage my configs.
   # ags.url = "github:Aylur/ags/feat/widgets-subclass-rewrite";
   musnix.url = "github:musnix/musnix";
   pip2nix.url = "github:nix-community/pip2nix";
+  emacs.url = "github:nix-community/emacs-overlay";
 #+end_src
 ** Outputs
 #+begin_src nix :noweb-ref outputs
   inputs@{
     self,
     nixpkgs,
-    nixpkgs-2305,
-    nur, mynur,
     home-manager,
-    hyprland,
     ... }:
   let
     username = "aaron-nix";
@@ -83,14 +81,15 @@ So I use flake to manage my configs.
     pkgs = import nixpkgs {
       inherit system;
       config.allowUnfree = true;
-      overlays = [
+      overlays = with inputs; [
         nur.overlay
         mynur.overlay
-        (final: prev: { pkgs-2305 = import nixpkgs-2305 {
+        emacs.overlay
+        (final: prev: { v2305 = import inputs.nixpkgs-2305 {
             inherit system;
             config.allowUnfree = true;
         };})
-        (final: prev: { pkgs-2311 = import nixpkgs-2311 {
+        (final: prev: { v2311 = import inputs.nixpkgs-2311 {
             inherit system;
             config.allowUnfree = true;
         };})
@@ -135,7 +134,7 @@ So I use flake to manage my configs.
 #+end_src
 ** Nix
 #+begin_src nix
-  system.stateVersion = "23.05";
+  system.stateVersion = "23.11";
   nixpkgs.config.allowUnfree = true;
   nix = {
     # This will add each flake input as a registry
@@ -392,88 +391,99 @@ Polkit is used for controlling system-wide privileges. It provides an organized 
 * Home
 Becareful that packages installed by ~nix profile install~ can conflict with packages defined here! Therefore, it is recommended to clear nix profile list before home-manager switch.
 ** Config
-#+begin_src nix :tangle home/home.nix :comments noweb
-  { config, pkgs, inputs, ... }:
-  let
-    username = "aaron-nix";
-    homeDirectory = "/home/aaron-nix";
-  in
-  {
-    imports = [
-      ./packages.nix
+:PROPERTIES:
+:header-args:nix: :noweb-ref hm-config
+:END:
+#+begin_src nix :tangle home/home.nix :comments noweb :noweb no-export :noweb-ref no
+{ config, pkgs, inputs, ... }:
+let
+  username = "aaron-nix";
+  homeDirectory = "/home/aaron-nix";
+in
+{
+  imports = [
+    ./packages.nix
+  ];
+  <<hm-config>>
+}
+#+end_src
+*** Home
+#+begin_src nix
+  home = {
+    username = username;
+    homeDirectory = homeDirectory;
+    stateVersion = "23.11";
+    sessionVariables = {
+      QT_XCB_GL_INTEGRATION = "none"; # kde-connect
+      NIXPKGS_ALLOW_UNFREE = "1";
+      SHELL = "${pkgs.zsh}/bin/elvish";
+    };
+    sessionPath = [
+      "$HOME/.local/bin"
     ];
+  };
+  programs.home-manager.enable = true;
 
-    home = {
-      username = username;
-      homeDirectory = homeDirectory;
-      stateVersion = "23.05";
-      sessionVariables = {
-        QT_XCB_GL_INTEGRATION = "none"; # kde-connect
-        NIXPKGS_ALLOW_UNFREE = "1";
-        SHELL = "${pkgs.zsh}/bin/elvish";
-      };
-      sessionPath = [
-        "$HOME/.local/bin"
-      ];
+  nixpkgs = {
+    config = {
+      allowUnfree = true;
+      # Workaround for https://github.com/nix-community/home-manager/issues/2942
+      allowUnfreePredicate = (_: true);
     };
+  };
 
+#+end_src
 
-    nixpkgs = {
-      config = {
-        allowUnfree = true;
-        # Workaround for https://github.com/nix-community/home-manager/issues/2942
-        allowUnfreePredicate = (_: true);
-      };
+*** GTK
+#+begin_src nix
+  gtk.enable = true;
+  gtk.theme = {
+    name = "Fluent-gtk-theme";
+    package = pkgs.fluent-gtk-theme.override {
+      tweaks = [ "blur" ];
     };
+  };
+  gtk.gtk3.bookmarks = [
+    "file://${homeDirectory}/Documents"
+    "file://${homeDirectory}/Music"
+    "file://${homeDirectory}/Pictures"
+    "file://${homeDirectory}/Videos"
+    "file://${homeDirectory}/Downloads"
+    "file://${homeDirectory}/Desktop"
+    "file://${homeDirectory}/Projects"
+    "file://${homeDirectory}/.config Config"
+    "file://${homeDirectory}/.local/share Local"
+  ];
 
-    gtk.enable = true;
-    gtk.theme = {
-      name = "Fluent-gtk-theme";
-      package = pkgs.fluent-gtk-theme.override {
-        tweaks = [ "blur" ];
-      };
-    };
-    gtk.gtk3.bookmarks = [
-      "file://${homeDirectory}/Documents"
-      "file://${homeDirectory}/Music"
-      "file://${homeDirectory}/Pictures"
-      "file://${homeDirectory}/Videos"
-      "file://${homeDirectory}/Downloads"
-      "file://${homeDirectory}/Desktop"
-      "file://${homeDirectory}/Projects"
-      "file://${homeDirectory}/.config Config"
-      "file://${homeDirectory}/.local/share Local"
-    ];
+  xresources.properties = {
+    "Xcursor.size" = 16;
+    "Xft.dpi" = 172;
+  };
+#+end_src
 
-    xresources.properties = {
-      "Xcursor.size" = 16;
-      "Xft.dpi" = 172;
-    };
-
-    programs.home-manager.enable = true;
-    programs.git = {
-      enable = true;
-      userName = "a7r7";
-      userEmail = "Aaron__Lee_@outlook.com";
-    };
-    programs.vscode = {
-      enable = true;
-      package = pkgs.vscode.fhs;
-    };
-    services.syncthing = {
-      enable = true;
-      tray = {enable = true;};
-    };
-    services.emacs = {
-      enable = true;
-      package = pkgs.emacs29-pgtk;
-      socketActivation.enable = true;
-      client = {
-        enable = true;
-      };
-    };
-
-  }
+*** Programs
+#+begin_src nix
+  programs.git = {
+    enable = true;
+    userName = "a7r7";
+    userEmail = "Aaron__Lee_@outlook.com";
+  };
+  programs.vscode = {
+    enable = true;
+    package = pkgs.vscode.fhs;
+  };
+  programs.emacs = {
+    enable = true;
+    package = pkgs.emacsPgtk;
+  };
+#+end_src
+*** Services
+#+begin_src nix
+  services.syncthing = {
+    enable = true;
+    tray = {enable = true;};
+  };
+  services.emacs.enable = true;
 #+end_src
 ** Packages
 :PROPERTIES:
@@ -491,7 +501,6 @@ Becareful that packages installed by ~nix profile install~ can conflict with pac
 *** Development
 **** Text-editor
 #+begin_src nix
-  emacs29-pgtk
   neovide
   marktext
   libreoffice
@@ -671,14 +680,15 @@ These are tools for packaging using nix.
 #+end_src
 **** Message
 #+begin_src nix
-  qq
-  discord
-  telegram-desktop
-  thunderbird
+qq
+discord
+telegram-desktop
+element-desktop
+thunderbird
 #+end_src
 **** VPN
 #+begin_src nix
-  pkgs-2311.clash-verge
+  v2305.clash-verge
 #+end_src
 *** Gaming
 #+begin_src nix

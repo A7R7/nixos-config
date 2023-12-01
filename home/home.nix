@@ -12,7 +12,7 @@ in
   home = {
     username = username;
     homeDirectory = homeDirectory;
-    stateVersion = "23.05";
+    stateVersion = "23.11";
     sessionVariables = {
       QT_XCB_GL_INTEGRATION = "none"; # kde-connect
       NIXPKGS_ALLOW_UNFREE = "1";
