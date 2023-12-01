@@ -6,6 +6,8 @@ host:
 home:
 	home-manager switch --flake .
 
+all: host home
+
 update:
 	nix flake update
 
