@@ -31,8 +31,9 @@
     
     utils.url = "github:gytis-ivaskevicius/flake-utils-plus";
     nur.url = "github:nix-community/NUR";
-    # mynur.url = "github:A7R7/nur-packages";
-    mynur.url = "git+file:./?dir=nurpkgs";
+    mynur.url = "github:A7R7/nur-packages";
+    # mynur.url = "git+file:./?dir=./nurpkgs";
+    # mynur.url = "./nurpkgs";
     # hyprland wm
     hyprland.url = "github:hyprwm/Hyprland";
     pyprland.url = "github:A7R7/pyprland";

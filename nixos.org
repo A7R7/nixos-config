@@ -58,8 +58,9 @@ So I use flake to manage my configs.
 
   utils.url = "github:gytis-ivaskevicius/flake-utils-plus";
   nur.url = "github:nix-community/NUR";
-  # mynur.url = "github:A7R7/nur-packages";
-  mynur.url = "git+file:./?dir=nurpkgs";
+  mynur.url = "github:A7R7/nur-packages";
+  # mynur.url = "git+file:./?dir=./nurpkgs";
+  # mynur.url = "./nurpkgs";
   # hyprland wm
   hyprland.url = "github:hyprwm/Hyprland";
   pyprland.url = "github:A7R7/pyprland";
@@ -249,7 +250,7 @@ So I use flake to manage my configs.
     git
     stow
     man
-    dash zsh fish elvish nushell
+    dash elvish fish nushell xonsh zsh
     efibootmgr
     gnumake
     killall
@@ -470,7 +471,7 @@ programs.vscode = {
 };
 programs.emacs = {
   enable = true;
-  package = pkgs.emacsPgtk;
+  package = pkgs.emacs-unstable-pgtk;
 };
 #+end_src
 *** Services
@@ -497,9 +498,11 @@ programs.emacs = {
 *** Development
 **** Text-editor
 #+begin_src nix
-  neovide
-  marktext
-  libreoffice
+helix
+lapce  # a rust powered editor
+libreoffice
+neovide
+marktext
 #+end_src
 
 **** Languages
@@ -681,6 +684,7 @@ discord
 telegram-desktop
 element-desktop
 thunderbird
+weechat # IRC
 #+end_src
 **** VPN
 #+begin_src nix

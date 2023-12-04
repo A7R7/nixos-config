@@ -1,9 +1,11 @@
 { inputs, pkgs, ... }:
 {
   home.packages = (with pkgs; [
+    helix
+    lapce  # a rust powered editor
+    libreoffice
     neovide
     marktext
-    libreoffice
     gcc ccache cmake clang-tools
     (python311.withPackages(ps: with ps; [
       # required by lsp-bridge, holo-layer, and blink search
@@ -127,6 +129,7 @@
     telegram-desktop
     element-desktop
     thunderbird
+    weechat # IRC
     v2305.clash-verge
     prismlauncher
     glfw-wayland-minecraft

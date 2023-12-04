@@ -65,7 +65,7 @@ in
   };
   programs.emacs = {
     enable = true;
-    package = pkgs.emacsPgtk;
+    package = pkgs.emacs-unstable-pgtk;
   };
   # ends here
   # [[file:nixos.org::*Config][]]
