@@ -1,5 +1,5 @@
 
-.PHONY: host home update gc
+.PHONY: commit host/build host/generation home/build home/generation update gc
 
 commit:
 	$(eval MESSAGE := $(shell awk 'NF { printf "%s ", $$0 } END { print "" }' generation.toml))
@@ -13,7 +13,7 @@ host/generation:
 	@sed -i 's/host = .*/host = $(HOST_GENERATION)/' generation.toml
 	@echo "Current host generation is "$(HOST_GENERATION)
 
-host: host/build host/generation
+host: host/build host/generation commit
 
 home/build:
 	home-manager switch --flake .
@@ -23,9 +23,7 @@ home/generation:
 	@sed -i 's/home = .*/home = $(HOME_GENERATION)/' generation.toml
 	@echo "Current home generation is "$(HOME_GENERATION)
 
-home: home/build home/generation
-
-all: host home
+home: home/build home/generation commit
 
 update:
 	nix flake update
@@ -35,3 +33,5 @@ gc:
 	sudo nix profile wipe-history --profile /nix/var/nix/profiles/system  --older-than 7d
 	# garbage collect all unused nix store entries
 	sudo nix store gc --debug
+
+all: host/build host/generation home/build home/generation commit
