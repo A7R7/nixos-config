@@ -160,7 +160,6 @@
     noto-fonts-extra
     liberation_ttf
     roboto roboto-serif
-    ibm-plex
     nerdfonts
     sarasa-gothic
     mynur.sarasa-gothic-nerd-font

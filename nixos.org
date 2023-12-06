@@ -303,7 +303,6 @@ So I use flake to manage my configs.
     noto-fonts-extra
     liberation_ttf
     roboto roboto-serif
-    ibm-plex
     nerdfonts
     sarasa-gothic
     mynur.sarasa-gothic-nerd-font
@@ -436,6 +435,15 @@ in
 
 #+end_src
 
+*** Font
+#+begin_src nix
+fonts.fontconfig.enable = true;
+home.packages = with pkgs; [
+   commit-mono
+   monaspace
+   ibm-plex
+];
+#+end_src
 *** GTK
 #+begin_src nix
   gtk.enable = true;

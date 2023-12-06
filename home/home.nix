@@ -34,6 +34,14 @@ in
   
   # ends here
   # [[file:nixos.org::*Config][]]
+  fonts.fontconfig.enableProfileFonts = true;
+  home.packages = with pkgs; [
+     commit-mono
+     monaspace
+     ibm-plex
+  ];
+  # ends here
+  # [[file:nixos.org::*Config][]]
   gtk.enable = true;
   gtk.theme = {
     name = "Fluent-gtk-theme";
