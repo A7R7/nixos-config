@@ -448,10 +448,14 @@ home.packages = with pkgs; [
 #+begin_src nix
   gtk.enable = true;
   gtk.theme = {
-    name = "Fluent-gtk-theme";
+    name = "fluent-gtk-theme";
     package = pkgs.fluent-gtk-theme.override {
       tweaks = [ "blur" ];
     };
+  };
+  gtk.cursorTheme = {
+    name = "whitesur-cursors";
+    package = pkgs.whitesur-cursors;
   };
   gtk.gtk3.bookmarks = [
     "file://${homeDirectory}/Documents"

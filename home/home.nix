@@ -34,7 +34,7 @@ in
   
   # ends here
   # [[file:nixos.org::*Config][]]
-  fonts.fontconfig.enableProfileFonts = true;
+  fonts.fontconfig.enable = true;
   home.packages = with pkgs; [
      commit-mono
      monaspace
@@ -44,10 +44,14 @@ in
   # [[file:nixos.org::*Config][]]
   gtk.enable = true;
   gtk.theme = {
-    name = "Fluent-gtk-theme";
+    name = "fluent-gtk-theme";
     package = pkgs.fluent-gtk-theme.override {
       tweaks = [ "blur" ];
     };
+  };
+  gtk.cursorTheme = {
+    name = "whitesur-cursors";
+    package = pkgs.whitesur-cursors;
   };
   gtk.gtk3.bookmarks = [
     "file://${homeDirectory}/Documents"
