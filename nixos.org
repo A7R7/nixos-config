@@ -467,6 +467,10 @@ home.packages = with pkgs; [
     name = "whitesur-cursors";
     package = pkgs.whitesur-cursors;
   };
+  gtk.iconTheme = {
+    name = "kora";
+    package = pkgs.kora-icon-theme;
+  };
   gtk.gtk3.bookmarks = [
     "file://${homeDirectory}/Documents"
     "file://${homeDirectory}/Music"
@@ -737,13 +741,12 @@ weechat # IRC
   hyprpaper      # wallpaper utility
   swww           # dynamic wallpaper
   gnome.adwaita-icon-theme
-  kora-icon-theme
 
-  hyprkeys       # keybind retrieval utility
-  hyprnome       # gnome like workspace switch
+  # hyprkeys       # keybind retrieval utility
+  # hyprnome       # gnome like workspace switch
 
-  hyprshade      # screen color filters
-  wl-gammactl    # set contrast, brightness and gamma on wl
+  # hyprshade      # screen color filters
+  # wl-gammactl    # set contrast, brightness and gamma on wl
 
   hyprpicker     # wlroots color picker
   wayshot        # screenshots tool

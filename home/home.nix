@@ -63,6 +63,10 @@ in
     name = "whitesur-cursors";
     package = pkgs.whitesur-cursors;
   };
+  gtk.iconTheme = {
+    name = "kora";
+    package = pkgs.kora-icon-theme;
+  };
   gtk.gtk3.bookmarks = [
     "file://${homeDirectory}/Documents"
     "file://${homeDirectory}/Music"

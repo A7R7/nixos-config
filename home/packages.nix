@@ -151,13 +151,12 @@
     hyprpaper      # wallpaper utility
     swww           # dynamic wallpaper
     gnome.adwaita-icon-theme
-    kora-icon-theme
     
-    hyprkeys       # keybind retrieval utility
-    hyprnome       # gnome like workspace switch
+    # hyprkeys       # keybind retrieval utility
+    # hyprnome       # gnome like workspace switch
     
-    hyprshade      # screen color filters
-    wl-gammactl    # set contrast, brightness and gamma on wl
+    # hyprshade      # screen color filters
+    # wl-gammactl    # set contrast, brightness and gamma on wl
     
     hyprpicker     # wlroots color picker
     wayshot        # screenshots tool
