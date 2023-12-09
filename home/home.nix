@@ -39,6 +39,7 @@ in
      nerdfonts
      commit-mono
      monaspace
+     mynur.symbols-nerd-font
      mynur.ibm-plex-nerd-font
      mynur.sarasa-gothic-nerd-font
      fontforge-gtk
