@@ -49,7 +49,7 @@
     mynur.logisim-ita
     gtk-engine-murrine
     gnome-themes-extra
-    tdlib # for building telegrame clients
+    mynur.tdlib # for building telegrame clients
     kitty
     alacritty
     wezterm

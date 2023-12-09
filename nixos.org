@@ -586,7 +586,7 @@ These are tools for packaging using nix.
 #+begin_src nix
   gtk-engine-murrine
   gnome-themes-extra
-  tdlib # for building telegrame clients
+  mynur.tdlib # for building telegrame clients
 #+end_src
 *** Cmdline
 **** Emulator
