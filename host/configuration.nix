@@ -160,9 +160,7 @@
     noto-fonts-extra
     liberation_ttf
     roboto roboto-serif
-    nerdfonts
     sarasa-gothic
-    mynur.sarasa-gothic-nerd-font
   ];
   fonts.fontconfig = {
     enable = true;

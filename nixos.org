@@ -303,9 +303,7 @@ So I use flake to manage my configs.
     noto-fonts-extra
     liberation_ttf
     roboto roboto-serif
-    nerdfonts
     sarasa-gothic
-    mynur.sarasa-gothic-nerd-font
   ];
   fonts.fontconfig = {
     enable = true;
@@ -439,11 +437,17 @@ in
 #+begin_src nix
 fonts.fontconfig.enable = true;
 home.packages = with pkgs; [
+   nerdfonts
    commit-mono
    monaspace
-   ibm-plex
+   mynur.ibm-plex-nerd-font
+   mynur.sarasa-gothic-nerd-font
+   fontforge-gtk
 ];
 #+end_src
+
+#+RESULTS:
+
 *** GTK
 #+begin_src nix
   gtk.enable = true;
@@ -759,11 +763,6 @@ weechat # IRC
 
   # hyprland plugin set in python
   inputs.pyprland.packages.${system}.default
-#+end_src
-*** Fonts
-#+begin_src nix
-  fontforge-gtk
-  mynur.sarasa-gothic-nerd-font
 #+end_src
 *** System-tools
 #+begin_src nix

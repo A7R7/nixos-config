@@ -183,8 +183,6 @@
     
     # hyprland plugin set in python
     inputs.pyprland.packages.${system}.default
-    fontforge-gtk
-    mynur.sarasa-gothic-nerd-font
     gparted        # disk partition manager
     fsearch        # search files in disk
     lshw

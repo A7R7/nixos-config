@@ -36,9 +36,12 @@ in
   # [[file:nixos.org::*Config][]]
   fonts.fontconfig.enable = true;
   home.packages = with pkgs; [
+     nerdfonts
      commit-mono
      monaspace
-     ibm-plex
+     mynur.ibm-plex-nerd-font
+     mynur.sarasa-gothic-nerd-font
+     fontforge-gtk
   ];
   # ends here
   # [[file:nixos.org::*Config][]]
