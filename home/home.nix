@@ -37,6 +37,12 @@ in
   fonts.fontconfig.enable = true;
   home.packages = with pkgs; [
      nerdfonts
+  
+     source-han-mono
+     source-han-sans
+     source-han-serif
+     source-han-serif-vf-ttf
+  
      commit-mono
      monaspace
      mynur.symbols-nerd-font

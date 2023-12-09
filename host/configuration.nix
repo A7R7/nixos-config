@@ -158,7 +158,6 @@
     noto-fonts-cjk
     noto-fonts-emoji
     noto-fonts-extra
-    liberation_ttf
     roboto roboto-serif
     sarasa-gothic
   ];

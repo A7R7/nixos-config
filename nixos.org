@@ -301,7 +301,6 @@ So I use flake to manage my configs.
     noto-fonts-cjk
     noto-fonts-emoji
     noto-fonts-extra
-    liberation_ttf
     roboto roboto-serif
     sarasa-gothic
   ];
@@ -438,6 +437,12 @@ in
 fonts.fontconfig.enable = true;
 home.packages = with pkgs; [
    nerdfonts
+
+   source-han-mono
+   source-han-sans
+   source-han-serif
+   source-han-serif-vf-ttf
+
    commit-mono
    monaspace
    mynur.symbols-nerd-font
