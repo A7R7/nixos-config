@@ -299,8 +299,6 @@ So I use flake to manage my configs.
   fonts.fonts = with pkgs; [
     noto-fonts
     noto-fonts-cjk
-    noto-fonts-emoji
-    noto-fonts-extra
     roboto roboto-serif
     sarasa-gothic
   ];
@@ -437,7 +435,9 @@ in
 fonts.fontconfig.enable = true;
 home.packages = with pkgs; [
    nerdfonts
-
+   noto-fonts-monochrome-emoji
+   noto-fonts-emoji
+   noto-fonts-extra
    source-han-mono
    source-han-sans
    source-han-serif

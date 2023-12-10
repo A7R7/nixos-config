@@ -37,7 +37,9 @@ in
   fonts.fontconfig.enable = true;
   home.packages = with pkgs; [
      nerdfonts
-  
+     noto-fonts-monochrome-emoji
+     noto-fonts-emoji
+     noto-fonts-extra
      source-han-mono
      source-han-sans
      source-han-serif
