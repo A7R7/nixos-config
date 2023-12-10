@@ -158,7 +158,7 @@
     # hyprshade      # screen color filters
     # wl-gammactl    # set contrast, brightness and gamma on wl
     
-    hyprpicker     # wlroots color picker
+    v2305.hyprpicker     # wlroots color picker
     wayshot        # screenshots tool
     grimblast      # screenshots tool
     wf-recorder    # screen recording tool
