@@ -672,11 +672,11 @@
         "systems": "systems_5"
       },
       "locked": {
-        "lastModified": 1701550909,
-        "narHash": "sha256-LbFhlqIaLOXpn5LWMhGyAxx3rI1skb1pVOku3GaC+n0=",
+        "lastModified": 1702236512,
+        "narHash": "sha256-FJPCd7qsjvaRQR9V65HTYWCZjkcVbDPoN91EpFEJ9zk=",
         "owner": "A7R7",
         "repo": "pyprland",
-        "rev": "e9671cc9496e21fecc58c1158155aeae1efbe516",
+        "rev": "03fcc90af4b5c116122ece7ed88cf653ebeb0e99",
         "type": "github"
       },
       "original": {
