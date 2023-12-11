@@ -48,7 +48,8 @@ in
      commit-mono
      monaspace
      mynur.symbols-nerd-font
-     mynur.ibm-plex-nerd-font
+     # mynur.ibm-plex-nerd-font
+     ibm-plex
      mynur.sarasa-gothic-nerd-font
      fontforge-gtk
   ];
