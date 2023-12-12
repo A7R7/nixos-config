@@ -96,6 +96,12 @@ in
     enable = true;
     package = pkgs.emacs-unstable-pgtk;
   };
+  programs.zsh = {
+    enable = true;
+    # plugins = [
+    #   pkgs.zinit
+    # ];
+  };
   # ends here
   # [[file:nixos.org::*Config][]]
   services.syncthing = {

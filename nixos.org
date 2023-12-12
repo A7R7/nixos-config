@@ -504,6 +504,12 @@ programs.emacs = {
   enable = true;
   package = pkgs.emacs-unstable-pgtk;
 };
+programs.zsh = {
+  enable = true;
+  # plugins = [
+  #   pkgs.zinit
+  # ];
+};
 #+end_src
 *** Services
 #+begin_src nix
