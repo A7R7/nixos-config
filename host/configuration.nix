@@ -110,11 +110,15 @@
     git
     stow
     man
-    dash elvish fish nushell tcsh xonsh zsh
     efibootmgr
     gnumake
     killall
     home-manager
+  ];
+  # ends here
+  # [[file:nixos.org::*Host][]]
+  environment.shells = with pkgs; [
+    dash elvish fish nushell tcsh xonsh zsh
   ];
   # ends here
   # [[file:nixos.org::*Host][]]

@@ -241,22 +241,26 @@ So I use flake to manage my configs.
   };
 #+end_src
 ** Pkgs
-
 #+begin_src nix
-  environment.systemPackages = with pkgs; [
-    vim neovim
-    wget
-    curl
-    git
-    stow
-    man
-    dash elvish fish nushell tcsh xonsh zsh
-    efibootmgr
-    gnumake
-    killall
-    home-manager
-  ];
+environment.systemPackages = with pkgs; [
+  vim neovim
+  wget
+  curl
+  git
+  stow
+  man
+  efibootmgr
+  gnumake
+  killall
+  home-manager
+];
   #+end_src
+Shells. Yeah I'd like to try different shells.
+#+begin_src nix
+environment.shells = with pkgs; [
+  dash elvish fish nushell tcsh xonsh zsh
+];
+#+end_src
 ** Virtualisation
 #+begin_src nix
   virtualisation = {
