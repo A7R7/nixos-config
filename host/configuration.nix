@@ -114,7 +114,6 @@
     gnumake
     killall
     home-manager
-    dash elvish fish nushell tcsh xonsh zsh
   ];
   # ends here
   # [[file:nixos.org::*Host][]]

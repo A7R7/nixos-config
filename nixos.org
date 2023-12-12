@@ -253,7 +253,6 @@ environment.systemPackages = with pkgs; [
   gnumake
   killall
   home-manager
-  dash elvish fish nushell tcsh xonsh zsh
 ];
   #+end_src
 Shells. Yeah I'd like to try different shells.
