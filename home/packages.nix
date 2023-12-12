@@ -79,6 +79,7 @@
     hugo
     pandoc
     gh
+    zinit
     pipes-rs
     tty-clock
     cava

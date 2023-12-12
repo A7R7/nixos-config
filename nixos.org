@@ -607,32 +607,33 @@ These are tools for packaging using nix.
 #+end_src
 **** Tools
 #+begin_src nix
-  carapace
-  starship
-  lf
-  thefuck
-  bat
-  eza
-  ranger nnn
-  fd
-  ripgrep
-  fzf
-  socat
-  jq
-  yq-go
-  acpi
-  inotify-tools
-  ffmpeg
-  libnotify
-  zoxide
-  autoconf
-  tree
-  ghostscript
-  _7zz
-  lazygit
-  hugo
-  pandoc
-  gh
+carapace
+starship
+lf
+thefuck
+bat
+eza
+ranger nnn
+fd
+ripgrep
+fzf
+socat
+jq
+yq-go
+acpi
+inotify-tools
+ffmpeg
+libnotify
+zoxide
+autoconf
+tree
+ghostscript
+_7zz
+lazygit
+hugo
+pandoc
+gh
+zinit
 #+end_src
 **** Toys
 #+begin_src nix
