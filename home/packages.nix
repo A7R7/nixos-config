@@ -191,5 +191,7 @@
     logiops        # Unofficial userspace driver for HID++ Logitech devices
     filelight      # inspecting disk usage statistics
     xorg.xhost          # launch gui with sudo in cmdline
+    networkmanagerapplet # network manager, gtk frontend
+    blueman        # bluetooth manager, gtk frontend
   ]);
 }

@@ -110,7 +110,7 @@
     git
     stow
     man
-    dash elvish fish nushell xonsh zsh
+    dash elvish fish nushell tcsh xonsh zsh
     efibootmgr
     gnumake
     killall
