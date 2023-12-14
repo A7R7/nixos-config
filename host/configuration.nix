@@ -28,6 +28,7 @@
   # [[file:nixos.org::*Host][]]
   boot = {
     # kernelPackages = pkgs.linuxPackages_latest;
+    kernelPackages = pkgs.linuxPackages_zen;
     loader = {
       # systemd-boot.enable = true;
       grub = {

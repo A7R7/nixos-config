@@ -160,6 +160,7 @@ So I use flake to manage my configs.
 #+begin_src nix
   boot = {
     # kernelPackages = pkgs.linuxPackages_latest;
+    kernelPackages = pkgs.linuxPackages_zen;
     loader = {
       # systemd-boot.enable = true;
       grub = {
