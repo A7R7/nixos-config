@@ -124,6 +124,9 @@
   ];
   # ends here
   # [[file:nixos.org::*Host][]]
+  environment.localBinInPath = true;
+  # ends here
+  # [[file:nixos.org::*Host][]]
   virtualisation = {
     podman.enable = true;
     libvirtd.enable = true;

@@ -155,7 +155,7 @@ So I use flake to manage my configs.
   };
 #+end_src
 
-** Bootloader
+** Boot
 [[file:/etc/nixos/hardware-configuration.nix][/etc/nixos/hardware-configuration.nix]]
 #+begin_src nix
   boot = {
@@ -241,6 +241,7 @@ So I use flake to manage my configs.
     shell = pkgs.elvish;
   };
 #+end_src
+
 ** Pkgs
 #+begin_src nix
 environment.systemPackages = with pkgs; [
@@ -257,12 +258,18 @@ environment.systemPackages = with pkgs; [
   dash elvish fish nushell tcsh xonsh zsh
 ];
   #+end_src
+*** Shells
 Shells. Yeah I'd like to try different shells.
 #+begin_src nix
 environment.shells = with pkgs; [
   dash elvish fish nushell tcsh xonsh zsh
 ];
 #+end_src
+This adds ~~/.local/bin~ to PATH.
+#+begin_src nix
+environment.localBinInPath = true;
+#+end_src
+
 ** Virtualisation
 #+begin_src nix
   virtualisation = {
