@@ -131,18 +131,28 @@
   # ends here
   # [[file:nixos.org::*Host][]]
   # programs.regreet = {
-    # This line installs ReGreet,
-    # sets up systemd tmpfiles for it,
-    # enables services.greetd and also configures its default session to start ReGreet using cage.
-    # enable = true;
+  # This line installs ReGreet,
+  # sets up systemd tmpfiles for it,
+  # enables services.greetd and also configures its default session to start ReGreet using cage.
+  # enable = true;
   # };
   
   programs.adb.enable = true;
   programs.dconf.enable = true;
+  
   programs.hyprland = {
     enable = true;
     xwayland.enable = true;
     enableNvidiaPatches = false;
+  };
+  
+  programs.wayfire = {
+    enable = true;
+    plugins = with pkgs.wayfirePlugins; [
+      wcm
+      wf-shell
+      wayfire-plugins-extra
+    ];
   };
   
   programs.steam = {

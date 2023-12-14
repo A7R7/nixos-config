@@ -272,32 +272,42 @@ environment.shells = with pkgs; [
 #+end_src
 ** Programs
 #+begin_src nix
-  # programs.regreet = {
-    # This line installs ReGreet,
-    # sets up systemd tmpfiles for it,
-    # enables services.greetd and also configures its default session to start ReGreet using cage.
-    # enable = true;
-  # };
+# programs.regreet = {
+# This line installs ReGreet,
+# sets up systemd tmpfiles for it,
+# enables services.greetd and also configures its default session to start ReGreet using cage.
+# enable = true;
+# };
 
-  programs.adb.enable = true;
-  programs.dconf.enable = true;
-  programs.hyprland = {
-    enable = true;
-    xwayland.enable = true;
-    enableNvidiaPatches = false;
-  };
+programs.adb.enable = true;
+programs.dconf.enable = true;
 
-  programs.steam = {
-    enable = true;
-    remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
-    dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
-  };
+programs.hyprland = {
+  enable = true;
+  xwayland.enable = true;
+  enableNvidiaPatches = false;
+};
 
-  xdg.portal = {
-    enable = true;
-    wlr.enable = true;
-    # extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-  };
+programs.wayfire = {
+  enable = true;
+  plugins = with pkgs.wayfirePlugins; [
+    wcm
+    wf-shell
+    wayfire-plugins-extra
+  ];
+};
+
+programs.steam = {
+  enable = true;
+  remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
+  dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
+};
+
+xdg.portal = {
+  enable = true;
+  wlr.enable = true;
+  # extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+};
 #+end_src
 ** Fonts
 #+begin_src nix
