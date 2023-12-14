@@ -100,7 +100,7 @@
   users.users.${username} = {
     isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager" "libvirtd" "adbusers" "audio"];
-    shell = pkgs.elvish;
+    # shell = pkgs.elvish;
   };
   # ends here
   # [[file:nixos.org::*Host][]]
