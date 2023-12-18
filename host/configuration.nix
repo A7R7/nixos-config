@@ -116,6 +116,7 @@
     killall
     home-manager
     dash elvish fish nushell tcsh xonsh zsh
+    sddm-chili-theme
   ];
   # ends here
   # [[file:nixos.org::*Host][]]
@@ -202,7 +203,11 @@
   services.xserver.layout = "us";
   services.xserver.xkbOptions = "caps:escape";
   # services.xserver.displayManager.gdm.enable = true;
-  services.xserver.displayManager.sddm.enable = true;
+  services.xserver.displayManager.sddm = {
+    enable = true;
+    wayland.enable = true;
+    theme = "chili";
+  };
   services.xserver.displayManager.sessionPackages = [
     pkgs.hyprland
     pkgs.wayfire
