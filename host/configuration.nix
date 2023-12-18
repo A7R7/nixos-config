@@ -162,7 +162,7 @@
       pkgs.mynur.swayfire
     ];
   };
-  
+  environment.sessionVariables.WAYFIRE_CONFIG_FILE = "$HOME/.config/wayfire/wayfire.ini";
   # ends here
   # [[file:nixos.org::*Host][]]
   programs.steam = {

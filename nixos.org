@@ -310,7 +310,7 @@ programs.wayfire = {
     pkgs.mynur.swayfire
   ];
 };
-
+environment.sessionVariables.WAYFIRE_CONFIG_FILE = "$HOME/.config/wayfire/wayfire.ini";
 #+end_src
 
 #+begin_src nix
