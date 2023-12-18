@@ -376,12 +376,17 @@ xdg.portal = {
   services.upower.enable = true;
   # a DBus service for accessing the list of user accounts and information attached to those accounts.
   services.accounts-daemon.enable = true;
+  #+end_src
+*** Xserver
+  #+begin_src nix
   services.xserver = {
     enable = true;
     excludePackages = [ pkgs.xterm ];
     layout = "us";
     xkbOptions = "caps:escape";
-    displayManager.gdm.enable = true;
+    # displayManager.gdm.enable = true;
+    displayManager.lightdm.enable = true;
+    displayManager.lightdm.greeters.slick.enable = true;
     # desktopManager.gnome.enable = true;
   };
 #+end_src

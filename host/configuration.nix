@@ -206,12 +206,16 @@
   services.upower.enable = true;
   # a DBus service for accessing the list of user accounts and information attached to those accounts.
   services.accounts-daemon.enable = true;
+  # ends here
+  # [[file:nixos.org::*Host][]]
   services.xserver = {
     enable = true;
     excludePackages = [ pkgs.xterm ];
     layout = "us";
     xkbOptions = "caps:escape";
-    displayManager.gdm.enable = true;
+    # displayManager.gdm.enable = true;
+    displayManager.lightdm.enable = true;
+    displayManager.lightdm.greeters.slick.enable = true;
     # desktopManager.gnome.enable = true;
   };
   # ends here
