@@ -141,15 +141,16 @@
   # enable = true;
   # };
   
-  programs.adb.enable = true;
-  programs.dconf.enable = true;
   # ends here
   # [[file:nixos.org::*Host][]]
-  # programs.hyprland = {
-  #   enable = true;
-  #   xwayland.enable = true;
-  #   enableNvidiaPatches = false;
-  # };
+  
+  # ends here
+  # [[file:nixos.org::*Host][]]
+  programs.hyprland = {
+    enable = true;
+    xwayland.enable = true;
+    enableNvidiaPatches = false;
+  };
   # ends here
   # [[file:nixos.org::*Host][]]
   programs.wayfire = {
@@ -179,6 +180,10 @@
   };
   # ends here
   # [[file:nixos.org::*Host][]]
+  programs.adb.enable = true;
+  programs.dconf.enable = true;
+  # ends here
+  # [[file:nixos.org::*Host][]]
   fonts.fonts = with pkgs; [
     noto-fonts
     noto-fonts-cjk
@@ -192,16 +197,18 @@
   };
   # ends here
   # [[file:nixos.org::*Host][]]
-  services.xserver = {
-    enable = true;
-    excludePackages = [ pkgs.xterm ];
-    layout = "us";
-    xkbOptions = "caps:escape";
-    displayManager.gdm.enable = true;
-    # displayManager.lightdm.enable = true;
-    # displayManager.lightdm.greeters.slick.enable = true;
-    # desktopManager.gnome.enable = true;
-  };
+  services.xserver.enable = true;
+  services.xserver.excludePackages = [ pkgs.xterm ];
+  services.xserver.layout = "us";
+  services.xserver.xkbOptions = "caps:escape";
+  services.xserver.displayManager.gdm.enable = true;
+  services.xserver.displayManager.sessionPackages = [
+    pkgs.hyprland
+    pkgs.wayfire
+  ];
+  # displayManager.lightdm.enable = true;
+  # displayManager.lightdm.greeters.slick.enable = true;
+  # desktopManager.gnome.enable = true;
   # ends here
   # [[file:nixos.org::*Host][]]
   services.tlp.enable = true;

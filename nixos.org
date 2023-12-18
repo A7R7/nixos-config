@@ -291,16 +291,17 @@ environment.localBinInPath = true;
 # enable = true;
 # };
 
-programs.adb.enable = true;
-programs.dconf.enable = true;
+#+end_src
+*** Window managers
+#+begin_src nix
 #+end_src
 
-#+begin_src nix :tangle no
-# programs.hyprland = {
-#   enable = true;
-#   xwayland.enable = true;
-#   enableNvidiaPatches = false;
-# };
+#+begin_src nix
+programs.hyprland = {
+  enable = true;
+  xwayland.enable = true;
+  enableNvidiaPatches = false;
+};
 #+end_src
 
 #+begin_src nix
@@ -316,7 +317,7 @@ programs.wayfire = {
 };
 environment.sessionVariables.WAYFIRE_CONFIG_FILE = "$HOME/.config/wayfire/wayfire.ini";
 #+end_src
-
+*** Misc
 #+begin_src nix
 programs.steam = {
   enable = true;
@@ -331,6 +332,11 @@ xdg.portal = {
   wlr.enable = true;
   # extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
 };
+#+end_src
+
+#+begin_src nix
+programs.adb.enable = true;
+programs.dconf.enable = true;
 #+end_src
 ** Fonts
 #+begin_src nix
@@ -362,33 +368,35 @@ xdg.portal = {
 #+end_src
 *** Xserver
   #+begin_src nix
-  services.xserver = {
-    enable = true;
-    excludePackages = [ pkgs.xterm ];
-    layout = "us";
-    xkbOptions = "caps:escape";
-    displayManager.gdm.enable = true;
-    # displayManager.lightdm.enable = true;
-    # displayManager.lightdm.greeters.slick.enable = true;
-    # desktopManager.gnome.enable = true;
-  };
+  services.xserver.enable = true;
+  services.xserver.excludePackages = [ pkgs.xterm ];
+  services.xserver.layout = "us";
+  services.xserver.xkbOptions = "caps:escape";
+  services.xserver.displayManager.gdm.enable = true;
+  services.xserver.displayManager.sessionPackages = [
+    pkgs.hyprland
+    pkgs.wayfire
+  ];
+  # displayManager.lightdm.enable = true;
+  # displayManager.lightdm.greeters.slick.enable = true;
+  # desktopManager.gnome.enable = true;
 #+end_src
 *** Misc
 #+begin_src nix
-  services.tlp.enable = true;
-  services.printing.enable = true;
-  services.flatpak.enable = true;
-  services.openssh.enable = true;
-  # userspace virtual filesystem
-  services.gvfs.enable = true;
-  # an automatic device mounting daemon
-  services.devmon.enable = true;
-  # a DBus service that allows applications to query and manipulate storage devices.
-  services.udisks2.enable = true;
-  # a DBus service that provides power management support to applications.
-  services.upower.enable = true;
-  # a DBus service for accessing the list of user accounts and information attached to those accounts.
-  services.accounts-daemon.enable = true;
+services.tlp.enable = true;
+services.printing.enable = true;
+services.flatpak.enable = true;
+services.openssh.enable = true;
+# userspace virtual filesystem
+services.gvfs.enable = true;
+# an automatic device mounting daemon
+services.devmon.enable = true;
+# a DBus service that allows applications to query and manipulate storage devices.
+services.udisks2.enable = true;
+# a DBus service that provides power management support to applications.
+services.upower.enable = true;
+# a DBus service for accessing the list of user accounts and information attached to those accounts.
+services.accounts-daemon.enable = true;
   #+end_src
 *** GNOME
 #+begin_src nix
