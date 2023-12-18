@@ -143,13 +143,15 @@
   
   programs.adb.enable = true;
   programs.dconf.enable = true;
-  
+  # ends here
+  # [[file:nixos.org::*Host][]]
   programs.hyprland = {
     enable = true;
     xwayland.enable = true;
     enableNvidiaPatches = false;
   };
-  
+  # ends here
+  # [[file:nixos.org::*Host][]]
   programs.wayfire = {
     enable = true;
     plugins = (with pkgs.wayfirePlugins; [
@@ -161,12 +163,15 @@
     ];
   };
   
+  # ends here
+  # [[file:nixos.org::*Host][]]
   programs.steam = {
     enable = true;
     remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
     dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
   };
-  
+  # ends here
+  # [[file:nixos.org::*Host][]]
   xdg.portal = {
     enable = true;
     wlr.enable = true;

@@ -289,13 +289,17 @@ environment.localBinInPath = true;
 
 programs.adb.enable = true;
 programs.dconf.enable = true;
+#+end_src
 
+#+begin_src nix
 programs.hyprland = {
   enable = true;
   xwayland.enable = true;
   enableNvidiaPatches = false;
 };
+#+end_src
 
+#+begin_src nix
 programs.wayfire = {
   enable = true;
   plugins = (with pkgs.wayfirePlugins; [
@@ -307,12 +311,17 @@ programs.wayfire = {
   ];
 };
 
+#+end_src
+
+#+begin_src nix
 programs.steam = {
   enable = true;
   remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
   dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
 };
+#+end_src
 
+#+begin_src nix
 xdg.portal = {
   enable = true;
   wlr.enable = true;
@@ -438,6 +447,7 @@ in
       QT_XCB_GL_INTEGRATION = "none"; # kde-connect
       NIXPKGS_ALLOW_UNFREE = "1";
       SHELL = "${pkgs.zsh}/bin/elvish";
+      WAYFIRE_CONFIG_FILE = "$HOME/.config/wayfire/wayfire.ini";
     };
     sessionPath = [
       "$HOME/.local/bin"
