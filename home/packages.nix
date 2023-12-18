@@ -53,13 +53,16 @@
     kitty
     alacritty
     wezterm
+    gitstatus # 10x faster than git status
+    gitoxide  # rust git client
     carapace
     starship
     lf
-    thefuck
-    bat
-    eza
-    ranger nnn
+    thefuck   #
+    bat       # rust cat
+    eza       # rust ls
+    ranger nnn # cmdline file explorer
+    joshuto   # rust ranger
     fd
     ripgrep
     fzf
@@ -80,6 +83,7 @@
     pandoc
     gh
     zinit
+    ueberzugpp # allow showing child window in terminal
     pipes-rs
     tty-clock
     cava
@@ -139,18 +143,40 @@
     steamcmd
     steam
     gamescope
-    nsxiv          # the best image viewer
+    kanshi         # manage monitor position on wayland
+    wlsunset       # screen color temperature mnger
+    swayidle       # idle mnger
+    swaylock       # lock mnger
+    wlogout        # logout mnger
+    swaynotificationcenter # not only show notifications but also have a drawer
+    rofi-wayland-unwrapped # app launcher
+    inputs.anyrun.packages.${system}.anyrun
+    
+    eww-wayland    # bar
+    waybar         # bar
+    
+    pavucontrol    # sound control
+    brightnessctl  # brightness control
+    grim           # wl raw screenshot
+    grimblast      # wrapper around grim
+    slurp          # reigon selection (outputs reigon coordinates)
+    swappy         # Wayland native snapshot editing tool
+    wf-recorder    # screen recording tool
+    
+    hyprpaper      # hyprland wallpaper utility
+    swww           # dynamic wallpaper
+    wl-clipboard   # wayland clipboard
+    # gnome stuffs
     gnome.nautilus # gnome's file manager
     gnome.gnome-tweaks # gnome's file manager
     gnome.gnome-characters
-    gtk-engine-murrine
     gnome-themes-extra
+    gtk-engine-murrine
     cinnamon.nemo  # cinnamon's file manager
     doublecmd
-    peazip
+    peazip         # achiever
+    nsxiv          # the best image viewer
     
-    hyprpaper      # wallpaper utility
-    swww           # dynamic wallpaper
     gnome.adwaita-icon-theme
     
     # hyprkeys       # keybind retrieval utility
@@ -161,22 +187,7 @@
     
     v2305.hyprpicker     # wlroots color picker
     wayshot        # screenshots tool
-    grimblast      # screenshots tool
-    wf-recorder    # screen recording tool
-    swappy         # Wayland native snapshot editing tool
     
-    grim           # wl raw screenshot
-    slurp          # reigon selection (outputs reigon coordinates)
-    
-    
-    wl-clipboard   # wayland clipboard
-    
-    wlogout        # logout gui
-    rofi-wayland-unwrapped # app launcher
-    pavucontrol    # sound control
-    brightnessctl  # brightness control
-    
-    eww-wayland    # bar
     
     # bar and shell in gjs
     inputs.ags.packages.${system}.default

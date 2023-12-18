@@ -46,30 +46,32 @@ So I use flake to manage my configs.
 #+end_src
 ** Inputs
 #+begin_src nix :noweb-ref inputs
-  ## nixpkgs
-  nixpkgs-2305.url = "github:nixos/nixpkgs/nixos-23.05";
-  nixpkgs-2311.url = "github:nixos/nixpkgs/nixos-23.11";
-  nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-  nixpkgs-wayland.url = "github:nix-community/nixpkgs-wayland";
-  home-manager = {
-    url = "github:nix-community/home-manager";
-    inputs.nixpkgs.follows = "nixpkgs";
-  };
+## nixpkgs
+nixpkgs-2305.url = "github:nixos/nixpkgs/nixos-23.05";
+nixpkgs-2311.url = "github:nixos/nixpkgs/nixos-23.11";
+nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+nixpkgs-wayland.url = "github:nix-community/nixpkgs-wayland";
+home-manager = {
+  url = "github:nix-community/home-manager";
+  inputs.nixpkgs.follows = "nixpkgs";
+};
 
-  utils.url = "github:gytis-ivaskevicius/flake-utils-plus";
-  nur.url = "github:nix-community/NUR";
-  mynur.url = "github:A7R7/nur-packages";
-  # mynur.url = "git+file:./?dir=./nurpkgs";
-  # mynur.url = "./nurpkgs";
-  # hyprland wm
-  hyprland.url = "github:hyprwm/Hyprland";
-  pyprland.url = "github:A7R7/pyprland";
-  ags.url = "github:Aylur/ags";
-  # ags.url = "github:Aylur/ags/feat/widgets-subclass-rewrite";
-  musnix.url = "github:musnix/musnix";
-  pip2nix.url = "github:nix-community/pip2nix";
-  emacs.url = "github:nix-community/emacs-overlay";
-#+end_src
+utils.url = "github:gytis-ivaskevicius/flake-utils-plus";
+nur.url = "github:nix-community/NUR";
+mynur.url = "github:A7R7/nur-packages";
+# mynur.url = "git+file:./?dir=./nurpkgs";
+# mynur.url = "./nurpkgs";
+# hyprland wm
+hyprland.url = "github:hyprwm/Hyprland";
+pyprland.url = "github:A7R7/pyprland";
+ags.url = "github:Aylur/ags";
+# ags.url = "github:Aylur/ags/feat/widgets-subclass-rewrite";
+musnix.url = "github:musnix/musnix";
+pip2nix.url = "github:nix-community/pip2nix";
+emacs.url = "github:nix-community/emacs-overlay";
+anyrun.url = "github:Kirottu/anyrun";
+anyrun.inputs.nixpkgs.follows = "nixpkgs";
+  #+end_src
 ** Outputs
 #+begin_src nix :noweb-ref outputs
   inputs@{
@@ -539,6 +541,7 @@ programs.emacs = {
   package = pkgs.emacs-unstable-pgtk;
 };
 #+end_src
+
 *** Services
 #+begin_src nix
   services.syncthing = {
@@ -645,13 +648,16 @@ These are tools for packaging using nix.
 #+end_src
 **** Tools
 #+begin_src nix
+gitstatus # 10x faster than git status
+gitoxide  # rust git client
 carapace
 starship
 lf
-thefuck
-bat
-eza
-ranger nnn
+thefuck   #
+bat       # rust cat
+eza       # rust ls
+ranger nnn # cmdline file explorer
+joshuto   # rust ranger
 fd
 ripgrep
 fzf
@@ -675,14 +681,15 @@ zinit
 #+end_src
 **** Toys
 #+begin_src nix
-  pipes-rs
-  tty-clock
-  cava
-  cmatrix
-  fastfetch
-  uniscribe # describe unicodes
-  unipicker # pick unicodes
-  nerdfix # find nerd font icons
+ueberzugpp # allow showing child window in terminal
+pipes-rs
+tty-clock
+cava
+cmatrix
+fastfetch
+uniscribe # describe unicodes
+unipicker # pick unicodes
+nerdfix # find nerd font icons
 #+end_src
 
 *** Multimedia
@@ -767,51 +774,62 @@ weechat # IRC
   gamescope
 #+end_src
 *** Desktop
+Essentials
 #+begin_src nix
-  nsxiv          # the best image viewer
-  gnome.nautilus # gnome's file manager
-  gnome.gnome-tweaks # gnome's file manager
-  gnome.gnome-characters
-  gtk-engine-murrine
-  gnome-themes-extra
-  cinnamon.nemo  # cinnamon's file manager
-  doublecmd
-  peazip
+kanshi         # manage monitor position on wayland
+wlsunset       # screen color temperature mnger
+swayidle       # idle mnger
+swaylock       # lock mnger
+wlogout        # logout mnger
+swaynotificationcenter # not only show notifications but also have a drawer
+rofi-wayland-unwrapped # app launcher
+inputs.anyrun.packages.${system}.anyrun
 
-  hyprpaper      # wallpaper utility
-  swww           # dynamic wallpaper
-  gnome.adwaita-icon-theme
+eww-wayland    # bar
+waybar         # bar
 
-  # hyprkeys       # keybind retrieval utility
-  # hyprnome       # gnome like workspace switch
+pavucontrol    # sound control
+brightnessctl  # brightness control
+grim           # wl raw screenshot
+grimblast      # wrapper around grim
+slurp          # reigon selection (outputs reigon coordinates)
+swappy         # Wayland native snapshot editing tool
+wf-recorder    # screen recording tool
 
-  # hyprshade      # screen color filters
-  # wl-gammactl    # set contrast, brightness and gamma on wl
+hyprpaper      # hyprland wallpaper utility
+swww           # dynamic wallpaper
+wl-clipboard   # wayland clipboard
+#+end_src
 
-  v2305.hyprpicker     # wlroots color picker
-  wayshot        # screenshots tool
-  grimblast      # screenshots tool
-  wf-recorder    # screen recording tool
-  swappy         # Wayland native snapshot editing tool
+#+begin_src nix
+# gnome stuffs
+gnome.nautilus # gnome's file manager
+gnome.gnome-tweaks # gnome's file manager
+gnome.gnome-characters
+gnome-themes-extra
+gtk-engine-murrine
+cinnamon.nemo  # cinnamon's file manager
+doublecmd
+peazip         # achiever
+nsxiv          # the best image viewer
 
-  grim           # wl raw screenshot
-  slurp          # reigon selection (outputs reigon coordinates)
+gnome.adwaita-icon-theme
+
+# hyprkeys       # keybind retrieval utility
+# hyprnome       # gnome like workspace switch
+
+# hyprshade      # screen color filters
+# wl-gammactl    # set contrast, brightness and gamma on wl
+
+v2305.hyprpicker     # wlroots color picker
+wayshot        # screenshots tool
 
 
-  wl-clipboard   # wayland clipboard
+# bar and shell in gjs
+inputs.ags.packages.${system}.default
 
-  wlogout        # logout gui
-  rofi-wayland-unwrapped # app launcher
-  pavucontrol    # sound control
-  brightnessctl  # brightness control
-
-  eww-wayland    # bar
-
-  # bar and shell in gjs
-  inputs.ags.packages.${system}.default
-
-  # hyprland plugin set in python
-  inputs.pyprland.packages.${system}.default
+# hyprland plugin set in python
+inputs.pyprland.packages.${system}.default
 #+end_src
 *** System-tools
 #+begin_src nix
