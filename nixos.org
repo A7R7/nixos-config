@@ -31,17 +31,19 @@ So I use flake to manage my configs.
 #+end_src
 ** nixConfig
 #+begin_src nix :noweb-ref nixConfig
-    experimental-features = [ "nix-command" "flakes" ];
-    # nix community's cache server
-    extra-substituters = [
-      "https://nix-community.cachix.org"
-      "https://nixpkgs-wayland.cachix.org"
-    ];
-    extra-trusted-public-keys = [
-      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-      "nixpkgs-wayland.cachix.org-1:3lwxaILxMRkVhehr5StQprHdEo4IrE8sRho9R9HOLYA="
-      "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
-    ];
+experimental-features = [ "nix-command" "flakes" ];
+# nix community's cache server
+extra-substituters = [
+  "https://nix-community.cachix.org"
+  "https://nixpkgs-wayland.cachix.org"
+  "https://anyrun.cachix.org"
+];
+extra-trusted-public-keys = [
+  "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+  "nixpkgs-wayland.cachix.org-1:3lwxaILxMRkVhehr5StQprHdEo4IrE8sRho9R9HOLYA="
+  "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+  "anyrun.cachix.org-1:pqBobmOjI7nKlsUMV25u9QHa9btJK65/C8vnO3p346s="
+];
 
 #+end_src
 ** Inputs
@@ -448,8 +450,7 @@ in
     sessionVariables = {
       QT_XCB_GL_INTEGRATION = "none"; # kde-connect
       NIXPKGS_ALLOW_UNFREE = "1";
-      SHELL = "${pkgs.zsh}/bin/elvish";
-      WAYFIRE_CONFIG_FILE = "$HOME/.config/wayfire/wayfire.ini";
+      # SHELL = "${pkgs.zsh}/bin/elvish";
     };
     sessionPath = [
       "$HOME/.local/bin"
@@ -783,7 +784,7 @@ swaylock       # lock mnger
 wlogout        # logout mnger
 swaynotificationcenter # not only show notifications but also have a drawer
 rofi-wayland-unwrapped # app launcher
-inputs.anyrun.packages.${system}.anyrun
+inputs.anyrun.packages.${system}.anyrun-with-all-plugins # app launcher
 
 eww-wayland    # bar
 waybar         # bar

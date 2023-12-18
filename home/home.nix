@@ -16,8 +16,7 @@ in
     sessionVariables = {
       QT_XCB_GL_INTEGRATION = "none"; # kde-connect
       NIXPKGS_ALLOW_UNFREE = "1";
-      SHELL = "${pkgs.zsh}/bin/elvish";
-      WAYFIRE_CONFIG_FILE = "$HOME/.config/wayfire/wayfire.ini";
+      # SHELL = "${pkgs.zsh}/bin/elvish";
     };
     sessionPath = [
       "$HOME/.local/bin"

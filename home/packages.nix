@@ -150,7 +150,7 @@
     wlogout        # logout mnger
     swaynotificationcenter # not only show notifications but also have a drawer
     rofi-wayland-unwrapped # app launcher
-    inputs.anyrun.packages.${system}.anyrun
+    inputs.anyrun.packages.${system}.anyrun-with-all-plugins # app launcher
     
     eww-wayland    # bar
     waybar         # bar
