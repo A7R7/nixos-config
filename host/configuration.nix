@@ -145,11 +145,11 @@
   programs.dconf.enable = true;
   # ends here
   # [[file:nixos.org::*Host][]]
-  programs.hyprland = {
-    enable = true;
-    xwayland.enable = true;
-    enableNvidiaPatches = false;
-  };
+  # programs.hyprland = {
+  #   enable = true;
+  #   xwayland.enable = true;
+  #   enableNvidiaPatches = false;
+  # };
   # ends here
   # [[file:nixos.org::*Host][]]
   programs.wayfire = {

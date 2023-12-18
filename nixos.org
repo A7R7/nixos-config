@@ -296,11 +296,11 @@ programs.dconf.enable = true;
 #+end_src
 
 #+begin_src nix :tangle no
-programs.hyprland = {
-  enable = true;
-  xwayland.enable = true;
-  enableNvidiaPatches = false;
-};
+# programs.hyprland = {
+#   enable = true;
+#   xwayland.enable = true;
+#   enableNvidiaPatches = false;
+# };
 #+end_src
 
 #+begin_src nix
