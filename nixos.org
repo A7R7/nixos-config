@@ -295,7 +295,7 @@ programs.adb.enable = true;
 programs.dconf.enable = true;
 #+end_src
 
-#+begin_src nix
+#+begin_src nix :tangle no
 programs.hyprland = {
   enable = true;
   xwayland.enable = true;
