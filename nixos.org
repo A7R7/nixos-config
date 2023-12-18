@@ -527,6 +527,9 @@ home.packages = with pkgs; [
 
 *** Programs
 #+begin_src nix
+programs.bash = {
+  enable = true; # this is needed for home.sessionVariables to work
+};
 programs.vscode = {
   enable = true;
   package = pkgs.vscode.fhs;
@@ -826,20 +829,20 @@ weechat # IRC
 #+end_src
 * Build
 #+begin_src sh :dir /sudo::
-	sudo nixos-rebuild switch --flake . --impure
+sudo nixos-rebuild switch --flake . --impure
 #+end_src
 
 #+RESULTS:
 
 #+begin_src sh
-	home-manager switch --flake .
+home-manager switch --flake .
 #+end_src
 
 #+begin_src sh
-	nix flake update
+nix flake update
 #+end_src
 
 #+begin_src sh
-	sudo nix profile wipe-history --profile /nix/var/nix/profiles/system  --older-than 7d
-	sudo nix store gc --debug
+sudo nix profile wipe-history --profile /nix/var/nix/profiles/system  --older-than 7d
+sudo nix store gc --debug
 #+end_src

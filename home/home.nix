@@ -89,6 +89,9 @@ in
   };
   # ends here
   # [[file:nixos.org::*Config][]]
+  programs.bash = {
+    enable = true; # this is needed for home.sessionVariables to work
+  };
   programs.vscode = {
     enable = true;
     package = pkgs.vscode.fhs;
