@@ -214,8 +214,8 @@
     layout = "us";
     xkbOptions = "caps:escape";
     # displayManager.gdm.enable = true;
-    displayManager.lightdm.enable = true;
-    displayManager.lightdm.greeters.slick.enable = true;
+    # displayManager.lightdm.enable = true;
+    # displayManager.lightdm.greeters.slick.enable = true;
     # desktopManager.gnome.enable = true;
   };
   # ends here
