@@ -50,7 +50,7 @@
   };
   # ends here
   # [[file:nixos.org::*Host][]]
-  # musnix.enable = true;
+  musnix.enable = true;
   sound.enable = false; # sound.enable is only meant for ALSA-based configurations
   hardware.pulseaudio.enable = false;
   hardware.bluetooth.enable = true;
@@ -201,7 +201,8 @@
   services.xserver.excludePackages = [ pkgs.xterm ];
   services.xserver.layout = "us";
   services.xserver.xkbOptions = "caps:escape";
-  services.xserver.displayManager.gdm.enable = true;
+  # services.xserver.displayManager.gdm.enable = true;
+  services.xserver.displayManager.sddm.enable = true;
   services.xserver.displayManager.sessionPackages = [
     pkgs.hyprland
     pkgs.wayfire
