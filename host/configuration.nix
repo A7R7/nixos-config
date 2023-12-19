@@ -209,10 +209,6 @@
     wayland.enable = true;
     theme = "chili";
   };
-  services.xserver.displayManager.sessionPackages = [
-    pkgs.wayfire
-    pkgs.hyprland
-  ];
   # displayManager.lightdm.enable = true;
   # displayManager.lightdm.greeters.slick.enable = true;
   # desktopManager.gnome.enable = true;
