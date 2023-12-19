@@ -39,7 +39,7 @@
     texliveFull
     pyright
     javascript-typescript-langserver
-    rust-analyzer 
+    rust-analyzer
     sqlite
     dbeaver
     niv

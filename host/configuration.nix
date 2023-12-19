@@ -156,6 +156,7 @@
   # [[file:nixos.org::*Host][]]
   programs.wayfire = {
     enable = true;
+    package = pkgs.mynur.wayfire;
     plugins = (with pkgs.wayfirePlugins; [
       wcm
       wf-shell
@@ -209,8 +210,8 @@
     theme = "chili";
   };
   services.xserver.displayManager.sessionPackages = [
-    pkgs.hyprland
     pkgs.wayfire
+    pkgs.hyprland
   ];
   # displayManager.lightdm.enable = true;
   # displayManager.lightdm.greeters.slick.enable = true;
