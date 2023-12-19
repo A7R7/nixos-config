@@ -304,7 +304,7 @@ environment.localBinInPath = true;
 programs.hyprland = {
   enable = true;
   xwayland.enable = true;
-  enableNvidiaPatches = false;
+  # enableNvidiaPatches = false; # deprecated
 };
 #+end_src
 
@@ -634,8 +634,9 @@ To seriously do development on nixos I have to write derivations.
 #+end_src
 **** Lang-servers
 #+begin_src nix
-  pyright
-  javascript-typescript-langserver
+pyright
+javascript-typescript-langserver
+rust-analyzer 
 #+end_src
 **** Database
 #+begin_src nix

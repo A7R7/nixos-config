@@ -150,7 +150,7 @@
   programs.hyprland = {
     enable = true;
     xwayland.enable = true;
-    enableNvidiaPatches = false;
+    # enableNvidiaPatches = false; # deprecated
   };
   # ends here
   # [[file:nixos.org::*Host][]]
