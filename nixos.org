@@ -525,16 +525,17 @@ gtk.iconTheme = {
   name = "kora";
   package = pkgs.kora-icon-theme;
 };
-gtk.cursorTheme = {
-  package = pkgs.whitesur-cursors;
-  name = "whitesur-cursors";
-  size = 32;
-};
+# gtk.cursorTheme = {
+#   package = pkgs.whitesur-cursors;
+#   name = "whitesur-cursors";
+#   size = 32;
+# };
 home.pointerCursor = {
   package = pkgs.whitesur-cursors;
-  name = "whitesur-cursors";
+  name = "WhiteSur-cursors";
   size = 32;
   x11.enable = true;
+  gtk.enable = true;
 };
 xresources.properties = {
   "Xcursor.size" = 32;
@@ -556,6 +557,8 @@ gtk.gtk3.bookmarks = [
 ];
 
 #+end_src
+
+#+RESULTS:
 
 *** Programs
 #+begin_src nix
