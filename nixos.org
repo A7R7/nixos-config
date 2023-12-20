@@ -380,7 +380,7 @@ programs.dconf.enable = true;
   # services.xserver.displayManager.gdm.enable = true;
   services.xserver.displayManager.sddm = {
     enable = true;
-    wayland.enable = true;
+    # wayland.enable = true;
     theme = "chili";
   };
   # displayManager.lightdm.enable = true;
@@ -514,37 +514,47 @@ home.packages = with pkgs; [
 
 *** GTK
 #+begin_src nix
-  gtk.enable = true;
-  gtk.theme = {
-    name = "fluent-gtk-theme";
-    package = pkgs.fluent-gtk-theme.override {
-      tweaks = [ "blur" ];
-    };
+gtk.enable = true;
+gtk.theme = {
+  name = "fluent-gtk-theme";
+  package = pkgs.fluent-gtk-theme.override {
+    tweaks = [ "blur" ];
   };
-  gtk.cursorTheme = {
-    name = "whitesur-cursors";
-    package = pkgs.whitesur-cursors;
-  };
-  gtk.iconTheme = {
-    name = "kora";
-    package = pkgs.kora-icon-theme;
-  };
-  gtk.gtk3.bookmarks = [
-    "file://${homeDirectory}/Documents"
-    "file://${homeDirectory}/Music"
-    "file://${homeDirectory}/Pictures"
-    "file://${homeDirectory}/Videos"
-    "file://${homeDirectory}/Downloads"
-    "file://${homeDirectory}/Desktop"
-    "file://${homeDirectory}/Projects"
-    "file://${homeDirectory}/.config Config"
-    "file://${homeDirectory}/.local/share Local"
-  ];
+};
+gtk.iconTheme = {
+  name = "kora";
+  package = pkgs.kora-icon-theme;
+};
+gtk.cursorTheme = {
+  package = pkgs.whitesur-cursors;
+  name = "whitesur-cursors";
+  size = 32;
+};
+home.pointerCursor = {
+  package = pkgs.whitesur-cursors;
+  name = "whitesur-cursors";
+  size = 32;
+  x11.enable = true;
+};
+xresources.properties = {
+  "Xcursor.size" = 32;
+  "Xft.dpi" = 172;
+};
+#+end_src
 
-  xresources.properties = {
-    "Xcursor.size" = 16;
-    "Xft.dpi" = 172;
-  };
+#+begin_src nix
+gtk.gtk3.bookmarks = [
+  "file://${homeDirectory}/Documents"
+  "file://${homeDirectory}/Music"
+  "file://${homeDirectory}/Pictures"
+  "file://${homeDirectory}/Videos"
+  "file://${homeDirectory}/Downloads"
+  "file://${homeDirectory}/Desktop"
+  "file://${homeDirectory}/Projects"
+  "file://${homeDirectory}/.config Config"
+  "file://${homeDirectory}/.local/share Local"
+];
+
 #+end_src
 
 *** Programs

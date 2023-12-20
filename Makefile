@@ -16,7 +16,7 @@ host/generation:
 host: host/build host/generation commit
 
 home/build:
-	home-manager switch --flake .
+	home-manager switch --flake . -b backup
 
 home/generation:
 	$(eval HOME_GENERATION := $(shell home-manager generations | grep -oP 'id \K\d+' | head -n 1))

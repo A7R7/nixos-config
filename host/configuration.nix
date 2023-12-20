@@ -206,7 +206,7 @@
   # services.xserver.displayManager.gdm.enable = true;
   services.xserver.displayManager.sddm = {
     enable = true;
-    wayland.enable = true;
+    # wayland.enable = true;
     theme = "chili";
   };
   # displayManager.lightdm.enable = true;

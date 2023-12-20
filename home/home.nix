@@ -62,14 +62,27 @@ in
       tweaks = [ "blur" ];
     };
   };
-  gtk.cursorTheme = {
-    name = "whitesur-cursors";
-    package = pkgs.whitesur-cursors;
-  };
   gtk.iconTheme = {
     name = "kora";
     package = pkgs.kora-icon-theme;
   };
+  gtk.cursorTheme = {
+    package = pkgs.whitesur-cursors;
+    name = "whitesur-cursors";
+    size = 32;
+  };
+  home.pointerCursor = {
+    package = pkgs.whitesur-cursors;
+    name = "whitesur-cursors";
+    size = 32;
+    x11.enable = true;
+  };
+  xresources.properties = {
+    "Xcursor.size" = 32;
+    "Xft.dpi" = 172;
+  };
+  # ends here
+  # [[file:nixos.org::*Config][]]
   gtk.gtk3.bookmarks = [
     "file://${homeDirectory}/Documents"
     "file://${homeDirectory}/Music"
@@ -82,10 +95,6 @@ in
     "file://${homeDirectory}/.local/share Local"
   ];
   
-  xresources.properties = {
-    "Xcursor.size" = 16;
-    "Xft.dpi" = 172;
-  };
   # ends here
   # [[file:nixos.org::*Config][]]
   programs.bash = {
