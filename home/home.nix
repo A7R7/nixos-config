@@ -56,12 +56,12 @@ in
   # ends here
   # [[file:nixos.org::*Config][]]
   gtk.enable = true;
-  gtk.theme = {
-    name = "Fluent";
-    package = pkgs.fluent-gtk-theme.override {
-      tweaks = [ "blur" ];
-    };
-  };
+  # gtk.theme = {
+  #   name = "Fluent";
+  #   package = pkgs.fluent-gtk-theme.override {
+  #     tweaks = [ "blur" ];
+  #   };
+  # };
   gtk.iconTheme = {
     name = "Kora";
     package = pkgs.kora-icon-theme;

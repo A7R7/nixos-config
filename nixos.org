@@ -515,12 +515,12 @@ home.packages = with pkgs; [
 *** GTK
 #+begin_src nix
 gtk.enable = true;
-gtk.theme = {
-  name = "Fluent";
-  package = pkgs.fluent-gtk-theme.override {
-    tweaks = [ "blur" ];
-  };
-};
+# gtk.theme = {
+#   name = "Fluent";
+#   package = pkgs.fluent-gtk-theme.override {
+#     tweaks = [ "blur" ];
+#   };
+# };
 gtk.iconTheme = {
   name = "Kora";
   package = pkgs.kora-icon-theme;
