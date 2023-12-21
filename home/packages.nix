@@ -6,7 +6,7 @@
     libreoffice
     neovide
     marktext
-    gcc ccache cmake clang-tools
+    gcc ccache cmake clang-tools bear
     (python311.withPackages(ps: with ps; [
       # required by lsp-bridge, holo-layer, and blink search
       epc orjson sexpdata six paramiko rapidfuzz
@@ -45,9 +45,12 @@
     niv
     nix-universal-prefetch
     inputs.pip2nix.defaultPackage.${system}
+    nix-your-shell
+    nix-output-monitor
     doxygen
     doxygen_gui
     mynur.logisim-ita
+    uncrustify
     gtk-engine-murrine
     gnome-themes-extra
     mynur.tdlib # for building telegrame clients
@@ -84,6 +87,7 @@
     pandoc
     gh
     zinit
+    just
     ueberzugpp # allow showing child window in terminal
     pipes-rs
     tty-clock
@@ -136,6 +140,7 @@
     element-desktop
     thunderbird
     weechat # IRC
+    nur.repos.linyinfeng.wemeet
     v2305.clash-verge
     prismlauncher
     glfw-wayland-minecraft

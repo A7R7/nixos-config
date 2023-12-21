@@ -516,13 +516,13 @@ home.packages = with pkgs; [
 #+begin_src nix
 gtk.enable = true;
 gtk.theme = {
-  name = "fluent-gtk-theme";
+  name = "Fluent";
   package = pkgs.fluent-gtk-theme.override {
     tweaks = [ "blur" ];
   };
 };
 gtk.iconTheme = {
-  name = "kora";
+  name = "Kora";
   package = pkgs.kora-icon-theme;
 };
 # gtk.cursorTheme = {
@@ -610,7 +610,7 @@ marktext
 These tools can be seen as runtimes, for non serious usage and quick testing.
 To seriously do development on nixos I have to write derivations.
 #+begin_src nix
-  gcc ccache cmake clang-tools
+  gcc ccache cmake clang-tools bear
   (python311.withPackages(ps: with ps; [
     # required by lsp-bridge, holo-layer, and blink search
     epc orjson sexpdata six paramiko rapidfuzz
@@ -657,15 +657,18 @@ rust-analyzer
 **** Nix
 These are tools for packaging using nix.
 #+begin_src nix
-  niv
-  nix-universal-prefetch
-  inputs.pip2nix.defaultPackage.${system}
+niv
+nix-universal-prefetch
+inputs.pip2nix.defaultPackage.${system}
+nix-your-shell
+nix-output-monitor
  #+end_src
 **** Others
 #+begin_src nix
-  doxygen
-  doxygen_gui
-  mynur.logisim-ita
+doxygen
+doxygen_gui
+mynur.logisim-ita
+uncrustify
 #+end_src
 *** Runtime
 #+begin_src nix
@@ -712,6 +715,7 @@ hugo
 pandoc
 gh
 zinit
+just
 #+end_src
 **** Toys
 #+begin_src nix
@@ -792,6 +796,7 @@ telegram-desktop
 element-desktop
 thunderbird
 weechat # IRC
+nur.repos.linyinfeng.wemeet
 #+end_src
 **** VPN
 #+begin_src nix
