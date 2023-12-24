@@ -81,7 +81,7 @@
         Nixtop = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           specialArgs = { inherit inputs username system pkgs; };
-          modules = [ ./host/configuration.nix ];
+          modules = [ ./host/configuration.nix ./host/omen16.nix];
         };
       };
     	homeConfigurations = {

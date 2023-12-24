@@ -4,7 +4,6 @@
   imports =
     [
       /etc/nixos/hardware-configuration.nix
-      /etc/nixos/nvidia.nix
       inputs.musnix.nixosModules.musnix
     ];
   # [[file:nixos.org::*Host][]]
@@ -45,7 +44,6 @@
   # ends here
   # [[file:nixos.org::*Host][]]
   networking = {
-    hostName = "Nixtop"; # Define your hostname.
     networkmanager.enable = true;
   };
   # ends here
