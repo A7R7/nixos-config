@@ -85,7 +85,7 @@ anyrun.inputs.nixpkgs.follows = "nixpkgs";
     home-manager,
     ... }:
   let
-    username = "aaron-nix";
+    username = "aaron";
     system = "x86_64-linux";
     pkgs = import nixpkgs {
       inherit system;
@@ -114,7 +114,7 @@ anyrun.inputs.nixpkgs.follows = "nixpkgs";
       };
     };
   	homeConfigurations = {
-      aaron-nix = home-manager.lib.homeManagerConfiguration {
+      aaron = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
         extraSpecialArgs = { inherit inputs username pkgs; };
         modules = [ ./home/home.nix ];
@@ -136,6 +136,7 @@ anyrun.inputs.nixpkgs.follows = "nixpkgs";
     imports =
       [
         /etc/nixos/hardware-configuration.nix
+        /etc/nixos/nvidia.nix
         inputs.musnix.nixosModules.musnix
       ];
     <<host-config>>
@@ -165,22 +166,21 @@ anyrun.inputs.nixpkgs.follows = "nixpkgs";
 ** Boot
 [[file:/etc/nixos/hardware-configuration.nix][/etc/nixos/hardware-configuration.nix]]
 #+begin_src nix
-  boot = {
-    # kernelPackages = pkgs.linuxPackages_latest;
-    kernelPackages = pkgs.linuxPackages_zen;
-    loader = {
-      # systemd-boot.enable = true;
-      grub = {
-        enable = true;
-        theme = pkgs.mynur.xenlism-grub-4k-nixos;
-        splashMode = "normal";
-        # efiSupport = true;
-      };
-      efi.canTouchEfiVariables = true;
-      efi.efiSysMountPoint = "/boot";
-      timeout = 10;
+boot = {
+  loader = {
+    # systemd-boot.enable = true;
+    grub = {
+      enable = true;
+      theme = pkgs.mynur.xenlism-grub-4k-nixos;
+      splashMode = "normal";
+      efiSupport = true;
+      useOSProber = true;
     };
+    efi.canTouchEfiVariables = true;
+    efi.efiSysMountPoint = "/boot";
+    timeout = 10;
   };
+};
 #+end_src
 ** Network
 #+begin_src nix
@@ -234,9 +234,9 @@ anyrun.inputs.nixpkgs.follows = "nixpkgs";
       ];
     };
   };
-  # environment.sessionVariables.GTK_IM_MODULE = "fcitx";
-  # environment.sessionVariables.QT_IM_MODULE = "fcitx";
-  # environment.sessionVariables.XMODIFIERS = "@im=fcitx";
+  # environment.sessionVariables.GTK_IM_MODULE = "fcitx5";
+  # environment.sessionVariables.QT_IM_MODULE = "fcitx5";
+  # environment.sessionVariables.XMODIFIERS = "@im=fcitx5";
 #+end_src
 ** User
 
@@ -450,8 +450,8 @@ Becareful that packages installed by ~nix profile install~ can conflict with pac
 #+begin_src nix :tangle home/home.nix :comments noweb :noweb no-export :noweb-ref no
 { config, pkgs, inputs, ... }:
 let
-  username = "aaron-nix";
-  homeDirectory = "/home/aaron-nix";
+  username = "aaron";
+  homeDirectory = "/home/aaron";
 in
 {
   imports = [

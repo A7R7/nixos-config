@@ -1,12 +1,25 @@
-# [[file:../nixos.org::*Host][Host:1]]
+# [[file:../nixos.org::+begin_src nix :tangle host/configuration.nix :comments noweb :noweb no-export :noweb-ref no
+#  { config, pkgs, lib, inputs, username, ... }:
+#  {
+#  imports =
+#  \[
+#  /etc/nixos/hardware-configuration.nix
+#  /etc/nixos/][Host:1]]
 { config, pkgs, lib, inputs, username, ... }:
 {
   imports =
     [
       /etc/nixos/hardware-configuration.nix
+      /etc/nixos/nvidia.nix
       inputs.musnix.nixosModules.musnix
     ];
-  # [[file:nixos.org::*Host][]]
+  # [[file:nixos.org::+begin_src nix :tangle host/configuration.nix :comments noweb :noweb no-export :noweb-ref no
+  #  { config, pkgs, lib, inputs, username, ... }:
+  #  {
+  #  imports =
+  #  \[
+  #  /etc/nixos/hardware-configuration.nix
+  #  /etc/nixos/][]]
   system.stateVersion = "23.11";
   nixpkgs.config.allowUnfree = true;
   nix = {
@@ -25,17 +38,22 @@
     };
   };
   # ends here
-  # [[file:nixos.org::*Host][]]
+  # [[file:nixos.org::+begin_src nix :tangle host/configuration.nix :comments noweb :noweb no-export :noweb-ref no
+  #  { config, pkgs, lib, inputs, username, ... }:
+  #  {
+  #  imports =
+  #  \[
+  #  /etc/nixos/hardware-configuration.nix
+  #  /etc/nixos/][]]
   boot = {
-    # kernelPackages = pkgs.linuxPackages_latest;
-    kernelPackages = pkgs.linuxPackages_zen;
     loader = {
       # systemd-boot.enable = true;
       grub = {
         enable = true;
         theme = pkgs.mynur.xenlism-grub-4k-nixos;
         splashMode = "normal";
-        # efiSupport = true;
+        efiSupport = true;
+        useOSProber = true;
       };
       efi.canTouchEfiVariables = true;
       efi.efiSysMountPoint = "/boot";
@@ -43,13 +61,25 @@
     };
   };
   # ends here
-  # [[file:nixos.org::*Host][]]
+  # [[file:nixos.org::+begin_src nix :tangle host/configuration.nix :comments noweb :noweb no-export :noweb-ref no
+  #  { config, pkgs, lib, inputs, username, ... }:
+  #  {
+  #  imports =
+  #  \[
+  #  /etc/nixos/hardware-configuration.nix
+  #  /etc/nixos/][]]
   networking = {
     hostName = "Nixtop"; # Define your hostname.
     networkmanager.enable = true;
   };
   # ends here
-  # [[file:nixos.org::*Host][]]
+  # [[file:nixos.org::+begin_src nix :tangle host/configuration.nix :comments noweb :noweb no-export :noweb-ref no
+  #  { config, pkgs, lib, inputs, username, ... }:
+  #  {
+  #  imports =
+  #  \[
+  #  /etc/nixos/hardware-configuration.nix
+  #  /etc/nixos/][]]
   musnix.enable = true;
   sound.enable = false; # sound.enable is only meant for ALSA-based configurations
   hardware.pulseaudio.enable = false;
@@ -63,7 +93,13 @@
     jack.enable = true;
   };
   # ends here
-  # [[file:nixos.org::*Host][]]
+  # [[file:nixos.org::+begin_src nix :tangle host/configuration.nix :comments noweb :noweb no-export :noweb-ref no
+  #  { config, pkgs, lib, inputs, username, ... }:
+  #  {
+  #  imports =
+  #  \[
+  #  /etc/nixos/hardware-configuration.nix
+  #  /etc/nixos/][]]
   time.timeZone = "Asia/Shanghai";
   i18n = {
     defaultLocale = "en_US.UTF-8";
@@ -79,7 +115,13 @@
   
   
   # ends here
-  # [[file:nixos.org::*Host][]]
+  # [[file:nixos.org::+begin_src nix :tangle host/configuration.nix :comments noweb :noweb no-export :noweb-ref no
+  #  { config, pkgs, lib, inputs, username, ... }:
+  #  {
+  #  imports =
+  #  \[
+  #  /etc/nixos/hardware-configuration.nix
+  #  /etc/nixos/][]]
   i18n.inputMethod = {
     enabled = "fcitx5";
     fcitx5 = {
@@ -91,11 +133,17 @@
       ];
     };
   };
-  # environment.sessionVariables.GTK_IM_MODULE = "fcitx";
-  # environment.sessionVariables.QT_IM_MODULE = "fcitx";
-  # environment.sessionVariables.XMODIFIERS = "@im=fcitx";
+  # environment.sessionVariables.GTK_IM_MODULE = "fcitx5";
+  # environment.sessionVariables.QT_IM_MODULE = "fcitx5";
+  # environment.sessionVariables.XMODIFIERS = "@im=fcitx5";
   # ends here
-  # [[file:nixos.org::*Host][]]
+  # [[file:nixos.org::+begin_src nix :tangle host/configuration.nix :comments noweb :noweb no-export :noweb-ref no
+  #  { config, pkgs, lib, inputs, username, ... }:
+  #  {
+  #  imports =
+  #  \[
+  #  /etc/nixos/hardware-configuration.nix
+  #  /etc/nixos/][]]
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.${username} = {
     isNormalUser = true;
@@ -103,7 +151,13 @@
     # shell = pkgs.elvish;
   };
   # ends here
-  # [[file:nixos.org::*Host][]]
+  # [[file:nixos.org::+begin_src nix :tangle host/configuration.nix :comments noweb :noweb no-export :noweb-ref no
+  #  { config, pkgs, lib, inputs, username, ... }:
+  #  {
+  #  imports =
+  #  \[
+  #  /etc/nixos/hardware-configuration.nix
+  #  /etc/nixos/][]]
   environment.systemPackages = with pkgs; [
     vim neovim
     wget
@@ -119,22 +173,46 @@
     sddm-chili-theme
   ];
   # ends here
-  # [[file:nixos.org::*Host][]]
+  # [[file:nixos.org::+begin_src nix :tangle host/configuration.nix :comments noweb :noweb no-export :noweb-ref no
+  #  { config, pkgs, lib, inputs, username, ... }:
+  #  {
+  #  imports =
+  #  \[
+  #  /etc/nixos/hardware-configuration.nix
+  #  /etc/nixos/][]]
   environment.shells = with pkgs; [
     dash elvish fish nushell tcsh xonsh zsh
   ];
   # ends here
-  # [[file:nixos.org::*Host][]]
+  # [[file:nixos.org::+begin_src nix :tangle host/configuration.nix :comments noweb :noweb no-export :noweb-ref no
+  #  { config, pkgs, lib, inputs, username, ... }:
+  #  {
+  #  imports =
+  #  \[
+  #  /etc/nixos/hardware-configuration.nix
+  #  /etc/nixos/][]]
   environment.localBinInPath = true;
   # ends here
-  # [[file:nixos.org::*Host][]]
+  # [[file:nixos.org::+begin_src nix :tangle host/configuration.nix :comments noweb :noweb no-export :noweb-ref no
+  #  { config, pkgs, lib, inputs, username, ... }:
+  #  {
+  #  imports =
+  #  \[
+  #  /etc/nixos/hardware-configuration.nix
+  #  /etc/nixos/][]]
   virtualisation = {
     podman.enable = true;
     libvirtd.enable = true;
     waydroid.enable = true;
   };
   # ends here
-  # [[file:nixos.org::*Host][]]
+  # [[file:nixos.org::+begin_src nix :tangle host/configuration.nix :comments noweb :noweb no-export :noweb-ref no
+  #  { config, pkgs, lib, inputs, username, ... }:
+  #  {
+  #  imports =
+  #  \[
+  #  /etc/nixos/hardware-configuration.nix
+  #  /etc/nixos/][]]
   # programs.regreet = {
   # This line installs ReGreet,
   # sets up systemd tmpfiles for it,
@@ -143,17 +221,35 @@
   # };
   
   # ends here
-  # [[file:nixos.org::*Host][]]
+  # [[file:nixos.org::+begin_src nix :tangle host/configuration.nix :comments noweb :noweb no-export :noweb-ref no
+  #  { config, pkgs, lib, inputs, username, ... }:
+  #  {
+  #  imports =
+  #  \[
+  #  /etc/nixos/hardware-configuration.nix
+  #  /etc/nixos/][]]
   
   # ends here
-  # [[file:nixos.org::*Host][]]
+  # [[file:nixos.org::+begin_src nix :tangle host/configuration.nix :comments noweb :noweb no-export :noweb-ref no
+  #  { config, pkgs, lib, inputs, username, ... }:
+  #  {
+  #  imports =
+  #  \[
+  #  /etc/nixos/hardware-configuration.nix
+  #  /etc/nixos/][]]
   programs.hyprland = {
     enable = true;
     xwayland.enable = true;
     # enableNvidiaPatches = false; # deprecated
   };
   # ends here
-  # [[file:nixos.org::*Host][]]
+  # [[file:nixos.org::+begin_src nix :tangle host/configuration.nix :comments noweb :noweb no-export :noweb-ref no
+  #  { config, pkgs, lib, inputs, username, ... }:
+  #  {
+  #  imports =
+  #  \[
+  #  /etc/nixos/hardware-configuration.nix
+  #  /etc/nixos/][]]
   programs.wayfire = {
     enable = true;
     package = pkgs.mynur.wayfire;
@@ -167,25 +263,49 @@
   };
   environment.sessionVariables.WAYFIRE_CONFIG_FILE = "$HOME/.config/wayfire/wayfire.ini";
   # ends here
-  # [[file:nixos.org::*Host][]]
+  # [[file:nixos.org::+begin_src nix :tangle host/configuration.nix :comments noweb :noweb no-export :noweb-ref no
+  #  { config, pkgs, lib, inputs, username, ... }:
+  #  {
+  #  imports =
+  #  \[
+  #  /etc/nixos/hardware-configuration.nix
+  #  /etc/nixos/][]]
   programs.steam = {
     enable = true;
     remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
     dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
   };
   # ends here
-  # [[file:nixos.org::*Host][]]
+  # [[file:nixos.org::+begin_src nix :tangle host/configuration.nix :comments noweb :noweb no-export :noweb-ref no
+  #  { config, pkgs, lib, inputs, username, ... }:
+  #  {
+  #  imports =
+  #  \[
+  #  /etc/nixos/hardware-configuration.nix
+  #  /etc/nixos/][]]
   xdg.portal = {
     enable = true;
     wlr.enable = true;
     # extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
   };
   # ends here
-  # [[file:nixos.org::*Host][]]
+  # [[file:nixos.org::+begin_src nix :tangle host/configuration.nix :comments noweb :noweb no-export :noweb-ref no
+  #  { config, pkgs, lib, inputs, username, ... }:
+  #  {
+  #  imports =
+  #  \[
+  #  /etc/nixos/hardware-configuration.nix
+  #  /etc/nixos/][]]
   programs.adb.enable = true;
   programs.dconf.enable = true;
   # ends here
-  # [[file:nixos.org::*Host][]]
+  # [[file:nixos.org::+begin_src nix :tangle host/configuration.nix :comments noweb :noweb no-export :noweb-ref no
+  #  { config, pkgs, lib, inputs, username, ... }:
+  #  {
+  #  imports =
+  #  \[
+  #  /etc/nixos/hardware-configuration.nix
+  #  /etc/nixos/][]]
   fonts.fonts = with pkgs; [
     noto-fonts
     noto-fonts-cjk
@@ -198,7 +318,13 @@
     allowBitmaps = false;
   };
   # ends here
-  # [[file:nixos.org::*Host][]]
+  # [[file:nixos.org::+begin_src nix :tangle host/configuration.nix :comments noweb :noweb no-export :noweb-ref no
+  #  { config, pkgs, lib, inputs, username, ... }:
+  #  {
+  #  imports =
+  #  \[
+  #  /etc/nixos/hardware-configuration.nix
+  #  /etc/nixos/][]]
   services.xserver.enable = true;
   services.xserver.excludePackages = [ pkgs.xterm ];
   services.xserver.layout = "us";
@@ -213,7 +339,13 @@
   # displayManager.lightdm.greeters.slick.enable = true;
   # desktopManager.gnome.enable = true;
   # ends here
-  # [[file:nixos.org::*Host][]]
+  # [[file:nixos.org::+begin_src nix :tangle host/configuration.nix :comments noweb :noweb no-export :noweb-ref no
+  #  { config, pkgs, lib, inputs, username, ... }:
+  #  {
+  #  imports =
+  #  \[
+  #  /etc/nixos/hardware-configuration.nix
+  #  /etc/nixos/][]]
   services.tlp.enable = true;
   services.printing.enable = true;
   services.flatpak.enable = true;
@@ -229,7 +361,13 @@
   # a DBus service for accessing the list of user accounts and information attached to those accounts.
   services.accounts-daemon.enable = true;
   # ends here
-  # [[file:nixos.org::*Host][]]
+  # [[file:nixos.org::+begin_src nix :tangle host/configuration.nix :comments noweb :noweb no-export :noweb-ref no
+  #  { config, pkgs, lib, inputs, username, ... }:
+  #  {
+  #  imports =
+  #  \[
+  #  /etc/nixos/hardware-configuration.nix
+  #  /etc/nixos/][]]
   services.gnome = {
     evolution-data-server.enable = true;
     glib-networking.enable = true;
@@ -238,13 +376,25 @@
     at-spi2-core.enable = true; # avoid the warning "The name org.a11y.Bus was not provided by any .service files"
   };
   # ends here
-  # [[file:nixos.org::*Host][]]
+  # [[file:nixos.org::+begin_src nix :tangle host/configuration.nix :comments noweb :noweb no-export :noweb-ref no
+  #  { config, pkgs, lib, inputs, username, ... }:
+  #  {
+  #  imports =
+  #  \[
+  #  /etc/nixos/hardware-configuration.nix
+  #  /etc/nixos/][]]
   services.dae = {
     enable = true;
     configFile = "/home/${username}/.config/dae/config.dae";
   };
   # ends here
-  # [[file:nixos.org::*Host][]]
+  # [[file:nixos.org::+begin_src nix :tangle host/configuration.nix :comments noweb :noweb no-export :noweb-ref no
+  #  { config, pkgs, lib, inputs, username, ... }:
+  #  {
+  #  imports =
+  #  \[
+  #  /etc/nixos/hardware-configuration.nix
+  #  /etc/nixos/][]]
   services.syncthing = {
     enable = true;
     openDefaultPorts = true; # 22000/TCP and 22000/UDP
@@ -255,7 +405,13 @@
     # guiAdd.0:8384"; # To be able to access the web GUI
   };
   # ends here
-  # [[file:nixos.org::*Host][]]
+  # [[file:nixos.org::+begin_src nix :tangle host/configuration.nix :comments noweb :noweb no-export :noweb-ref no
+  #  { config, pkgs, lib, inputs, username, ... }:
+  #  {
+  #  imports =
+  #  \[
+  #  /etc/nixos/hardware-configuration.nix
+  #  /etc/nixos/][]]
   security.polkit.enable = true;
   # start polkit on login by creating a systemd user service
   # ends here
