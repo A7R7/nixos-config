@@ -55,5 +55,5 @@
     };
   };
   # may interfere with the Nvidia driver.
-  boot.kernelParams = [ "module_blacklist=i915" ];
+  # boot.kernelParams = [ "module_blacklist=i915" ];
 }
