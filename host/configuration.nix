@@ -86,8 +86,6 @@
         fcitx5-rime
         fcitx5-lua
         fcitx5-chinese-addons
-        fcitx5-material-color
-        libsForQt5.fcitx5-qt
         librime
       ];
     };
