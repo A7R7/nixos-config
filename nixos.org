@@ -37,12 +37,14 @@ extra-substituters = [
   "https://nix-community.cachix.org"
   "https://nixpkgs-wayland.cachix.org"
   "https://anyrun.cachix.org"
+  "https://cuda-maintainers.cachix.org"
 ];
 extra-trusted-public-keys = [
   "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
   "nixpkgs-wayland.cachix.org-1:3lwxaILxMRkVhehr5StQprHdEo4IrE8sRho9R9HOLYA="
   "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
   "anyrun.cachix.org-1:pqBobmOjI7nKlsUMV25u9QHa9btJK65/C8vnO3p346s="
+  "cuda-maintainers.cachix.org-1:0dq3bujKpuEPMCX6U4WylrUDZ9JyUG0VpVZa7CNfq5E="
 ];
 
 #+end_src
@@ -447,28 +449,30 @@ in
 #+end_src
 *** Home
 #+begin_src nix
-  home = {
-    username = username;
-    homeDirectory = homeDirectory;
-    stateVersion = "23.11";
-    sessionVariables = {
-      QT_XCB_GL_INTEGRATION = "none"; # kde-connect
-      NIXPKGS_ALLOW_UNFREE = "1";
-      # SHELL = "${pkgs.zsh}/bin/elvish";
-    };
-    sessionPath = [
-      "$HOME/.local/bin"
-    ];
+home = {
+  username = username;
+  homeDirectory = homeDirectory;
+  stateVersion = "23.11";
+  sessionVariables = {
+    QT_XCB_GL_INTEGRATION = "none"; # kde-connect
+    NIXPKGS_ALLOW_UNFREE = "1";
+    # SHELL = "${pkgs.zsh}/bin/elvish";
   };
-  programs.home-manager.enable = true;
+  sessionPath = [
+    "$HOME/.local/bin"
+  ];
+};
+programs.home-manager.enable = true;
 
-  nixpkgs = {
-    config = {
-      allowUnfree = true;
-      # Workaround for https://github.com/nix-community/home-manager/issues/2942
-      allowUnfreePredicate = (_: true);
-    };
+nixpkgs = {
+  config = {
+    allowUnfree = true;
+    # Workaround for https://github.com/nix-community/home-manager/issues/2942
+    allowUnfreePredicate = (_: true);
+    cudaSupport = true;
+    cudaVersion = "12";
   };
+};
 
 #+end_src
 
@@ -648,6 +652,11 @@ To seriously do development on nixos I have to write derivations.
 pyright
 javascript-typescript-langserver
 rust-analyzer
+#+end_src
+**** Cuda
+#+begin_src nix
+cudatoolkit
+cudaPackages.cudnn
 #+end_src
 **** Database
 #+begin_src nix

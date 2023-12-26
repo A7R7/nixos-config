@@ -40,6 +40,8 @@
     pyright
     javascript-typescript-langserver
     rust-analyzer
+    cudatoolkit
+    cudaPackages.cudnn
     sqlite
     dbeaver
     niv
