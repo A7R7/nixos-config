@@ -796,7 +796,7 @@ nur.repos.linyinfeng.wemeet
 #+end_src
 **** VPN
 #+begin_src nix
-  v2305.clash-verge
+  mynur.clash-verge-rev
 #+end_src
 *** Gaming
 #+begin_src nix
