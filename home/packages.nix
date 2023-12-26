@@ -13,12 +13,13 @@
       pynput inflect pyqt6 pyqt6-sip
       python-pam requests
       numpy pandas toolz
-      pyperclip
-      pillow grad-cam
-      torch torchvision opencv
+      # pyperclip
+      pillow
+      # grad-cam
+      pytorchWithCuda opencv
       jupyter ipython
       # the unusable package manager
-      pip pipdeptree
+      # pip pipdeptree
       # mynur.pix2tex
       # mynur.pix2text
     ]))
