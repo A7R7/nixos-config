@@ -568,6 +568,9 @@ gtk.gtk3.bookmarks = [
 #+begin_src nix
 programs.bash = {
   enable = true; # this is needed for home.sessionVariables to work
+  bashrcExtra = ''
+export LD_LIBRARY_PATH="${pkgs.linuxPackages.nvidia_x11}/lib"
+  '';
 };
 programs.vscode = {
   enable = true;
@@ -578,6 +581,8 @@ programs.emacs = {
   package = pkgs.emacs-unstable-pgtk;
 };
 #+end_src
+
+#+RESULTS:
 
 *** Services
 #+begin_src nix
