@@ -134,7 +134,7 @@
       commandLineArgs = "--ozone-platform-hint=auto --enable-features=WaylandWindowDecorations --enable-wayland-ime";
     })
     (mynur.thorium-browser.override {
-      commandLineArgs = "--enable-features=WaylandWindowDecorations --enable-wayland-ime";
+      commandLineArgs = "--enable-features=WaylandWindowDecorations --gtk-version=4";
     })
     qq
     discord
