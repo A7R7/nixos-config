@@ -152,7 +152,7 @@
     kanshi         # manage monitor position on wayland
     wlsunset       # screen color temperature mnger
     swayidle       # idle mnger
-    swaylock       # lock mnger
+    # swaylock       # lock mnger
     wlogout        # logout mnger
     swaynotificationcenter # not only show notifications but also have a drawer
     rofi-wayland-unwrapped # app launcher
