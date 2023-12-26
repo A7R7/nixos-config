@@ -238,6 +238,9 @@
   };
   # ends here
   # [[file:nixos.org::*Host][]]
+  services.blueman.enable = true;
+  # ends here
+  # [[file:nixos.org::*Host][]]
   security.polkit.enable = true;
   # start polkit on login by creating a systemd user service
   # ends here

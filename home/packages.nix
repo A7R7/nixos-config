@@ -141,7 +141,7 @@
     thunderbird
     weechat # IRC
     nur.repos.linyinfeng.wemeet
-    v2305.clash-verge
+    mynur.clash-verge-rev
     prismlauncher
     glfw-wayland-minecraft
     zulu21

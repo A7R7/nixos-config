@@ -130,6 +130,7 @@ in
     tray = {enable = true;};
   };
   services.emacs.enable = true;
+  services.blueman-applet.enable = true;
   # ends here
 }
 # Config:1 ends here

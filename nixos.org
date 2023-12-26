@@ -416,6 +416,10 @@ services.accounts-daemon.enable = true;
     # guiAdd.0:8384"; # To be able to access the web GUI
   };
 #+end_src
+*** Blueman
+#+begin_src nix
+services.blueman.enable = true;
+#+end_src
 ** Security
 Polkit is used for controlling system-wide privileges. It provides an organized way for non-privileged processes to communicate with privileged ones, especially for those GUI applications.
 #+begin_src nix
@@ -573,11 +577,12 @@ programs.emacs = {
 
 *** Services
 #+begin_src nix
-  services.syncthing = {
-    enable = true;
-    tray = {enable = true;};
-  };
-  services.emacs.enable = true;
+services.syncthing = {
+  enable = true;
+  tray = {enable = true;};
+};
+services.emacs.enable = true;
+services.blueman-applet.enable = true;
 #+end_src
 ** Packages
 :PROPERTIES:
