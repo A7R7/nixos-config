@@ -117,7 +117,7 @@ in
   programs.bash = {
     enable = true; # this is needed for home.sessionVariables to work
     bashrcExtra = ''
-  export LD_LIBRARY_PATH="${pkgs.linuxPackages.nvidia_x11}/lib"
+  export LD_LIBRARY_PATH="${pkgs.linuxPackages.nvidia_x11}/lib:$LD_LIBRARY_PATH"
     '';
   };
   programs.vscode = {
