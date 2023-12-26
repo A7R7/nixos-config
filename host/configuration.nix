@@ -78,23 +78,6 @@
   
   # ends here
   # [[file:nixos.org::*Host][]]
-  i18n.inputMethod = {
-    enabled = "fcitx5";
-    fcitx5 = {
-      addons = with pkgs; [
-        fcitx5-gtk
-        fcitx5-rime
-        fcitx5-lua
-        fcitx5-chinese-addons
-        librime
-      ];
-    };
-  };
-  # environment.sessionVariables.GTK_IM_MODULE = "fcitx5";
-  # environment.sessionVariables.QT_IM_MODULE = "fcitx5";
-  # environment.sessionVariables.XMODIFIERS = "@im=fcitx5";
-  # ends here
-  # [[file:nixos.org::*Host][]]
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.${username} = {
     isNormalUser = true;

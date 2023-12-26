@@ -34,6 +34,20 @@ in
   
   # ends here
   # [[file:nixos.org::*Config][]]
+  i18n.inputMethod = {
+    enabled = "fcitx5";
+    fcitx5 = {
+      addons = with pkgs; [
+        fcitx5-gtk
+        fcitx5-rime
+        fcitx5-lua
+        fcitx5-chinese-addons
+        librime
+      ];
+    };
+  };
+  # ends here
+  # [[file:nixos.org::*Config][]]
   fonts.fontconfig.enable = true;
   home.packages = with pkgs; [
      nerdfonts
@@ -47,7 +61,7 @@ in
   
      commit-mono
      monaspace
-     mynur.symbols-nerd-font
+     # mynur.symbols-nerd-font
      # mynur.ibm-plex-nerd-font
      ibm-plex
      mynur.sarasa-gothic-nerd-font

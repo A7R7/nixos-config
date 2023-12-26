@@ -219,24 +219,6 @@ boot = {
 
 
 #+end_src
-** Input method
-  #+begin_src nix
-  i18n.inputMethod = {
-    enabled = "fcitx5";
-    fcitx5 = {
-      addons = with pkgs; [
-        fcitx5-gtk
-        fcitx5-rime
-        fcitx5-lua
-        fcitx5-chinese-addons
-        librime
-      ];
-    };
-  };
-  # environment.sessionVariables.GTK_IM_MODULE = "fcitx5";
-  # environment.sessionVariables.QT_IM_MODULE = "fcitx5";
-  # environment.sessionVariables.XMODIFIERS = "@im=fcitx5";
-#+end_src
 ** User
 
 #+begin_src nix
@@ -486,6 +468,21 @@ in
 
 #+end_src
 
+*** Input method
+  #+begin_src nix
+  i18n.inputMethod = {
+    enabled = "fcitx5";
+    fcitx5 = {
+      addons = with pkgs; [
+        fcitx5-gtk
+        fcitx5-rime
+        fcitx5-lua
+        fcitx5-chinese-addons
+        librime
+      ];
+    };
+  };
+#+end_src
 *** Font
 #+begin_src nix
 fonts.fontconfig.enable = true;
@@ -501,7 +498,7 @@ home.packages = with pkgs; [
 
    commit-mono
    monaspace
-   mynur.symbols-nerd-font
+   # mynur.symbols-nerd-font
    # mynur.ibm-plex-nerd-font
    ibm-plex
    mynur.sarasa-gothic-nerd-font
