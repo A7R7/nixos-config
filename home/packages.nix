@@ -133,7 +133,9 @@
       enableWidevine = true;
       commandLineArgs = "--ozone-platform-hint=auto --enable-features=WaylandWindowDecorations --enable-wayland-ime";
     })
-    mynur.thorium-browser
+    (mynur.thorium-browser.override {
+      commandLineArgs = "--enable-features=WaylandWindowDecorations --enable-wayland-ime";
+    })
     qq
     discord
     telegram-desktop
@@ -210,6 +212,5 @@
     filelight      # inspecting disk usage statistics
     xorg.xhost          # launch gui with sudo in cmdline
     networkmanagerapplet # network manager, gtk frontend
-    blueman        # bluetooth manager, gtk frontend
   ]);
 }
