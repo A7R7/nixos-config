@@ -64,9 +64,10 @@ in {
     enabledNVIDIADevices = [0];
     useUnfree = true;
   };
-  # environment.systemPackages = with pkgs; [
+  environment.systemPackages = with pkgs; [
+    python311Packages.nvidia-ml-py
   #   (mynur.gwe.override {
   #     nvidia_x11 = my_nvidia_x11;
   #   })
-  # ];
+  ];
 }
