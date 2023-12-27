@@ -1,5 +1,6 @@
 { config, lib, pkgs, ... }:
-{
+let my_nvidia_x11 = config.boot.kernelPackages.nvidiaPackages.stable;
+in {
   networking.hostName = "Omen16"; # Define your hostname.
 
   specialisation = {
@@ -48,7 +49,7 @@
 
     # stable uses the latest available package possible.
     # https://github.com/NixOS/nixpkgs/blob/nixos-unstable/pkgs/os-specific/linux/nvidia-x11/default.nix
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
+    package = my_nvidia_x11;
     prime = {
       sync.enable = true;
       intelBusId = "PCI:0:2:0";
@@ -57,7 +58,10 @@
   };
   # may interfere with the Nvidia driver.
   # boot.kernelParams = [ "module_blacklist=i915" ];
+  boot.kernelModules = [ "hp-wmi" ];
   environment.systemPackages = with pkgs; [
-    gwe
+    (mynur.gwe.override {
+      nvidia_x11 = my_nvidia_x11;
+    })
   ];
 }

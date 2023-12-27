@@ -94,16 +94,12 @@ let
     config.allowUnfree = true;
     overlays = with inputs; [
       nur.overlay
+      mynur.overlay
       emacs.overlay
-      (final: prev: {
-        mynur = import ./nurpkgs/default.nix {
-          pkgs = nixpkgs;
-        };})
-      (final: prev: {
-        v2311 = import inputs.nixpkgs-2311 {
+      (final: prev: { v2311 = import inputs.nixpkgs-2311 {
           inherit system;
           config.allowUnfree = true;
-        };})
+      };})
     ];
   };
 in
