@@ -59,9 +59,14 @@ in {
   # may interfere with the Nvidia driver.
   # boot.kernelParams = [ "module_blacklist=i915" ];
   boot.kernelModules = [ "hp-wmi" ];
-  environment.systemPackages = with pkgs; [
-    (mynur.gwe.override {
-      nvidia_x11 = my_nvidia_x11;
-    })
-  ];
+  programs.tuxclocker = {
+    enable = true;
+    enabledNVIDIADevices = [0];
+    useUnfree = true;
+  };
+  # environment.systemPackages = with pkgs; [
+  #   (mynur.gwe.override {
+  #     nvidia_x11 = my_nvidia_x11;
+  #   })
+  # ];
 }
