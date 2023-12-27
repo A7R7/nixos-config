@@ -18,7 +18,7 @@
       pillow
       # grad-cam
       opencv
-      jupyter ipython
+      jupyter ipython matplotlib
       # the unusable package manager
       # pip pipdeptree
       # mynur.pix2tex
