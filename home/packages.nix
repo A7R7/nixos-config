@@ -23,6 +23,7 @@
       # pip pipdeptree
       # mynur.pix2tex
       # mynur.pix2text
+      nvidia-ml-py
     ]))
     poetry
     
@@ -195,7 +196,7 @@
     # hyprshade      # screen color filters
     # wl-gammactl    # set contrast, brightness and gamma on wl
     
-    v2305.hyprpicker     # wlroots color picker
+    v2311.hyprpicker     # wlroots color picker
     wayshot        # screenshots tool
     
     
