@@ -57,4 +57,7 @@
   };
   # may interfere with the Nvidia driver.
   # boot.kernelParams = [ "module_blacklist=i915" ];
+  environment.systemPackages = with pkgs; [
+    gwe
+  ];
 }
