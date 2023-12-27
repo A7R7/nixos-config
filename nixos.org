@@ -81,48 +81,48 @@ anyrun.inputs.nixpkgs.follows = "nixpkgs";
   #+end_src
 ** Outputs
 #+begin_src nix :noweb-ref outputs
-  inputs@{
-    self,
-    nixpkgs,
-    home-manager,
-    ... }:
-  let
-    username = "aaron";
-    system = "x86_64-linux";
-    pkgs = import nixpkgs {
-      inherit system;
-      config.allowUnfree = true;
-      overlays = with inputs; [
-        nur.overlay
-        mynur.overlay
-        emacs.overlay
-        (final: prev: { v2305 = import inputs.nixpkgs-2305 {
-            inherit system;
-            config.allowUnfree = true;
+inputs@{
+  self,
+  nixpkgs,
+  home-manager,
+  ... }:
+let
+  username = "aaron";
+  system = "x86_64-linux";
+  pkgs = import nixpkgs {
+    inherit system;
+    config.allowUnfree = true;
+    overlays = with inputs; [
+      nur.overlay
+      emacs.overlay
+      (final: prev: {
+        mynur = import ./nurpkgs/default.nix {
+          pkgs = nixpkgs;
         };})
-        (final: prev: { v2311 = import inputs.nixpkgs-2311 {
-            inherit system;
-            config.allowUnfree = true;
+      (final: prev: {
+        v2311 = import inputs.nixpkgs-2311 {
+          inherit system;
+          config.allowUnfree = true;
         };})
-      ];
-    };
-  in
-    {
-    nixosConfigurations = {
-      Omen16 = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        specialArgs = { inherit inputs username system pkgs; };
-        modules = [ ./host/configuration.nix ./host/omen16.nix];
-      };
-    };
-  	homeConfigurations = {
-      aaron = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-        extraSpecialArgs = { inherit inputs username pkgs; };
-        modules = [ ./home/home.nix ];
-      };
+    ];
+  };
+in
+  {
+  nixosConfigurations = {
+    Omen16 = nixpkgs.lib.nixosSystem {
+      system = "x86_64-linux";
+      specialArgs = { inherit inputs username system pkgs; };
+      modules = [ ./host/configuration.nix ./host/omen16.nix];
     };
   };
+	homeConfigurations = {
+    aaron = home-manager.lib.homeManagerConfiguration {
+      inherit pkgs;
+      extraSpecialArgs = { inherit inputs username pkgs; };
+      modules = [ ./home/home.nix ];
+    };
+  };
+};
 
 #+end_src
 
