@@ -8,6 +8,7 @@
     marktext
     gcc ccache cmake clang-tools bear
     (python311.withPackages(ps: with ps; [
+      torchWithCuda (torchvision.override {torch = torchWithCuda; })
       # required by lsp-bridge, holo-layer, and blink search
       epc orjson sexpdata six paramiko rapidfuzz
       pynput inflect pyqt6 pyqt6-sip
@@ -16,8 +17,6 @@
       # pyperclip
       pillow
       # grad-cam
-      # pytorchWithCuda
-      pytorch torchvision
       opencv
       jupyter ipython
       # the unusable package manager
@@ -43,8 +42,6 @@
     pyright
     javascript-typescript-langserver
     rust-analyzer
-    cudatoolkit
-    cudaPackages.cudnn
     sqlite
     dbeaver
     niv

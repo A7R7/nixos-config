@@ -620,51 +620,45 @@ marktext
 These tools can be seen as runtimes, for non serious usage and quick testing.
 To seriously do development on nixos I have to write derivations.
 #+begin_src nix
-  gcc ccache cmake clang-tools bear
-  (python311.withPackages(ps: with ps; [
-    # required by lsp-bridge, holo-layer, and blink search
-    epc orjson sexpdata six paramiko rapidfuzz
-    pynput inflect pyqt6 pyqt6-sip
-    python-pam requests
-    numpy pandas toolz
-    # pyperclip
-    pillow
-    # grad-cam
-    # pytorchWithCuda
-    pytorch torchvision
-    opencv
-    jupyter ipython
-    # the unusable package manager
-    # pip pipdeptree
-    # mynur.pix2tex
-    # mynur.pix2text
-  ]))
-  poetry
+gcc ccache cmake clang-tools bear
+(python311.withPackages(ps: with ps; [
+  torchWithCuda (torchvision.override {torch = torchWithCuda; })
+  # required by lsp-bridge, holo-layer, and blink search
+  epc orjson sexpdata six paramiko rapidfuzz
+  pynput inflect pyqt6 pyqt6-sip
+  python-pam requests
+  numpy pandas toolz
+  # pyperclip
+  pillow
+  # grad-cam
+  opencv
+  jupyter ipython
+  # the unusable package manager
+  # pip pipdeptree
+  # mynur.pix2tex
+  # mynur.pix2text
+]))
+poetry
 
-  octave
-  nodejs
-  go
-  bun
-  sassc
-  typescript
-  meson
-  ninja
-  # eslint
-  maven
-  pkg-config
-  rnix-lsp # WIP Language Server for Nix
-  texliveFull
+octave
+nodejs
+go
+bun
+sassc
+typescript
+meson
+ninja
+# eslint
+maven
+pkg-config
+rnix-lsp # WIP Language Server for Nix
+texliveFull
 #+end_src
 **** Lang-servers
 #+begin_src nix
 pyright
 javascript-typescript-langserver
 rust-analyzer
-#+end_src
-**** Cuda
-#+begin_src nix
-cudatoolkit
-cudaPackages.cudnn
 #+end_src
 **** Database
 #+begin_src nix
