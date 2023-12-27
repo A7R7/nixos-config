@@ -46,8 +46,9 @@
 	# accessible via `nvidia-settings`.
     nvidiaSettings = true;
 
-    # Optionally, you may need to select the appropriate driver version for your specific GPU.
-    package = config.boot.kernelPackages.nvidiaPackages.production;
+    # stable uses the latest available package possible.
+    # https://github.com/NixOS/nixpkgs/blob/nixos-unstable/pkgs/os-specific/linux/nvidia-x11/default.nix
+    package = config.boot.kernelPackages.nvidiaPackages.stable;
     prime = {
       sync.enable = true;
       intelBusId = "PCI:0:2:0";
