@@ -630,7 +630,9 @@ To seriously do development on nixos I have to write derivations.
     # pyperclip
     pillow
     # grad-cam
-    pytorchWithCuda opencv
+    # pytorchWithCuda
+    pytorch torchvision
+    opencv
     jupyter ipython
     # the unusable package manager
     # pip pipdeptree

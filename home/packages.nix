@@ -16,7 +16,9 @@
       # pyperclip
       pillow
       # grad-cam
-      pytorchWithCuda opencv
+      # pytorchWithCuda
+      pytorch torchvision
+      opencv
       jupyter ipython
       # the unusable package manager
       # pip pipdeptree
