@@ -610,6 +610,7 @@ lapce  # a rust powered editor
 libreoffice
 neovide
 marktext
+nur.repos.lschuermann.vivado-2022_2
 #+end_src
 
 **** Languages

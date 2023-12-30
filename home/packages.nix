@@ -6,6 +6,7 @@
     libreoffice
     neovide
     marktext
+    nur.repos.lschuermann.vivado-2022_2
     gcc ccache cmake clang-tools bear
     (python311.withPackages(ps: with ps; [
       torchWithCuda (torchvision.override {torch = torchWithCuda; })
