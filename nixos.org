@@ -259,11 +259,13 @@ environment.localBinInPath = true;
 
 ** Virtualisation
 #+begin_src nix
-  virtualisation = {
-    podman.enable = true;
-    libvirtd.enable = true;
-    waydroid.enable = true;
-  };
+virtualisation = {
+  podman.enable = true;
+  libvirtd.enable = true;
+  waydroid.enable = true;
+  virtualbox.host.enable = true;
+};
+users.extraGroups.vboxusers.members = [ "user-with-access-to-virtualbox" ];
 #+end_src
 ** Programs
 #+begin_src nix

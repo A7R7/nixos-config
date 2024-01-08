@@ -114,7 +114,9 @@
     podman.enable = true;
     libvirtd.enable = true;
     waydroid.enable = true;
+    virtualbox.host.enable = true;
   };
+  users.extraGroups.vboxusers.members = [ "user-with-access-to-virtualbox" ];
   # ends here
   # [[file:nixos.org::*Host][]]
   # programs.regreet = {
