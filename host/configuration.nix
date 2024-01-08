@@ -115,6 +115,7 @@
     libvirtd.enable = true;
     waydroid.enable = true;
     virtualbox.host.enable = true;
+    virtualbox.host.enableExtensionPack = true;
   };
   users.extraGroups.vboxusers.members = [ "user-with-access-to-virtualbox" ];
   # ends here

@@ -264,6 +264,7 @@ virtualisation = {
   libvirtd.enable = true;
   waydroid.enable = true;
   virtualbox.host.enable = true;
+  virtualbox.host.enableExtensionPack = true;
 };
 users.extraGroups.vboxusers.members = [ "user-with-access-to-virtualbox" ];
 #+end_src
@@ -406,15 +407,15 @@ services.accounts-daemon.enable = true;
 *** Syncthing
 [[https://github.com/syncthing/syncthing][Syncthing]] is a continuouts file synchronization program using UPnP, which synchronize files *WITHOUT* centralized services.
 #+begin_src nix
-  services.syncthing = {
-    enable = true;
-    openDefaultPorts = true; # 22000/TCP and 22000/UDP
-    dataDir = "/home/${username}";
-    configDir = "/home/${username}/.config/syncthing";
-    user = "${username}";
-    group = "users";
-    # guiAdd.0:8384"; # To be able to access the web GUI
-  };
+services.syncthing = {
+  enable = true;
+  openDefaultPorts = true; # 22000/TCP and 22000/UDP
+  dataDir = "/home/${username}";
+  configDir = "/home/${username}/.config/syncthing";
+  user = "${username}";
+  group = "users";
+  # guiAdd.0:8384"; # To be able to access the web GUI
+};
 #+end_src
 *** Blueman
 #+begin_src nix
@@ -456,8 +457,8 @@ services.udev.packages = [
 ** Security
 Polkit is used for controlling system-wide privileges. It provides an organized way for non-privileged processes to communicate with privileged ones, especially for those GUI applications.
 #+begin_src nix
-  security.polkit.enable = true;
-  # start polkit on login by creating a systemd user service
+security.polkit.enable = true;
+# start polkit on login by creating a systemd user service
   #+end_src
 * Home
 Becareful that packages installed by ~nix profile install~ can conflict with packages defined here! Therefore, it is recommended to clear nix profile list before home-manager switch.
