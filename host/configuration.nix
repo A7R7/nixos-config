@@ -114,7 +114,7 @@
     podman.enable = true;
     libvirtd.enable = true;
     waydroid.enable = true;
-    # virtualbox.host.enable = true;
+    virtualbox.host.enable = true;
     # virtualbox.host.enableExtensionPack = true;
     virtualbox.guest.enable = true;
     virtualbox.guest.x11 = true;
