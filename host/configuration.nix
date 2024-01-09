@@ -117,7 +117,7 @@
     virtualbox.host.enable = true;
     virtualbox.host.enableExtensionPack = true;
     virtualbox.guest.enable = true;
-    virtualbox.guest.x11 = true;
+    # virtualbox.guest.x11 = true;
   };
   users.extraGroups.vboxusers.members = [ "user-with-access-to-virtualbox" ];
   # ends here
