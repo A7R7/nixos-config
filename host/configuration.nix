@@ -118,6 +118,8 @@
     # virtualbox.host.enableExtensionPack = true;
     virtualbox.guest.enable = true;
     virtualbox.guest.x11 = true;
+    vmware.host.enable = true;
+    vmware.guest.enable = true;
   };
   users.extraGroups.vboxusers.members = [ "user-with-access-to-virtualbox" ];
   # ends here
