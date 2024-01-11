@@ -697,11 +697,12 @@ texliveFull
 pyright
 javascript-typescript-langserver
 rust-analyzer
+mynur.jdtls
 #+end_src
 **** Database
 #+begin_src nix
-  sqlite
-  dbeaver
+sqlite
+dbeaver
 #+end_src
 
 **** Nix
@@ -831,11 +832,12 @@ nerdfix # find nerd font icons
 #+begin_src nix
 firefox
 chromium
-(vivaldi.override {
-  proprietaryCodecs = true;
-  enableWidevine = true;
-  commandLineArgs = "--ozone-platform-hint=auto --enable-features=WaylandWindowDecorations --enable-wayland-ime";
-})
+# (vivaldi.override {
+#   proprietaryCodecs = true;
+#   enableWidevine = true;
+#   commandLineArgs = "--ozone-platform-hint=auto --enable-features=WaylandWindowDecorations --enable-wayland-ime";
+# })
+vivaldi
 (mynur.thorium-browser.override {
   commandLineArgs = "--enable-features=WaylandWindowDecorations --gtk-version=4";
 })
