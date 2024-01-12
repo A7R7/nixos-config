@@ -133,12 +133,12 @@
     zathura
     firefox
     chromium
-    # (vivaldi.override {
-    #   proprietaryCodecs = true;
-    #   enableWidevine = true;
+    (vivaldi.override {
+      proprietaryCodecs = true;
+      enableWidevine = true;
     #   commandLineArgs = "--ozone-platform-hint=auto --enable-features=WaylandWindowDecorations --enable-wayland-ime";
-    # })
-    vivaldi
+    })
+    # vivaldi
     (mynur.thorium-browser.override {
       commandLineArgs = "--enable-features=WaylandWindowDecorations --gtk-version=4";
     })
