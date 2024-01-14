@@ -331,65 +331,48 @@ programs.dconf.enable = true;
 #+end_src
 ** Fonts
 #+begin_src nix
-  fonts.fonts = with pkgs; [
-    noto-fonts
-    noto-fonts-cjk
-    roboto roboto-serif
-    sarasa-gothic
-  ];
-  fonts.fontconfig = {
-    enable = true;
-    includeUserConf = true;
-    allowBitmaps = false;
-  };
+fonts.fonts = with pkgs; [
+  noto-fonts
+  noto-fonts-cjk
+  roboto roboto-serif
+  sarasa-gothic
+];
+fonts.fontconfig = {
+  enable = true;
+  includeUserConf = true;
+  allowBitmaps = false;
+};
 #+end_src
 ** Services
 *** COMMENT Greetd
 #+begin_src nix
-  services.greetd = {
-    enable = true;
-    settings = rec {
-      initial_session = {
-        command = "${pkgs.hyprland}/bin/Hyprland";
-        user = "${username}";
-      };
-      default_session = initial_session;
+services.greetd = {
+  enable = true;
+  settings = rec {
+    initial_session = {
+      command = "${pkgs.hyprland}/bin/Hyprland";
+      user = "${username}";
     };
+    default_session = initial_session;
   };
+};
 #+end_src
 *** Xserver
-  #+begin_src nix
-  services.xserver.enable = true;
-  services.xserver.excludePackages = [ pkgs.xterm ];
-  services.xserver.layout = "us";
-  services.xserver.xkbOptions = "caps:escape";
-  # services.xserver.displayManager.gdm.enable = true;
-  services.xserver.displayManager.sddm = {
-    enable = true;
-    # wayland.enable = true;
-    theme = "chili";
-  };
-  # displayManager.lightdm.enable = true;
-  # displayManager.lightdm.greeters.slick.enable = true;
-  # desktopManager.gnome.enable = true;
-#+end_src
-*** Misc
 #+begin_src nix
-services.tlp.enable = true;
-services.printing.enable = true;
-services.flatpak.enable = true;
-services.openssh.enable = true;
-# userspace virtual filesystem
-services.gvfs.enable = true;
-# an automatic device mounting daemon
-services.devmon.enable = true;
-# a DBus service that allows applications to query and manipulate storage devices.
-services.udisks2.enable = true;
-# a DBus service that provides power management support to applications.
-services.upower.enable = true;
-# a DBus service for accessing the list of user accounts and information attached to those accounts.
-services.accounts-daemon.enable = true;
-  #+end_src
+services.xserver.enable = true;
+services.xserver.excludePackages = [ pkgs.xterm ];
+services.xserver.layout = "us";
+services.xserver.xkbOptions = "caps:escape";
+# services.xserver.displayManager.gdm.enable = true;
+services.xserver.displayManager.sddm = {
+  enable = true;
+  # wayland.enable = true;
+  theme = "chili";
+};
+# displayManager.lightdm.enable = true;
+# displayManager.lightdm.greeters.slick.enable = true;
+# desktopManager.gnome.enable = true;
+#+end_src
 *** GNOME
 #+begin_src nix
   services.gnome = {
@@ -458,6 +441,25 @@ services.udev.packages = [
   })
 ];
 #+end_src
+*** Misc
+#+begin_src nix
+services.tlp.enable = true;
+services.printing.enable = true;
+services.flatpak.enable = true;
+services.openssh.enable = true;
+# userspace virtual filesystem
+services.gvfs.enable = true;
+# an automatic device mounting daemon
+services.devmon.enable = true;
+# a DBus service that allows applications to query and manipulate storage devices.
+services.udisks2.enable = true;
+# a DBus service that provides power management support to applications.
+services.upower.enable = true;
+# a DBus service for accessing the list of user accounts and information attached to those accounts.
+services.accounts-daemon.enable = true;
+services.ratbagd.enable = true; # configuring gamming mouse
+  #+end_src
+
 ** Security
 Polkit is used for controlling system-wide privileges. It provides an organized way for non-privileged processes to communicate with privileged ones, especially for those GUI applications.
 #+begin_src nix

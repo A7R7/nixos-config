@@ -203,22 +203,6 @@
   # desktopManager.gnome.enable = true;
   # ends here
   # [[file:nixos.org::*Host][]]
-  services.tlp.enable = true;
-  services.printing.enable = true;
-  services.flatpak.enable = true;
-  services.openssh.enable = true;
-  # userspace virtual filesystem
-  services.gvfs.enable = true;
-  # an automatic device mounting daemon
-  services.devmon.enable = true;
-  # a DBus service that allows applications to query and manipulate storage devices.
-  services.udisks2.enable = true;
-  # a DBus service that provides power management support to applications.
-  services.upower.enable = true;
-  # a DBus service for accessing the list of user accounts and information attached to those accounts.
-  services.accounts-daemon.enable = true;
-  # ends here
-  # [[file:nixos.org::*Host][]]
   services.gnome = {
     evolution-data-server.enable = true;
     glib-networking.enable = true;
@@ -278,6 +262,23 @@
       '';
     })
   ];
+  # ends here
+  # [[file:nixos.org::*Host][]]
+  services.tlp.enable = true;
+  services.printing.enable = true;
+  services.flatpak.enable = true;
+  services.openssh.enable = true;
+  # userspace virtual filesystem
+  services.gvfs.enable = true;
+  # an automatic device mounting daemon
+  services.devmon.enable = true;
+  # a DBus service that allows applications to query and manipulate storage devices.
+  services.udisks2.enable = true;
+  # a DBus service that provides power management support to applications.
+  services.upower.enable = true;
+  # a DBus service for accessing the list of user accounts and information attached to those accounts.
+  services.accounts-daemon.enable = true;
+  services.ratbagd.enable = true;
   # ends here
   # [[file:nixos.org::*Host][]]
   security.polkit.enable = true;
