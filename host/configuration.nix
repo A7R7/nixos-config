@@ -278,7 +278,7 @@
   services.upower.enable = true;
   # a DBus service for accessing the list of user accounts and information attached to those accounts.
   services.accounts-daemon.enable = true;
-  services.ratbagd.enable = true;
+  services.ratbagd.enable = true; # configuring gamming mouse
   # ends here
   # [[file:nixos.org::*Host][]]
   security.polkit.enable = true;

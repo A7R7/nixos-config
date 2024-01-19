@@ -69,6 +69,9 @@ in
      ibm-plex
      mynur.sarasa-gothic-nerd-font
      fontforge-gtk
+  
+     lxgw-wenkai
+     lxgw-neoxihei
   ];
   # ends here
   # [[file:nixos.org::*Config][]]

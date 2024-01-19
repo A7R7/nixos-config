@@ -552,6 +552,9 @@ home.packages = with pkgs; [
    ibm-plex
    mynur.sarasa-gothic-nerd-font
    fontforge-gtk
+
+   lxgw-wenkai
+   lxgw-neoxihei
 ];
 #+end_src
 
