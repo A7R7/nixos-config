@@ -441,11 +441,20 @@ services.udev.packages = [
   })
 ];
 #+end_src
-*** Misc
+*** Print
 #+begin_src nix
-services.tlp.enable = true;
 services.printing.enable = true;
 services.printing.drivers = [ pkgs.hplipWithPlugin ];
+services.avahi = {
+  enable = true;
+  nssmdns = true;
+  openFirewall = true;
+};
+#+end_src
+*** Misc
+#+begin_src nix
+
+services.tlp.enable = true;
 services.flatpak.enable = true;
 services.openssh.enable = true;
 # userspace virtual filesystem
