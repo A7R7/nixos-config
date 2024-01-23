@@ -266,6 +266,7 @@
   # [[file:nixos.org::*Host][]]
   services.tlp.enable = true;
   services.printing.enable = true;
+  services.printing.drivers = [ pkgs.hplipWithPlugin ];
   services.flatpak.enable = true;
   services.openssh.enable = true;
   # userspace virtual filesystem
