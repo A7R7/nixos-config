@@ -67,6 +67,9 @@ in
      # mynur.symbols-nerd-font
      # mynur.ibm-plex-nerd-font
      ibm-plex
+  
+     corefonts
+     vistafonts
      mynur.sarasa-gothic-nerd-font
      fontforge-gtk
   
