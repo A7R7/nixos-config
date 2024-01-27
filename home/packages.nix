@@ -4,6 +4,7 @@
     helix
     lapce  # a rust powered editor
     libreoffice
+    wpsoffice
     neovide
     marktext
     nur.repos.lschuermann.vivado-2020_1
@@ -62,6 +63,7 @@
     kitty
     alacritty
     wezterm
+    blackbox-terminal
     gitstatus # 10x faster than git status
     gitoxide  # rust git client
     carapace
@@ -132,6 +134,7 @@
     vlc
     zathura
     firefox
+    floorp
     chromium
     (vivaldi.override {
       proprietaryCodecs = true;
@@ -149,6 +152,7 @@
     thunderbird
     weechat # IRC
     nur.repos.linyinfeng.wemeet
+    # nur.repos.xddxdd.dingtalk
     mynur.clash-verge-rev
     prismlauncher
     glfw-wayland-minecraft
@@ -215,8 +219,11 @@
     iotop
     btop
     logiops        # Unofficial userspace driver for HID++ Logitech devices
+    powertop       # Analyze power consumption on Intel-based laptops
+    mission-center
     filelight      # inspecting disk usage statistics
     xorg.xhost          # launch gui with sudo in cmdline
     networkmanagerapplet # network manager, gtk frontend
+    wlr-randr      # wlroots screen manager
   ]);
 }

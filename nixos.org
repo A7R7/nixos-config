@@ -666,6 +666,7 @@ services.blueman-applet.enable = true;
 helix
 lapce  # a rust powered editor
 libreoffice
+wpsoffice
 neovide
 marktext
 nur.repos.lschuermann.vivado-2020_1
@@ -748,9 +749,10 @@ uncrustify
 *** Cmdline
 **** Emulator
 #+begin_src nix
-  kitty
-  alacritty
-  wezterm
+kitty
+alacritty
+wezterm
+blackbox-terminal
 #+end_src
 **** Tools
 #+begin_src nix
@@ -849,6 +851,7 @@ nerdfix # find nerd font icons
 **** Browser
 #+begin_src nix
 firefox
+floorp
 chromium
 (vivaldi.override {
   proprietaryCodecs = true;
@@ -869,6 +872,7 @@ element-desktop
 thunderbird
 weechat # IRC
 nur.repos.linyinfeng.wemeet
+# nur.repos.xddxdd.dingtalk
 #+end_src
 **** VPN
 #+begin_src nix
@@ -951,9 +955,12 @@ solaar         # connect with logitech devices
 iotop
 btop
 logiops        # Unofficial userspace driver for HID++ Logitech devices
+powertop       # Analyze power consumption on Intel-based laptops
+mission-center
 filelight      # inspecting disk usage statistics
 xorg.xhost          # launch gui with sudo in cmdline
 networkmanagerapplet # network manager, gtk frontend
+wlr-randr      # wlroots screen manager
 #+end_src
 * Build
 #+begin_src sh :dir /sudo::
