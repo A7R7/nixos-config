@@ -181,9 +181,9 @@ boot = {
 #+end_src
 ** Network & hostname
 #+begin_src nix
-  networking = {
-    networkmanager.enable = true;
-  };
+networking = {
+  networkmanager.enable = true;
+};
 #+end_src
 ** Sound
 #+begin_src nix
@@ -220,12 +220,12 @@ boot = {
 ** User
 
 #+begin_src nix
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.${username} = {
-    isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "libvirtd" "adbusers" "audio"];
-    # shell = pkgs.elvish;
-  };
+# Define a user account. Don't forget to set a password with ‘passwd’.
+users.users.${username} = {
+  isNormalUser = true;
+  extraGroups = [ "wheel" "networkmanager" "libvirtd" "adbusers" "audio"];
+  # shell = pkgs.elvish;
+};
 #+end_src
 
 ** Pkgs
@@ -469,6 +469,29 @@ services.upower.enable = true;
 services.accounts-daemon.enable = true;
 services.ratbagd.enable = true; # configuring gamming mouse
   #+end_src
+** Power management
+
+#+begin_src nix
+services.tlp = {
+  enable = true;
+  settings = {
+    CPU_SCALING_GOVERNOR_ON_AC = "performance";
+    CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
+
+    CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
+    CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
+
+    CPU_MIN_PERF_ON_AC = 0;
+    CPU_MAX_PERF_ON_AC = 100;
+    CPU_MIN_PERF_ON_BAT = 0;
+    CPU_MAX_PERF_ON_BAT = 20;
+
+    #Optional helps save long term battery health
+    START_CHARGE_THRESH_BAT0 = 40; # 40 and bellow it starts to charge
+    STOP_CHARGE_THRESH_BAT0 = 80; # 80 and above it stops charging
+  };
+};
+#+end_src
 
 ** Security
 Polkit is used for controlling system-wide privileges. It provides an organized way for non-privileged processes to communicate with privileged ones, especially for those GUI applications.
@@ -634,6 +657,14 @@ programs.emacs = {
   enable = true;
   package = pkgs.emacs-unstable-pgtk;
 };
+programs.obs-studio = {
+  enable = true;
+  plugins = with pkgs.obs-studio-plugins; [
+    wlrobs
+    # obs-backgroundremoval
+    obs-pipewire-audio-capture
+  ];
+};
 #+end_src
 
 #+RESULTS:
@@ -669,7 +700,7 @@ libreoffice
 wpsoffice
 neovide
 marktext
-nur.repos.lschuermann.vivado-2020_1
+# nur.repos.lschuermann.vivado-2020_1
 #+end_src
 
 **** Languages
@@ -678,7 +709,7 @@ To seriously do development on nixos I have to write derivations.
 #+begin_src nix
 gcc ccache cmake clang-tools bear
 (python311.withPackages(ps: with ps; [
-  torchWithCuda (torchvision.override {torch = torchWithCuda; })
+  pytorch-bin # (torchvision.override {torch = torchWithCuda; })
   # required by lsp-bridge, holo-layer, and blink search
   epc orjson sexpdata six paramiko rapidfuzz
   pynput inflect pyqt6 pyqt6-sip
@@ -833,13 +864,6 @@ nerdfix # find nerd font icons
 
 **** Videos
 #+begin_src nix
-  (wrapOBS {
-    plugins = with pkgs.obs-studio-plugins; [
-      wlrobs
-      obs-backgroundremoval
-      obs-pipewire-audio-capture
-    ];
-  })
   kdenlive
   vlc
     #+end_src

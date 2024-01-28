@@ -7,10 +7,10 @@
     wpsoffice
     neovide
     marktext
-    nur.repos.lschuermann.vivado-2020_1
+    # nur.repos.lschuermann.vivado-2020_1
     gcc ccache cmake clang-tools bear
     (python311.withPackages(ps: with ps; [
-      torchWithCuda (torchvision.override {torch = torchWithCuda; })
+      pytorch-bin # (torchvision.override {torch = torchWithCuda; })
       # required by lsp-bridge, holo-layer, and blink search
       epc orjson sexpdata six paramiko rapidfuzz
       pynput inflect pyqt6 pyqt6-sip
@@ -123,13 +123,6 @@
     gimp-with-plugins
     inkscape
     imagemagick    # editing and manipulating digital images
-    (wrapOBS {
-      plugins = with pkgs.obs-studio-plugins; [
-        wlrobs
-        obs-backgroundremoval
-        obs-pipewire-audio-capture
-      ];
-    })
     kdenlive
     vlc
     zathura
