@@ -341,11 +341,11 @@
         "nixpkgs": "nixpkgs_5"
       },
       "locked": {
-        "lastModified": 1705316854,
-        "narHash": "sha256-kAYwUo1FcyAuChulCSLjnuBCE+0kTjHaiLGSHQttAQE=",
+        "lastModified": 1706581410,
+        "narHash": "sha256-M/gJEmB8mlBShMiE/H7tT/W72KYNjTPKj/yb2ENbaug=",
         "owner": "A7R7",
         "repo": "nur-packages",
-        "rev": "c38645081029962527079101a37808ca4c92a42d",
+        "rev": "06a672a181251a0c06f9c0fb9107133018277b34",
         "type": "github"
       },
       "original": {
