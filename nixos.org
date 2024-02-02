@@ -454,7 +454,6 @@ services.avahi = {
 *** Misc
 #+begin_src nix
 
-services.tlp.enable = true;
 services.flatpak.enable = true;
 services.openssh.enable = true;
 # userspace virtual filesystem

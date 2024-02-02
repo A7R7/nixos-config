@@ -274,7 +274,6 @@
   # ends here
   # [[file:nixos.org::*Host][]]
   
-  services.tlp.enable = true;
   services.flatpak.enable = true;
   services.openssh.enable = true;
   # userspace virtual filesystem
