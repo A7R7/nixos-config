@@ -12,7 +12,7 @@
 #+TITLE: Nixos Configuration
 #+AUTHOR: A7R7
 
-Welcome to my nixos configuration blog. This is a configuration for a single laptop setup.
+Welcome to my nixos configuration!.  This is a configuration for a single laptop setup.
 * Flake
 
 So I use flake to manage my configs.
