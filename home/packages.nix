@@ -10,7 +10,8 @@
     # nur.repos.lschuermann.vivado-2020_1
     gcc ccache cmake clang-tools bear
     (python311.withPackages(ps: with ps; [
-      pytorch-bin # (torchvision.override {torch = torchWithCuda; })
+      pytorch-bin torchvision-bin
+      #(torchvision.override {torch = pytorch-bin; })
       # required by lsp-bridge, holo-layer, and blink search
       epc orjson sexpdata six paramiko rapidfuzz
       pynput inflect pyqt6 pyqt6-sip

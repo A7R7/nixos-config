@@ -708,7 +708,8 @@ To seriously do development on nixos I have to write derivations.
 #+begin_src nix
 gcc ccache cmake clang-tools bear
 (python311.withPackages(ps: with ps; [
-  pytorch-bin (torchvision.override {torch = pytorch-bin; })
+  pytorch-bin torchvision-bin
+  #(torchvision.override {torch = pytorch-bin; })
   # required by lsp-bridge, holo-layer, and blink search
   epc orjson sexpdata six paramiko rapidfuzz
   pynput inflect pyqt6 pyqt6-sip
