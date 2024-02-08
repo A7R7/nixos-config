@@ -17,7 +17,7 @@
       pynput inflect pyqt6 pyqt6-sip
       python-pam requests
       numpy pandas toolz
-      scipy
+      scipy cython
       # pyperclip
       pillow
       # grad-cam
