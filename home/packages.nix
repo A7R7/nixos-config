@@ -21,7 +21,7 @@
       # pyperclip
       pillow
       # grad-cam
-      opencv
+      opencv4
       jupyter ipython matplotlib
       # the unusable package manager
       # pip pipdeptree
