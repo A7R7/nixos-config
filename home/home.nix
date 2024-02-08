@@ -140,6 +140,11 @@ in
       obs-pipewire-audio-capture
     ];
   };
+  programs.direnv = {
+    enable = true;
+    enableBashIntegration = true; # see note on other shells below
+        nix-direnv.enable = true;
+  };
   # ends here
   # [[file:nixos.org::*Config][]]
   services.syncthing = {
