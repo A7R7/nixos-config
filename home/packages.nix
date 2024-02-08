@@ -22,6 +22,7 @@
       pillow
       # grad-cam
       opencv4
+      # onnxruntime
       jupyter ipython matplotlib
       # the unusable package manager
       # pip pipdeptree
