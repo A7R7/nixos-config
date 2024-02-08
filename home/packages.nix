@@ -29,6 +29,7 @@
       # mynur.pix2text
       nvidia-ml-py
     ]))
+    
     poetry
     
     octave

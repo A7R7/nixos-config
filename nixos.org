@@ -727,6 +727,7 @@ gcc ccache cmake clang-tools bear
   # mynur.pix2text
   nvidia-ml-py
 ]))
+
 poetry
 
 octave
