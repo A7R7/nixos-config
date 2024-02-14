@@ -19,7 +19,7 @@
       numpy pandas toolz
       scipy cython
       # pyperclip
-      pillow
+      pillow imageio imageio-ffmpeg
       # grad-cam
       opencv4
       # onnxruntime
@@ -151,6 +151,7 @@
     nur.repos.linyinfeng.wemeet
     # nur.repos.xddxdd.dingtalk
     mynur.clash-verge-rev
+    # nur.repos.xddxdd.baidunetdisk
     prismlauncher
     glfw-wayland-minecraft
     zulu21

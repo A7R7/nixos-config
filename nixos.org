@@ -282,6 +282,19 @@ users.extraGroups.vboxusers.members = [ "user-with-access-to-virtualbox" ];
 # };
 
 #+end_src
+*** Shell
+#+begin_src nix
+programs.bash = {
+  enable = true; # this is needed for home.sessionVariables to work
+  interactiveShellInit = ''
+    if [[ $(${pkgs.procps}/bin/ps --no-header --pid=$PPID --format=comm) != "fish" && -z ''${BASH_EXECUTION_STRING} ]]
+    then
+      shopt -q login_shell && LOGIN_OPTION='--login' || LOGIN_OPTION=""
+      exec ${pkgs.fish}/bin/fish $LOGIN_OPTION
+    fi
+  ''; # launches fish unless the parent process is already fish
+};
+#+end_src
 *** Window managers
 #+begin_src nix
 #+end_src
@@ -542,6 +555,9 @@ nixpkgs = {
     allowUnfreePredicate = (_: true);
     cudaSupport = true;
     cudaVersion = "12";
+    permittedInsecurePackages = [
+      "electron-11.5.0"
+    ];
   };
 };
 
@@ -644,10 +660,14 @@ gtk.gtk3.bookmarks = [
 #+RESULTS:
 
 *** Programs
+Bash is the default login shell. A login shell should be POSIX compliant, or it can cause errors.
 #+begin_src nix
 programs.bash = {
   enable = true; # this is needed for home.sessionVariables to work
 };
+#+end_src
+
+#+begin_src nix
 programs.vscode = {
   enable = true;
   package = pkgs.vscode.fhs;
@@ -722,7 +742,7 @@ gcc ccache cmake clang-tools bear
   numpy pandas toolz
   scipy cython
   # pyperclip
-  pillow
+  pillow imageio imageio-ffmpeg
   # grad-cam
   opencv4
   # onnxruntime
@@ -908,8 +928,13 @@ nur.repos.linyinfeng.wemeet
 #+end_src
 **** VPN
 #+begin_src nix
-  mynur.clash-verge-rev
+mynur.clash-verge-rev
 #+end_src
+**** others
+#+begin_src nix
+# nur.repos.xddxdd.baidunetdisk
+#+end_src
+
 *** Gaming
 #+begin_src nix
   prismlauncher

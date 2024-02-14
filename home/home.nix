@@ -32,6 +32,9 @@ in
       allowUnfreePredicate = (_: true);
       cudaSupport = true;
       cudaVersion = "12";
+      permittedInsecurePackages = [
+        "electron-11.5.0"
+      ];
     };
   };
   
@@ -124,6 +127,8 @@ in
   programs.bash = {
     enable = true; # this is needed for home.sessionVariables to work
   };
+  # ends here
+  # [[file:nixos.org::*Config][]]
   programs.vscode = {
     enable = true;
     package = pkgs.vscode.fhs;
