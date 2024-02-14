@@ -134,7 +134,6 @@
   # ends here
   # [[file:nixos.org::*Host][]]
   programs.bash = {
-    enable = true; # this is needed for home.sessionVariables to work
     interactiveShellInit = ''
       if [[ $(${pkgs.procps}/bin/ps --no-header --pid=$PPID --format=comm) != "fish" && -z ''${BASH_EXECUTION_STRING} ]]
       then
