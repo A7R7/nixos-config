@@ -298,6 +298,7 @@
   # a DBus service for accessing the list of user accounts and information attached to those accounts.
   # services.accounts-daemon.enable = true;
   services.ratbagd.enable = true; # configuring gamming mouse
+  services.ollama.enable = true;
   # ends here
   # [[file:nixos.org::*Host][]]
   services.tlp = {

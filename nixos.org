@@ -343,7 +343,7 @@ programs.dconf.enable = true;
 #+end_src
 ** Fonts
 #+begin_src nix
-fonts.fonts = with pkgs; [
+fonts.packages = with pkgs; [
   noto-fonts
   noto-fonts-cjk
   roboto roboto-serif
@@ -479,6 +479,7 @@ services.upower.enable = true;
 # a DBus service for accessing the list of user accounts and information attached to those accounts.
 # services.accounts-daemon.enable = true;
 services.ratbagd.enable = true; # configuring gamming mouse
+services.ollama.enable = true;
   #+end_src
 ** Power management
 
