@@ -186,7 +186,7 @@
   programs.dconf.enable = true;
   # ends here
   # [[file:nixos.org::*Host][]]
-  fonts.fonts = with pkgs; [
+  fonts.packages = with pkgs; [
     noto-fonts
     noto-fonts-cjk
     roboto roboto-serif
@@ -201,8 +201,8 @@
   # [[file:nixos.org::*Host][]]
   services.xserver.enable = true;
   services.xserver.excludePackages = [ pkgs.xterm ];
-  services.xserver.layout = "us";
-  services.xserver.xkbOptions = "caps:escape";
+  services.xserver.xkb.layout = "us";
+  services.xserver.xkb.options = "caps:escape";
   # services.xserver.displayManager.gdm.enable = true;
   services.xserver.displayManager.sddm = {
     enable = true;
@@ -279,7 +279,7 @@
   services.printing.drivers = [ pkgs.hplipWithPlugin ];
   services.avahi = {
     enable = true;
-    nssmdns = true;
+    nssmdns4 = true;
     openFirewall = true;
   };
   # ends here

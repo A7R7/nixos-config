@@ -373,8 +373,8 @@ services.greetd = {
 #+begin_src nix
 services.xserver.enable = true;
 services.xserver.excludePackages = [ pkgs.xterm ];
-services.xserver.layout = "us";
-services.xserver.xkbOptions = "caps:escape";
+services.xserver.xkb.layout = "us";
+services.xserver.xkb.options = "caps:escape";
 # services.xserver.displayManager.gdm.enable = true;
 services.xserver.displayManager.sddm = {
   enable = true;
@@ -459,7 +459,7 @@ services.printing.enable = true;
 services.printing.drivers = [ pkgs.hplipWithPlugin ];
 services.avahi = {
   enable = true;
-  nssmdns = true;
+  nssmdns4 = true;
   openFirewall = true;
 };
 #+end_src
