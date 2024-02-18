@@ -277,15 +277,7 @@ virtualisation = {
 users.extraGroups.vboxusers.members = [ "user-with-access-to-virtualbox" ];
 #+end_src
 ** Programs
-#+begin_src nix
-# programs.regreet = {
-# This line installs ReGreet,
-# sets up systemd tmpfiles for it,
-# enables services.greetd and also configures its default session to start ReGreet using cage.
-# enable = true;
-# };
 
-#+end_src
 *** Shell
 #+begin_src nix
 programs.bash = {
@@ -360,17 +352,16 @@ fonts.fontconfig = {
 };
 #+end_src
 ** Services
-*** COMMENT Greetd
+*** Greetd
 #+begin_src nix
 services.greetd = {
   enable = true;
-  settings = rec {
-    initial_session = {
-      command = "${pkgs.hyprland}/bin/Hyprland";
-      user = "${username}";
-    };
-    default_session = initial_session;
-  };
+};
+#+end_src
+
+#+begin_src nix
+programs.regreet = {
+  enable = false;
 };
 #+end_src
 *** Xserver
@@ -380,11 +371,10 @@ services.xserver.excludePackages = [ pkgs.xterm ];
 services.xserver.xkb.layout = "us";
 services.xserver.xkb.options = "caps:escape";
 # services.xserver.displayManager.gdm.enable = true;
-services.xserver.displayManager.sddm = {
-  enable = true;
-  # wayland.enable = true;
-  theme = "chili";
-};
+# services.xserver.displayManager.sddm = {
+#   enable = true;
+#   theme = "chili";
+# };
 # displayManager.lightdm.enable = true;
 # displayManager.lightdm.greeters.slick.enable = true;
 # desktopManager.gnome.enable = true;

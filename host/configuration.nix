@@ -124,15 +124,6 @@
   users.extraGroups.vboxusers.members = [ "user-with-access-to-virtualbox" ];
   # ends here
   # [[file:nixos.org::*Host][]]
-  # programs.regreet = {
-  # This line installs ReGreet,
-  # sets up systemd tmpfiles for it,
-  # enables services.greetd and also configures its default session to start ReGreet using cage.
-  # enable = true;
-  # };
-  
-  # ends here
-  # [[file:nixos.org::*Host][]]
   programs.bash = {
     interactiveShellInit = ''
       if [[ $(${pkgs.procps}/bin/ps --no-header --pid=$PPID --format=comm) != "fish" && -z ''${BASH_EXECUTION_STRING} ]]
@@ -199,16 +190,25 @@
   };
   # ends here
   # [[file:nixos.org::*Host][]]
+  services.greetd = {
+    enable = true;
+  };
+  # ends here
+  # [[file:nixos.org::*Host][]]
+  programs.regreet = {
+    enable = false;
+  };
+  # ends here
+  # [[file:nixos.org::*Host][]]
   services.xserver.enable = true;
   services.xserver.excludePackages = [ pkgs.xterm ];
   services.xserver.xkb.layout = "us";
   services.xserver.xkb.options = "caps:escape";
   # services.xserver.displayManager.gdm.enable = true;
-  services.xserver.displayManager.sddm = {
-    enable = true;
-    # wayland.enable = true;
-    theme = "chili";
-  };
+  # services.xserver.displayManager.sddm = {
+  #   enable = true;
+  #   theme = "chili";
+  # };
   # displayManager.lightdm.enable = true;
   # displayManager.lightdm.greeters.slick.enable = true;
   # desktopManager.gnome.enable = true;
