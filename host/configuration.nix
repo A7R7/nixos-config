@@ -190,25 +190,15 @@
   };
   # ends here
   # [[file:nixos.org::*Host][]]
-  services.greetd = {
-    enable = true;
-  };
-  # ends here
-  # [[file:nixos.org::*Host][]]
-  programs.regreet = {
-    enable = false;
-  };
-  # ends here
-  # [[file:nixos.org::*Host][]]
   services.xserver.enable = true;
   services.xserver.excludePackages = [ pkgs.xterm ];
   services.xserver.xkb.layout = "us";
   services.xserver.xkb.options = "caps:escape";
   # services.xserver.displayManager.gdm.enable = true;
-  # services.xserver.displayManager.sddm = {
-  #   enable = true;
-  #   theme = "chili";
-  # };
+  services.xserver.displayManager.sddm = {
+    enable = true;
+    theme = "chili";
+  };
   # displayManager.lightdm.enable = true;
   # displayManager.lightdm.greeters.slick.enable = true;
   # desktopManager.gnome.enable = true;
@@ -284,6 +274,14 @@
   };
   # ends here
   # [[file:nixos.org::*Host][]]
+  services.ollama.enable = true;
+  services.ollama.package = (pkgs.ollama.override{
+    llama-cpp = (pkgs.llama-cpp.override {
+      cudaPackages = (pkgs.cudaPackages);
+    });
+  });
+  # ends here
+  # [[file:nixos.org::*Host][]]
   
   services.flatpak.enable = true;
   services.openssh.enable = true;
@@ -298,7 +296,6 @@
   # a DBus service for accessing the list of user accounts and information attached to those accounts.
   # services.accounts-daemon.enable = true;
   services.ratbagd.enable = true; # configuring gamming mouse
-  services.ollama.enable = true;
   # ends here
   # [[file:nixos.org::*Host][]]
   services.tlp = {

@@ -17,17 +17,17 @@ Welcome to my nixos configuration!.  This is a configuration for a single laptop
 
 So I use flake to manage my configs.
 #+begin_src nix :tangle flake.nix :noweb no-export
-  {
-    description = "A7R7's NixOS Flake";
-    nixConfig = {
-      <<nixConfig>>
-    };
-    inputs = {
-      <<inputs>>
-    };
-    outputs =
-      <<outputs>>
-  }
+{
+  description = "A7R7's NixOS Flake";
+  nixConfig = {
+    <<nixConfig>>
+  };
+  inputs = {
+    <<inputs>>
+  };
+  outputs =
+    <<outputs>>
+}
 #+end_src
 ** nixConfig
 #+begin_src nix :noweb-ref nixConfig
@@ -352,7 +352,7 @@ fonts.fontconfig = {
 };
 #+end_src
 ** Services
-*** Greetd
+*** COMMENT Greetd
 #+begin_src nix
 services.greetd = {
   enable = true;
@@ -371,23 +371,23 @@ services.xserver.excludePackages = [ pkgs.xterm ];
 services.xserver.xkb.layout = "us";
 services.xserver.xkb.options = "caps:escape";
 # services.xserver.displayManager.gdm.enable = true;
-# services.xserver.displayManager.sddm = {
-#   enable = true;
-#   theme = "chili";
-# };
+services.xserver.displayManager.sddm = {
+  enable = true;
+  theme = "chili";
+};
 # displayManager.lightdm.enable = true;
 # displayManager.lightdm.greeters.slick.enable = true;
 # desktopManager.gnome.enable = true;
 #+end_src
 *** GNOME
 #+begin_src nix
-  services.gnome = {
-    evolution-data-server.enable = true;
-    glib-networking.enable = true;
-    gnome-keyring.enable = true;
-    gnome-online-accounts.enable = true;
-    at-spi2-core.enable = true; # avoid the warning "The name org.a11y.Bus was not provided by any .service files"
-  };
+services.gnome = {
+  evolution-data-server.enable = true;
+  glib-networking.enable = true;
+  gnome-keyring.enable = true;
+  gnome-online-accounts.enable = true;
+  at-spi2-core.enable = true; # avoid the warning "The name org.a11y.Bus was not provided by any .service files"
+};
 #+end_src
 
 *** DAE
@@ -457,6 +457,15 @@ services.avahi = {
   openFirewall = true;
 };
 #+end_src
+*** Ollama
+#+begin_src nix
+services.ollama.enable = true;
+services.ollama.package = (pkgs.ollama.override{
+  llama-cpp = (pkgs.llama-cpp.override {
+    cudaPackages = (pkgs.cudaPackages);
+  });
+});
+#+end_src
 *** Misc
 #+begin_src nix
 
@@ -473,7 +482,6 @@ services.upower.enable = true;
 # a DBus service for accessing the list of user accounts and information attached to those accounts.
 # services.accounts-daemon.enable = true;
 services.ratbagd.enable = true; # configuring gamming mouse
-services.ollama.enable = true;
   #+end_src
 ** Power management
 
