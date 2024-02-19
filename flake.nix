@@ -48,6 +48,8 @@
     emacs.url = "github:nix-community/emacs-overlay";
     anyrun.url = "github:Kirottu/anyrun";
     anyrun.inputs.nixpkgs.follows = "nixpkgs";
+    nbfc.url = "github:nbfc-linux/nbfc-linux";
+    nbfc.inputs.nixpkgs.follows = "nixpkgs";
     # ends here
   };
   outputs =

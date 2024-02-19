@@ -99,6 +99,7 @@
     home-manager
     dash elvish fish nushell tcsh xonsh zsh
     sddm-chili-theme
+    inputs.nbfc.defaultPackage.${system}
   ];
   # ends here
   # [[file:nixos.org::*Host][]]
@@ -282,22 +283,21 @@
   });
   # ends here
   # [[file:nixos.org::*Host][]]
-  
   services.flatpak.enable = true;
   services.openssh.enable = true;
   # userspace virtual filesystem
   services.gvfs.enable = true;
   # an automatic device mounting daemon
   services.devmon.enable = true;
-  # a DBus service that allows applications to query and manipulate storage devices.
+  # allows applications to query and manipulate storage devices.
   services.udisks2.enable = true;
-  # a DBus service that provides power management support to applications.
-  services.upower.enable = true;
   # a DBus service for accessing the list of user accounts and information attached to those accounts.
   # services.accounts-daemon.enable = true;
   services.ratbagd.enable = true; # configuring gamming mouse
   # ends here
   # [[file:nixos.org::*Host][]]
+  # a DBus service that provides power management support to applications.
+  services.upower.enable = true;
   services.tlp = {
     enable = true;
     settings = {
