@@ -135,15 +135,15 @@ in
 :header-args:nix: :noweb-ref host-config
 :END:
 #+begin_src nix :tangle host/configuration.nix :comments noweb :noweb no-export :noweb-ref no
-  { config, pkgs, lib, inputs, username, ... }:
-  {
-    imports =
-      [
-        /etc/nixos/hardware-configuration.nix
-        inputs.musnix.nixosModules.musnix
-      ];
-    <<host-config>>
-  }
+{ config, pkgs, lib, inputs, username, system, ... }:
+{
+  imports =
+    [
+      /etc/nixos/hardware-configuration.nix
+      inputs.musnix.nixosModules.musnix
+    ];
+  <<host-config>>
+}
 #+end_src
 ** Nix
 #+begin_src nix
@@ -249,7 +249,7 @@ environment.systemPackages = with pkgs; [
   home-manager
   dash elvish fish nushell tcsh xonsh zsh
   sddm-chili-theme
-  inputs.nbfc.defaultPackage.${system}
+  # inputs.nbfc.defaultPackage.${system}
 ];
   #+end_src
 *** Shells
@@ -468,6 +468,19 @@ services.ollama.package = (pkgs.ollama.override{
     cudaPackages = (pkgs.cudaPackages);
   });
 });
+#+end_src
+*** NBFC
+Notebook fancontrol
+#+begin_src nix
+systemd.services.nbfc_service = {
+  enable = true;
+  description = "NoteBook FanControl service";
+  serviceConfig.Type = "simple";
+  path = [ pkgs.kmod ];
+  script = let nbfc = inputs.nbfc.defaultPackage.${system}; in
+           "${nbfc}/bin/nbfc_service --config-file '/home/${username}/.config/nbfc.json'";
+  wantedBy = [ "multi-user.target" ];
+};
 #+end_src
 *** Misc
 #+begin_src nix
@@ -748,7 +761,7 @@ gcc ccache cmake clang-tools bear
   # pyperclip
   pillow imageio imageio-ffmpeg
   # grad-cam
-  opencv4
+  # opencv4
   # onnxruntime
   jupyter ipython matplotlib
   # the unusable package manager
@@ -759,8 +772,7 @@ gcc ccache cmake clang-tools bear
 ]))
 
 poetry
-
-octave
+# octave
 nodejs
 go
 bun
@@ -837,7 +849,7 @@ jq
 yq-go
 acpi
 inotify-tools
-ffmpeg
+# ffmpeg
 libnotify
 zoxide
 autoconf
@@ -853,7 +865,7 @@ just
 #+end_src
 **** Toys
 #+begin_src nix
-ueberzugpp # allow showing child window in terminal
+# ueberzugpp # allow showing child window in terminal
 pipes-rs
 tty-clock
 cava
@@ -867,37 +879,37 @@ nerdfix # find nerd font icons
 *** Multimedia
 **** Audio-production
 #+begin_src nix
-  # daw
-  ardour
-  # synthesizer-plugin
-  zyn-fusion
-  surge
-  geonkick
-  distrho
-  # sampler
-  avldrums-lv2
-  drumkv1
-  drumgizmo
-  # effect processor
-  calf
-  lsp-plugins
+# daw
+ardour
+# synthesizer-plugin
+zyn-fusion
+surge
+geonkick
+distrho
+# sampler
+avldrums-lv2
+drumkv1
+drumgizmo
+# effect processor
+calf
+lsp-plugins
 #+end_src
 **** Music Player
 #+begin_src nix
-  tauon
-  tidal-dl
+tauon
+tidal-dl
 #+end_src
 **** Image Editors
 #+begin_src nix
-  gimp-with-plugins
-  inkscape
-  imagemagick    # editing and manipulating digital images
+# gimp-with-plugins
+inkscape
+imagemagick    # editing and manipulating digital images
 #+end_src
 
 **** Videos
 #+begin_src nix
-  kdenlive
-  vlc
+# kdenlive
+vlc
     #+end_src
 **** PDF
 #+begin_src nix

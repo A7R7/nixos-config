@@ -1,5 +1,5 @@
 # [[file:../nixos.org::*Host][Host:1]]
-{ config, pkgs, lib, inputs, username, ... }:
+{ config, pkgs, lib, inputs, username, system, ... }:
 {
   imports =
     [
@@ -99,7 +99,7 @@
     home-manager
     dash elvish fish nushell tcsh xonsh zsh
     sddm-chili-theme
-    inputs.nbfc.defaultPackage.${system}
+    # inputs.nbfc.defaultPackage.${system}
   ];
   # ends here
   # [[file:nixos.org::*Host][]]
@@ -281,6 +281,17 @@
       cudaPackages = (pkgs.cudaPackages);
     });
   });
+  # ends here
+  # [[file:nixos.org::*Host][]]
+  systemd.services.nbfc_service = {
+    enable = true;
+    description = "NoteBook FanControl service";
+    serviceConfig.Type = "simple";
+    path = [ pkgs.kmod ];
+    script = let nbfc = inputs.nbfc.defaultPackage.${system}; in
+             "${nbfc}/bin/nbfc_service --config-file '/home/${username}/.config/nbfc.json'";
+    wantedBy = [ "multi-user.target" ];
+  };
   # ends here
   # [[file:nixos.org::*Host][]]
   services.flatpak.enable = true;

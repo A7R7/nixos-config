@@ -21,7 +21,7 @@
       # pyperclip
       pillow imageio imageio-ffmpeg
       # grad-cam
-      opencv4
+      # opencv4
       # onnxruntime
       jupyter ipython matplotlib
       # the unusable package manager
@@ -32,8 +32,7 @@
     ]))
     
     poetry
-    
-    octave
+    # octave
     nodejs
     go
     bun
@@ -86,7 +85,7 @@
     yq-go
     acpi
     inotify-tools
-    ffmpeg
+    # ffmpeg
     libnotify
     zoxide
     autoconf
@@ -99,7 +98,7 @@
     gh
     zinit
     just
-    ueberzugpp # allow showing child window in terminal
+    # ueberzugpp # allow showing child window in terminal
     pipes-rs
     tty-clock
     cava
@@ -124,10 +123,10 @@
     lsp-plugins
     tauon
     tidal-dl
-    gimp-with-plugins
+    # gimp-with-plugins
     inkscape
     imagemagick    # editing and manipulating digital images
-    kdenlive
+    # kdenlive
     vlc
     zathura
     firefox
