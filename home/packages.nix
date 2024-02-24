@@ -180,7 +180,7 @@
     
     hyprpaper      # hyprland wallpaper utility
     swww           # dynamic wallpaper
-    wl-clipboard   # wayland clipboard
+    wl-clipboard-rs # wayland clipboard
     # gnome stuffs
     gnome.nautilus # gnome's file manager
     gnome.gnome-tweaks # gnome's file manager

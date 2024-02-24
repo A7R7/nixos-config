@@ -99,6 +99,7 @@
     home-manager
     dash elvish fish nushell tcsh xonsh zsh
     sddm-chili-theme
+    hicolor-icon-theme
     # inputs.nbfc.defaultPackage.${system}
   ];
   # ends here

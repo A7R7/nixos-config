@@ -987,7 +987,7 @@ wf-recorder    # screen recording tool
 
 hyprpaper      # hyprland wallpaper utility
 swww           # dynamic wallpaper
-wl-clipboard   # wayland clipboard
+wl-clipboard-rs # wayland clipboard
 #+end_src
 
 #+begin_src nix
