@@ -850,7 +850,7 @@ jq
 yq-go
 acpi
 inotify-tools
-# ffmpeg
+ffmpeg
 libnotify
 zoxide
 autoconf
@@ -864,6 +864,9 @@ gh
 zinit
 just
 #+end_src
+
+#+RESULTS:
+
 **** Toys
 #+begin_src nix
 # ueberzugpp # allow showing child window in terminal

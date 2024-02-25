@@ -85,7 +85,7 @@
     yq-go
     acpi
     inotify-tools
-    # ffmpeg
+    ffmpeg
     libnotify
     zoxide
     autoconf
