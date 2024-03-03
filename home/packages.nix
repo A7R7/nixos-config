@@ -10,7 +10,7 @@
     # nur.repos.lschuermann.vivado-2020_1
     gcc ccache cmake clang-tools bear
     (python311.withPackages(ps: with ps; [
-      pytorch-bin torchvision-bin
+      # pytorch-bin torchvision-bin
       #(torchvision.override {torch = pytorch-bin; })
       # required by lsp-bridge, holo-layer, and blink search
       epc orjson sexpdata six paramiko rapidfuzz
@@ -19,12 +19,12 @@
       numpy pandas toolz
       scipy cython
       # pyperclip
-      pillow imageio imageio-ffmpeg
+      pillow
+      # imageio imageio-ffmpeg
       # grad-cam
       # opencv4
       # onnxruntime
       jupyter ipython matplotlib
-      # the unusable package manager
       # pip pipdeptree
       # mynur.pix2tex
       # mynur.pix2text
@@ -167,7 +167,7 @@
     rofi-wayland-unwrapped # app launcher
     inputs.anyrun.packages.${system}.anyrun-with-all-plugins # app launcher
     
-    eww-wayland    # bar
+    eww            # bar
     waybar         # bar
     
     pavucontrol    # sound control
