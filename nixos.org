@@ -74,7 +74,6 @@ mynur.url = "github:A7R7/nur-packages";
 hyprland.url = "github:hyprwm/Hyprland";
 pyprland.url = "github:A7R7/pyprland";
 ags.url = "github:Aylur/ags";
-# ags.url = "github:Aylur/ags/feat/widgets-subclass-rewrite";
 musnix.url = "github:musnix/musnix";
 pip2nix.url = "github:nix-community/pip2nix";
 emacs.url = "github:nix-community/emacs-overlay";
@@ -304,6 +303,7 @@ programs.bash = {
 programs.hyprland = {
   enable = true;
   xwayland.enable = true;
+  package = inputs.hyprland.packages.${pkgs.system}.hyprland;
   # enableNvidiaPatches = false; # deprecated
 };
 #+end_src
