@@ -277,22 +277,6 @@
   # ends here
   # [[file:nixos.org::*Host][]]
   services.ollama.enable = true;
-  services.ollama.package = (pkgs.ollama.override{
-    llama-cpp = (pkgs.llama-cpp.override {
-      cudaPackages = (pkgs.cudaPackages);
-    });
-  });
-  # ends here
-  # [[file:nixos.org::*Host][]]
-  systemd.services.nbfc_service = {
-    enable = true;
-    description = "NoteBook FanControl service";
-    serviceConfig.Type = "simple";
-    path = [ pkgs.kmod ];
-    script = let nbfc = inputs.nbfc.defaultPackage.${system}; in
-             "${nbfc}/bin/nbfc_service --config-file '/home/${username}/.config/nbfc.json'";
-    wantedBy = [ "multi-user.target" ];
-  };
   # ends here
   # [[file:nixos.org::*Host][]]
   services.flatpak.enable = true;
