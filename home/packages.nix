@@ -34,6 +34,7 @@
     poetry
     # octave
     nodejs
+    gjs
     go
     bun
     sassc
@@ -45,21 +46,29 @@
     pkg-config
     rnix-lsp # WIP Language Server for Nix
     texliveFull
+    plantuml # draw plots
     pyright
     javascript-typescript-langserver
     rust-analyzer
     mynur.jdtls
+    vscode-langservers-extracted
     sqlite
     dbeaver
     niv
     nix-universal-prefetch
     inputs.pip2nix.defaultPackage.${system}
     nix-your-shell
+    any-nix-shell
     nix-output-monitor
+    nix-du
+    nixfmt
+    nixpkgs-fmt
+    manix # fast nix doc searcher
     doxygen
     doxygen_gui
     mynur.logisim-ita
     uncrustify
+    patchelf
     gtk-engine-murrine
     gnome-themes-extra
     mynur.tdlib # for building telegrame clients
@@ -67,16 +76,25 @@
     alacritty
     wezterm
     blackbox-terminal
+    cool-retro-term
     gitstatus # 10x faster than git status
     gitoxide  # rust git client
-    carapace
-    starship
+    gitui     # magit like git client
+    cloc      # compute lines
+    carapace  # completion backend
+    starship  # custom prompt
     lf
     thefuck   #
     bat       # rust cat
     eza       # rust ls
-    ranger nnn # cmdline file explorer
+    
+    ranger
+    nnn       # cmdline file explorer
     joshuto   # rust ranger
+    yazi      # faster rust ranger
+    
+    file      # tell file type
+    oterm     # cmdline ollama client
     fd
     ripgrep
     fzf
@@ -107,6 +125,7 @@
     uniscribe # describe unicodes
     unipicker # pick unicodes
     nerdfix # find nerd font icons
+    dwt1-shell-color-scripts # some colorful outputs
     # daw
     ardour
     # synthesizer-plugin
@@ -121,13 +140,20 @@
     # effect processor
     calf
     lsp-plugins
+    
+    # Qt-based Graph/Patchbay for PipeWire
+    qpwgraph
     tauon
-    tidal-dl
+    lollypop
+    cider      # Apple Music
+    spotify
+    feh
     # gimp-with-plugins
     inkscape
     imagemagick    # editing and manipulating digital images
     # kdenlive
     vlc
+    mpv
     zathura
     firefox
     floorp
@@ -151,6 +177,8 @@
     # nur.repos.xddxdd.dingtalk
     mynur.clash-verge-rev
     # nur.repos.xddxdd.baidunetdisk
+    tidal-dl
+    youtube-dl
     prismlauncher
     glfw-wayland-minecraft
     zulu21
@@ -180,11 +208,16 @@
     
     hyprpaper      # hyprland wallpaper utility
     swww           # dynamic wallpaper
+    swayimg        # wallpaper utility from sway
+    mpvpaper       # use mpv as wallpaper
+    
     wl-clipboard-rs # wayland clipboard
+    wev            # wayland event viewer
     # gnome stuffs
     gnome.nautilus # gnome's file manager
     gnome.gnome-tweaks # gnome's file manager
     gnome.gnome-characters
+    gnome.gnome-font-viewer # view system fonts
     gnome-themes-extra
     gtk-engine-murrine
     cinnamon.nemo  # cinnamon's file manager
@@ -210,6 +243,7 @@
     # hyprland plugin set in python
     inputs.pyprland.packages.${system}.default
     gparted        # disk partition manager
+    gnome.gnome-disk-utility # view disk info
     fsearch        # search files in disk
     lshw
     solaar         # connect with logitech devices
@@ -222,5 +256,8 @@
     xorg.xhost          # launch gui with sudo in cmdline
     networkmanagerapplet # network manager, gtk frontend
     wlr-randr      # wlroots screen manager
+    pciutils       # portable access to PCI bus configuration registers
+    piper          # GTK frontend for ratbagd mouse config daemon
+    lm_sensors     # reading hardware sensors
   ]);
 }

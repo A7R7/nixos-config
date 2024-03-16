@@ -348,6 +348,7 @@ programs.dconf.enable = true;
 fonts.packages = with pkgs; [
   noto-fonts
   noto-fonts-cjk
+  symbola
   roboto roboto-serif
   sarasa-gothic
 ];
@@ -355,6 +356,7 @@ fonts.fontconfig = {
   enable = true;
   includeUserConf = true;
   allowBitmaps = false;
+  hinting.enable = false;
 };
 #+end_src
 ** Services
@@ -420,7 +422,8 @@ services.syncthing = {
 #+begin_src nix
 services.blueman.enable = true;
 #+end_src
-*** Jtag
+*** COMMENT Jtag
+for vivado to link to board.
 #+begin_src nix
 services.udev.packages = [
   (pkgs.writeTextFile {
@@ -772,6 +775,7 @@ gcc ccache cmake clang-tools bear
 poetry
 # octave
 nodejs
+gjs
 go
 bun
 sassc
@@ -783,6 +787,7 @@ maven
 pkg-config
 rnix-lsp # WIP Language Server for Nix
 texliveFull
+plantuml # draw plots
 #+end_src
 **** Lang-servers
 #+begin_src nix
@@ -790,6 +795,7 @@ pyright
 javascript-typescript-langserver
 rust-analyzer
 mynur.jdtls
+vscode-langservers-extracted
 #+end_src
 **** Database
 #+begin_src nix
@@ -804,7 +810,12 @@ niv
 nix-universal-prefetch
 inputs.pip2nix.defaultPackage.${system}
 nix-your-shell
+any-nix-shell
 nix-output-monitor
+nix-du
+nixfmt
+nixpkgs-fmt
+manix # fast nix doc searcher
  #+end_src
 **** Others
 #+begin_src nix
@@ -812,6 +823,7 @@ doxygen
 doxygen_gui
 mynur.logisim-ita
 uncrustify
+patchelf
 #+end_src
 *** Runtime
 #+begin_src nix
@@ -826,19 +838,28 @@ kitty
 alacritty
 wezterm
 blackbox-terminal
+cool-retro-term
 #+end_src
 **** Tools
 #+begin_src nix
 gitstatus # 10x faster than git status
 gitoxide  # rust git client
-carapace
-starship
+gitui     # magit like git client
+cloc      # compute lines
+carapace  # completion backend
+starship  # custom prompt
 lf
 thefuck   #
 bat       # rust cat
 eza       # rust ls
-ranger nnn # cmdline file explorer
+
+ranger
+nnn       # cmdline file explorer
 joshuto   # rust ranger
+yazi      # faster rust ranger
+
+file      # tell file type
+oterm     # cmdline ollama client
 fd
 ripgrep
 fzf
@@ -875,6 +896,7 @@ fastfetch
 uniscribe # describe unicodes
 unipicker # pick unicodes
 nerdfix # find nerd font icons
+dwt1-shell-color-scripts # some colorful outputs
 #+end_src
 
 *** Multimedia
@@ -894,13 +916,21 @@ drumgizmo
 # effect processor
 calf
 lsp-plugins
+
+# Qt-based Graph/Patchbay for PipeWire
+qpwgraph
 #+end_src
 **** Music Player
 #+begin_src nix
 tauon
-tidal-dl
+lollypop
+cider      # Apple Music
+spotify
 #+end_src
-**** Image Editors
+**** Image
+#+begin_src nix
+feh
+#+end_src
 #+begin_src nix
 # gimp-with-plugins
 inkscape
@@ -911,6 +941,7 @@ imagemagick    # editing and manipulating digital images
 #+begin_src nix
 # kdenlive
 vlc
+mpv
     #+end_src
 **** PDF
 #+begin_src nix
@@ -951,7 +982,11 @@ mynur.clash-verge-rev
 #+begin_src nix
 # nur.repos.xddxdd.baidunetdisk
 #+end_src
-
+**** Downloader
+#+begin_src nix
+tidal-dl
+youtube-dl
+#+end_src
 *** Gaming
 #+begin_src nix
   prismlauncher
@@ -987,7 +1022,11 @@ wf-recorder    # screen recording tool
 
 hyprpaper      # hyprland wallpaper utility
 swww           # dynamic wallpaper
+swayimg        # wallpaper utility from sway
+mpvpaper       # use mpv as wallpaper
+
 wl-clipboard-rs # wayland clipboard
+wev            # wayland event viewer
 #+end_src
 
 #+begin_src nix
@@ -995,6 +1034,7 @@ wl-clipboard-rs # wayland clipboard
 gnome.nautilus # gnome's file manager
 gnome.gnome-tweaks # gnome's file manager
 gnome.gnome-characters
+gnome.gnome-font-viewer # view system fonts
 gnome-themes-extra
 gtk-engine-murrine
 cinnamon.nemo  # cinnamon's file manager
@@ -1023,6 +1063,7 @@ inputs.pyprland.packages.${system}.default
 *** System-tools
 #+begin_src nix
 gparted        # disk partition manager
+gnome.gnome-disk-utility # view disk info
 fsearch        # search files in disk
 lshw
 solaar         # connect with logitech devices
@@ -1035,6 +1076,9 @@ filelight      # inspecting disk usage statistics
 xorg.xhost          # launch gui with sudo in cmdline
 networkmanagerapplet # network manager, gtk frontend
 wlr-randr      # wlroots screen manager
+pciutils       # portable access to PCI bus configuration registers
+piper          # GTK frontend for ratbagd mouse config daemon
+lm_sensors     # reading hardware sensors
 #+end_src
 * Build
 #+begin_src sh :dir /sudo::
