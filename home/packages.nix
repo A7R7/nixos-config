@@ -4,12 +4,12 @@
     helix
     lapce  # a rust powered editor
     libreoffice
-    wpsoffice
+    # wpsoffice
     neovide
     marktext
     # nur.repos.lschuermann.vivado-2020_1
     gcc ccache cmake clang-tools bear
-    (python312.withPackages(ps: with ps; [
+    (python311.withPackages(ps: with ps; [
       # pytorch-bin torchvision-bin
       #(torchvision.override {torch = pytorch-bin; })
       # required by lsp-bridge, holo-layer, and blink search
@@ -224,7 +224,7 @@
     gtk-engine-murrine
     cinnamon.nemo  # cinnamon's file manager
     doublecmd
-    peazip         # achiever
+    # peazip         # achiever
     nsxiv          # the best image viewer
     
     gnome.adwaita-icon-theme

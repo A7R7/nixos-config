@@ -739,7 +739,7 @@ services.blueman-applet.enable = true;
 helix
 lapce  # a rust powered editor
 libreoffice
-wpsoffice
+# wpsoffice
 neovide
 marktext
 # nur.repos.lschuermann.vivado-2020_1
@@ -750,7 +750,7 @@ These tools can be seen as runtimes, for non serious usage and quick testing.
 To seriously do development on nixos I have to write derivations.
 #+begin_src nix
 gcc ccache cmake clang-tools bear
-(python312.withPackages(ps: with ps; [
+(python311.withPackages(ps: with ps; [
   # pytorch-bin torchvision-bin
   #(torchvision.override {torch = pytorch-bin; })
   # required by lsp-bridge, holo-layer, and blink search
@@ -1041,7 +1041,7 @@ gnome-themes-extra
 gtk-engine-murrine
 cinnamon.nemo  # cinnamon's file manager
 doublecmd
-peazip         # achiever
+# peazip         # achiever
 nsxiv          # the best image viewer
 
 gnome.adwaita-icon-theme
