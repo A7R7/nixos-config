@@ -45,7 +45,7 @@
     # eslint
     maven
     pkg-config
-    rnix-lsp # WIP Language Server for Nix
+    # rnix-lsp # WIP Language Server for Nix
     texliveFull
     plantuml # draw plots
     pyright
