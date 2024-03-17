@@ -9,7 +9,7 @@
     marktext
     # nur.repos.lschuermann.vivado-2020_1
     gcc ccache cmake clang-tools bear
-    (python311.withPackages(ps: with ps; [
+    (python312.withPackages(ps: with ps; [
       # pytorch-bin torchvision-bin
       #(torchvision.override {torch = pytorch-bin; })
       # required by lsp-bridge, holo-layer, and blink search
@@ -29,6 +29,7 @@
       # mynur.pix2tex
       # mynur.pix2text
       nvidia-ml-py
+      svgwrite
     ]))
     
     poetry
