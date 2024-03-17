@@ -44,6 +44,7 @@
     hyprland.url = "github:hyprwm/Hyprland";
     pyprland.url = "github:A7R7/pyprland";
     ags.url = "github:Aylur/ags";
+    astal.url = "github:Aylur/Astal";
     musnix.url = "github:musnix/musnix";
     pip2nix.url = "github:nix-community/pip2nix";
     emacs.url = "github:nix-community/emacs-overlay";

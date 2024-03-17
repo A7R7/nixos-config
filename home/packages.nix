@@ -241,6 +241,7 @@
     
     # bar and shell in gjs
     inputs.ags.packages.${system}.default
+    inputs.astal.packages.${system}.default
     
     # hyprland plugin set in python
     inputs.pyprland.packages.${system}.default
