@@ -349,8 +349,6 @@ programs.dconf.enable = true;
 fonts.packages = with pkgs; [
   noto-fonts
   noto-fonts-cjk
-  symbola
-  roboto roboto-serif
   sarasa-gothic
 ];
 fonts.fontconfig = {
@@ -603,7 +601,17 @@ nixpkgs = {
 #+begin_src nix
 fonts.fontconfig.enable = true;
 home.packages = with pkgs; [
-   nerdfonts
+   (nerdfonts.override {
+     fonts = [
+       "FiraCode" "DroidSansMono" "RobotoMono"
+     ];})
+   (google-fonts.override {
+     fonts = [
+       "Play"
+     ];})
+   symbola
+   roboto roboto-serif
+
    noto-fonts-monochrome-emoji
    noto-fonts-emoji
    noto-fonts-extra

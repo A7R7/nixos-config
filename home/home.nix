@@ -56,7 +56,17 @@ in
   # [[file:nixos.org::*Config][]]
   fonts.fontconfig.enable = true;
   home.packages = with pkgs; [
-     nerdfonts
+     (nerdfonts.override {
+       fonts = [
+         "FiraCode" "DroidSansMono" "RobotoMono"
+       ];})
+     (google-fonts.override {
+       fonts = [
+         "Play"
+       ];})
+     symbola
+     roboto roboto-serif
+  
      noto-fonts-monochrome-emoji
      noto-fonts-emoji
      noto-fonts-extra

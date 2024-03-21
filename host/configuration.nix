@@ -183,8 +183,6 @@
   fonts.packages = with pkgs; [
     noto-fonts
     noto-fonts-cjk
-    symbola
-    roboto roboto-serif
     sarasa-gothic
   ];
   fonts.fontconfig = {
