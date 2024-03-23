@@ -143,10 +143,6 @@ in
     enable = true;
     package = pkgs.vscode.fhs;
   };
-  programs.emacs = {
-    enable = true;
-    package = pkgs.emacs29-pgtk;
-  };
   programs.obs-studio = {
     enable = true;
     plugins = with pkgs.obs-studio-plugins; [
