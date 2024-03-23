@@ -145,7 +145,7 @@ in
   };
   programs.emacs = {
     enable = true;
-    package = pkgs.emacs-unstable-pgtk;
+    package = pkgs.emacs29-pgtk;
   };
   programs.obs-studio = {
     enable = true;
@@ -158,7 +158,7 @@ in
   programs.direnv = {
     enable = true;
     enableBashIntegration = true; # see note on other shells below
-        nix-direnv.enable = true;
+    nix-direnv.enable = true;
   };
   # ends here
   # [[file:nixos.org::*Config][]]

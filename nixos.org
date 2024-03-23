@@ -1,6 +1,6 @@
 :DOC-CONFIG:
 #+PROPERTY: header-args:nix :comments noweb
-#+AUTO_TANGLE: nil
+#+auto_tangle: vars:load-path
 #+STARTUP: fold
 #+HUGO_BUNDLE: nixos-configuration
 #+EXPORT_FILE_NAME: index.en
@@ -701,7 +701,7 @@ programs.vscode = {
 };
 programs.emacs = {
   enable = true;
-  package = pkgs.emacs-unstable-pgtk;
+  package = pkgs.emacs29-pgtk;
 };
 programs.obs-studio = {
   enable = true;
@@ -714,7 +714,7 @@ programs.obs-studio = {
 programs.direnv = {
   enable = true;
   enableBashIntegration = true; # see note on other shells below
-      nix-direnv.enable = true;
+  nix-direnv.enable = true;
 };
 #+end_src
 
