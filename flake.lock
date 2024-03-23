@@ -452,11 +452,11 @@
         "nixpkgs": "nixpkgs_7"
       },
       "locked": {
-        "lastModified": 1711215653,
-        "narHash": "sha256-BAwkyCkz7qLkZAdc5GtHSJBES9Vw7v0osNe3kFvXdrk=",
+        "lastModified": 1711215849,
+        "narHash": "sha256-7E2HZpxKA3ClAn8XlJC/U9XM9im0+geO3ihHoMybSr8=",
         "owner": "A7R7",
         "repo": "nur-packages",
-        "rev": "697a93e15ce2a22522d20109d7e66d39015ebf35",
+        "rev": "8d9c259bde55b91bcabe3409290cc0405a9b5a04",
         "type": "github"
       },
       "original": {
