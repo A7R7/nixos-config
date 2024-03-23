@@ -714,7 +714,7 @@ programs.direnv = {
 };
 programs.emacs = {
   enable = true;
-  package = mynur.emacs
+  package = mynur.emacs;
 }
 #+end_src
 
