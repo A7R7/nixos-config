@@ -74,7 +74,7 @@
         overlays = with inputs; [
           nur.overlay
           mynur.overlay
-          # emacs.overlay
+          emacs.overlay
           (final: prev: { v2311 = import inputs.nixpkgs-2311 {
               inherit system;
               config.allowUnfree = true;

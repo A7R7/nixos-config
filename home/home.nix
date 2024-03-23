@@ -156,6 +156,10 @@ in
     enableBashIntegration = true; # see note on other shells below
     nix-direnv.enable = true;
   };
+  programs.emacs = {
+    enable = true;
+    package = mynur.emacs
+  }
   # ends here
   # [[file:nixos.org::*Config][]]
   services.syncthing = {

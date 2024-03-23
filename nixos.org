@@ -103,7 +103,7 @@ let
     overlays = with inputs; [
       nur.overlay
       mynur.overlay
-      # emacs.overlay
+      emacs.overlay
       (final: prev: { v2311 = import inputs.nixpkgs-2311 {
           inherit system;
           config.allowUnfree = true;
@@ -239,7 +239,7 @@ users.users.${username} = {
 ** Pkgs
 #+begin_src nix
 environment.systemPackages = with pkgs; [
-  vim neovim emacs29-pgtk
+  vim neovim
   wget
   curl
   git
@@ -712,6 +712,10 @@ programs.direnv = {
   enableBashIntegration = true; # see note on other shells below
   nix-direnv.enable = true;
 };
+programs.emacs = {
+  enable = true;
+  package = mynur.emacs
+}
 #+end_src
 
 #+RESULTS:

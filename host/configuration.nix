@@ -87,7 +87,7 @@
   # ends here
   # [[file:nixos.org::*Host][]]
   environment.systemPackages = with pkgs; [
-    vim neovim emacs29-pgtk
+    vim neovim
     wget
     curl
     git
