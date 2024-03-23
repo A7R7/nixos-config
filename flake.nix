@@ -47,7 +47,7 @@
     astal.url = "github:Aylur/Astal";
     musnix.url = "github:musnix/musnix";
     pip2nix.url = "github:nix-community/pip2nix";
-    emacs.url = "github:nix-community/emacs-overlay";
+    # emacs.url = "github:nix-community/emacs-overlay";
     anyrun.url = "github:Kirottu/anyrun";
     anyrun.inputs.nixpkgs.follows = "nixpkgs";
     nbfc.url = "github:nbfc-linux/nbfc-linux";
