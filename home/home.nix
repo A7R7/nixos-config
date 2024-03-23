@@ -159,7 +159,7 @@ in
   programs.emacs = {
     enable = true;
     package = mynur.emacs;
-  }
+  };
   # ends here
   # [[file:nixos.org::*Config][]]
   services.syncthing = {
