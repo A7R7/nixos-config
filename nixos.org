@@ -77,7 +77,7 @@ ags.url = "github:Aylur/ags";
 astal.url = "github:Aylur/Astal";
 musnix.url = "github:musnix/musnix";
 pip2nix.url = "github:nix-community/pip2nix";
-# emacs.url = "github:nix-community/emacs-overlay";
+emacs.url = "github:nix-community/emacs-overlay";
 anyrun.url = "github:Kirottu/anyrun";
 anyrun.inputs.nixpkgs.follows = "nixpkgs";
 nbfc.url = "github:nbfc-linux/nbfc-linux";
@@ -103,7 +103,7 @@ let
     overlays = with inputs; [
       nur.overlay
       mynur.overlay
-      emacs.overlay
+      # emacs.overlay
       (final: prev: { v2311 = import inputs.nixpkgs-2311 {
           inherit system;
           config.allowUnfree = true;
