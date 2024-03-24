@@ -572,15 +572,9 @@ nixpkgs = {
     allowUnfreePredicate = (_: true);
     cudaSupport = true;
     cudaVersion = "12";
-    permittedInsecurePackages = [
-      "electron-11.5.0"
-    ];
   };
 };
-
 #+end_src
-
-#+RESULTS:
 
 *** Input method
   #+begin_src nix
@@ -634,10 +628,10 @@ home.packages = with pkgs; [
 
    lxgw-wenkai
    lxgw-neoxihei
+   wqy_zenhei
+   wqy_microhei
 ];
 #+end_src
-
-#+RESULTS:
 
 *** GTK
 #+begin_src nix

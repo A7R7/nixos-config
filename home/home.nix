@@ -32,12 +32,8 @@ in
       allowUnfreePredicate = (_: true);
       cudaSupport = true;
       cudaVersion = "12";
-      permittedInsecurePackages = [
-        "electron-11.5.0"
-      ];
     };
   };
-  
   # ends here
   # [[file:nixos.org::*Config][]]
   i18n.inputMethod = {
@@ -89,6 +85,8 @@ in
   
      lxgw-wenkai
      lxgw-neoxihei
+     wqy_zenhei
+     wqy_microhei
   ];
   # ends here
   # [[file:nixos.org::*Config][]]
