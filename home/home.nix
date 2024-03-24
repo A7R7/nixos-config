@@ -158,7 +158,7 @@ in
   programs.emacs = {
     enable = true;
     # package = pkgs.mynur.emacs;
-    package = pkgs.emacs-unstable-pgtk;
+    package = pkgs.emacs29-pgtk;
   };
   # ends here
   # [[file:nixos.org::*Config][]]

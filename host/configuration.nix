@@ -1,4 +1,3 @@
-# [[file:../nixos.org::*Host][Host:1]]
 { config, pkgs, lib, inputs, username, system, ... }:
 {
   imports =
@@ -6,7 +5,6 @@
       /etc/nixos/hardware-configuration.nix
       inputs.musnix.nixosModules.musnix
     ];
-  # [[file:nixos.org::*Host][]]
   system.stateVersion = "23.11";
   nixpkgs.config.allowUnfree = true;
   nix = {
@@ -24,8 +22,6 @@
       trusted-users = [ "${username}" ];
     };
   };
-  # ends here
-  # [[file:nixos.org::*Host][]]
   boot = {
     loader = {
       # systemd-boot.enable = true;
@@ -41,13 +37,9 @@
       timeout = 10;
     };
   };
-  # ends here
-  # [[file:nixos.org::*Host][]]
   networking = {
     networkmanager.enable = true;
   };
-  # ends here
-  # [[file:nixos.org::*Host][]]
   musnix.enable = true;
   sound.enable = false; # sound.enable is only meant for ALSA-based configurations
   hardware.pulseaudio.enable = false;
@@ -60,8 +52,6 @@
     pulse.enable = true;
     jack.enable = true;
   };
-  # ends here
-  # [[file:nixos.org::*Host][]]
   time.timeZone = "Asia/Shanghai";
   i18n = {
     defaultLocale = "en_US.UTF-8";
@@ -76,16 +66,12 @@
   };
   
   
-  # ends here
-  # [[file:nixos.org::*Host][]]
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.${username} = {
     isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager" "libvirtd" "adbusers" "audio"];
     # shell = pkgs.elvish;
   };
-  # ends here
-  # [[file:nixos.org::*Host][]]
   environment.systemPackages = with pkgs; [
     vim neovim
     wget
@@ -102,16 +88,10 @@
     hicolor-icon-theme
     # inputs.nbfc.defaultPackage.${system}
   ];
-  # ends here
-  # [[file:nixos.org::*Host][]]
   environment.shells = with pkgs; [
     dash elvish fish nushell tcsh xonsh zsh
   ];
-  # ends here
-  # [[file:nixos.org::*Host][]]
   environment.localBinInPath = true;
-  # ends here
-  # [[file:nixos.org::*Host][]]
   virtualisation = {
     podman.enable = true;
     libvirtd.enable = true;
@@ -124,8 +104,6 @@
     vmware.guest.enable = true;
   };
   users.extraGroups.vboxusers.members = [ "user-with-access-to-virtualbox" ];
-  # ends here
-  # [[file:nixos.org::*Host][]]
   programs.bash = {
     interactiveShellInit = ''
       if [[ $(${pkgs.procps}/bin/ps --no-header --pid=$PPID --format=comm) != "fish" && -z ''${BASH_EXECUTION_STRING} ]]
@@ -135,19 +113,13 @@
       fi
     ''; # launches fish unless the parent process is already fish
   };
-  # ends here
-  # [[file:nixos.org::*Host][]]
   
-  # ends here
-  # [[file:nixos.org::*Host][]]
   programs.hyprland = {
     enable = true;
     xwayland.enable = true;
     package = inputs.hyprland.packages.${pkgs.system}.hyprland;
     # enableNvidiaPatches = false; # deprecated
   };
-  # ends here
-  # [[file:nixos.org::*Host][]]
   programs.wayfire = {
     enable = true;
     package = pkgs.mynur.wayfire;
@@ -160,26 +132,18 @@
     ];
   };
   environment.sessionVariables.WAYFIRE_CONFIG_FILE = "$HOME/.config/wayfire/wayfire.ini";
-  # ends here
-  # [[file:nixos.org::*Host][]]
   programs.steam = {
     enable = true;
     remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
     dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
   };
-  # ends here
-  # [[file:nixos.org::*Host][]]
   xdg.portal = {
     enable = true;
     wlr.enable = true;
     # extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
   };
-  # ends here
-  # [[file:nixos.org::*Host][]]
   programs.adb.enable = true;
   programs.dconf.enable = true;
-  # ends here
-  # [[file:nixos.org::*Host][]]
   fonts.packages = with pkgs; [
     noto-fonts
     noto-fonts-cjk
@@ -191,8 +155,6 @@
     allowBitmaps = false;
     hinting.enable = false;
   };
-  # ends here
-  # [[file:nixos.org::*Host][]]
   services.xserver.enable = true;
   services.xserver.excludePackages = [ pkgs.xterm ];
   services.xserver.xkb.layout = "us";
@@ -205,8 +167,6 @@
   # displayManager.lightdm.enable = true;
   # displayManager.lightdm.greeters.slick.enable = true;
   # desktopManager.gnome.enable = true;
-  # ends here
-  # [[file:nixos.org::*Host][]]
   services.gnome = {
     evolution-data-server.enable = true;
     glib-networking.enable = true;
@@ -214,14 +174,10 @@
     gnome-online-accounts.enable = true;
     at-spi2-core.enable = true; # avoid the warning "The name org.a11y.Bus was not provided by any .service files"
   };
-  # ends here
-  # [[file:nixos.org::*Host][]]
   services.dae = {
     enable = true;
     configFile = "/home/${username}/.config/dae/config.dae";
   };
-  # ends here
-  # [[file:nixos.org::*Host][]]
   services.syncthing = {
     enable = true;
     openDefaultPorts = true; # 22000/TCP and 22000/UDP
@@ -231,11 +187,7 @@
     group = "users";
     # guiAdd.0:8384"; # To be able to access the web GUI
   };
-  # ends here
-  # [[file:nixos.org::*Host][]]
   services.blueman.enable = true;
-  # ends here
-  # [[file:nixos.org::*Host][]]
   services.printing.enable = true;
   services.printing.drivers = [ pkgs.hplipWithPlugin ];
   services.avahi = {
@@ -243,11 +195,7 @@
     nssmdns4 = true;
     openFirewall = true;
   };
-  # ends here
-  # [[file:nixos.org::*Host][]]
   services.ollama.enable = true;
-  # ends here
-  # [[file:nixos.org::*Host][]]
   services.flatpak.enable = true;
   services.openssh.enable = true;
   # userspace virtual filesystem
@@ -259,8 +207,6 @@
   # a DBus service for accessing the list of user accounts and information attached to those accounts.
   # services.accounts-daemon.enable = true;
   services.ratbagd.enable = true; # configuring gamming mouse
-  # ends here
-  # [[file:nixos.org::*Host][]]
   # a DBus service that provides power management support to applications.
   services.upower.enable = true;
   services.tlp = {
@@ -282,10 +228,6 @@
       STOP_CHARGE_THRESH_BAT0 = 80; # 80 and above it stops charging
     };
   };
-  # ends here
-  # [[file:nixos.org::*Host][]]
   security.polkit.enable = true;
   # start polkit on login by creating a systemd user service
-  # ends here
 }
-# Host:1 ends here

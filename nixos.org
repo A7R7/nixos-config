@@ -136,7 +136,7 @@ in
 :PROPERTIES:
 :header-args:nix: :noweb-ref host-config
 :END:
-#+begin_src nix :tangle host/configuration.nix :comments noweb :noweb no-export :noweb-ref no
+#+begin_src nix :tangle host/configuration.nix :noweb no-export :noweb-ref no
 { config, pkgs, lib, inputs, username, system, ... }:
 {
   imports =
@@ -710,7 +710,7 @@ programs.direnv = {
 programs.emacs = {
   enable = true;
   # package = pkgs.mynur.emacs;
-  package = pkgs.emacs-unstable-pgtk;
+  package = pkgs.emacs29-pgtk;
 };
 #+end_src
 
