@@ -59,6 +59,7 @@ in
      (nerdfonts.override {
        fonts = [
          "FiraCode" "DroidSansMono" "RobotoMono"
+         "NerdFontsSymbolsOnly"
        ];})
      (google-fonts.override {
        fonts = [
