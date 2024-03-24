@@ -1,6 +1,6 @@
 :DOC-CONFIG:
 #+PROPERTY: header-args:nix :comments noweb
-#+auto_tangle: vars:load-path
+# #+auto_tangle: vars:load-path
 #+STARTUP: fold
 #+HUGO_BUNDLE: nixos-configuration
 #+EXPORT_FILE_NAME: index.en
@@ -714,7 +714,8 @@ programs.direnv = {
 };
 programs.emacs = {
   enable = true;
-  package = pkgs.mynur.emacs;
+  # package = pkgs.mynur.emacs;
+  package = pkgs.emacs-unstable-pgtk
 };
 #+end_src
 

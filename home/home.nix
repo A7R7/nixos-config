@@ -158,7 +158,8 @@ in
   };
   programs.emacs = {
     enable = true;
-    package = pkgs.mynur.emacs;
+    # package = pkgs.mynur.emacs;
+    package = pkgs.emacs-unstable-pgtk
   };
   # ends here
   # [[file:nixos.org::*Config][]]
