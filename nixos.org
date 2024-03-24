@@ -715,7 +715,7 @@ programs.direnv = {
 programs.emacs = {
   enable = true;
   # package = pkgs.mynur.emacs;
-  package = pkgs.emacs-unstable-pgtk
+  package = pkgs.emacs-unstable-pgtk;
 };
 #+end_src
 
