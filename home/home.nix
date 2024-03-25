@@ -54,8 +54,14 @@ in
   home.packages = with pkgs; [
      (nerdfonts.override {
        fonts = [
-         "FiraCode" "DroidSansMono" "RobotoMono"
+         "CommitMono"
+         "DroidSansMono"
+         "FiraCode"
+         "Hack"
+         "IBMPlexMono"
+         "Monaspace"
          "NerdFontsSymbolsOnly"
+         "RobotoMono"
        ];})
      (google-fonts.override {
        fonts = [
