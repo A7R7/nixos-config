@@ -1,4 +1,4 @@
-# [[file:../nixos.org::*Config][Config:1]]
+# [[file:../readme.org::*Config][Config:1]]
 { config, pkgs, inputs, ... }:
 let
   username = "aaron";
@@ -8,7 +8,7 @@ in
   imports = [
     ./packages.nix
   ];
-  # [[file:nixos.org::*Config][]]
+  # [[file:readme.org::*Config][]]
   home = {
     username = username;
     homeDirectory = homeDirectory;
@@ -35,7 +35,7 @@ in
     };
   };
   # ends here
-  # [[file:nixos.org::*Config][]]
+  # [[file:readme.org::*Config][]]
   i18n.inputMethod = {
     enabled = "fcitx5";
     fcitx5 = {
@@ -49,7 +49,7 @@ in
     };
   };
   # ends here
-  # [[file:nixos.org::*Config][]]
+  # [[file:readme.org::*Config][]]
   fonts.fontconfig.enable = true;
   home.packages = with pkgs; [
      (nerdfonts.override {
@@ -95,7 +95,7 @@ in
      wqy_microhei
   ];
   # ends here
-  # [[file:nixos.org::*Config][]]
+  # [[file:readme.org::*Config][]]
   gtk.enable = true;
   # gtk.theme = {
   #   name = "Fluent";
@@ -124,7 +124,7 @@ in
     "Xft.dpi" = 172;
   };
   # ends here
-  # [[file:nixos.org::*Config][]]
+  # [[file:readme.org::*Config][]]
   gtk.gtk3.bookmarks = [
     "file://${homeDirectory}/Documents"
     "file://${homeDirectory}/Music"
@@ -138,12 +138,12 @@ in
   ];
   
   # ends here
-  # [[file:nixos.org::*Config][]]
+  # [[file:readme.org::*Config][]]
   programs.bash = {
     enable = true; # this is needed for home.sessionVariables to work
   };
   # ends here
-  # [[file:nixos.org::*Config][]]
+  # [[file:readme.org::*Config][]]
   programs.vscode = {
     enable = true;
     package = pkgs.vscode.fhs;
@@ -167,7 +167,7 @@ in
     package = pkgs.emacs29-pgtk;
   };
   # ends here
-  # [[file:nixos.org::*Config][]]
+  # [[file:readme.org::*Config][]]
   services.syncthing = {
     enable = true;
     tray = {enable = true;};

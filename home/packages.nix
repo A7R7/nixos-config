@@ -151,7 +151,7 @@
     cider      # Apple Music
     spotify
     feh
-    # gimp-with-plugins
+    v2311.gimp-with-plugins
     inkscape
     imagemagick    # editing and manipulating digital images
     # kdenlive

@@ -1,8 +1,8 @@
-# [[file:nixos.org::*Flake][Flake:1]]
+# [[file:readme.org::*Flake][Flake:1]]
 {
   description = "A7R7's NixOS Flake";
   nixConfig = {
-    # [[file:nixos.org::*Flake][]]
+    # [[file:readme.org::*Flake][]]
     experimental-features = [ "nix-command" "flakes" ];
     # nix community's cache server
     extra-substituters = [
@@ -24,7 +24,7 @@
     # ends here
   };
   inputs = {
-    # [[file:nixos.org::*Flake][]]
+    # [[file:readme.org::*Flake][]]
     ## nixpkgs
     nixpkgs-2305.url = "github:nixos/nixpkgs/nixos-23.05";
     nixpkgs-2311.url = "github:nixos/nixpkgs/nixos-23.11";
@@ -55,7 +55,7 @@
     # ends here
   };
   outputs =
-    # [[file:nixos.org::*Flake][]]
+    # [[file:readme.org::*Flake][]]
     inputs@{
       self,
       nixpkgs,
