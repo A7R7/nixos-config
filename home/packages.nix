@@ -49,6 +49,7 @@
     nil
     texliveFull
     plantuml # draw plots
+    flutter
     pyright
     javascript-typescript-langserver
     rust-analyzer

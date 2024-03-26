@@ -757,8 +757,8 @@ marktext
 #+end_src
 
 **** Languages
-These tools can be seen as runtimes, for non serious usage and quick testing.
-To seriously do development on nixos I have to write derivations.
+These tools are for non-serious usage and quick testing.
+To seriously do development on nixos I have to write devshell.
 #+begin_src nix
 gcc ccache cmake clang-tools bear
 (python311.withPackages(ps: with ps; [
@@ -801,6 +801,7 @@ pkg-config
 nil
 texliveFull
 plantuml # draw plots
+flutter
 #+end_src
 **** Lang-servers
 #+begin_src nix
