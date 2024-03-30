@@ -311,7 +311,7 @@ programs.hyprland = {
 
 #+begin_src nix
 programs.wayfire = {
-  enable = true;
+  enable = false;
   package = pkgs.mynur.wayfire;
   plugins = (with pkgs.wayfirePlugins; [
     wcm
@@ -321,7 +321,7 @@ programs.wayfire = {
     pkgs.mynur.swayfire
   ];
 };
-environment.sessionVariables.WAYFIRE_CONFIG_FILE = "$HOME/.config/wayfire/wayfire.ini";
+# environment.sessionVariables.WAYFIRE_CONFIG_FILE = "$HOME/.config/wayfire/wayfire.ini";
 #+end_src
 *** Misc
 #+begin_src nix

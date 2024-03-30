@@ -121,7 +121,7 @@
     # enableNvidiaPatches = false; # deprecated
   };
   programs.wayfire = {
-    enable = true;
+    enable = false;
     package = pkgs.mynur.wayfire;
     plugins = (with pkgs.wayfirePlugins; [
       wcm
@@ -131,7 +131,7 @@
       pkgs.mynur.swayfire
     ];
   };
-  environment.sessionVariables.WAYFIRE_CONFIG_FILE = "$HOME/.config/wayfire/wayfire.ini";
+  # environment.sessionVariables.WAYFIRE_CONFIG_FILE = "$HOME/.config/wayfire/wayfire.ini";
   programs.steam = {
     enable = true;
     remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
