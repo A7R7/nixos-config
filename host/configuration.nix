@@ -137,13 +137,17 @@
     remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
     dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
   };
+  programs.adb.enable = true;
+  programs.dconf.enable = true;
   xdg.portal = {
     enable = true;
     wlr.enable = true;
     # extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
   };
-  programs.adb.enable = true;
-  programs.dconf.enable = true;
+  xdg.mimeApps.defaultApplications = {
+      "mp4" = [ "umpv.desktop" "mpv.desktop" ];
+      "png" = [ "feh.desktop"]
+  }
   fonts.packages = with pkgs; [
     noto-fonts
     noto-fonts-cjk

@@ -332,6 +332,12 @@ programs.steam = {
 };
 #+end_src
 
+
+#+begin_src nix
+programs.adb.enable = true;
+programs.dconf.enable = true;
+#+end_src
+*** Xdg
 #+begin_src nix
 xdg.portal = {
   enable = true;
@@ -341,8 +347,10 @@ xdg.portal = {
 #+end_src
 
 #+begin_src nix
-programs.adb.enable = true;
-programs.dconf.enable = true;
+xdg.mimeApps.defaultApplications = {
+    "mp4" = [ "umpv.desktop" "mpv.desktop" ];
+    "png" = [ "feh.desktop"]
+}
 #+end_src
 ** Fonts
 #+begin_src nix
@@ -801,7 +809,7 @@ pkg-config
 nil
 texliveFull
 plantuml # draw plots
-flutter
+
 #+end_src
 **** Lang-servers
 #+begin_src nix
@@ -843,7 +851,7 @@ patchelf
 #+begin_src nix
   gtk-engine-murrine
   gnome-themes-extra
-  mynur.tdlib # for building telegrame clients
+  mynur.tdlib # for building telegram clients
 #+end_src
 *** Cmdline
 **** Emulator
@@ -983,6 +991,7 @@ qq
 discord
 telegram-desktop
 element-desktop
+mastodon
 thunderbird
 weechat # IRC
 nur.repos.linyinfeng.wemeet

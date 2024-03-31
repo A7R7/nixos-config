@@ -49,7 +49,7 @@
     nil
     texliveFull
     plantuml # draw plots
-    flutter
+    
     pyright
     javascript-typescript-langserver
     rust-analyzer
@@ -74,7 +74,7 @@
     patchelf
     gtk-engine-murrine
     gnome-themes-extra
-    mynur.tdlib # for building telegrame clients
+    mynur.tdlib # for building telegram clients
     kitty
     alacritty
     wezterm
@@ -174,6 +174,7 @@
     discord
     telegram-desktop
     element-desktop
+    mastodon
     thunderbird
     weechat # IRC
     nur.repos.linyinfeng.wemeet
