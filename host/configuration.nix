@@ -144,10 +144,10 @@
     wlr.enable = true;
     # extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
   };
-  xdg.mimeApps.defaultApplications = {
-      "mp4" = [ "umpv.desktop" "mpv.desktop" ];
-      "png" = [ "feh.desktop"]
-  }
+  # xdg.mimeApps.defaultApplications = {
+  #     "mp4" = [ "umpv.desktop" "mpv.desktop" ];
+  #     "png" = [ "feh.desktop"]
+  # }
   fonts.packages = with pkgs; [
     noto-fonts
     noto-fonts-cjk

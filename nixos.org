@@ -347,10 +347,10 @@ xdg.portal = {
 #+end_src
 
 #+begin_src nix
-xdg.mimeApps.defaultApplications = {
-    "mp4" = [ "umpv.desktop" "mpv.desktop" ];
-    "png" = [ "feh.desktop"]
-}
+# xdg.mimeApps.defaultApplications = {
+#     "mp4" = [ "umpv.desktop" "mpv.desktop" ];
+#     "png" = [ "feh.desktop"]
+# }
 #+end_src
 ** Fonts
 #+begin_src nix
