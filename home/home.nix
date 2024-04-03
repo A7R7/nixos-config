@@ -93,6 +93,9 @@ in
      lxgw-neoxihei
      wqy_zenhei
      wqy_microhei
+     jigmo
+  
+     lmmath
   ];
   # ends here
   # [[file:nixos.org::*Config][]]
