@@ -67,6 +67,7 @@
     nixfmt
     nixpkgs-fmt
     manix # fast nix doc searcher
+    deploy-rs # Simple Rust rewrite of a simple Nix Flake deployment tool
     doxygen
     doxygen_gui
     mynur.logisim-ita
@@ -118,7 +119,7 @@
     pandoc
     gh
     zinit
-    just
+    just      # cmdline executer, like make
     # ueberzugpp # allow showing child window in terminal
     pipes-rs
     tty-clock
@@ -150,14 +151,16 @@
     lollypop
     cider      # Apple Music
     spotify
-    feh
+    
     v2311.gimp-with-plugins
     inkscape
     imagemagick    # editing and manipulating digital images
     # kdenlive
     vlc
     mpv
+    kooha
     zathura
+    blender
     firefox
     floorp
     chromium
@@ -170,6 +173,7 @@
     (mynur.thorium-browser.override {
       commandLineArgs = "--enable-features=WaylandWindowDecorations --gtk-version=4";
     })
+    nyxt # hacker's browser
     qq
     discord
     telegram-desktop
@@ -182,6 +186,7 @@
     mynur.clash-verge-rev
     # nur.repos.xddxdd.baidunetdisk
     tidal-dl
+    scdl         # Download Music from Souncloud
     youtube-dl
     prismlauncher
     glfw-wayland-minecraft
@@ -204,6 +209,7 @@
     
     pavucontrol    # sound control
     brightnessctl  # brightness control
+    playerctl      # controlling media players that implement MPRIS
     grim           # wl raw screenshot
     grimblast      # wrapper around grim
     slurp          # reigon selection (outputs reigon coordinates)
@@ -217,6 +223,9 @@
     
     wl-clipboard-rs # wayland clipboard
     wev            # wayland event viewer
+    imv            # Image viewer
+    swayimg        # Image viewer
+    feh            # Image viewer
     # gnome stuffs
     gnome.nautilus # gnome's file manager
     gnome.gnome-tweaks # gnome's file manager
@@ -254,6 +263,7 @@
     solaar         # connect with logitech devices
     iotop
     btop
+    iftop          # Display bandwidth usage on a network interface
     logiops        # Unofficial userspace driver for HID++ Logitech devices
     powertop       # Analyze power consumption on Intel-based laptops
     mission-center

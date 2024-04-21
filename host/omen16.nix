@@ -58,7 +58,7 @@ in {
   };
   # may interfere with the Nvidia driver.
   # boot.kernelParams = [ "module_blacklist=i915" ];
-  boot.kernelModules = [ "hp-wmi" ];
+  boot.kernelModules = [ "hp-wmi" "hp-wmi-sensors" ];
   programs.tuxclocker = {
     enable = true;
     enabledNVIDIADevices = [0];
