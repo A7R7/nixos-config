@@ -132,6 +132,9 @@
     ];
   };
   # environment.sessionVariables.WAYFIRE_CONFIG_FILE = "$HOME/.config/wayfire/wayfire.ini";
+  # programs.niri = {
+  #   package = pkgs.niri-unstable;
+  # };
   programs.steam = {
     enable = true;
     remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
