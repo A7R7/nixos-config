@@ -147,6 +147,7 @@ in
     [
       /etc/nixos/hardware-configuration.nix
       inputs.musnix.nixosModules.musnix
+      inputs.niri.nixosModules.niri
     ];
   <<host-config>>
 }
@@ -329,9 +330,9 @@ programs.wayfire = {
 #+end_src
 
 #+begin_src nix
-# programs.niri = {
-#   package = pkgs.niri-unstable;
-# };
+programs.niri = {
+  package = pkgs.niri-unstable;
+};
 #+end_src
 *** Misc
 #+begin_src nix
