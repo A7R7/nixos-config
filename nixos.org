@@ -73,6 +73,7 @@ mynur.url = "github:A7R7/nur-packages";
 # hyprland wm
 hyprland.url = "github:hyprwm/Hyprland";
 pyprland.url = "github:A7R7/pyprland";
+niri.url = "https://github.com/sodiboo/niri-flake";
 ags.url = "github:Aylur/ags";
 astal.url = "github:Aylur/Astal";
 musnix.url = "github:musnix/musnix";
@@ -104,6 +105,7 @@ let
       nur.overlay
       mynur.overlay
       emacs.overlay
+      niri.overlay
       (final: prev: { v2311 = import inputs.nixpkgs-2311 {
           inherit system;
           config.allowUnfree = true;
