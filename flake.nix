@@ -43,6 +43,7 @@
     # hyprland wm
     hyprland.url = "github:hyprwm/Hyprland";
     pyprland.url = "github:A7R7/pyprland";
+    niri.url = "github:sodiboo/niri-flake";
     ags.url = "github:Aylur/ags";
     astal.url = "github:Aylur/Astal";
     musnix.url = "github:musnix/musnix";
@@ -75,6 +76,7 @@
           nur.overlay
           mynur.overlay
           emacs.overlay
+          niri.overlays.niri
           (final: prev: { v2311 = import inputs.nixpkgs-2311 {
               inherit system;
               config.allowUnfree = true;
