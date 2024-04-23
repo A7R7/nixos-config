@@ -331,7 +331,8 @@ programs.wayfire = {
 
 #+begin_src nix
 programs.niri = {
-  package = pkgs.niri-unstable;
+  enable = true;
+  package = pkgs.niri-stable;
 };
 #+end_src
 *** Misc

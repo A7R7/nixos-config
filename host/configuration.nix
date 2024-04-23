@@ -134,7 +134,8 @@
   };
   # environment.sessionVariables.WAYFIRE_CONFIG_FILE = "$HOME/.config/wayfire/wayfire.ini";
   programs.niri = {
-    package = pkgs.niri-unstable;
+    enable = true;
+    package = pkgs.niri-stable;
   };
   programs.steam = {
     enable = true;
