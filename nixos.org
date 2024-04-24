@@ -83,8 +83,10 @@ pip2nix.url = "github:nix-community/pip2nix";
 emacs.url = "github:nix-community/emacs-overlay";
 anyrun.url = "github:Kirottu/anyrun";
 anyrun.inputs.nixpkgs.follows = "nixpkgs";
-nbfc.url = "github:nbfc-linux/nbfc-linux";
-nbfc.inputs.nixpkgs.follows = "nixpkgs";
+nbfc = {
+  url = "github:nbfc-linux/nbfc-linux";
+  inputs.nixpkgs.follows = "nixpkgs";
+};
   #+end_src
 ** Outputs
 #+begin_src nix :noweb-ref outputs
@@ -257,7 +259,7 @@ environment.systemPackages = with pkgs; [
   dash elvish fish nushell tcsh xonsh zsh
   sddm-chili-theme
   hicolor-icon-theme
-  # inputs.nbfc.defaultPackage.${system}
+  inputs.nbfc.packages.${system}.default
 ];
   #+end_src
 *** Shells

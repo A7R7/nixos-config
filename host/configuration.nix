@@ -87,7 +87,7 @@
     dash elvish fish nushell tcsh xonsh zsh
     sddm-chili-theme
     hicolor-icon-theme
-    # inputs.nbfc.defaultPackage.${system}
+    inputs.nbfc.packages.${system}.default
   ];
   environment.shells = with pkgs; [
     dash elvish fish nushell tcsh xonsh zsh
