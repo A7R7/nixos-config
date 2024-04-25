@@ -1,5 +1,5 @@
 { config, lib, pkgs, ... }:
-let my_nvidia_x11 = config.boot.kernelPackages.nvidiaPackages.beta;
+let my_nvidia_x11 = config.boot.kernelPackages.nvidiaPackages.vulkan_beta;
 in {
   networking.hostName = "Omen16"; # Define your hostname.
 
