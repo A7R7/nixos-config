@@ -169,7 +169,7 @@
   services.xserver.xkb.layout = "us";
   services.xserver.xkb.options = "caps:escape";
   # services.xserver.displayManager.gdm.enable = true;
-  services.xserver.displayManager.sddm = {
+  services.displayManager.sddm = {
     enable = true;
     theme = "chili";
   };

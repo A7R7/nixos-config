@@ -399,7 +399,7 @@ services.xserver.enable = true;
 services.xserver.excludePackages = [ pkgs.xterm ];
 services.xserver.xkb.layout = "us";
 services.xserver.xkb.options = "caps:escape";
-# services.xserver.displayManager.gdm.enable = true;
+# services.displayManager.gdm.enable = true;
 services.displayManager.sddm = {
   enable = true;
   theme = "chili";
@@ -1036,13 +1036,13 @@ youtube-dl
 #+end_src
 *** Gaming
 #+begin_src nix
-  prismlauncher
-  glfw-wayland-minecraft
-  zulu21
-  steam-tui
-  steamcmd
-  steam
-  gamescope
+prismlauncher
+glfw-wayland-minecraft
+zulu21
+# steam-tui
+# steamcmd
+# steam
+gamescope
 #+end_src
 *** Desktop
 Essentials

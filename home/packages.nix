@@ -191,9 +191,9 @@
     prismlauncher
     glfw-wayland-minecraft
     zulu21
-    steam-tui
-    steamcmd
-    steam
+    # steam-tui
+    # steamcmd
+    # steam
     gamescope
     kanshi         # manage monitor position on wayland
     wlsunset       # screen color temperature mnger
