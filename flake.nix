@@ -96,23 +96,23 @@
           modules = [
             ./host/configuration.nix
             ./host/omen16.nix
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.aaron = import ./home/home.nix;
-              home-manager.extraSpecialArgs =  { inherit inputs username pkgs; };
-            }
+            # home-manager.nixosModules.home-manager
+            # {
+            #   home-manager.useGlobalPkgs = true;
+            #   home-manager.useUserPackages = true;
+            #   home-manager.users.aaron = import ./home/home.nix;
+            #   home-manager.extraSpecialArgs =  { inherit inputs username pkgs; };
+            # }
           ];
         };
       };
-      # homeConfigurations = {
-      #   aaron = home-manager.lib.homeManagerConfiguration {
-      #     inherit pkgs;
-      #     extraSpecialArgs = { inherit inputs username pkgs; };
-      #     modules = [ ./home/home.nix ];
-      #   };
-      # };
+      homeConfigurations = {
+        aaron = home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          extraSpecialArgs = { inherit inputs username pkgs; };
+          modules = [ ./home/home.nix ];
+        };
+      };
     };
     
     # ends here
