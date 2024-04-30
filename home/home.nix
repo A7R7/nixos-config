@@ -161,7 +161,8 @@ in
   };
   programs.direnv = {
     enable = true;
-    enableBashIntegration = true; # see note on other shells below
+    enableBashIntegration = true;
+    enableFishIntegration = true;
     nix-direnv.enable = true;
   };
   programs.emacs = {
