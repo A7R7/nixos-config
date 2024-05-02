@@ -226,6 +226,8 @@
     imv            # Image viewer
     swayimg        # Image viewer
     feh            # Image viewer
+    
+    wayland-logout # kill a single instance of a wayland compositor 
     # gnome stuffs
     gnome.nautilus # gnome's file manager
     gnome.gnome-tweaks # gnome's file manager

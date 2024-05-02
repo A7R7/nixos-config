@@ -1090,6 +1090,8 @@ wev            # wayland event viewer
 imv            # Image viewer
 swayimg        # Image viewer
 feh            # Image viewer
+
+wayland-logout # kill a single instance of a wayland compositor 
 #+end_src
 
 #+begin_src nix
