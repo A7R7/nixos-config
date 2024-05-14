@@ -46,10 +46,7 @@
     # mynur.url = "git+file:./?dir=./nurpkgs";
     # mynur.url = "./nurpkgs";
     # hyprland wm
-    hyprland = {
-      url = "github:hyprwm/Hyprland";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
     pyprland.url = "github:A7R7/pyprland";
     niri.url = "github:sodiboo/niri-flake";
     swayfx.url = "github:WillPower3309/swayfx";

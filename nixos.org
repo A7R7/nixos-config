@@ -76,10 +76,7 @@ mynur = {
 # mynur.url = "git+file:./?dir=./nurpkgs";
 # mynur.url = "./nurpkgs";
 # hyprland wm
-hyprland = {
-  url = "github:hyprwm/Hyprland";
-  inputs.nixpkgs.follows = "nixpkgs";
-};
+hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
 pyprland.url = "github:A7R7/pyprland";
 niri.url = "github:sodiboo/niri-flake";
 swayfx.url = "github:WillPower3309/swayfx";
@@ -302,8 +299,8 @@ virtualisation = {
   # virtualbox.host.enableExtensionPack = true;
   # virtualbox.guest.enable = true;
   # virtualbox.guest.x11 = true;
-  vmware.host.enable = true;
-  vmware.guest.enable = true;
+  # vmware.host.enable = true;
+  # vmware.guest.enable = true;
 };
 users.extraGroups.vboxusers.members = [ "user-with-access-to-virtualbox" ];
 #+end_src
