@@ -75,7 +75,7 @@
     patchelf
     gtk-engine-murrine
     gnome-themes-extra
-    mynur.tdlib # for building telegram clients
+    # mynur.tdlib # for building telegram clients
     kitty
     alacritty
     wezterm
@@ -160,12 +160,12 @@
     mpv
     kooha
     zathura
-    blender
+    # blender
     firefox
     floorp
     chromium
     qq
-    discord
+    v2311.discord
     telegram-desktop
     element-desktop
     mastodon

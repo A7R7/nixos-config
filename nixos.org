@@ -891,9 +891,12 @@ patchelf
 #+end_src
 *** Runtime
 #+begin_src nix
-  gtk-engine-murrine
-  gnome-themes-extra
-  mynur.tdlib # for building telegram clients
+gtk-engine-murrine
+gnome-themes-extra
+  #+end_src
+
+  #+begin_src nix
+# mynur.tdlib # for building telegram clients
 #+end_src
 *** Cmdline
 **** Emulator
@@ -1013,7 +1016,7 @@ kooha
 #+end_src
 **** 3d model
 #+begin_src nix
-blender
+# blender
 #+end_src
 *** Network
 **** Browser
@@ -1040,7 +1043,7 @@ nyxt # hacker's browser
 **** Message
 #+begin_src nix
 qq
-discord
+v2311.discord
 telegram-desktop
 element-desktop
 mastodon
