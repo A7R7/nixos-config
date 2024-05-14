@@ -347,6 +347,13 @@ programs.niri = {
   package = pkgs.niri-stable;
 };
 #+end_src
+
+#+begin_src nix
+programs.sway = {
+  enable = true;
+  wrapperFeatures.gtk = true;
+};
+#+end_src
 *** Misc
 #+begin_src nix
 programs.steam = {
