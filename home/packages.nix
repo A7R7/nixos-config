@@ -164,16 +164,6 @@
     firefox
     floorp
     chromium
-    (vivaldi.override {
-      proprietaryCodecs = true;
-      enableWidevine = true;
-    #   commandLineArgs = "--ozone-platform-hint=auto --enable-features=WaylandWindowDecorations --enable-wayland-ime";
-    })
-    # vivaldi
-    (mynur.thorium-browser.override {
-      commandLineArgs = "--enable-features=WaylandWindowDecorations --gtk-version=4";
-    })
-    nyxt # hacker's browser
     qq
     discord
     telegram-desktop
@@ -185,7 +175,7 @@
     # nur.repos.xddxdd.dingtalk
     clash-verge-rev
     # nur.repos.xddxdd.baidunetdisk
-    tidal-dl
+    # tidal-dl
     scdl         # Download Music from Souncloud
     youtube-dl
     prismlauncher

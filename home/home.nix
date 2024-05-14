@@ -78,14 +78,13 @@ in
      source-han-serif
      source-han-serif-vf-ttf
   
-     commit-mono
-     monaspace
-     # mynur.symbols-nerd-font
+     # commit-mono
+     # monaspace
      # mynur.ibm-plex-nerd-font
      ibm-plex
   
-     corefonts
-     vistafonts
+     # corefonts
+     # vistafonts
      mynur.sarasa-gothic-nerd-font
      fontforge-gtk
   
@@ -152,7 +151,7 @@ in
     package = pkgs.vscode.fhs;
   };
   programs.obs-studio = {
-    enable = true;
+    enable = false;
     plugins = with pkgs.obs-studio-plugins; [
       wlrobs
       # obs-backgroundremoval

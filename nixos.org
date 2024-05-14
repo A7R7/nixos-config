@@ -667,14 +667,13 @@ home.packages = with pkgs; [
    source-han-serif
    source-han-serif-vf-ttf
 
-   commit-mono
-   monaspace
-   # mynur.symbols-nerd-font
+   # commit-mono
+   # monaspace
    # mynur.ibm-plex-nerd-font
    ibm-plex
 
-   corefonts
-   vistafonts
+   # corefonts
+   # vistafonts
    mynur.sarasa-gothic-nerd-font
    fontforge-gtk
 
@@ -750,7 +749,7 @@ programs.vscode = {
   package = pkgs.vscode.fhs;
 };
 programs.obs-studio = {
-  enable = true;
+  enable = false;
   plugins = with pkgs.obs-studio-plugins; [
     wlrobs
     # obs-backgroundremoval
@@ -1022,12 +1021,17 @@ blender
 firefox
 floorp
 chromium
+#+end_src
+***** COMMENT vivaldi
+#+begin_src nix
 (vivaldi.override {
   proprietaryCodecs = true;
   enableWidevine = true;
-#   commandLineArgs = "--ozone-platform-hint=auto --enable-features=WaylandWindowDecorations --enable-wayland-ime";
+  commandLineArgs = "--ozone-platform-hint=auto --enable-features=WaylandWindowDecorations --enable-wayland-ime";
 })
-# vivaldi
+#+end_src
+***** COMMENT thorium
+#+begin_src nix
 (mynur.thorium-browser.override {
   commandLineArgs = "--enable-features=WaylandWindowDecorations --gtk-version=4";
 })
@@ -1055,7 +1059,7 @@ clash-verge-rev
 #+end_src
 **** Downloader
 #+begin_src nix
-tidal-dl
+# tidal-dl
 scdl         # Download Music from Souncloud
 youtube-dl
 #+end_src
