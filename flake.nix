@@ -39,11 +39,17 @@
     
     utils.url = "github:gytis-ivaskevicius/flake-utils-plus";
     nur.url = "github:nix-community/NUR";
-    mynur.url = "github:A7R7/nur-packages";
+    mynur = {
+      url = "github:A7R7/nur-packages";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # mynur.url = "git+file:./?dir=./nurpkgs";
     # mynur.url = "./nurpkgs";
     # hyprland wm
-    hyprland.url = "github:hyprwm/Hyprland";
+    hyprland = {
+      url = "github:hyprwm/Hyprland";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     pyprland.url = "github:A7R7/pyprland";
     niri.url = "github:sodiboo/niri-flake";
     swayfx.url = "github:WillPower3309/swayfx";
