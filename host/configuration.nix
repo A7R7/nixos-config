@@ -139,7 +139,8 @@
   };
   programs.sway = {
     enable = true;
-    wrapperFeatures.gtk = true;
+    package = pkgs.swayfx;
+    # wrapperFeatures.gtk = true;
   };
   programs.steam = {
     enable = true;

@@ -46,6 +46,7 @@
     hyprland.url = "github:hyprwm/Hyprland";
     pyprland.url = "github:A7R7/pyprland";
     niri.url = "github:sodiboo/niri-flake";
+    swayfx.url = "github:WillPower3309/swayfx";
     ags.url = "github:Aylur/ags";
     astal.url = "github:Aylur/Astal";
     musnix.url = "github:musnix/musnix";
@@ -81,6 +82,7 @@
           mynur.overlay
           emacs.overlay
           niri.overlays.niri
+          swayfx.overlays.default
           (final: prev: { v2311 = import inputs.nixpkgs-2311 {
               inherit system;
               config.allowUnfree = true;
