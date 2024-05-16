@@ -326,7 +326,7 @@ programs.bash = {
 programs.hyprland = {
   enable = true;
   xwayland.enable = true;
-  # package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+  package = inputs.hyprland.packages.${pkgs.system}.hyprland;
   # enableNvidiaPatches = false; # deprecated
 };
 #+end_src
@@ -1008,10 +1008,25 @@ imagemagick    # editing and manipulating digital images
 # kdenlive
 vlc
 mpv
-(kooha.overrideAttrs(old: {
+  #+end_src
+  [[kooha]]
+#+begin_src nix
+(kooha.overrideAttrs(old: rec {
+  pname = "kooha";
   version = "2.3.0";
+  src = fetchFromGitHub {
+    owner = "SeaDve";
+    repo = "Kooha";
+    rev = "v${version}";
+    hash = "sha256-Z+PMSV6fipfHBrqGS24SOgGJS173Vct12sVzCGZL0IA=";
+  };
+  cargoDeps = rustPlatform.fetchCargoTarball {
+    inherit src;
+    name = "${pname}-${version}";
+    hash = "sha256-m5y/VfjTJgK+/ZjsMo/9zPVxcV3kuwXb+HNdXR6hkV4=";
+  };
 }))
-    #+end_src
+#+end_src
 **** PDF
 #+begin_src nix
   zathura

@@ -158,8 +158,20 @@
     # kdenlive
     vlc
     mpv
-    (kooha.overrideAttrs(old: {
+    (kooha.overrideAttrs(old: rec {
+      pname = "kooha";
       version = "2.3.0";
+      src = fetchFromGitHub {
+        owner = "SeaDve";
+        repo = "Kooha";
+        rev = "v${version}";
+        hash = "sha256-Z+PMSV6fipfHBrqGS24SOgGJS173Vct12sVzCGZL0IA=";
+      };
+      cargoDeps = rustPlatform.fetchCargoTarball {
+        inherit src;
+        name = "${pname}-${version}";
+        hash = "sha256-m5y/VfjTJgK+/ZjsMo/9zPVxcV3kuwXb+HNdXR6hkV4=";
+      };
     }))
     zathura
     # blender
