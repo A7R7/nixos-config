@@ -1009,7 +1009,7 @@ imagemagick    # editing and manipulating digital images
 vlc
 mpv
 (kooha.overrideAttrs(old: {
-  version = "2.3.0"
+  version = "2.3.0";
 }))
     #+end_src
 **** PDF
