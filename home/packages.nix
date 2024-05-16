@@ -158,9 +158,9 @@
     # kdenlive
     vlc
     mpv
-    kooha.overrideAttrs(old: {
+    (kooha.overrideAttrs(old: {
       version = "2.3.0"
-    })
+    }))
     zathura
     # blender
     firefox

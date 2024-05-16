@@ -1008,9 +1008,9 @@ imagemagick    # editing and manipulating digital images
 # kdenlive
 vlc
 mpv
-kooha.overrideAttrs(old: {
+(kooha.overrideAttrs(old: {
   version = "2.3.0"
-})
+}))
     #+end_src
 **** PDF
 #+begin_src nix
