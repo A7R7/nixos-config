@@ -280,5 +280,6 @@
     pciutils       # portable access to PCI bus configuration registers
     piper          # GTK frontend for ratbagd mouse config daemon
     lm_sensors     # reading hardware sensors
+    phoronix-test-suite # Automated Benchmarking
   ]);
 }

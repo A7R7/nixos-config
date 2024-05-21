@@ -133,7 +133,6 @@
     #   pkgs.mynur.swayfire
     # ];
   };
-  # environment.sessionVariables.WAYFIRE_CONFIG_FILE = "$HOME/.config/wayfire/wayfire.ini";
   programs.niri = {
     enable = true;
     package = pkgs.niri-stable;
