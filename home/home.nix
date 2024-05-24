@@ -1,4 +1,35 @@
-# [[file:../nixos.org::*Config][Config:1]]
+# [[file:../nixos.org::false;
+#  settings = {
+#  CPU_SCALING_GOVERNOR_ON_AC = "performance";
+#  CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
+
+#  CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
+#  CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
+
+#  CPU_MIN_PERF_ON_AC = 0;
+#  CPU_MAX_PERF_ON_AC = 100;
+#  CPU_MIN_PERF_ON_BAT = 0;
+#  CPU_MAX_PERF_ON_BAT = 20;
+
+#  #Optional helps save long term battery health
+#  START_CHARGE_THRESH_BAT0 = 40; # 40 and bellow it starts to charge
+#  STOP_CHARGE_THRESH_BAT0 = 80; # 80 and above it stops charging
+#  };
+# };
+# #+end_src
+
+# ** Security
+# Polkit is used for controlling system-wide privileges. It provides an organized way for non-privileged processes to communicate with privileged ones, especially for those GUI applications.
+# #+begin_src nix
+# security.polkit.enable = true;
+# # start polkit on login by creating a systemd user service
+#  #+end_src
+# * Home
+# Becareful that packages installed by ~nix profile install~ can conflict with packages defined here! Therefore, it is recommended to clear nix profile list before home-manager switch.
+# ** Config
+# :PROPERTIES:
+# :header-args:nix: :noweb-ref hm-config
+# :END:][Config:1]]
 { config, pkgs, inputs, ... }:
 let
   username = "aaron";
@@ -8,7 +39,38 @@ in
   imports = [
     ./packages.nix
   ];
-  # [[file:nixos.org::*Config][]]
+  # [[file:nixos.org::false;
+  #  settings = {
+  #  CPU_SCALING_GOVERNOR_ON_AC = "performance";
+  #  CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
+  
+  #  CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
+  #  CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
+  
+  #  CPU_MIN_PERF_ON_AC = 0;
+  #  CPU_MAX_PERF_ON_AC = 100;
+  #  CPU_MIN_PERF_ON_BAT = 0;
+  #  CPU_MAX_PERF_ON_BAT = 20;
+  
+  #  #Optional helps save long term battery health
+  #  START_CHARGE_THRESH_BAT0 = 40; # 40 and bellow it starts to charge
+  #  STOP_CHARGE_THRESH_BAT0 = 80; # 80 and above it stops charging
+  #  };
+  # };
+  # #+end_src
+  
+  # ** Security
+  # Polkit is used for controlling system-wide privileges. It provides an organized way for non-privileged processes to communicate with privileged ones, especially for those GUI applications.
+  # #+begin_src nix
+  # security.polkit.enable = true;
+  # # start polkit on login by creating a systemd user service
+  #  #+end_src
+  # * Home
+  # Becareful that packages installed by ~nix profile install~ can conflict with packages defined here! Therefore, it is recommended to clear nix profile list before home-manager switch.
+  # ** Config
+  # :PROPERTIES:
+  # :header-args:nix: :noweb-ref hm-config
+  # :END:][]]
   home = {
     username = username;
     homeDirectory = homeDirectory;
@@ -35,7 +97,38 @@ in
     };
   };
   # ends here
-  # [[file:nixos.org::*Config][]]
+  # [[file:nixos.org::false;
+  #  settings = {
+  #  CPU_SCALING_GOVERNOR_ON_AC = "performance";
+  #  CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
+  
+  #  CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
+  #  CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
+  
+  #  CPU_MIN_PERF_ON_AC = 0;
+  #  CPU_MAX_PERF_ON_AC = 100;
+  #  CPU_MIN_PERF_ON_BAT = 0;
+  #  CPU_MAX_PERF_ON_BAT = 20;
+  
+  #  #Optional helps save long term battery health
+  #  START_CHARGE_THRESH_BAT0 = 40; # 40 and bellow it starts to charge
+  #  STOP_CHARGE_THRESH_BAT0 = 80; # 80 and above it stops charging
+  #  };
+  # };
+  # #+end_src
+  
+  # ** Security
+  # Polkit is used for controlling system-wide privileges. It provides an organized way for non-privileged processes to communicate with privileged ones, especially for those GUI applications.
+  # #+begin_src nix
+  # security.polkit.enable = true;
+  # # start polkit on login by creating a systemd user service
+  #  #+end_src
+  # * Home
+  # Becareful that packages installed by ~nix profile install~ can conflict with packages defined here! Therefore, it is recommended to clear nix profile list before home-manager switch.
+  # ** Config
+  # :PROPERTIES:
+  # :header-args:nix: :noweb-ref hm-config
+  # :END:][]]
   i18n.inputMethod = {
     enabled = "fcitx5";
     fcitx5 = {
@@ -49,7 +142,38 @@ in
     };
   };
   # ends here
-  # [[file:nixos.org::*Config][]]
+  # [[file:nixos.org::false;
+  #  settings = {
+  #  CPU_SCALING_GOVERNOR_ON_AC = "performance";
+  #  CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
+  
+  #  CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
+  #  CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
+  
+  #  CPU_MIN_PERF_ON_AC = 0;
+  #  CPU_MAX_PERF_ON_AC = 100;
+  #  CPU_MIN_PERF_ON_BAT = 0;
+  #  CPU_MAX_PERF_ON_BAT = 20;
+  
+  #  #Optional helps save long term battery health
+  #  START_CHARGE_THRESH_BAT0 = 40; # 40 and bellow it starts to charge
+  #  STOP_CHARGE_THRESH_BAT0 = 80; # 80 and above it stops charging
+  #  };
+  # };
+  # #+end_src
+  
+  # ** Security
+  # Polkit is used for controlling system-wide privileges. It provides an organized way for non-privileged processes to communicate with privileged ones, especially for those GUI applications.
+  # #+begin_src nix
+  # security.polkit.enable = true;
+  # # start polkit on login by creating a systemd user service
+  #  #+end_src
+  # * Home
+  # Becareful that packages installed by ~nix profile install~ can conflict with packages defined here! Therefore, it is recommended to clear nix profile list before home-manager switch.
+  # ** Config
+  # :PROPERTIES:
+  # :header-args:nix: :noweb-ref hm-config
+  # :END:][]]
   fonts.fontconfig.enable = true;
   home.packages = with pkgs; [
      (nerdfonts.override {
@@ -97,7 +221,38 @@ in
      lmmath
   ];
   # ends here
-  # [[file:nixos.org::*Config][]]
+  # [[file:nixos.org::false;
+  #  settings = {
+  #  CPU_SCALING_GOVERNOR_ON_AC = "performance";
+  #  CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
+  
+  #  CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
+  #  CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
+  
+  #  CPU_MIN_PERF_ON_AC = 0;
+  #  CPU_MAX_PERF_ON_AC = 100;
+  #  CPU_MIN_PERF_ON_BAT = 0;
+  #  CPU_MAX_PERF_ON_BAT = 20;
+  
+  #  #Optional helps save long term battery health
+  #  START_CHARGE_THRESH_BAT0 = 40; # 40 and bellow it starts to charge
+  #  STOP_CHARGE_THRESH_BAT0 = 80; # 80 and above it stops charging
+  #  };
+  # };
+  # #+end_src
+  
+  # ** Security
+  # Polkit is used for controlling system-wide privileges. It provides an organized way for non-privileged processes to communicate with privileged ones, especially for those GUI applications.
+  # #+begin_src nix
+  # security.polkit.enable = true;
+  # # start polkit on login by creating a systemd user service
+  #  #+end_src
+  # * Home
+  # Becareful that packages installed by ~nix profile install~ can conflict with packages defined here! Therefore, it is recommended to clear nix profile list before home-manager switch.
+  # ** Config
+  # :PROPERTIES:
+  # :header-args:nix: :noweb-ref hm-config
+  # :END:][]]
   gtk.enable = true;
   # gtk.theme = {
   #   name = "Fluent";
@@ -126,7 +281,38 @@ in
     "Xft.dpi" = 172;
   };
   # ends here
-  # [[file:nixos.org::*Config][]]
+  # [[file:nixos.org::false;
+  #  settings = {
+  #  CPU_SCALING_GOVERNOR_ON_AC = "performance";
+  #  CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
+  
+  #  CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
+  #  CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
+  
+  #  CPU_MIN_PERF_ON_AC = 0;
+  #  CPU_MAX_PERF_ON_AC = 100;
+  #  CPU_MIN_PERF_ON_BAT = 0;
+  #  CPU_MAX_PERF_ON_BAT = 20;
+  
+  #  #Optional helps save long term battery health
+  #  START_CHARGE_THRESH_BAT0 = 40; # 40 and bellow it starts to charge
+  #  STOP_CHARGE_THRESH_BAT0 = 80; # 80 and above it stops charging
+  #  };
+  # };
+  # #+end_src
+  
+  # ** Security
+  # Polkit is used for controlling system-wide privileges. It provides an organized way for non-privileged processes to communicate with privileged ones, especially for those GUI applications.
+  # #+begin_src nix
+  # security.polkit.enable = true;
+  # # start polkit on login by creating a systemd user service
+  #  #+end_src
+  # * Home
+  # Becareful that packages installed by ~nix profile install~ can conflict with packages defined here! Therefore, it is recommended to clear nix profile list before home-manager switch.
+  # ** Config
+  # :PROPERTIES:
+  # :header-args:nix: :noweb-ref hm-config
+  # :END:][]]
   gtk.gtk3.bookmarks = [
     "file://${homeDirectory}/Documents"
     "file://${homeDirectory}/Music"
@@ -140,12 +326,74 @@ in
   ];
   
   # ends here
-  # [[file:nixos.org::*Config][]]
+  # [[file:nixos.org::false;
+  #  settings = {
+  #  CPU_SCALING_GOVERNOR_ON_AC = "performance";
+  #  CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
+  
+  #  CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
+  #  CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
+  
+  #  CPU_MIN_PERF_ON_AC = 0;
+  #  CPU_MAX_PERF_ON_AC = 100;
+  #  CPU_MIN_PERF_ON_BAT = 0;
+  #  CPU_MAX_PERF_ON_BAT = 20;
+  
+  #  #Optional helps save long term battery health
+  #  START_CHARGE_THRESH_BAT0 = 40; # 40 and bellow it starts to charge
+  #  STOP_CHARGE_THRESH_BAT0 = 80; # 80 and above it stops charging
+  #  };
+  # };
+  # #+end_src
+  
+  # ** Security
+  # Polkit is used for controlling system-wide privileges. It provides an organized way for non-privileged processes to communicate with privileged ones, especially for those GUI applications.
+  # #+begin_src nix
+  # security.polkit.enable = true;
+  # # start polkit on login by creating a systemd user service
+  #  #+end_src
+  # * Home
+  # Becareful that packages installed by ~nix profile install~ can conflict with packages defined here! Therefore, it is recommended to clear nix profile list before home-manager switch.
+  # ** Config
+  # :PROPERTIES:
+  # :header-args:nix: :noweb-ref hm-config
+  # :END:][]]
   programs.bash = {
     enable = true; # this is needed for home.sessionVariables to work
   };
   # ends here
-  # [[file:nixos.org::*Config][]]
+  # [[file:nixos.org::false;
+  #  settings = {
+  #  CPU_SCALING_GOVERNOR_ON_AC = "performance";
+  #  CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
+  
+  #  CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
+  #  CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
+  
+  #  CPU_MIN_PERF_ON_AC = 0;
+  #  CPU_MAX_PERF_ON_AC = 100;
+  #  CPU_MIN_PERF_ON_BAT = 0;
+  #  CPU_MAX_PERF_ON_BAT = 20;
+  
+  #  #Optional helps save long term battery health
+  #  START_CHARGE_THRESH_BAT0 = 40; # 40 and bellow it starts to charge
+  #  STOP_CHARGE_THRESH_BAT0 = 80; # 80 and above it stops charging
+  #  };
+  # };
+  # #+end_src
+  
+  # ** Security
+  # Polkit is used for controlling system-wide privileges. It provides an organized way for non-privileged processes to communicate with privileged ones, especially for those GUI applications.
+  # #+begin_src nix
+  # security.polkit.enable = true;
+  # # start polkit on login by creating a systemd user service
+  #  #+end_src
+  # * Home
+  # Becareful that packages installed by ~nix profile install~ can conflict with packages defined here! Therefore, it is recommended to clear nix profile list before home-manager switch.
+  # ** Config
+  # :PROPERTIES:
+  # :header-args:nix: :noweb-ref hm-config
+  # :END:][]]
   programs.vscode = {
     enable = true;
     package = pkgs.vscode.fhs;
@@ -170,7 +418,38 @@ in
     package = pkgs.emacs29-pgtk;
   };
   # ends here
-  # [[file:nixos.org::*Config][]]
+  # [[file:nixos.org::false;
+  #  settings = {
+  #  CPU_SCALING_GOVERNOR_ON_AC = "performance";
+  #  CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
+  
+  #  CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
+  #  CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
+  
+  #  CPU_MIN_PERF_ON_AC = 0;
+  #  CPU_MAX_PERF_ON_AC = 100;
+  #  CPU_MIN_PERF_ON_BAT = 0;
+  #  CPU_MAX_PERF_ON_BAT = 20;
+  
+  #  #Optional helps save long term battery health
+  #  START_CHARGE_THRESH_BAT0 = 40; # 40 and bellow it starts to charge
+  #  STOP_CHARGE_THRESH_BAT0 = 80; # 80 and above it stops charging
+  #  };
+  # };
+  # #+end_src
+  
+  # ** Security
+  # Polkit is used for controlling system-wide privileges. It provides an organized way for non-privileged processes to communicate with privileged ones, especially for those GUI applications.
+  # #+begin_src nix
+  # security.polkit.enable = true;
+  # # start polkit on login by creating a systemd user service
+  #  #+end_src
+  # * Home
+  # Becareful that packages installed by ~nix profile install~ can conflict with packages defined here! Therefore, it is recommended to clear nix profile list before home-manager switch.
+  # ** Config
+  # :PROPERTIES:
+  # :header-args:nix: :noweb-ref hm-config
+  # :END:][]]
   services.syncthing = {
     enable = true;
     tray = {enable = true;};

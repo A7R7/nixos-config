@@ -114,7 +114,14 @@
       fi
     ''; # launches fish unless the parent process is already fish
   };
-  
+  services.xserver.desktopManager.gnome.enable = true;
+  services.gnome = {
+    evolution-data-server.enable = true;
+    glib-networking.enable = true;
+    gnome-keyring.enable = true;
+    gnome-online-accounts.enable = true;
+    at-spi2-core.enable = true; # avoid the warning "The name org.a11y.Bus was not provided by any .service files"
+  };
   programs.hyprland = {
     enable = true;
     xwayland.enable = true;
@@ -181,14 +188,6 @@
   };
   # displayManager.lightdm.enable = true;
   # displayManager.lightdm.greeters.slick.enable = true;
-  # desktopManager.gnome.enable = true;
-  services.gnome = {
-    evolution-data-server.enable = true;
-    glib-networking.enable = true;
-    gnome-keyring.enable = true;
-    gnome-online-accounts.enable = true;
-    at-spi2-core.enable = true; # avoid the warning "The name org.a11y.Bus was not provided by any .service files"
-  };
   services.dae = {
     enable = true;
     configFile = "/home/${username}/.config/dae/config.dae";
@@ -225,7 +224,7 @@
   # a DBus service that provides power management support to applications.
   services.upower.enable = true;
   services.tlp = {
-    enable = true;
+    enable = false;
     settings = {
       CPU_SCALING_GOVERNOR_ON_AC = "performance";
       CPU_SCALING_GOVERNOR_ON_BAT = "powersave";

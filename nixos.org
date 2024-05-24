@@ -320,7 +320,16 @@ programs.bash = {
 #+end_src
 *** Window managers
 #+begin_src nix
+services.xserver.desktopManager.gnome.enable = true;
+services.gnome = {
+  evolution-data-server.enable = true;
+  glib-networking.enable = true;
+  gnome-keyring.enable = true;
+  gnome-online-accounts.enable = true;
+  at-spi2-core.enable = true; # avoid the warning "The name org.a11y.Bus was not provided by any .service files"
+};
 #+end_src
+
 
 #+begin_src nix
 programs.hyprland = {
@@ -430,19 +439,7 @@ services.displayManager.sddm = {
 };
 # displayManager.lightdm.enable = true;
 # displayManager.lightdm.greeters.slick.enable = true;
-# desktopManager.gnome.enable = true;
 #+end_src
-*** GNOME
-#+begin_src nix
-services.gnome = {
-  evolution-data-server.enable = true;
-  glib-networking.enable = true;
-  gnome-keyring.enable = true;
-  gnome-online-accounts.enable = true;
-  at-spi2-core.enable = true; # avoid the warning "The name org.a11y.Bus was not provided by any .service files"
-};
-#+end_src
-
 *** DAE
 #+begin_src nix
   services.dae = {
@@ -548,7 +545,7 @@ services.ratbagd.enable = true; # configuring gamming mouse
 # a DBus service that provides power management support to applications.
 services.upower.enable = true;
 services.tlp = {
-  enable = true;
+  enable = false;
   settings = {
     CPU_SCALING_GOVERNOR_ON_AC = "performance";
     CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
