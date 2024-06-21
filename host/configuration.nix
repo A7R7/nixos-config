@@ -180,7 +180,7 @@
   services.xserver.enable = true;
   services.xserver.excludePackages = [ pkgs.xterm ];
   services.xserver.xkb.layout = "us,ara";
-  services.xserver.xkb.options = "caps:escape,grp:alt_shift_toggle";
+  services.xserver.xkb.options = "grp:win_space_toggle";
   # services.displayManager.gdm.enable = true;
   services.displayManager.sddm = {
     enable = true;
