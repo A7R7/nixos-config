@@ -207,6 +207,7 @@ boot = {
     efi.efiSysMountPoint = "/boot";
     timeout = 10;
   };
+  supportedFilesystems = [ "ntfs" ];
 };
 #+end_src
 ** Network & hostname

@@ -37,6 +37,7 @@
       efi.efiSysMountPoint = "/boot";
       timeout = 10;
     };
+    supportedFilesystems = [ "ntfs" ];
   };
   networking = {
     networkmanager.enable = true;
