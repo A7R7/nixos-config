@@ -30,6 +30,7 @@
     ## nixpkgs
     nixpkgs-2305.url = "github:nixos/nixpkgs/nixos-23.05";
     nixpkgs-2311.url = "github:nixos/nixpkgs/nixos-23.11";
+    nixpkgs-2405.url = "github:nixos/nixpkgs/nixos-24.05";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-wayland.url = "github:nix-community/nixpkgs-wayland";
     home-manager = {
@@ -87,6 +88,10 @@
           niri.overlays.niri
           swayfx.overlays.default
           (final: prev: { v2311 = import inputs.nixpkgs-2311 {
+              inherit system;
+              config.allowUnfree = true;
+          };})
+          (final: prev: { v2405 = import inputs.nixpkgs-2405 {
               inherit system;
               config.allowUnfree = true;
           };})

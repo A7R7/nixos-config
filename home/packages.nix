@@ -187,7 +187,7 @@
     weechat # IRC
     nur.repos.linyinfeng.wemeet
     # nur.repos.xddxdd.dingtalk
-    clash-verge-rev
+    v2405.clash-verge-rev
     # nur.repos.xddxdd.baidunetdisk
     # tidal-dl
     scdl         # Download Music from Souncloud

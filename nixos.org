@@ -60,6 +60,7 @@ extra-trusted-public-keys = [
 ## nixpkgs
 nixpkgs-2305.url = "github:nixos/nixpkgs/nixos-23.05";
 nixpkgs-2311.url = "github:nixos/nixpkgs/nixos-23.11";
+nixpkgs-2405.url = "github:nixos/nixpkgs/nixos-24.05";
 nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 nixpkgs-wayland.url = "github:nix-community/nixpkgs-wayland";
 home-manager = {
@@ -116,6 +117,10 @@ let
       niri.overlays.niri
       swayfx.overlays.default
       (final: prev: { v2311 = import inputs.nixpkgs-2311 {
+          inherit system;
+          config.allowUnfree = true;
+      };})
+      (final: prev: { v2405 = import inputs.nixpkgs-2405 {
           inherit system;
           config.allowUnfree = true;
       };})
@@ -374,7 +379,6 @@ programs.sway = {
 #+begin_src nix
 programs.steam = {
   enable = true;
-  # package = pkgs.v2311.steam;
   remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
   dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
 };
@@ -1069,7 +1073,7 @@ nur.repos.linyinfeng.wemeet
 #+end_src
 **** VPN
 #+begin_src nix
-clash-verge-rev
+v2405.clash-verge-rev
 #+end_src
 **** others
 #+begin_src nix
