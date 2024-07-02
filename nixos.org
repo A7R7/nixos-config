@@ -865,7 +865,7 @@ vscode-langservers-extracted
 **** Database
 #+begin_src nix
 sqlite
-dbeaver
+# dbeaver
 #+end_src
 
 **** Nix

@@ -56,7 +56,7 @@
     mynur.jdtls
     vscode-langservers-extracted
     sqlite
-    dbeaver
+    # dbeaver
     niv
     nix-universal-prefetch
     inputs.pip2nix.defaultPackage.${system}
