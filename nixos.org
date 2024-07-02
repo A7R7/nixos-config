@@ -872,7 +872,7 @@ sqlite
 These are tools for packaging using nix.
 #+begin_src nix
 niv
-nix-universal-prefetch
+# nix-universal-prefetch
 inputs.pip2nix.defaultPackage.${system}
 nix-your-shell
 any-nix-shell

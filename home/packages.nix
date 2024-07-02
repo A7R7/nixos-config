@@ -58,7 +58,7 @@
     sqlite
     # dbeaver
     niv
-    nix-universal-prefetch
+    # nix-universal-prefetch
     inputs.pip2nix.defaultPackage.${system}
     nix-your-shell
     any-nix-shell
