@@ -191,7 +191,7 @@
     # nur.repos.xddxdd.baidunetdisk
     # tidal-dl
     scdl         # Download Music from Souncloud
-    youtube-dl
+    # youtube-dl
     prismlauncher
     glfw-wayland-minecraft
     zulu21
