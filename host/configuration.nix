@@ -43,7 +43,6 @@
     networkmanager.enable = true;
   };
   musnix.enable = true;
-  sound.enable = false; # sound.enable is only meant for ALSA-based configurations
   hardware.pulseaudio.enable = false;
   hardware.bluetooth.enable = true;
   security.rtkit.enable = true;
@@ -88,7 +87,7 @@
     dash elvish fish nushell tcsh xonsh zsh
     sddm-chili-theme
     hicolor-icon-theme
-    inputs.nbfc.packages.${system}.default
+    # inputs.nbfc.packages.${system}.default
   ];
   environment.shells = with pkgs; [
     dash elvish fish nushell tcsh xonsh zsh

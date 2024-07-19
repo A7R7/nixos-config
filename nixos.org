@@ -223,18 +223,17 @@ networking = {
 #+end_src
 ** Sound
 #+begin_src nix
-  musnix.enable = true;
-  sound.enable = false; # sound.enable is only meant for ALSA-based configurations
-  hardware.pulseaudio.enable = false;
-  hardware.bluetooth.enable = true;
-  security.rtkit.enable = true;
-  services. pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    jack.enable = true;
-  };
+musnix.enable = true;
+hardware.pulseaudio.enable = false;
+hardware.bluetooth.enable = true;
+security.rtkit.enable = true;
+services. pipewire = {
+  enable = true;
+  alsa.enable = true;
+  alsa.support32Bit = true;
+  pulse.enable = true;
+  jack.enable = true;
+};
 #+end_src
 ** Locale
 #+begin_src nix
@@ -280,7 +279,7 @@ environment.systemPackages = with pkgs; [
   dash elvish fish nushell tcsh xonsh zsh
   sddm-chili-theme
   hicolor-icon-theme
-  inputs.nbfc.packages.${system}.default
+  # inputs.nbfc.packages.${system}.default
 ];
   #+end_src
 *** Shells
