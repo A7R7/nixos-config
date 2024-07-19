@@ -991,7 +991,7 @@ qpwgraph
 **** Music Player
 #+begin_src nix
 tauon
-lollypop
+# lollypop
 cider      # Apple Music
 spotify
 #+end_src
@@ -1061,7 +1061,7 @@ nyxt # hacker's browser
 **** Message
 #+begin_src nix
 qq
-v2311.discord
+# discord
 telegram-desktop
 element-desktop
 mastodon
@@ -1134,10 +1134,10 @@ wayland-logout # kill a single instance of a wayland compositor
 
 #+begin_src nix
 # gnome stuffs
-gnome.nautilus # gnome's file manager
-gnome.gnome-tweaks # gnome's file manager
+nautilus # gnome's file manager
+gnome-tweaks # gnome's file manager
 gnome.gnome-characters
-gnome.gnome-font-viewer # view system fonts
+gnome-font-viewer # view system fonts
 gnome-themes-extra
 gtk-engine-murrine
 cinnamon.nemo  # cinnamon's file manager
@@ -1145,7 +1145,7 @@ doublecmd
 # peazip         # achiever
 nsxiv          # the best image viewer
 
-gnome.adwaita-icon-theme
+adwaita-icon-theme
 
 # hyprkeys       # keybind retrieval utility
 # hyprnome       # gnome like workspace switch
@@ -1167,7 +1167,7 @@ inputs.pyprland.packages.${system}.default
 *** System-tools
 #+begin_src nix
 gparted        # disk partition manager
-gnome.gnome-disk-utility # view disk info
+gnome-disk-utility # view disk info
 fsearch        # search files in disk
 lshw
 solaar         # connect with logitech devices

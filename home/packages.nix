@@ -31,7 +31,7 @@
       nvidia-ml-py
       svgwrite
     ]))
-
+    
     poetry
     # octave
     nodejs
@@ -49,7 +49,7 @@
     nil
     texliveFull
     plantuml # draw plots
-
+    
     pyright
     javascript-typescript-langserver
     rust-analyzer
@@ -91,12 +91,12 @@
     thefuck   #
     bat       # rust cat
     eza       # rust ls
-
+    
     ranger
     nnn       # cmdline file explorer
     joshuto   # rust ranger
     yazi      # faster rust ranger
-
+    
     file      # tell file type
     oterm     # cmdline ollama client
     fd
@@ -144,14 +144,14 @@
     # effect processor
     calf
     lsp-plugins
-
+    
     # Qt-based Graph/Patchbay for PipeWire
     qpwgraph
     tauon
-    lollypop
+    # lollypop
     cider      # Apple Music
     spotify
-
+    
     v2311.gimp-with-plugins
     inkscape
     imagemagick    # editing and manipulating digital images
@@ -179,7 +179,7 @@
     floorp
     chromium
     qq
-    v2311.discord
+    # discord
     telegram-desktop
     element-desktop
     mastodon
@@ -207,10 +207,10 @@
     swaynotificationcenter # not only show notifications but also have a drawer
     rofi-wayland-unwrapped # app launcher
     inputs.anyrun.packages.${system}.anyrun-with-all-plugins # app launcher
-
+    
     eww            # bar
     waybar         # bar
-
+    
     pavucontrol    # sound control
     brightnessctl  # brightness control
     playerctl      # controlling media players that implement MPRIS
@@ -219,18 +219,18 @@
     slurp          # reigon selection (outputs reigon coordinates)
     swappy         # Wayland native snapshot editing tool
     wf-recorder    # screen recording tool
-
+    
     hyprpaper      # hyprland wallpaper utility
     swww           # dynamic wallpaper
     swayimg        # wallpaper utility from sway
     mpvpaper       # use mpv as wallpaper
-
+    
     wl-clipboard-rs # wayland clipboard
     wev            # wayland event viewer
     imv            # Image viewer
     swayimg        # Image viewer
     feh            # Image viewer
-
+    
     wayland-logout # kill a single instance of a wayland compositor
     # gnome stuffs
     nautilus # gnome's file manager
@@ -243,23 +243,23 @@
     doublecmd
     # peazip         # achiever
     nsxiv          # the best image viewer
-
+    
     adwaita-icon-theme
-
+    
     # hyprkeys       # keybind retrieval utility
     # hyprnome       # gnome like workspace switch
-
+    
     # hyprshade      # screen color filters
     # wl-gammactl    # set contrast, brightness and gamma on wl
-
+    
     v2311.hyprpicker     # wlroots color picker
     wayshot        # screenshots tool
-
-
+    
+    
     # bar and shell in gjs
     inputs.ags.packages.${system}.default
     inputs.astal.packages.${system}.default
-
+    
     # hyprland plugin set in python
     inputs.pyprland.packages.${system}.default
     gparted        # disk partition manager
