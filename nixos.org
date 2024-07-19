@@ -1072,7 +1072,7 @@ nur.repos.linyinfeng.wemeet
 #+end_src
 **** VPN
 #+begin_src nix
-v2405.clash-verge-rev
+clash-verge-rev
 #+end_src
 **** others
 #+begin_src nix
