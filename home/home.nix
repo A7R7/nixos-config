@@ -167,7 +167,7 @@ in
   programs.emacs = {
     enable = true;
     # package = pkgs.mynur.emacs;
-    package = pkgs.emacs29-pgtk;
+    package = pkgs.emacs;
   };
   # ends here
   # [[file:nixos.org::*Config][]]

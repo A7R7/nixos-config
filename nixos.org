@@ -436,11 +436,11 @@ services.xserver.enable = true;
 services.xserver.excludePackages = [ pkgs.xterm ];
 services.xserver.xkb.layout = "us,ara";
 services.xserver.xkb.options = "grp:win_space_toggle";
-# services.displayManager.gdm.enable = true;
-services.displayManager.sddm = {
-  enable = true;
-  theme = "chili";
-};
+services.xserver.displayManager.gdm.enable = true;
+# services.displayManager.sddm = {
+#   enable = true;
+#   theme = "chili";
+# };
 # displayManager.lightdm.enable = true;
 # displayManager.lightdm.greeters.slick.enable = true;
 #+end_src
@@ -766,7 +766,7 @@ programs.direnv = {
 programs.emacs = {
   enable = true;
   # package = pkgs.mynur.emacs;
-  package = pkgs.emacs29-pgtk;
+  package = pkgs.emacs;
 };
 #+end_src
 

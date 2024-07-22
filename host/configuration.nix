@@ -180,11 +180,11 @@
   services.xserver.excludePackages = [ pkgs.xterm ];
   services.xserver.xkb.layout = "us,ara";
   services.xserver.xkb.options = "grp:win_space_toggle";
-  # services.displayManager.gdm.enable = true;
-  services.displayManager.sddm = {
-    enable = true;
-    theme = "chili";
-  };
+  services.xserver.displayManager.gdm.enable = true;
+  # services.displayManager.sddm = {
+  #   enable = true;
+  #   theme = "chili";
+  # };
   # displayManager.lightdm.enable = true;
   # displayManager.lightdm.greeters.slick.enable = true;
   services.dae = {
