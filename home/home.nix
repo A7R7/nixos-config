@@ -51,7 +51,7 @@ in
   # ends here
   # [[file:nixos.org::*Config][]]
   fonts.fontconfig.enable = true;
-  home.packages = with pkgs; [
+  home.packages = with pkgs.v2405; [
      (nerdfonts.override {
        fonts = [
          "CommitMono"

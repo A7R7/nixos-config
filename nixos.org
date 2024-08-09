@@ -641,7 +641,7 @@ nixpkgs = {
 *** Font
 #+begin_src nix
 fonts.fontconfig.enable = true;
-home.packages = with pkgs; [
+home.packages = with pkgs.v2405; [
    (nerdfonts.override {
      fonts = [
        "CommitMono"
@@ -1067,7 +1067,7 @@ element-desktop
 mastodon
 thunderbird
 weechat # IRC
-nur.repos.linyinfeng.wemeet
+# nur.repos.linyinfeng.wemeet
 # nur.repos.xddxdd.dingtalk
 #+end_src
 **** VPN

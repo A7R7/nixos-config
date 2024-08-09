@@ -185,7 +185,7 @@
     mastodon
     thunderbird
     weechat # IRC
-    nur.repos.linyinfeng.wemeet
+    # nur.repos.linyinfeng.wemeet
     # nur.repos.xddxdd.dingtalk
     clash-verge-rev
     # nur.repos.xddxdd.baidunetdisk
