@@ -85,7 +85,7 @@ in
   
      # corefonts
      # vistafonts
-     mynur.sarasa-gothic-nerd-font
+     # mynur.sarasa-gothic-nerd-font
      fontforge-gtk
   
      lxgw-wenkai

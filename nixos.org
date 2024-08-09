@@ -675,7 +675,7 @@ home.packages = with pkgs.v2405; [
 
    # corefonts
    # vistafonts
-   mynur.sarasa-gothic-nerd-font
+   # mynur.sarasa-gothic-nerd-font
    fontforge-gtk
 
    lxgw-wenkai
