@@ -70,7 +70,7 @@
     deploy-rs # Simple Rust rewrite of a simple Nix Flake deployment tool
     doxygen
     doxygen_gui
-    mynur.logisim-ita
+    # mynur.logisim-ita
     uncrustify
     patchelf
     gtk-engine-murrine

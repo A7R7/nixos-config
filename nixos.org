@@ -750,7 +750,7 @@ programs.vscode = {
   package = pkgs.vscode.fhs;
 };
 programs.obs-studio = {
-  enable = true;
+  enable = false;
   plugins = with pkgs.obs-studio-plugins; [
     wlrobs
     # obs-backgroundremoval
@@ -886,7 +886,7 @@ deploy-rs # Simple Rust rewrite of a simple Nix Flake deployment tool
 #+begin_src nix
 doxygen
 doxygen_gui
-mynur.logisim-ita
+# mynur.logisim-ita
 uncrustify
 patchelf
 #+end_src
