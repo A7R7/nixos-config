@@ -444,12 +444,17 @@ services.xserver.displayManager.gdm.enable = true;
 # displayManager.lightdm.enable = true;
 # displayManager.lightdm.greeters.slick.enable = true;
 #+end_src
-*** DAE
+
+*** Transparent Proxy
 #+begin_src nix
-  services.dae = {
-    enable = true;
-    configFile = "/home/${username}/.config/dae/config.dae";
-  };
+# services.dae = {
+#   enable = true;
+#   configFile = "/home/${username}/.config/dae/config.dae";
+# };
+
+services.sing-box = {
+  enable = true;
+};
 #+end_src
 *** Syncthing
 [[https://github.com/syncthing/syncthing][Syncthing]] is a continuouts file synchronization program using UPnP, which synchronize files *WITHOUT* centralized services.

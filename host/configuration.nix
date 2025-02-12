@@ -187,9 +187,13 @@
   # };
   # displayManager.lightdm.enable = true;
   # displayManager.lightdm.greeters.slick.enable = true;
-  services.dae = {
+  # services.dae = {
+  #   enable = true;
+  #   configFile = "/home/${username}/.config/dae/config.dae";
+  # };
+  
+  services.sing-box = {
     enable = true;
-    configFile = "/home/${username}/.config/dae/config.dae";
   };
   services.syncthing = {
     enable = true;
