@@ -279,6 +279,7 @@ environment.systemPackages = with pkgs; [
   dash elvish fish nushell tcsh xonsh zsh
   sddm-chili-theme
   hicolor-icon-theme
+
   # inputs.nbfc.packages.${system}.default
 ];
   #+end_src
@@ -1078,6 +1079,7 @@ weechat # IRC
 **** VPN
 #+begin_src nix
 clash-verge-rev
+gui-for-singbox
 #+end_src
 **** others
 #+begin_src nix
