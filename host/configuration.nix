@@ -43,7 +43,7 @@
     networkmanager.enable = true;
   };
   musnix.enable = true;
-  hardware.pulseaudio.enable = false;
+  # hardware.pulseaudio.enable = false;
   hardware.bluetooth.enable = true;
   security.rtkit.enable = true;
   services. pipewire = {
@@ -145,11 +145,11 @@
     enable = true;
     package = pkgs.niri-stable;
   };
-  programs.sway = {
-    enable = true;
-    package = pkgs.swayfx;
-    # wrapperFeatures.gtk = true;
-  };
+  # programs.sway = {
+  #   enable = true;
+  #   package = pkgs.swayfx;
+  # wrapperFeatures.gtk = true;
+  # };
   programs.steam = {
     enable = true;
     remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
@@ -168,7 +168,7 @@
   # }
   fonts.packages = with pkgs; [
     noto-fonts
-    noto-fonts-cjk
+    noto-fonts-cjk-sans
     sarasa-gothic
   ];
   fonts.fontconfig = {

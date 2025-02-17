@@ -15,7 +15,7 @@
 Welcome to my nixos configuration!.  This is a configuration for a single laptop setup.
 * Flake
 
-So I use flake to manage my configs.
+I use flake to manage my configs.
 #+begin_src nix :tangle flake.nix :noweb no-export
 {
   description = "A7R7's NixOS Flake";
@@ -224,7 +224,7 @@ networking = {
 ** Sound
 #+begin_src nix
 musnix.enable = true;
-hardware.pulseaudio.enable = false;
+# hardware.pulseaudio.enable = false;
 hardware.bluetooth.enable = true;
 security.rtkit.enable = true;
 services. pipewire = {
@@ -369,11 +369,11 @@ programs.niri = {
 #+end_src
 
 #+begin_src nix
-programs.sway = {
-  enable = true;
-  package = pkgs.swayfx;
-  # wrapperFeatures.gtk = true;
-};
+# programs.sway = {
+#   enable = true;
+#   package = pkgs.swayfx;
+# wrapperFeatures.gtk = true;
+# };
 #+end_src
 *** Misc
 #+begin_src nix
@@ -408,7 +408,7 @@ xdg.portal = {
 #+begin_src nix
 fonts.packages = with pkgs; [
   noto-fonts
-  noto-fonts-cjk
+  noto-fonts-cjk-sans
   sarasa-gothic
 ];
 fonts.fontconfig = {
