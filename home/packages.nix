@@ -236,7 +236,7 @@
     # gnome stuffs
     nautilus # gnome's file manager
     gnome-tweaks # gnome's file manager
-    gnome.gnome-characters
+    gnome-characters
     gnome-font-viewer # view system fonts
     gnome-themes-extra
     gtk-engine-murrine
