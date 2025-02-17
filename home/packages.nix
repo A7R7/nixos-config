@@ -136,7 +136,7 @@
     zyn-fusion
     surge
     geonkick
-    distrho
+    # distrho
     # sampler
     avldrums-lv2
     drumkv1
