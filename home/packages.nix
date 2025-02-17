@@ -138,7 +138,7 @@
     geonkick
     # distrho
     # sampler
-    avldrums-lv2
+    x42-avldrums
     drumkv1
     drumgizmo
     # effect processor
