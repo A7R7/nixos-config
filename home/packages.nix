@@ -51,7 +51,7 @@
     plantuml # draw plots
     
     pyright
-    javascript-typescript-langserver
+    # javascript-typescript-langserver
     rust-analyzer
     mynur.jdtls
     vscode-langservers-extracted
@@ -240,7 +240,7 @@
     gnome-font-viewer # view system fonts
     gnome-themes-extra
     gtk-engine-murrine
-    cinnamon.nemo  # cinnamon's file manager
+    nemo  # cinnamon's file manager
     doublecmd
     # peazip         # achiever
     nsxiv          # the best image viewer
