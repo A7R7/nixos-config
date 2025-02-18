@@ -187,7 +187,8 @@
     weechat # IRC
     # nur.repos.linyinfeng.wemeet
     # nur.repos.xddxdd.dingtalk
-    clash-verge-rev
+    # clash-verge-rev
+    hiddify-app
     gui-for-singbox
     # nur.repos.xddxdd.baidunetdisk
     # tidal-dl

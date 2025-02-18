@@ -883,7 +883,7 @@ nix-your-shell
 any-nix-shell
 nix-output-monitor
 nix-du
-nixfmt
+nixfmt-classic
 nixpkgs-fmt
 manix # fast nix doc searcher
 deploy-rs # Simple Rust rewrite of a simple Nix Flake deployment tool
@@ -1078,7 +1078,8 @@ weechat # IRC
 #+end_src
 **** VPN
 #+begin_src nix
-clash-verge-rev
+# clash-verge-rev
+hiddify-app
 gui-for-singbox
 #+end_src
 **** others
