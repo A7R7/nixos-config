@@ -772,7 +772,7 @@ programs.direnv = {
 programs.emacs = {
   enable = true;
   # package = pkgs.mynur.emacs;
-  package = pkgs.emacs;
+  package = pkgs.emacs-pgtk;
 };
 #+end_src
 

@@ -64,7 +64,7 @@
     any-nix-shell
     nix-output-monitor
     nix-du
-    nixfmt
+    nixfmt-classic
     nixpkgs-fmt
     manix # fast nix doc searcher
     deploy-rs # Simple Rust rewrite of a simple Nix Flake deployment tool
