@@ -1193,6 +1193,7 @@ pciutils       # portable access to PCI bus configuration registers
 piper          # GTK frontend for ratbagd mouse config daemon
 lm_sensors     # reading hardware sensors
 phoronix-test-suite # Automated Benchmarking
+mangohud       # monitoring FPS, temperatures, CPU/GPU load and more
 #+end_src
 * Build
 #+begin_src sh :dir /sudo::
