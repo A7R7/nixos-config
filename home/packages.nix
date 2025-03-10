@@ -284,5 +284,6 @@
     lm_sensors     # reading hardware sensors
     phoronix-test-suite # Automated Benchmarking
     mangohud       # monitoring FPS, temperatures, CPU/GPU load and more
+    xwayland-satellite # Xwayland outside your Wayland compositor
   ]);
 }
