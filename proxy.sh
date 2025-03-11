@@ -7,7 +7,7 @@
 # Environment="all_proxy=socks5h://localhost:7890"
 # '
 if [ -z "$1" ]; then
-	proxy="socks5h://localhost:7890"
+	proxy="socks5h://localhost:12335"
 else
 	proxy="$1"
 fi
