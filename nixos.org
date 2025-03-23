@@ -212,13 +212,13 @@ boot = {
   };
   loader = {
     systemd-boot.enable = lib.mkForce false;
-    grub = {
-      # enable = true;
-      theme = pkgs.mynur.xenlism-grub-4k-nixos;
-      splashMode = "normal";
-      efiSupport = true;
-      useOSProber = true;
-    };
+    # grub = {
+    #   enable = true;
+    #   theme = pkgs.mynur.xenlism-grub-4k-nixos;
+    #   splashMode = "normal";
+    #   efiSupport = true;
+    #   useOSProber = true;
+    # };
     efi.canTouchEfiVariables = true;
     efi.efiSysMountPoint = "/boot";
     timeout = 10;
