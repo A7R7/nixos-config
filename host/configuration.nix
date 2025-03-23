@@ -25,10 +25,14 @@
     };
   };
   boot = {
+    lanzaboote = {
+      enable = true;
+      pkiBundle = "/var/lib/sbctl";
+    };
     loader = {
-      # systemd-boot.enable = true;
+      systemd-boot.enable = lib.mkForce false;
       grub = {
-        enable = true;
+        # enable = true;
         theme = pkgs.mynur.xenlism-grub-4k-nixos;
         splashMode = "normal";
         efiSupport = true;

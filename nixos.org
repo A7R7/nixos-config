@@ -202,12 +202,18 @@ in
 
 ** Boot
 [[file:/etc/nixos/hardware-configuration.nix][/etc/nixos/hardware-configuration.nix]]
+Lanzaboote currently replaces the systemd-boot module.
+So we force ~boot.loader.systemd-boot.enable~ to false for now.
 #+begin_src nix
 boot = {
+  lanzaboote = {
+    enable = true;
+    pkiBundle = "/var/lib/sbctl";
+  };
   loader = {
-    # systemd-boot.enable = true;
+    systemd-boot.enable = lib.mkForce false;
     grub = {
-      enable = true;
+      # enable = true;
       theme = pkgs.mynur.xenlism-grub-4k-nixos;
       splashMode = "normal";
       efiSupport = true;
