@@ -44,8 +44,6 @@
       url = "github:A7R7/nur-packages";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # mynur.url = "git+file:./?dir=./nurpkgs";
-    # mynur.url = "./nurpkgs";
     # hyprland wm
     hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
     pyprland.url = "github:A7R7/pyprland";
@@ -56,10 +54,16 @@
     musnix.url = "github:musnix/musnix";
     pip2nix.url = "github:nix-community/pip2nix";
     emacs.url = "github:nix-community/emacs-overlay";
-    anyrun.url = "github:Kirottu/anyrun";
-    anyrun.inputs.nixpkgs.follows = "nixpkgs";
+    anyrun = {
+      url = "github:Kirottu/anyrun";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nbfc = {
       url = "github:nbfc-linux/nbfc-linux";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    lanzaboote = {
+      url = "github:nix-community/lanzaboote/v0.4.2";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     # ends here

@@ -5,6 +5,7 @@
       /etc/nixos/hardware-configuration.nix
       inputs.musnix.nixosModules.musnix
       inputs.niri.nixosModules.niri
+      inputs.lanzaboote.nixosModules.lanzaboote
     ];
   system.stateVersion = "23.11";
   nixpkgs.config.allowUnfree = true;
@@ -87,6 +88,7 @@
     dash elvish fish nushell tcsh xonsh zsh
     sddm-chili-theme
     hicolor-icon-theme
+    sbctl # For debugging and troubleshooting Secure Boot.
   
     # inputs.nbfc.packages.${system}.default
   ];

@@ -74,8 +74,6 @@ mynur = {
   url = "github:A7R7/nur-packages";
   inputs.nixpkgs.follows = "nixpkgs";
 };
-# mynur.url = "git+file:./?dir=./nurpkgs";
-# mynur.url = "./nurpkgs";
 # hyprland wm
 hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
 pyprland.url = "github:A7R7/pyprland";
@@ -86,10 +84,16 @@ astal.url = "github:Aylur/Astal";
 musnix.url = "github:musnix/musnix";
 pip2nix.url = "github:nix-community/pip2nix";
 emacs.url = "github:nix-community/emacs-overlay";
-anyrun.url = "github:Kirottu/anyrun";
-anyrun.inputs.nixpkgs.follows = "nixpkgs";
+anyrun = {
+  url = "github:Kirottu/anyrun";
+  inputs.nixpkgs.follows = "nixpkgs";
+};
 nbfc = {
   url = "github:nbfc-linux/nbfc-linux";
+  inputs.nixpkgs.follows = "nixpkgs";
+};
+lanzaboote = {
+  url = "github:nix-community/lanzaboote/v0.4.2";
   inputs.nixpkgs.follows = "nixpkgs";
 };
   #+end_src
@@ -170,6 +174,7 @@ in
       /etc/nixos/hardware-configuration.nix
       inputs.musnix.nixosModules.musnix
       inputs.niri.nixosModules.niri
+      inputs.lanzaboote.nixosModules.lanzaboote
     ];
   <<host-config>>
 }
@@ -279,6 +284,7 @@ environment.systemPackages = with pkgs; [
   dash elvish fish nushell tcsh xonsh zsh
   sddm-chili-theme
   hicolor-icon-theme
+  sbctl # For debugging and troubleshooting Secure Boot.
 
   # inputs.nbfc.packages.${system}.default
 ];
