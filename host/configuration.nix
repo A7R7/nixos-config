@@ -31,6 +31,7 @@
     };
     loader = {
       systemd-boot.enable = lib.mkForce false;
+      grub.enable = false;
       # grub = {
       #   enable = true;
       #   theme = pkgs.mynur.xenlism-grub-4k-nixos;
