@@ -94,7 +94,7 @@
     sddm-chili-theme
     hicolor-icon-theme
     sbctl # For debugging and troubleshooting Secure Boot.
-  
+    sing-box # transparent proxy
     # inputs.nbfc.packages.${system}.default
   ];
   environment.shells = with pkgs; [
@@ -200,9 +200,11 @@
   #   configFile = "/home/${username}/.config/dae/config.dae";
   # };
   
-  services.sing-box = {
-    enable = true;
-  };
+  # services.sing-box = {
+  #   enable = true;
+  #   package = pkgs.sing-box;
+    # settings = "/home/${username}/.config/sing-box/config.json";
+  # };
   services.syncthing = {
     enable = true;
     openDefaultPorts = true; # 22000/TCP and 22000/UDP

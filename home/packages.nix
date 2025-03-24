@@ -189,7 +189,7 @@
     # nur.repos.xddxdd.dingtalk
     # clash-verge-rev
     hiddify-app
-    gui-for-singbox
+    # gui-for-singbox
     # nur.repos.xddxdd.baidunetdisk
     # tidal-dl
     scdl         # Download Music from Souncloud

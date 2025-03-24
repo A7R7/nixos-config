@@ -292,7 +292,7 @@ environment.systemPackages = with pkgs; [
   sddm-chili-theme
   hicolor-icon-theme
   sbctl # For debugging and troubleshooting Secure Boot.
-
+  sing-box # transparent proxy
   # inputs.nbfc.packages.${system}.default
 ];
   #+end_src
@@ -466,9 +466,11 @@ services.xserver.displayManager.gdm.enable = true;
 #   configFile = "/home/${username}/.config/dae/config.dae";
 # };
 
-services.sing-box = {
-  enable = true;
-};
+# services.sing-box = {
+#   enable = true;
+#   package = pkgs.sing-box;
+  # settings = "/home/${username}/.config/sing-box/config.json";
+# };
 #+end_src
 *** Syncthing
 [[https://github.com/syncthing/syncthing][Syncthing]] is a continuouts file synchronization program using UPnP, which synchronize files *WITHOUT* centralized services.
@@ -1093,7 +1095,7 @@ weechat # IRC
 #+begin_src nix
 # clash-verge-rev
 hiddify-app
-gui-for-singbox
+# gui-for-singbox
 #+end_src
 **** others
 #+begin_src nix
