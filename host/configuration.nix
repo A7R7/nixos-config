@@ -200,11 +200,12 @@
   #   configFile = "/home/${username}/.config/dae/config.dae";
   # };
   
-  # services.sing-box = {
-  #   enable = true;
-  #   package = pkgs.sing-box;
-    # settings = "/home/${username}/.config/sing-box/config.json";
-  # };
+  services.sing-box = {
+    enable = true;
+    package = pkgs.sing-box;
+    settings = builtins.fromJSON (builtins.readFile /home/${username}/.config/sing-box/config.json);
+  };
+
   services.syncthing = {
     enable = true;
     openDefaultPorts = true; # 22000/TCP and 22000/UDP
