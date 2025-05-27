@@ -148,7 +148,7 @@ in
   # [[file:nixos.org::*Config][]]
   programs.vscode = {
     enable = true;
-    package = pkgs.vscode.fhs;
+    package = mypkgs.vscode-custom;
   };
   programs.obs-studio = {
     enable = false;
