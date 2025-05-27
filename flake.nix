@@ -101,6 +101,7 @@
           };})
         ];
       };
+      mypkgs = import ../pkgs/default.nix { inherit pkgs; };
     in
     {
       nixosConfigurations = {
@@ -123,7 +124,7 @@
       homeConfigurations = {
         aaron = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
-          extraSpecialArgs = { inherit inputs username pkgs; };
+          extraSpecialArgs = { inherit inputs username pkgs mypkgs; };
           modules = [ ./home/home.nix ];
         };
       };
