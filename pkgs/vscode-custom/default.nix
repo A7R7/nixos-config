@@ -55,7 +55,7 @@ in stdenv.mkDerivation rec {
       cat ${./custom.css} >> injections.html
       echo '</style>' >> injections.html
       echo '<script>' >> injections.html
-      cat ${./custom.js} >> injections.html
+      cat ${./custom-debug.js} >> injections.html
       echo '</script>' >> injections.html
       echo '<!-- !! VSCODE-CUSTOM-CSS-JS-END !! -->' >> injections.html 
       
