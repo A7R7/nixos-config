@@ -101,7 +101,7 @@
           };})
         ];
       };
-      mypkgs = import ../pkgs/default.nix { inherit pkgs; };
+      mypkgs = import ./pkgs/default.nix { inherit pkgs; };
     in
     {
       nixosConfigurations = {
