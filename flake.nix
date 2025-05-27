@@ -28,7 +28,7 @@
   inputs = {
     # [[file:nixos.org::*Flake][]]
     ## nixpkgs
-    nixpkgs-2305.url = "github:nixos/nixpkgs/nixos-23.05";
+    # nixpkgs-2305.url = "github:nixos/nixpkgs/nixos-23.05";
     nixpkgs-2311.url = "github:nixos/nixpkgs/nixos-23.11";
     nixpkgs-2405.url = "github:nixos/nixpkgs/nixos-24.05";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -101,6 +101,7 @@
           };})
         ];
       };
+      mypkgs = import .pkgs/default.nix { inherit pkgs; };
     in
     {
       nixosConfigurations = {
@@ -123,7 +124,7 @@
       homeConfigurations = {
         aaron = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
-          extraSpecialArgs = { inherit inputs username pkgs; };
+          extraSpecialArgs = { inherit inputs username pkgs mypkgs; };
           modules = [ ./home/home.nix ];
         };
       };
