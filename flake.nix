@@ -86,8 +86,8 @@
           cudaVersion = "12";
         };
         overlays = with inputs; [
-          nur.overlay
-          mynur.overlay
+          # nur.overlay
+          # mynur.overlay
           emacs.overlay
           niri.overlays.niri
           swayfx.overlays.default

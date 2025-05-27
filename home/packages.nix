@@ -53,7 +53,7 @@
     pyright
     # javascript-typescript-langserver
     rust-analyzer
-    mynur.jdtls
+    # mynur.jdtls
     vscode-langservers-extracted
     sqlite
     # dbeaver
