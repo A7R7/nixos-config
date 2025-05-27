@@ -1,8 +1,9 @@
 # [[file:../nixos.org::*Config][Config:1]]
-{ config, pkgs, inputs, mypkgs, ... }:
+{ config, pkgs, inputs, ... }:
 let
   username = "aaron";
   homeDirectory = "/home/aaron";
+  mypkgs = import ../pkgs/default.nix { inherit pkgs; };
 in
 {
   imports = [
