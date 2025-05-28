@@ -275,7 +275,7 @@
     logiops        # Unofficial userspace driver for HID++ Logitech devices
     powertop       # Analyze power consumption on Intel-based laptops
     mission-center
-    filelight      # inspecting disk usage statistics
+    kdePackages.filelight      # inspecting disk usage statistics
     xorg.xhost          # launch gui with sudo in cmdline
     networkmanagerapplet # network manager, gtk frontend
     wlr-randr      # wlroots screen manager
