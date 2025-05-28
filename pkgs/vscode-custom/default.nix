@@ -1,79 +1,69 @@
-{ lib, stdenv, vscode, gnused, makeWrapper, writeText 
-# , customCssFiles ? [./custom.css] # List of paths to your CSS files
-# , customJsFiles ? [./custom.js]  # List of paths to your JS files
-}:
+{ lib, vscode, gnused, writeText}: # Removed stdenv and makeWrapper as vscode likely brings them
 
 let
+  customCssContent = builtins.readFile ./custom.css;
+  customJsContent = builtins.readFile ./custom.js; 
 
-
-in stdenv.mkDerivation rec {
-  pname = "vscode-custom";
-  version = "${vscode.version}-custom";
-
-  nativeBuildInputs = [ gnused makeWrapper ];
-
-  buildInputs = [ vscode ];
-
-  passthru = vscode.passthru or { };
-  dontBuild = true;
-  dontUnpack = true;
-
-  installPhase = /* bash */ ''
-      runHook preInstall
-
-      mkdir -p $out
-      cp -rT ${vscode} $out
-      chmod -R u+w $out
-
-      # base_path = "$out/lib/vscode/resources/app/out/vs/code/electron-sandbox/"
-      workbench_html_path_pattern="$out/lib/vscode/resources/app/out/vs/code/electron-sandbox/workbench/workbench.html"
-      workbench_apc_html_path_pattern="$out/lib/vscode/resources/app/out/vs/code/electron-sandbox/workbench-apc-extension.html"
-      workbench_esm_html_path_pattern="$out/lib/vscode/resources/app/out/vs/code/electron-sandbox/workbench.esm.html"
-
-      TARGET_HTML_FILE=""
-      if [ -f "$workbench_html_path_pattern" ]; then
-        TARGET_HTML_FILE="$workbench_html_path_pattern"
-      elif [ -f "$workbench_apc_html_path_pattern" ]; then
-        TARGET_HTML_FILE="$workbench_apc_html_path_pattern"
-      elif [ -f "$workbench_esm_html_path_pattern" ]; then
-        TARGET_HTML_FILE="$workbench_esm_html_path_pattern"
-      else
-        echo "ERROR: Could not find workbench.html at expected paths in $out!"
-        exit 1
-      fi
-      echo "Found workbench HTML for patching at: $TARGET_HTML_FILE"
-
-      # patch
-      # 3a. remove CSP
-      # sed -i '/<meta[^>]*http-equiv="Content-Security-Policy"[^>]*>/Id' "$TARGET_HTML_FILE"      
-      sed -Ezi 's/<meta[[:space:]]+http-equiv="Content-Security-Policy".*?\/>//gI' "$TARGET_HTML_FILE"
-      echo "Removed CSP meta tag (if found)."
-
-      # insert html
-      echo '<!-- !! VSCODE-CUSTOM-CSS-JS-START !! -->' >> injections.html
-      echo '<style>' >> injections.html
-      cat ${./custom.css} >> injections.html
-      echo '</style>' >> injections.html
-      echo '<script>' >> injections.html
-      cat ${./debug.js} >> injections.html
-      # cat ${./custom.js} >> injections.html
-      echo '</script>' >> injections.html
-      echo '<!-- !! VSCODE-CUSTOM-CSS-JS-END !! -->' >> injections.html 
-      
-      awk '
-        /<\/html>/ { system("cat injections.html") }
-        { print }
-      ' "$TARGET_HTML_FILE" > "$TARGET_HTML_FILE".tmp && \
-      mv "$TARGET_HTML_FILE".tmp "$TARGET_HTML_FILE"
-
-      echo "Injected custom JS."
-
-      echo "VSCode Custom package created in $out"
-      runHook postInstall
+  injections = ''
+    <!-- !! VSCODE-CUSTOM-CSS-JS-START !! -->
+    <style>
+    ${customCssContent}
+    </style>
+    <script>
+    ${customJsContent}
+    </script>
+    <!-- !! VSCODE-CUSTOM-CSS-JS-END !! -->
   '';
+  
+  # injections = ''
+  #   <!-- !! VSCODE-CUSTOM-CSS-JS-START !! -->
+  #   <script src="/home/${userName}/.config/Code/User/custom.js" type="module"></script>
+  #   <!-- !! VSCODE-CUSTOM-CSS-JS-END !! -->
+  # '';
 
-  meta = vscode.meta // {
-    description =
-      "VSCode with custom CSS/JS injected (${vscode.meta.description or ""})";
-  };
-}
+  injectionsFile = writeText "vscode-injections.html" injections;
+
+in
+vscode.overrideAttrs (oldAttrs: rec {
+  pname = "${oldAttrs.pname}-custom";
+  version = "${oldAttrs.version}-custom";
+  
+  postInstall = (oldAttrs.postInstall or "") + ''
+    echo "--- Running Custom VSCode Post-Install Hook ---"
+
+    # Paths are relative to $out (the output directory of the derivation)
+    base_path="lib/vscode/resources/app/out/vs/code/electron-sandbox/"
+    workbench_html_path_pattern="$base_path/workbench/workbench.html"
+    workbench_apc_html_path_pattern="$base_path/workbench-apc-extension.html"
+    workbench_esm_html_path_pattern="$base_path/workbench.esm.html"
+
+    TARGET_HTML_FILE=""
+    # Note: $out is implicitly the current directory or prefix for these paths in installPhase
+    if [ -f "$out/$workbench_html_path_pattern" ]; then
+      TARGET_HTML_FILE="$out/$workbench_html_path_pattern"
+    elif [ -f "$out/$workbench_apc_html_path_pattern" ]; then
+      TARGET_HTML_FILE="$out/$workbench_apc_html_path_pattern"
+    elif [ -f "$out/$workbench_esm_html_path_pattern" ]; then
+      TARGET_HTML_FILE="$out/$workbench_esm_html_path_pattern"
+    else
+      echo "ERROR: Could not find workbench.html at expected paths in $out!"
+      exit 1
+    fi
+    echo "Found workbench HTML for patching at: $TARGET_HTML_FILE"
+
+    # Ensure the target file is writable
+    chmod u+w "$TARGET_HTML_FILE"
+
+    # 1. Remove CSP meta tag
+    sed -Ezi 's/<meta[[:space:]]+http-equiv="Content-Security-Policy".*?\/>//gI' "$TARGET_HTML_FILE"
+
+    # 2. Inject custom content
+    awk '
+      /<\/html>/ { system("cat ${injectionsFile}") }
+      { print }
+    ' "$TARGET_HTML_FILE" > "$TARGET_HTML_FILE".tmp && \
+    mv "$TARGET_HTML_FILE".tmp "$TARGET_HTML_FILE"
+    
+    echo "--- Custom VSCode Post-Install Hook Finished ---"
+  '';
+})

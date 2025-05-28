@@ -1,6 +1,3 @@
-
-console.log("VSCODE-CUSTOM-CSS-JS: Script execution started."); // <--- ADD THIS
-
 // https://www.reddit.com/r/vscode/comments/11e66xh/i_made_neovide_alike_cursor_effect_on_vscode/
 
 // Configuration
@@ -23,16 +20,158 @@ const TrailLength = 8 // Recommended value is around 8
 const CursorUpdatePollingRate = 500 // Recommended value is around 500
 
 // Use shadow
-const UseShadow = false
+const UseShadow = true
 const ShadowColor = Color
 const ShadowBlur = 15
 
 
 // imported from https://github.com/tholman/cursor-effects/blob/master/src/rainbowCursor.js
 function createTrail(options) {
-  console.log("VSCODE-CUSTOM-CSS-JS: createTrail function called."); // <--- ADD THIS
   const totalParticles = options?.length || 20
-  // ... (rest of createTrail function) ...
+  let particlesColor = options?.color || "#A052FF"
+  const style = options?.style || "block"
+  const canvas = options?.canvas
+  const context = canvas.getContext("2d")
+  let cursor = { x: 0, y: 0 }
+  let particles = []
+  let width, height
+  let sizeX = options?.size || 3
+  let sizeY = options?.sizeY || sizeX * 2.2
+  let cursorsInitted = false
+
+  // update canvas size
+  function updateSize(x, y) {
+    width = x
+    height = y
+    canvas.width = x
+    canvas.height = y
+  }
+
+  // update cursor position
+  function move(x, y) {
+    x = x + sizeX / 2
+    cursor.x = x
+    cursor.y = y
+    if (cursorsInitted === false) {
+      cursorsInitted = true
+      for (let i = 0; i < totalParticles; i++) {
+        addParticle(x, y)
+      }
+    }
+  }
+
+  // particle class
+  class Particle {
+    constructor(x, y) {
+      this.position = { x: x, y: y }
+    }
+  }
+
+  function addParticle(x, y, image) {
+    particles.push(new Particle(x, y, image))
+  }
+
+  function calculatePosition() {
+    let x = cursor.x, y = cursor.y
+
+    for (const particleIndex in particles) {
+      const nextParticlePos = (particles[+particleIndex + 1] || particles[0]).position
+      const particlePos = particles[+particleIndex].position
+
+      particlePos.x = x;
+      particlePos.y = y;
+
+      x += (nextParticlePos.x - particlePos.x) * 0.42
+      y += (nextParticlePos.y - particlePos.y) * 0.35
+    }
+  }
+
+  // for block cursor
+  function drawLines() {
+    context.beginPath()
+    context.lineJoin = "round"
+    context.strokeStyle = particlesColor
+    const lineWidth = Math.min(sizeX, sizeY)
+    context.lineWidth = lineWidth
+
+    if (UseShadow) {
+      context.shadowColor = ShadowColor;
+      context.shadowBlur = ShadowBlur;
+    }
+
+    // draw 3 lines
+    let ymut = (sizeY - lineWidth) / 3
+    for (let yoffset = 0; yoffset <= 3; yoffset++) {
+      let offset = yoffset * ymut
+      for (const particleIndex in particles) {
+        const pos = particles[particleIndex].position
+        if (particleIndex == 0) {
+          context.moveTo(pos.x, pos.y + offset + lineWidth / 2)
+        } else {
+          context.lineTo(pos.x, pos.y + offset + lineWidth / 2)
+        }
+      }
+    }
+    context.stroke()
+  }
+
+  // for line cursor
+  function drawPath() {
+    context.beginPath()
+    context.fillStyle = particlesColor
+    if (UseShadow) {
+      context.shadowColor = ShadowColor;
+      context.shadowBlur = ShadowBlur;
+    }
+
+    // draw path
+    for (let particleIndex = 0; particleIndex < totalParticles; particleIndex++) {
+      const pos = particles[+particleIndex].position
+      if (particleIndex == 0) {
+        context.moveTo(pos.x, pos.y)
+      } else {
+        context.lineTo(pos.x, pos.y)
+      }
+    }
+    for (let particleIndex = totalParticles - 1; particleIndex >= 0; particleIndex--) {
+      const pos = particles[+particleIndex].position
+      context.lineTo(pos.x, pos.y + sizeY)
+    }
+    context.closePath()
+    context.fill()
+
+    context.beginPath()
+    context.lineJoin = "round"
+    context.strokeStyle = particlesColor
+    context.lineWidth = Math.min(sizeX, sizeY)
+    // for up&down
+    let offset = -sizeX / 2 + sizeY / 2
+    for (const particleIndex in particles) {
+      const pos = particles[particleIndex].position
+      if (particleIndex == 0) {
+        context.moveTo(pos.x, pos.y + offset)
+      } else {
+        context.lineTo(pos.x, pos.y + offset)
+      }
+    }
+    context.stroke()
+  }
+
+  function updateParticles() {
+    if (!cursorsInitted) return
+
+    context.clearRect(0, 0, width, height)
+    calculatePosition()
+
+    if (style == "line") drawPath()
+    else if (style == "block") drawLines()
+  }
+
+  function updateCursorSize(newSize, newSizeY) {
+    sizeX = newSize
+    if (newSizeY) sizeY = newSizeY
+  }
+
   return {
     updateParticles: updateParticles,
     move: move,
@@ -45,25 +184,63 @@ function createTrail(options) {
 // by qwreey
 // (very dirty but may working)
 async function createCursorHandler(handlerFunctions) {
-  console.log("VSCODE-CUSTOM-CSS-JS: createCursorHandler function called."); // <--- ADD THIS
   // Get Editor with dirty way (... due to vscode plugin api's limit)
   /** @type { Element } */
   let editor
-  console.log("VSCODE-CUSTOM-CSS-JS: Waiting for editor element..."); // <--- ADD THIS
   while (!editor) {
-    await new Promise(resolve=>setTimeout(resolve, 100))
+    await new Promise(resolve => setTimeout(resolve, 100))
     editor = document.querySelector(".part.editor")
   }
-  console.log("VSCODE-CUSTOM-CSS-JS: Editor element found:", editor); // <--- ADD THIS
   handlerFunctions?.onStarted(editor)
 
-  // ... (rest of createCursorHandler function) ...
+  // cursor cache
+  let updateHandlers = []
+  let cursorId = 0
+  let lastObjects = {}
+  let lastCursor = 0
+
+  // cursor update handler
+  function createCursorUpdateHandler(target, cursorId, cursorHolder, minimap) {
+    let lastX, lastY // save last position
+    let update = (editorX, editorY) => {
+      // If cursor was destroyed, remove update handler
+      if (!lastObjects[cursorId]) {
+        updateHandlers.splice(updateHandlers.indexOf(update), 1)
+        return
+      }
+
+      // get cursor position
+      let { left: newX, top: newY } = target.getBoundingClientRect()
+      let revX = newX - editorX, revY = newY - editorY
+
+      // if have no changes, ignore
+      if (revX == lastX && revY == lastY && lastCursor == cursorId) return
+      lastX = revX; lastY = revY // update last position
+
+      // wrong position
+      if (revX <= 0 || revY <= 0) return
+
+      // if it is invisible, ignore
+      if (target.style.visibility == "hidden") return
+
+      // if moved over minimap, ignore
+      if (minimap && minimap.offsetWidth != 0 && minimap.getBoundingClientRect().left <= newX) return
+
+      // if cursor is not displayed on screen, ignore
+      if (cursorHolder.getBoundingClientRect().left > newX) return
+
+      // update corsor position
+      lastCursor = cursorId
+      handlerFunctions?.onCursorPositionUpdated(revX, revY)
+      handlerFunctions?.onCursorSizeUpdated(target.clientWidth, target.clientHeight)
+    }
+    updateHandlers.push(update)
+  }
 
   // handle cursor create/destroy event (using polling, due to event handlers are LAGGY)
   let lastVisibility = "hidden"
-  setInterval(async ()=>{
-    console.log("VSCODE-CUSTOM-CSS-JS: Cursor polling interval fired."); // <--- ADD THIS
-    let now = [],count = 0
+  setInterval(async () => {
+    let now = [], count = 0
     // created
     for (const target of editor.getElementsByClassName("cursor")) {
       if (target.style.visibility != "hidden") count++
@@ -74,17 +251,16 @@ async function createCursorHandler(handlerFunctions) {
       let thisCursorId = cursorId++
       now.push(thisCursorId)
       lastObjects[thisCursorId] = target
-      target.setAttribute("cursorId",thisCursorId)
+      target.setAttribute("cursorId", thisCursorId)
       let cursorHolder = target.parentElement.parentElement.parentElement
       let minimap = cursorHolder.parentElement.querySelector(".minimap")
-      createCursorUpdateHandler(target,thisCursorId,cursorHolder,minimap)
-      console.log("VSCODE-CUSTOM-CSS-JS: New cursor detected/handler created:", thisCursorId); // <--- ADD THIS
+      createCursorUpdateHandler(target, thisCursorId, cursorHolder, minimap)
+      // console.log("DEBUG-CursorCreated",thisCursorId)
     }
-    
+
     // update visible
-    let visibility = count<=1 ? "visible" : "hidden"
+    let visibility = count <= 1 ? "visible" : "hidden"
     if (visibility != lastVisibility) {
-      console.log("VSCODE-CUSTOM-CSS-JS: Cursor visibility changed to:", visibility); // <--- ADD THIS
       handlerFunctions?.onCursorVisibilityChanged(visibility)
       lastVisibility = visibility
     }
@@ -93,78 +269,94 @@ async function createCursorHandler(handlerFunctions) {
     for (const id in lastObjects) {
       if (now.includes(+id)) continue
       delete lastObjects[+id]
-      console.log("VSCODE-CUSTOM-CSS-JS: Cursor removed:", +id); // <--- ADD THIS
+      // console.log("DEBUG-CursorRemoved",+id)
     }
-  },handlerFunctions?.cursorUpdatePollingRate || 500)
+  }, handlerFunctions?.cursorUpdatePollingRate || 500)
 
   // read cursor position polling
   function updateLoop() {
-    // console.log("VSCODE-CUSTOM-CSS-JS: updateLoop animation frame."); // <--- CAUTION: VERY FREQUENT
-    let {left:editorX,top:editorY} = editor.getBoundingClientRect()
-    for (handler of updateHandlers) handler(editorX,editorY)
+    let { left: editorX, top: editorY } = editor.getBoundingClientRect()
+    for (handler of updateHandlers) handler(editorX, editorY)
     handlerFunctions?.onLoop()
     requestAnimationFrame(updateLoop)
   }
 
-  // ... (rest of createCursorHandler function) ...
-  
+  // handle editor view size changed event
+  function updateEditorSize() {
+    handlerFunctions?.onEditorSizeUpdated(editor.clientWidth, editor.clientHeight)
+  }
+  new ResizeObserver(updateEditorSize).observe(editor)
+  updateEditorSize()
+
   // startup
   updateLoop()
   handlerFunctions?.onReady()
-  console.log("VSCODE-CUSTOM-CSS-JS: createCursorHandler setup complete."); // <--- ADD THIS
 }
 
 // Main handler code
-let cursorCanvas,rainbowCursorHandle
-console.log("VSCODE-CUSTOM-CSS-JS: About to call createCursorHandler."); // <--- ADD THIS
+let cursorCanvas, rainbowCursorHandle
 createCursorHandler({
 
   // cursor create/destroy event handler polling rate
   cursorUpdatePollingRate: CursorUpdatePollingRate,
 
   // When editor instance stared
-  onStarted: (editor)=>{
-    console.log("VSCODE-CUSTOM-CSS-JS: onStarted callback executed."); // <--- ADD THIS
+  onStarted: (editor) => {
     // create new canvas for make animation
     cursorCanvas = document.createElement("canvas")
     cursorCanvas.style.pointerEvents = "none"
-    // ... (rest of onStarted) ...
-    console.log("VSCODE-CUSTOM-CSS-JS: Canvas created and rainbowCursorHandle initialized."); // <--- ADD THIS
+    cursorCanvas.style.position = "absolute"
+    cursorCanvas.style.top = "0px"
+    cursorCanvas.style.left = "0px"
+    cursorCanvas.style.zIndex = "1000"
+    editor.appendChild(cursorCanvas)
+
+    // create rainbow cursor effect
+    // thanks to https://github.com/tholman/cursor-effects/blob/master/src/rainbowCursor.js
+    // we can create trail effect!
+    let color = Color
+    if (color == "default") {
+      // color = getComputedStyle(
+        // document.querySelector(".monaco-editor .cursors-layer .cursor")
+      // ).backgroundColor
+      color = "#A052FF"
+    }
+
+    rainbowCursorHandle = createTrail({
+      length: TrailLength,
+      color: color,
+      size: 7,
+      style: CursorStyle,
+      canvas: cursorCanvas
+    })
   },
 
-  onReady:()=>{
-    console.log("VSCODE-CUSTOM-CSS-JS: onReady callback executed."); // <--- ADD THIS
-  },
+  onReady: () => { },
 
   // when cursor moved
-  onCursorPositionUpdated: (x,y)=>{
-    // console.log(`VSCODE-CUSTOM-CSS-JS: onCursorPositionUpdated: x=${x}, y=${y}`); // <--- CAUTION: VERY FREQUENT
-    if (rainbowCursorHandle) rainbowCursorHandle.move(x,y); else console.warn("VSCODE-CUSTOM-CSS-JS: rainbowCursorHandle not ready for move");
+  onCursorPositionUpdated: (x, y) => {
+    rainbowCursorHandle.move(x, y)
   },
 
   // when editor view size changed
-  onEditorSizeUpdated: (x,y)=>{
-    console.log(`VSCODE-CUSTOM-CSS-JS: onEditorSizeUpdated: width=${x}, height=${y}`); // <--- ADD THIS
-    if (rainbowCursorHandle) rainbowCursorHandle.updateSize(x,y); else console.warn("VSCODE-CUSTOM-CSS-JS: rainbowCursorHandle not ready for updateSize");
+  onEditorSizeUpdated: (x, y) => {
+    rainbowCursorHandle.updateSize(x, y)
   },
 
   // when cursor size changed (emoji, ...)
-  onCursorSizeUpdated: (x,y)=>{
-    console.log(`VSCODE-CUSTOM-CSS-JS: onCursorSizeUpdated: width=${x}, height=${y}`); // <--- ADD THIS
-    if (rainbowCursorHandle) rainbowCursorHandle.updateCursorSize(x,y); else console.warn("VSCODE-CUSTOM-CSS-JS: rainbowCursorHandle not ready for updateCursorSize");
+  onCursorSizeUpdated: (x, y) => {
+    rainbowCursorHandle.updateCursorSize(x, y)
+    // rainbowCursorHandle.updateCursorSize(parseInt(y/lineHeight))
   },
 
   // when using multi cursor... just hide all
-  onCursorVisibilityChanged: (visibility)=>{
-    console.log(`VSCODE-CUSTOM-CSS-JS: onCursorVisibilityChanged: ${visibility}`); // <--- ADD THIS
-    if (cursorCanvas) cursorCanvas.style.visibility = visibility; else console.warn("VSCODE-CUSTOM-CSS-JS: cursorCanvas not ready for visibility change");
+  onCursorVisibilityChanged: (visibility) => {
+    cursorCanvas.style.visibility = visibility
   },
 
   // update animation
-  onLoop: ()=>{
-    // console.log("VSCODE-CUSTOM-CSS-JS: onLoop callback executed."); // <--- CAUTION: VERY FREQUENT
-    if (rainbowCursorHandle) rainbowCursorHandle.updateParticles(); else console.warn("VSCODE-CUSTOM-CSS-JS: rainbowCursorHandle not ready for updateParticles");
+  onLoop: () => {
+    rainbowCursorHandle.updateParticles()
   },
 
 })
-console.log("VSCODE-CUSTOM-CSS-JS: Script execution finished (initial setup)."); // <--- ADD THIS
