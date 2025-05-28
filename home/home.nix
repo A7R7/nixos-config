@@ -12,7 +12,7 @@ in
   home = {
     username = username;
     homeDirectory = homeDirectory;
-    stateVersion = "23.11";
+    stateVersion = "25.05";
     sessionVariables = {
       QT_XCB_GL_INTEGRATION = "none"; # kde-connect
       NIXPKGS_ALLOW_UNFREE = "1";
@@ -146,10 +146,10 @@ in
   };
   # ends here
   # [[file:nixos.org::*Config][]]
-  programs.vscode = {
-    enable = true;
-    package = mypkgs.vscode-custom;
-  };
+  # programs.vscode = {
+  #   enable = true;
+  #   package = mypkgs.vscode-custom;
+  # };
   programs.obs-studio = {
     enable = false;
     plugins = with pkgs.obs-studio-plugins; [
@@ -167,7 +167,7 @@ in
   programs.emacs = {
     enable = true;
     # package = pkgs.mynur.emacs;
-    package = pkgs.emacs-pgtk;
+    package = pkgs.emacs-git-pgtk;
   };
   # ends here
   # [[file:nixos.org::*Config][]]
