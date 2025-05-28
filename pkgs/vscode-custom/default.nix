@@ -26,7 +26,7 @@ let
 in
 vscode.overrideAttrs (oldAttrs: rec {
   pname = "${oldAttrs.pname}-custom";
-  version = "${oldAttrs.version}-custom";
+  # version = "${oldAttrs.version}-custom";
   
   postInstall = (oldAttrs.postInstall or "") + ''
     echo "--- Running Custom VSCode Post-Install Hook ---"
