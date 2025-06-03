@@ -3,7 +3,7 @@
 // Configuration
 
 // Set the color of the cursor trail to match the user's cursor color
-const Color = "default" // If set to "default," it will use the theme's cursor color.
+const Color = "#A052FF" // If set to "default," it will use the theme's cursor color.
 // ! default will only reference editorCursor.background
 // "workbench.colorCustomizations": {
 //     "editorCursor.background": "#A052FF",
@@ -11,7 +11,7 @@ const Color = "default" // If set to "default," it will use the theme's cursor c
 
 // Set the style of the cursor to either a line or block
 // line option use fill() to draw trail, block option use lineTo to draw trail
-const CursorStyle = "block" // Options are 'line' or 'block'
+const CursorStyle = "line" // Options are 'line' or 'block'
 
 // Set the length of the cursor trail. A higher value may cause lag.
 const TrailLength = 8 // Recommended value is around 8
@@ -20,7 +20,7 @@ const TrailLength = 8 // Recommended value is around 8
 const CursorUpdatePollingRate = 500 // Recommended value is around 500
 
 // Use shadow
-const UseShadow = true
+const UseShadow = false
 const ShadowColor = Color
 const ShadowBlur = 15
 
@@ -81,8 +81,8 @@ function createTrail(options) {
       particlePos.x = x;
       particlePos.y = y;
 
-      x += (nextParticlePos.x - particlePos.x) * 0.42
-      y += (nextParticlePos.y - particlePos.y) * 0.35
+      x += (nextParticlePos.x - particlePos.x) * 0.9
+      y += (nextParticlePos.y - particlePos.y) * 0.9
     }
   }
 
@@ -99,17 +99,13 @@ function createTrail(options) {
       context.shadowBlur = ShadowBlur;
     }
 
-    // draw 3 lines
-    let ymut = (sizeY - lineWidth) / 3
-    for (let yoffset = 0; yoffset <= 3; yoffset++) {
-      let offset = yoffset * ymut
-      for (const particleIndex in particles) {
-        const pos = particles[particleIndex].position
-        if (particleIndex == 0) {
-          context.moveTo(pos.x, pos.y + offset + lineWidth / 2)
-        } else {
-          context.lineTo(pos.x, pos.y + offset + lineWidth / 2)
-        }
+
+    for (const particleIndex in particles) {
+      const pos = particles[particleIndex].position
+      if (particleIndex == 0) {
+        context.moveTo(pos.x, pos.y + lineWidth / 2)
+      } else {
+        context.lineTo(pos.x, pos.y + lineWidth / 2)
       }
     }
     context.stroke()
@@ -294,7 +290,7 @@ async function createCursorHandler(handlerFunctions) {
 }
 
 // Main handler code
-let cursorCanvas, rainbowCursorHandle
+let canvas, rainbowCursorHandle
 createCursorHandler({
 
   // cursor create/destroy event handler polling rate
@@ -303,23 +299,23 @@ createCursorHandler({
   // When editor instance stared
   onStarted: (editor) => {
     // create new canvas for make animation
-    cursorCanvas = document.createElement("canvas")
-    cursorCanvas.style.pointerEvents = "none"
-    cursorCanvas.style.position = "absolute"
-    cursorCanvas.style.top = "0px"
-    cursorCanvas.style.left = "0px"
-    cursorCanvas.style.zIndex = "1000"
-    editor.appendChild(cursorCanvas)
+    canvas = document.createElement("canvas")
+    canvas.style.pointerEvents = "none"
+    canvas.style.position = "absolute"
+    canvas.style.top = "0px"
+    canvas.style.left = "0px"
+    canvas.style.zIndex = "1000"
+    editor.appendChild(canvas)
 
     // create rainbow cursor effect
     // thanks to https://github.com/tholman/cursor-effects/blob/master/src/rainbowCursor.js
     // we can create trail effect!
     let color = Color
     if (color == "default") {
-      // color = getComputedStyle(
-        // document.querySelector(".monaco-editor .cursors-layer .cursor")
-      // ).backgroundColor
-      color = "#A052FF"
+      color = getComputedStyle(
+        document.querySelector("body>.monaco-workbench"))
+        .getPropertyValue("--vscode-editorCursor-background")
+        .trim()
     }
 
     rainbowCursorHandle = createTrail({
@@ -327,7 +323,7 @@ createCursorHandler({
       color: color,
       size: 7,
       style: CursorStyle,
-      canvas: cursorCanvas
+      canvas: canvas
     })
   },
 
@@ -351,7 +347,7 @@ createCursorHandler({
 
   // when using multi cursor... just hide all
   onCursorVisibilityChanged: (visibility) => {
-    cursorCanvas.style.visibility = visibility
+    canvas.style.visibility = visibility
   },
 
   // update animation

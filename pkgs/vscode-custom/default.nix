@@ -1,8 +1,8 @@
-{ lib, vscode, gnused, writeText}: # Removed stdenv and makeWrapper as vscode likely brings them
+{ lib, stdenv, vscode, gnused, writeText, gawk, coreutils }:
 
 let
   customCssContent = builtins.readFile ./custom.css;
-  customJsContent = builtins.readFile ./custom.js; 
+  customJsContent = builtins.readFile ./cursor.js;
 
   injections = ''
     <!-- !! VSCODE-CUSTOM-CSS-JS-START !! -->
@@ -14,25 +14,30 @@ let
     </script>
     <!-- !! VSCODE-CUSTOM-CSS-JS-END !! -->
   '';
-  
-  # injections = ''
-  #   <!-- !! VSCODE-CUSTOM-CSS-JS-START !! -->
-  #   <script src="/home/${userName}/.config/Code/User/custom.js" type="module"></script>
-  #   <!-- !! VSCODE-CUSTOM-CSS-JS-END !! -->
-  # '';
 
   injectionsFile = writeText "vscode-injections.html" injections;
 
-in
-vscode.overrideAttrs (oldAttrs: rec {
-  pname = "${oldAttrs.pname}-custom";
-  # version = "${oldAttrs.version}-custom";
+in stdenv.mkDerivation rec {
+  pname = "vscode-custom";
+  version = vscode.version;
+  src = vscode;
+
+  nativeBuildInputs = [ gnused gawk coreutils ];
+  dontStrip = true;
   
-  postInstall = (oldAttrs.postInstall or "") + ''
-    echo "--- Running Custom VSCode Post-Install Hook ---"
+  passthru = vscode.passthru;
+  unpackPhase = ":"; 
+  patchPhase = ":";
+  configurePhase = ":";
+  buildPhase = ":";
+  installPhase = ''
+    runHook preInstall
+
+    cp -Rp "$src/." "$out/"
+    chmod -R u+w "$out"
 
     # Paths are relative to $out (the output directory of the derivation)
-    base_path="lib/vscode/resources/app/out/vs/code/electron-sandbox/"
+    base_path="lib/vscode/resources/app/out/vs/code/electron-sandbox"
     workbench_html_path_pattern="$base_path/workbench/workbench.html"
     workbench_apc_html_path_pattern="$base_path/workbench-apc-extension.html"
     workbench_esm_html_path_pattern="$base_path/workbench.esm.html"
@@ -54,16 +59,26 @@ vscode.overrideAttrs (oldAttrs: rec {
     # Ensure the target file is writable
     chmod u+w "$TARGET_HTML_FILE"
 
-    # 1. Remove CSP meta tag
+    # Remove CSP meta tag
     sed -Ezi 's/<meta[[:space:]]+http-equiv="Content-Security-Policy".*?\/>//gI' "$TARGET_HTML_FILE"
 
-    # 2. Inject custom content
+    # Inject custom content
     awk '
       /<\/html>/ { system("cat ${injectionsFile}") }
       { print }
     ' "$TARGET_HTML_FILE" > "$TARGET_HTML_FILE".tmp && \
     mv "$TARGET_HTML_FILE".tmp "$TARGET_HTML_FILE"
-    
-    echo "--- Custom VSCode Post-Install Hook Finished ---"
+
+    # Replace original path
+    sed -i "s|$src|$out|g" "$out/bin/code"
+    sed -i "s|$src|$out|g" "$out/bin/.code-wrapped"
+
+    runHook postInstall
   '';
-})
+  
+  fixupPhase = ":";
+  
+  meta = vscode.meta // {
+    description = vscode.meta.description + " (with custom UI: CSS/JS)";
+  };
+}

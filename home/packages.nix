@@ -145,7 +145,7 @@
     # effect processor
     calf
     lsp-plugins
-    
+    easyeffects
     # Qt-based Graph/Patchbay for PipeWire
     qpwgraph
     tauon
